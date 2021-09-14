@@ -1,0 +1,28 @@
+[
+    {
+        "id": "1",
+        "title": "McDonald's",
+        "description": "Fast food restaurant\\nMost offers between 21:00-22:00",
+        "coordinates": "54.700382, 25.256319",
+        "street": "Saltoniškių g. 9",
+        "city": "Vilnius",
+        "workingHours": "8:00-22:00",
+        "rating": "4.7",
+        "logoURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/877px-McDonald%27s_Golden_Arches.svg.png",
+        "headerURL": "https://prod-wolt-venue-images-cdn.wolt.com/5cdbbe8702e5c2e15888fb4d/68757acc-5a39-11eb-9d45-16259b33b38f_210538_mcd_mcdelivery_menuimage_1200x8002_8__3_.jpg",
+        "dealIDs": ["1, 2, 3, 4"]
+    },
+    {
+        "id": "2",
+        "title": "Sushi Express",
+        "description": "Sushi restaurant\\nMost offers between",
+        "coordinates": "54.687779, 25.279760",
+        "street": "Vilniaus g. 9",
+        "city": "Vilnius",
+        "workingHours": "11:00-22:00",
+        "rating": "4.3",
+        "logoURL": "data:image/png;base64,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",
+        "headerURL": "https://prod-wolt-venue-images-cdn.wolt.com/5c7cf48a79e3ee000ba47d01/c9d67040-f9af-11ea-a8a3-ca2bebd1e85e_ivaizdine_1000x600.jpg",
+        "dealIDs": ["5, 6, 7, 8"]
+    }
+]
