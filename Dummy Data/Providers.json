@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "title": "McDonald's",
+        "description": "Fast food restaurant\\nMost offers between 21:00-22:00",
+        "longitude": 54.700382,
+        "latitude": 25.256319,
+        "street": "Saltoniškių g. 9",
+        "city": "Vilnius",
+        "workingHours": "8:00-22:00",
+        "rating": 4.7,
+        "logoURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/877px-McDonald%27s_Golden_Arches.svg.png",
+        "headerURL": "https://prod-wolt-venue-images-cdn.wolt.com/5cdbbe8702e5c2e15888fb4d/68757acc-5a39-11eb-9d45-16259b33b38f_210538_mcd_mcdelivery_menuimage_1200x8002_8__3_.jpg",
+        "dealIDs": [1, 2, 3, 4]
+    },
+    {
+        "id": 2,
+        "title": "Sushi Express",
+        "description": "Sushi restaurant\\nMost offers between",
+        "longitude": 54.687779,
+        "latitude": 25.279760,
+        "street": "Vilniaus g. 9",
+        "city": "Vilnius",
+        "workingHours": "11:00-22:00",
+        "rating": 4.3,
+        "logoURL": "https://www.logolynx.com/images/logolynx/50/5080ca765e9e8a85ba537b50057dadb7.jpeg",
+        "headerURL": "https://prod-wolt-venue-images-cdn.wolt.com/5c7cf48a79e3ee000ba47d01/c9d67040-f9af-11ea-a8a3-ca2bebd1e85e_ivaizdine_1000x600.jpg",
+        "dealIDs": [5, 6, 7, 8]
+    }
+]
