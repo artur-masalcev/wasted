@@ -14,4 +14,20 @@
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Dummy Data API\" />
+    <None Remove="Dummy Data API\Dummy Data\" />
+    <None Remove="Dummy Data API\Dummy Data\Deals.json" />
+    <None Remove="Dummy Data API\Dummy Data\Providers.json" />
+    <None Remove="Utils\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dummy API\" />
+    <Folder Include="Dummy API\Dummy Data\" />
+    <Folder Include="Utils\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Dummy API\Dummy Data\Deals.json" />
+    <EmbeddedResource Include="Dummy API\Dummy Data\Providers.json" />
+  </ItemGroup>
 </Project>
