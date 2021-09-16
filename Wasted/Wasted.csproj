@@ -20,14 +20,17 @@
     <None Remove="Dummy Data API\Dummy Data\Deals.json" />
     <None Remove="Dummy Data API\Dummy Data\Providers.json" />
     <None Remove="Utils\" />
+    <None Remove="Dummy API\Business Objects\" />
+    <None Remove="Dummy API\Dummy Data\FoodPlaces.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dummy API\" />
     <Folder Include="Dummy API\Dummy Data\" />
     <Folder Include="Utils\" />
+    <Folder Include="Dummy API\Business Objects\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Dummy API\Dummy Data\Deals.json" />
-    <EmbeddedResource Include="Dummy API\Dummy Data\Providers.json" />
+    <EmbeddedResource Include="Dummy API\Dummy Data\FoodPlaces.json" />
   </ItemGroup>
 </Project>

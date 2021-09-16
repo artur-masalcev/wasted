@@ -10,7 +10,7 @@ namespace Wasted.DummyDataAPI
         /// <summary>
         /// Path to food providers embeedded resource JSON file
         /// </summary>
-        private const string ProvidersJSONPath = "Wasted.Dummy_API.Dummy_Data.Providers.json";
+        private const string FoodPlacesJSONPath = "Wasted.Dummy_API.Dummy_Data.FoodPlaces.json";
 
         /// <summary>
         /// Path to deals embeedded resource JSON file
@@ -21,9 +21,9 @@ namespace Wasted.DummyDataAPI
         /// Provides a list of all food providers in JSON format string
         /// </summary>
         /// <returns>string containing all food providers in JSON format</returns>
-        public static string GetProviders()
+        public static string GetFoodPlaces()
         {
-            return EmbeddedDataReader.ReadString(ProvidersJSONPath);
+            return EmbeddedDataReader.ReadString(FoodPlacesJSONPath);
         }
 
         /// <summary>
