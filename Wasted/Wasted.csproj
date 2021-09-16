@@ -13,5 +13,26 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Dummy Data API\" />
+    <None Remove="Dummy Data API\Dummy Data\" />
+    <None Remove="Dummy Data API\Dummy Data\Deals.json" />
+    <None Remove="Dummy Data API\Dummy Data\Providers.json" />
+    <None Remove="Utils\" />
+    <None Remove="Dummy API\Business Objects\" />
+    <None Remove="Dummy API\Dummy Data\FoodPlaces.json" />
+    <None Remove="Newtonsoft.Json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dummy API\" />
+    <Folder Include="Dummy API\Dummy Data\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Dummy API\Business Objects\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Dummy API\Dummy Data\Deals.json" />
+    <EmbeddedResource Include="Dummy API\Dummy Data\FoodPlaces.json" />
   </ItemGroup>
 </Project>
