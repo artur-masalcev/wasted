@@ -10,9 +10,11 @@
                      Title="Home"/>
         <wasted:SearchPage x:Name="searchPage"
                            Title="Search"/>
+        <!-- Removed until MVP
         <wasted:OrdersPage x:Name="ordersPage"
                            Title="Orders"/>
         <wasted:ProfilePage x:Name="profilePage"
                             Title="Profile"/>
+        !-->
 </TabbedPage>
 
