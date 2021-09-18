@@ -21,8 +21,6 @@
     <None Remove="Dummy Data API\Dummy Data\Deals.json" />
     <None Remove="Dummy Data API\Dummy Data\Providers.json" />
     <None Remove="Images\Icons\outline_home_black_48dp.png" />
-    <None Remove="Images\Icons\outline_person_black_48dp.png" />
-    <None Remove="Images\Icons\outline_receipt_long_black_48dp.png" />
     <None Remove="Images\Icons\outline_search_black_48dp.png" />
     <None Remove="Images\outline_home_black_24dp.png" />
     <None Remove="Images\outline_person_black_24dp.png" />
@@ -43,8 +41,6 @@
     <EmbeddedResource Include="Dummy API\Dummy Data\Deals.json" />
     <EmbeddedResource Include="Dummy API\Dummy Data\FoodPlaces.json" />
     <EmbeddedResource Include="Images\Icons\outline_home_black_48dp.png" />
-    <EmbeddedResource Include="Images\Icons\outline_person_black_48dp.png" />
-    <EmbeddedResource Include="Images\Icons\outline_receipt_long_black_48dp.png" />
     <EmbeddedResource Include="Images\Icons\outline_search_black_48dp.png" />
   </ItemGroup>
   <ItemGroup>
