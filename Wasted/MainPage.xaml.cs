@@ -13,10 +13,10 @@ namespace Wasted
         public MainPage()
         {
             InitializeComponent();
-            initializeImageIcons();
+            InitializeImageIcons();
         }
 
-        public void initializeImageIcons()
+        public void InitializeImageIcons()
         {
             var assembly = typeof(MainPage); //Finds if program runs on android or on ios and adjust images accordingly.
             homePage.IconImageSource = ImageSource.FromResource("Wasted.Images.Icons.outline_home_black_24dp.png", assembly);
