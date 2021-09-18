@@ -9,7 +9,7 @@ namespace Wasted
         public App()
         {
             InitializeComponent();
-
+            //Main page manages all the other pages.
             MainPage = new MainPage();
         }
 

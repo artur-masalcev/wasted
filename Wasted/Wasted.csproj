@@ -20,6 +20,10 @@
     <None Remove="Dummy Data API\Dummy Data\" />
     <None Remove="Dummy Data API\Dummy Data\Deals.json" />
     <None Remove="Dummy Data API\Dummy Data\Providers.json" />
+    <None Remove="Images\outline_home_black_24dp.png" />
+    <None Remove="Images\outline_person_black_24dp.png" />
+    <None Remove="Images\outline_receipt_long_black_24dp.png" />
+    <None Remove="Images\outline_search_black_24dp.png" />
     <None Remove="Utils\" />
     <None Remove="Dummy API\Business Objects\" />
     <None Remove="Dummy API\Dummy Data\FoodPlaces.json" />
@@ -34,5 +38,23 @@
   <ItemGroup>
     <EmbeddedResource Include="Dummy API\Dummy Data\Deals.json" />
     <EmbeddedResource Include="Dummy API\Dummy Data\FoodPlaces.json" />
+    <EmbeddedResource Include="Images\Icons\outline_home_black_24dp.png" />
+    <EmbeddedResource Include="Images\Icons\outline_person_black_24dp.png" />
+    <EmbeddedResource Include="Images\Icons\outline_receipt_long_black_24dp.png" />
+    <EmbeddedResource Include="Images\Icons\outline_search_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="HomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="OrdersPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="ProfilePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="SearchPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
