@@ -40,8 +40,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Dummy API\Dummy Data\Deals.json" />
     <EmbeddedResource Include="Dummy API\Dummy Data\FoodPlaces.json" />
-    <EmbeddedResource Include="Images\Icons\outline_home_black_48dp.png" />
-    <EmbeddedResource Include="Images\Icons\outline_search_black_48dp.png" />
+    <EmbeddedResource Include="Resources\Icons\outline_home_black_48dp.png" />
+    <EmbeddedResource Include="Resources\Icons\outline_search_black_48dp.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="HomePage.xaml">
