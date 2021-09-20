@@ -113,6 +113,30 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\nav_bar_home.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\nav_bar_home-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\nav_bar_home-2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\nav_bar_search.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\nav_bar_search-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\nav_bar_search-2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -129,8 +153,12 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\Wasted\Wasted.csproj">
-      <Project>{70D38BDA-2CF9-4B03-84E6-F67C181CCB5D}</Project>
+      <Project>{CD72773B-6891-4AF8-9F2C-DF849075C540}</Project>
       <Name>Wasted</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets.xcassets\nav_bar_home.imageset\" />
+    <Folder Include="Assets.xcassets\nav_bar_search.imageset\" />
   </ItemGroup>
 </Project>
