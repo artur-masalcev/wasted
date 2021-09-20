@@ -8,9 +8,9 @@
 
     <wasted:HomePage x:Name="homePage"
                      Title="Home"
-                     IconImageSource="outline_home_black_48dp.png"/>
+                     Icon="nav_bar_home.png"/>
     <wasted:SearchPage x:Name="searchPage"
                      Title="Search"
-                     IconImageSource="outline_search_black_48dp.png"/>
+                       Icon="nav_bar_search.png"/>
 </TabbedPage>
 

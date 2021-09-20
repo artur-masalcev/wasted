@@ -28,6 +28,10 @@
     <None Remove="Dummy Data API\Dummy Data\" />
     <None Remove="Dummy Data API\Dummy Data\Deals.json" />
     <None Remove="Dummy Data API\Dummy Data\Providers.json" />
+    <None Remove="Images\outline_home_black_24dp.png" />
+    <None Remove="Images\outline_person_black_24dp.png" />
+    <None Remove="Images\outline_receipt_long_black_24dp.png" />
+    <None Remove="Images\outline_search_black_24dp.png" />
     <None Remove="Utils\" />
     <None Remove="Dummy API\Business Objects\" />
     <None Remove="Dummy API\Dummy Data\FoodPlaces.json" />

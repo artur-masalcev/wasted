@@ -1,6 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 
 namespace Wasted
 {
@@ -9,7 +7,6 @@ namespace Wasted
         public App()
         {
             InitializeComponent();
-            //Main page manages all the other pages.
             MainPage = new MainPage();
         }
 
