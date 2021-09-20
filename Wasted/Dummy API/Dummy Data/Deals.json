@@ -138,5 +138,85 @@
     "quantity": 11,
     "due": "2021-09-26",
     "imageUrl": "https://cdn.barbora.lt/products/7c72baa4-c777-4cf2-ac21-4b9508644376_m.png"
+  },
+  {
+      "id": 15,
+      "title": "Pusriebis ROKIŠKIO NAMINIS pienas",
+      "description": "2,5 % rieb., 900 ml",
+      "currentCost": 0.65,
+      "previousCost": 0.85,
+      "quantity": 15,
+      "due": "2021-09-18",
+      "imageURL": "https://cdn.barbora.lt/products/50d89af0-bbb5-4bb4-b707-bf6bcdb8e94d_m.png"
+  },
+  {
+      "id": 16,
+      "title": "Lietuviškas ilgavaisis agurkas",
+      "description": "1 vnt.",
+      "currentCost": 0.35,
+      "previousCost": 0.55,
+      "quantity": 4,
+      "due": "2021-09-18",
+      "imageURL": "https://img.mazuma.lt/media/images/maxima/maxima_4e9740a0270f06df7ca671bdd6f0b3ed7e25411fad5ec8e197a6bb2d5798ebae.jpg"
+  },
+  {
+      "id": 17,
+      "title": "Kiaušiniai FAVORIT",
+      "description": "M dydžio, 1 dėž. (10 vnt.)",
+      "currentCost": 0.79,
+      "previousCost": 1.29,
+      "quantity": 3,
+      "due": "2021-09-20",
+      "imageURL": "https://img.mazuma.lt/media/images/maxima/maxima_76cf2107f8aaea05b7d1191e374bb672ead05cd420a5e198876f3d15b2871732.jpg"
+  },
+  {
+      "id": 18,
+      "title": "Raikytas SUMUŠTINIŲ batonas",
+      "description": "350 g",
+      "currentCost": 0.59,
+      "previousCost": 0.73,
+      "quantity": 9,
+      "due": "2021-09-15",
+      "imageURL": "https://img.mazuma.lt/media/images/maxima/maxima_55288c3c8a76552fc7e698ac80d130ce1f26087ad5c07d0a586c316de4cfa7f0.jpg"
+  },
+  {
+      "id": 19,
+      "title": "SUMMER ROLLS SU LAŠIŠA",
+      "description": "Ryžių lapai su rūkyta lašiša, salo tomis, ilgais sojų makar onais, agurkais, žuvų skraiduolių ikrais, svogūnų traškučiais, šviežiomis kalendromis, žuvies, česnakų ir kalendrų padažu",
+      "currentCost": 4.30,
+      "previousCost": 7.00,
+      "quantity": 2,
+      "due": "2021-11-05",
+      "imageURL": "https://www.manami.lt/media/cache/product_full/uploads/products/5f3131d403c23_Summer%20rolls%20su%20la%C5%A1i%C5%A1a.jpg"
+  },
+  {
+      "id": 20,
+      "title": "MISO SHIRO SRIUBA",
+      "description": "Tradicinė japoniška sriuba su wakame jūrų dumblais, tofu, shiitake grybais ir laiškiniais svogūnais",
+      "currentCost": 1.00,
+      "previousCost": 2.50,
+      "quantity": 9,
+      "due": "2021-09-18",
+      "imageURL": "https://www.manami.lt/media/cache/product_full/uploads/products/5f312788a6974_Miso%20shiro.jpg"
+  },
+  {
+      "id": 21,
+      "title": "GJU SOBA",
+      "description": "Grikiniai makaronai su jautiena, „Shiitake“ grybais, porais, svogūnais, česnakais, imbieru, slyvų ir „Teriyaki“ padažais, šviežiomis kalendromis, aitriosiomis paprikomis, laiškiniais česnakais",
+      "currentCost": 4.50,
+      "previousCost": 8.20,
+      "quantity": 1,
+      "due": "2021-10-01",
+      "imageURL": "https://www.manami.lt/media/cache/product_full/uploads/products/5f313963059bc_Gju%20Soba.jpg"
+  },
+  {
+      "id": 22,
+      "title": "EBI SAKE YAKI BENTO",
+      "description": "MISO SHIRO sriuba (porcija), TEKKA maki 4 vnt., SAKE nigiri 2 vnt., Lašišos ir krevečių iešmeliai",
+      "currentCost": 9.80,
+      "previousCost": 16.00,
+      "quantity": 5,
+      "due": "2021-09-27",
+      "imageURL": "https://www.manami.lt/media/cache/product_full/uploads/products/5f314172bd5e5_Ebi%20Sake%20Yaki.jpg"
   }
 ]
