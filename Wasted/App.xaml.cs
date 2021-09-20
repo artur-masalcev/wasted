@@ -9,6 +9,7 @@ namespace Wasted
         public App()
         {
             InitializeComponent();
+            Sharpnado.HorizontalListView.Initializer.Initialize(true, false);
             //Main page manages all the other pages.
             MainPage = new MainPage();
         }

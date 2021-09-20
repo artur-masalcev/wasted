@@ -7,8 +7,10 @@
             android:TabbedPage.ToolbarPlacement="Bottom">
 
     <wasted:HomePage x:Name="homePage"
-                     Title="Home"/>
+                     Title="Home"
+                     IconImageSource="outline_home_black_48dp.png"/>
     <wasted:SearchPage x:Name="searchPage"
-                     Title="Search"/>
+                     Title="Search"
+                     IconImageSource="outline_search_black_48dp.png"/>
 </TabbedPage>
 

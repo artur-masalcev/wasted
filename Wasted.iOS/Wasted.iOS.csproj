@@ -133,4 +133,13 @@
       <Name>Wasted</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\outline_star_outline_black_48dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\outline_home_black_48dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\outline_search_black_48dp.png" />
+  </ItemGroup>
 </Project>

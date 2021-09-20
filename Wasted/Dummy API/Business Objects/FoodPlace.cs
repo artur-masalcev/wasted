@@ -4,19 +4,20 @@ namespace Wasted.DummyAPI.BusinessObjects
     public class FoodPlace
     {
         public int ID;
-        public string Title;
-        public string Description;
-        public double Longitude;
-        public double Latitude;
-        public string Street;
-        public string City;
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public double Longitude { get; set; }
+        public double Latitude { get; set; }
+        public string Street { get; set; }
+        public string City { get; set; }
         public string WorkingHours;
-        public double Rating;
-        public string LogoURL;
-        public string HeaderURL;
-        public int[] DealsIDs;
+        public double Rating { get; set; }
+        public string LogoURL { get; set; }
+        public string HeaderURL { get; set; }
+        public int[] DealsIDs { get; set; }
 
-        public FoodPlace(int id, string title, string description, double longitude, double latitude, string street, string city, string workingHours, double rating, string logoURL, string headerURL, int[] dealsIDs)
+        public int Deals => DealsIDs.Length;
+        public FoodPlace(int id, string title, string description, double longitude, double latitude, string street, string city, string workingHours, double rating, string logoURL, string headerURL, int[] dealIDs)
         {
             ID = id;
             Title = title;
@@ -29,7 +30,7 @@ namespace Wasted.DummyAPI.BusinessObjects
             Rating = rating;
             LogoURL = logoURL;
             HeaderURL = headerURL;
-            DealsIDs = dealsIDs;
+            DealsIDs = dealIDs;
         }
     }
 }

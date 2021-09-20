@@ -1,4 +1,8 @@
-﻿using Wasted.Utils;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Diagnostics;
+using Wasted.DummyAPI.BusinessObjects;
+using Wasted.Utils;
 
 namespace Wasted.DummyDataAPI
 {
@@ -33,6 +37,15 @@ namespace Wasted.DummyDataAPI
         public static string GetDeals()
         {
             return EmbeddedDataReader.ReadString(DealsJSONPath);
+        }
+
+        /// <summary>
+        /// Provides a list of all food providers in List<FoodPlace> format
+        /// </summary>
+        /// <returns>list containing all food providers in JSON format</returns>
+        public static IEnumerable<FoodPlace> GetFoodPlacesList()
+        {
+            return JsonConvert.DeserializeObject<List<FoodPlace>>(GetFoodPlaces());
         }
     }
 }

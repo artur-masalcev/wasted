@@ -4,6 +4,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using Sharpnado.HorizontalListView.Droid;
 
 namespace Wasted.Droid
 {
@@ -15,6 +16,7 @@ namespace Wasted.Droid
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            SharpnadoInitializer.Initialize();
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
         }
