@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace Wasted
 {
+    /// <summary>
+    /// Core screen of the app, manages transitioning between other screens
+    /// </summary>
     public partial class MainPage : TabbedPage
     {
         public MainPage()
@@ -21,7 +18,7 @@ namespace Wasted
         /// </summary>
         public void InitializeImageIcons()
         {
-            var assembly = typeof(MainPage); //Finds if program runs on android or on ios and adjust images accordingly.
+            var assembly = typeof(MainPage); //Find if program runs on android or on ios and adjust images accordingly
             homePage.IconImageSource = ImageSource.FromResource("Wasted.Images.Icons.outline_home_black_48dp.png", assembly);
             searchPage.IconImageSource = ImageSource.FromResource("Wasted.Images.Icons.outline_search_black_48dp.png", assembly);
         }
