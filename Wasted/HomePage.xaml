@@ -7,9 +7,25 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="NameLabel" TargetType="Label">
+                <Setter Property="Margin" Value="5" />
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="TextColor" Value="Black" />
+            </Style>
+
+            <Style x:Key="DiscountLabel" TargetType="Label">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="Green" />
+            </Style>
+
+            <Style x:Key="PreviousCostLabel" TargetType="Label">
+                <Setter Property="TextDecorations" Value="Strikethrough" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="#FF808080" />
             </Style>
 
             <Style x:Key="LabelStyle" TargetType="Label">
@@ -48,7 +64,6 @@
             </Style>
 
             <Style x:Key="itemsCardViewStackLayoutStyle" TargetType="StackLayout">
-                <Setter Property="Margin" Value="5" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="Spacing" Value="8" />
             </Style>
@@ -61,11 +76,12 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
+        <StackLayout Spacing="5" Margin="0,50,0,0">
 
-        <StackLayout Spacing="5" BackgroundColor="IndianRed">
+            <Label Text="Restaurants near you" Style="{StaticResource NameLabel}"></Label>
 
-            <CollectionView x:Name="foodPlaceCollectionView" HeightRequest="200" SelectionMode="Single"
-                        SelectionChanged="CollectionViewListSelectionChanged">
+            <CollectionView x:Name="nearbyRestaurantsCollectionView" HeightRequest="200" SelectionMode="Single"
+                        SelectionChanged="RestaurantsCollectionViewListSelectionChanged">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Horizontal" />
                 </CollectionView.ItemsLayout>
@@ -76,9 +92,7 @@
                                 <StackLayout Style="{StaticResource itemsCardViewStackLayoutStyle}">
                                     <StackLayout Style="{StaticResource itemsInsideCardViewStackLayoutStyle}"
                                         Orientation="Vertical">
-                                        <Frame>
-                                            <Image Style="{StaticResource profileImageStyle}" Source="{Binding LogoURL}" />
-                                        </Frame>
+                                        <Image Style="{StaticResource profileImageStyle}" Source="{Binding HeaderURL}" />
                                         <StackLayout Style="{StaticResource detailsStackLayout}">
                                             <Label Text="{Binding Title}" Style="{StaticResource NameLabel}" />
                                             <StackLayout Style="{StaticResource imageLableStackLayout}">
@@ -97,8 +111,75 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </StackLayout>
 
+            <Label Text="Special offers" Style="{StaticResource NameLabel}"></Label>
+
+            <CollectionView x:Name="specialOffersCollectionView" HeightRequest="200" SelectionMode="Single"
+                        SelectionChanged="DealsCollectionViewListSelectionChanged">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Spacing="8" HorizontalOptions="EndAndExpand">
+                            <Frame Style="{StaticResource FrameCardViewStyle}">
+                                <StackLayout Style="{StaticResource itemsCardViewStackLayoutStyle}">
+                                    <StackLayout Style="{StaticResource itemsInsideCardViewStackLayoutStyle}"
+                                                 Orientation="Vertical">
+                                        <Image Style="{StaticResource profileImageStyle}" Source="{Binding ImageURL}" />
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout Style="{StaticResource detailsStackLayout}">
+                                                <Label Text="{Binding Title}" Style="{StaticResource NameLabel}" />
+                                                <Label Text="TODO: add restaurant" Style="{StaticResource LabelStyle}" />
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding CurrentCost}" Style="{StaticResource DiscountLabel}" />
+                                                <Label Text="{Binding PreviousCost}" Style="{StaticResource PreviousCostLabel}" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label Text="Popular restaurants" Style="{StaticResource NameLabel}"></Label>
+
+            <CollectionView x:Name="popularRestaurantsCollectionView" HeightRequest="200" SelectionMode="Single"
+                        SelectionChanged="RestaurantsCollectionViewListSelectionChanged">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Spacing="8" HorizontalOptions="EndAndExpand">
+                            <Frame Style="{StaticResource FrameCardViewStyle}">
+                                <StackLayout Style="{StaticResource itemsCardViewStackLayoutStyle}">
+                                    <StackLayout Style="{StaticResource itemsInsideCardViewStackLayoutStyle}"
+                                        Orientation="Vertical">
+                                        <Image Style="{StaticResource profileImageStyle}" Source="{Binding HeaderURL}" />
+                                        <StackLayout Style="{StaticResource detailsStackLayout}">
+                                            <Label Text="{Binding Title}" Style="{StaticResource NameLabel}" />
+                                            <StackLayout Style="{StaticResource imageLableStackLayout}">
+                                                <Image Source="outline_star_outline_black_48dp.png" Style="{StaticResource imageStyle}"></Image>
+                                                <Label Text="{Binding Rating}" Style="{StaticResource LabelStyle}" />
+                                            </StackLayout>
+                                            <StackLayout Style="{StaticResource imageLableStackLayout}">
+                                                <Label Text="{Binding Deals}" Style="{StaticResource LabelStyle}" />
+                                                <Label Text="deals" Style="{StaticResource LabelStyle}" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
     </ContentPage.Content>
 
 

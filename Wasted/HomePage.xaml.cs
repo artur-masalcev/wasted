@@ -1,5 +1,4 @@
-﻿using Sharpnado.HorizontalListView.RenderedViews;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -18,6 +17,7 @@ namespace Wasted
     public partial class HomePage : ContentPage
     {
         public List<FoodPlace> AllFoodPlaces { get; set; }
+        public List<Deal> AllDeals { get; set; }
 
         public HomePage()
         {
@@ -31,23 +31,40 @@ namespace Wasted
         {
             base.OnAppearing();
             AllFoodPlaces = new List<FoodPlace>(DummyDataProvider.GetFoodPlacesList());
-            foodPlaceCollectionView.ItemsSource = AllFoodPlaces;
+            nearbyRestaurantsCollectionView.ItemsSource = AllFoodPlaces;
+
+            AllDeals = new List<Deal>(DummyDataProvider.GetDealsList());
+            specialOffersCollectionView.ItemsSource = AllDeals;
+
+            popularRestaurantsCollectionView.ItemsSource = AllFoodPlaces;
         }
 
         /// <summary>
-        /// Function is called when user selects food place from collectionView.
+        /// Function is called when user selects food place from nearby restaurants collectionView. Called from xaml file.
         /// </summary>
-        void CollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
+        void RestaurantsCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UpdateSelectionData(e.CurrentSelection);
+            UpdateRestaurantsSelectionData(e.CurrentSelection);
         }
 
-        void UpdateSelectionData(IEnumerable<object> currentSelectedContact)
+        void UpdateRestaurantsSelectionData(IEnumerable<object> currentSelectedContact)
         {
             FoodPlace selectedPlace = currentSelectedContact.FirstOrDefault() as FoodPlace;
             //TODO: pass selectedPlace to Restaurant activity.
         }
 
+        /// <summary>
+        /// Function is called when user selects deal from nearby restaurants collectionView. Called from xaml file.
+        /// </summary>
+        void DealsCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateDealsSelectionData(e.CurrentSelection);
+        }
 
+        void UpdateDealsSelectionData(IEnumerable<object> currentSelectedContact)
+        {
+            FoodPlace selectedPlace = currentSelectedContact.FirstOrDefault() as FoodPlace;
+            //TODO: pass selectedPlace to Deal activity.
+        }
     }
 }

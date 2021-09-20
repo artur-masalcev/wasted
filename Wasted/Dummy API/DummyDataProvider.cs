@@ -42,10 +42,19 @@ namespace Wasted.DummyDataAPI
         /// <summary>
         /// Provides a list of all food providers in List<FoodPlace> format
         /// </summary>
-        /// <returns>list containing all food providers in JSON format</returns>
+        /// <returns>list containing all food providers from JSON data</returns>
         public static IEnumerable<FoodPlace> GetFoodPlacesList()
         {
             return JsonConvert.DeserializeObject<List<FoodPlace>>(GetFoodPlaces());
+        }
+
+        /// <summary>
+        /// Provides a list of all deals in List<FoodPlace> format
+        /// </summary>
+        /// <returns>list containing all deals from JSON data</returns>
+        public static IEnumerable<Deal> GetDealsList()
+        {
+            return JsonConvert.DeserializeObject<List<Deal>>(GetDeals());
         }
     }
 }
