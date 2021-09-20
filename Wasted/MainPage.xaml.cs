@@ -11,6 +11,5 @@ namespace Wasted
         {
             InitializeComponent();
         }
-
     }
 }

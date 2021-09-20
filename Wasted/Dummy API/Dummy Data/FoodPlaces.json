@@ -22,41 +22,13 @@
       "street": "Vilniaus g. 9",
       "city": "Vilnius",
       "workingHours": "11:00-22:00",
-      "rating": 4.1,
+      "rating": 4.3,
       "logoURL": "https://www.logolynx.com/images/logolynx/50/5080ca765e9e8a85ba537b50057dadb7.jpeg",
       "headerURL": "https://prod-wolt-venue-images-cdn.wolt.com/5c7cf48a79e3ee000ba47d01/c9d67040-f9af-11ea-a8a3-ca2bebd1e85e_ivaizdine_1000x600.jpg",
       "dealIDs": [ 5, 6, 7, 8 ]
     },
     {
       "id": 3,
-      "title": "Maxima",
-      "description": "Grocery store\\nMost offers between",
-      "longitude": 54.710029,
-      "latitude": 25.188552,
-      "street": "Pilaitės pr. 31",
-      "city": "Vilnius",
-      "workingHours": "8:00-23:00",
-      "rating": 4.3,
-      "logoURL": "https://www.maxima.lt/images/front/logos/maxima_logo.png",
-      "headerURL": "https://www.vz.lt/api/socialimage/VZ/20201001/MARKETING/201009992/AR/img.jpg",
-      "dealIDs": [ 9, 10, 11, 12 ]
-    },
-    {
-      "id": 4,
-      "title": "Manami",
-      "description": "Asian restaurant\\nMost offers between",
-      "longitude": 54.686360,
-      "latitude": 25.279604,
-      "street": "Vilniaus g. 10",
-      "city": "Vilnius",
-      "workingHours": "10:00-24:00",
-      "rating": 4.1,
-      "logoURL": "https://www.ucs.lt/wp-content/uploads/2016/09/manami-logo-300x300.png",
-      "headerURL": "https://www.manami.lt/media/cache/category_thumb/uploads/category/5f314ce7005cf_Manami_web-meniu_2020-08_bento-rinkiniai.jpg",
-      "dealIDs": [ 13, 14, 15, 16 ]
-    },
-    {
-      "id": 5,
       "title": "KFC",
       "description": "American fast food restaurant\\nMost offers between",
       "longitude": 54.68737456936855,
@@ -70,7 +42,7 @@
       "dealIDs": [ 9, 10, 11, 12 ]
     },
     {
-      "id": 6,
+      "id": 4,
       "title": "Charlie Pizza",
       "description": "Pizzas and light snacks\\nMost offers between",
       "longitude": 54.687779,

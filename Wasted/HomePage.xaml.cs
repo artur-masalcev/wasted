@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.DummyDataAPI;
 using Xamarin.Forms;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Wasted
