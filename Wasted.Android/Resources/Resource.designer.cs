@@ -12568,19 +12568,13 @@ namespace Wasted.Droid
 			public const int outline_star_outline_black_48dp = 2131165536;
 			
 			// aapt resource value: 0x7F070161
-			public const int profile01 = 2131165537;
+			public const int test_custom_background = 2131165537;
 			
 			// aapt resource value: 0x7F070162
-			public const int profile07 = 2131165538;
+			public const int tooltip_frame_dark = 2131165538;
 			
 			// aapt resource value: 0x7F070163
-			public const int test_custom_background = 2131165539;
-			
-			// aapt resource value: 0x7F070164
-			public const int tooltip_frame_dark = 2131165540;
-			
-			// aapt resource value: 0x7F070165
-			public const int tooltip_frame_light = 2131165541;
+			public const int tooltip_frame_light = 2131165539;
 			
 			static Drawable()
 			{

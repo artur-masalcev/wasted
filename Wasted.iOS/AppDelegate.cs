@@ -23,7 +23,6 @@ namespace Wasted.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            SharpnadoInitializer.Initialize();
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 
