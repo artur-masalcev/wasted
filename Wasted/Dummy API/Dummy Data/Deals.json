@@ -218,7 +218,86 @@
       "quantity": 11,
       "due": "2021-09-26",
       "imageUrl": "https://cdn.barbora.lt/products/7c72baa4-c777-4cf2-ac21-4b9508644376_m.png"
+    },
+	{
+      "id": 25,
+      "title": "Šviežia viščiukų broilerių vidinė filė",
+      "description": "450g",
+      "currentCost": 2.0,
+      "previousCost": 2.58,
+      "quantity": 3,
+      "due": "2021-09-30",
+      "imageURL": "https://cdn.barbora.lt/products/9a209130-a515-4161-a7ff-abe93a0b0c22_m.png"
+    },
+	{
+      "id": 26,
+      "title": "Jogurtas GRAIKIŠKA AMFORA",
+      "description": "Su braškėmis ir banan., 2,4% rieb., 500 g",
+      "currentCost": 1.00,
+      "previousCost": 1.49,
+      "quantity": 1,
+      "due": "2021-09-30",
+      "imageURL": "https://cdn.barbora.lt/products/96d4194a-0ed4-4ca6-a160-c56e30bcb1cb_m.png"
+    },
+	{
+      "id": 27,
+      "title": "Bandelė su cinamonu",
+      "description": "120 g",
+      "currentCost": 0.20,
+      "previousCost": 0.40,
+      "quantity": 4,
+      "due": "2021-09-30",
+      "imageURL": "https://cdn.barbora.lt/products/3e192a4e-f7f5-4cc1-9c13-ffe1bc54a7c5_m.png"
+    },
+	{
+      "id": 28,
+      "title": "Avokadas",
+      "description": null,
+      "currentCost": 0.60,
+      "previousCost": 1.17,
+      "quantity": 3,
+      "due": "2021-09-30",
+      "imageURL": "https://cdn.barbora.lt/products/1feada11-3fb4-441e-9fbf-cdf6f68a6dd5_m.png"
+    },
+	{
+      "id": 29,
+      "title": "Vištienos krūtinėlės kepsnys",
+      "description": "Didelė porcija",
+      "currentCost": 6.30,
+      "previousCost": 4.00,
+      "quantity": 3,
+      "due": "2021-09-30",
+      "imageURL": "https://cdn.kasvalgyt.lt/posts/515307531874109/fe6a94a28ec1d709aff6194acb498d28.jpg"
+    },
+	{
+      "id": 30,
+      "title": "BBQ kiaulienos šonkauliai",
+      "description": "Didelė porcija",
+      "currentCost": 6.00,
+      "previousCost": 9.90,
+      "quantity": 1,
+      "due": "2021-09-30",
+      "imageURL": "https://cdn.kasvalgyt.lt/posts/515307531874109/b8b5d018065fec2272d20c2ee6afcc45.jpg"
+    },
+	{
+      "id": 31,
+      "title": "Šaltibarščiai",
+      "description": null,
+      "currentCost": 2.00,
+      "previousCost": 2.70,
+      "quantity": 4,
+      "due": "2021-09-30",
+      "imageURL": "https://cdn.kasvalgyt.lt/posts/515307531874109/aee6dc4578ee24ba3f7ac4f1be64a508.jpg"
+    },
+	{
+      "id": 32,
+      "title": "Lašišų filė kepsnys",
+      "description": "Didelė porcija",
+      "currentCost": 6.00,
+      "previousCost": 9.70,
+      "quantity": 3,
+      "due": "2021-09-30",
+      "imageURL": "https://cdn.kasvalgyt.lt/posts/515307531874109/0e0a9d3f7a1c4f012069ddca0f004a8b.jpg"
     }
 ]
 
-]

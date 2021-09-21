@@ -82,5 +82,33 @@
       "logoURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_bzGd26jVKnIdVN-ljua9Dv2zcmH3tTqSDQ&usqp=CAU",
       "headerURL": "https://prod-wolt-venue-images-cdn.wolt.com/s/ckQFy0qreTG5pM6v_mT1cVqoOrj5hoKbl5uv83C9z3g/5bfaa2521e727f000a53e505/701d2c88-6f8e-11eb-a9e0-4ed7b89d859d_39.charlie_pizza_list_2.jpg",
       "dealIDs": [ 13, 14, 15, 16 ]
+    },
+	{
+        "id": 7,
+        "title": "IKI",
+        "description": "Grocery store\\nMost offers between",
+        "longitude": 54.687710,
+        "latitude": 25.275320,
+        "street": "Gedimino pr. 28",
+        "city": "Vilnius",
+        "workingHours": "7:00-23:00",
+        "rating": 4.1,
+        "logoURL": "https://upload.wikimedia.org/wikipedia/commons/f/f1/IKI_logo.png",
+        "headerURL": "https://media-exp1.licdn.com/dms/image/C4D1BAQE8pzUMMhjAMA/company-background_10000/0/1549878601544?e=2159024400&v=beta&t=j_tKahjwAhmuKs6KBxLcUghlXcRrQYjS30vN6qyYfY8",
+        "dealIDs": [ 25, 26, 27, 28 ]
+    },
+	{
+      "id": 8,
+      "title": "London Grill",
+      "description": "Grill restoranas\\nMost offers between",
+      "longitude": 54.683480,
+      "latitude": 25.279220,
+      "street": "Vilniaus g. 33",
+      "city": "Vilnius",
+      "workingHours": "11:00-24:00",
+      "rating": 4.6,
+      "logoURL": "https://cup.lt/wp-content/uploads/2017/11/grill-london-logo_VCUP.jpg",
+      "headerURL": "https://cup.lt/wp-content/uploads/2017/11/Prekybos-centras-VCUP_Grill-London_1.jpg",
+      "dealIDs": [ 29, 30, 31, 32 ]
     }
 ]
