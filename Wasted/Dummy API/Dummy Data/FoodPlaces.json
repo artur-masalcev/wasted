@@ -95,7 +95,7 @@
     "rating": 4.1,
     "logoURL": "https://upload.wikimedia.org/wikipedia/commons/f/f1/IKI_logo.png",
     "headerURL": "https://media-exp1.licdn.com/dms/image/C4D1BAQE8pzUMMhjAMA/company-background_10000/0/1549878601544?e=2159024400&v=beta&t=j_tKahjwAhmuKs6KBxLcUghlXcRrQYjS30vN6qyYfY8",
-    "dealIDs": [ 24, 25, 26, 27 ]
+    "dealIDs": [ 28, 29, 30, 31 ]
   },
   {
 	"id": 8,
@@ -109,6 +109,6 @@
     "rating": 4.6,
     "logoURL": "https://cup.lt/wp-content/uploads/2017/11/grill-london-logo_VCUP.jpg",
     "headerURL": "https://cup.lt/wp-content/uploads/2017/11/Prekybos-centras-VCUP_Grill-London_1.jpg",
-    "dealIDs": [ 24, 25, 26, 27 ]
+    "dealIDs": [ 32, 33, 34, 35 ]
   }
 ]
