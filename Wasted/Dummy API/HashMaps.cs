@@ -16,14 +16,6 @@ namespace Wasted.Dummy_API
             set { dealsHashMap = value; }
         }
 
-        //Map from deal id to restaurant ids.
-        public static Dictionary<int, List<int>> dealRestaurantsHashMap = new Dictionary<int, List<int>>();
-        public static Dictionary<int, List<int>> DealRestaurantsHashMap
-        {
-            get { return dealRestaurantsHashMap; }
-            set { dealRestaurantsHashMap = value; }
-        }
-
         //Map from food place id to food place.
         private static Dictionary<int, FoodPlace> foodPlacesHashMap = new Dictionary<int, FoodPlace>();
         public static Dictionary<int, FoodPlace> FoodPlacesHashMap
