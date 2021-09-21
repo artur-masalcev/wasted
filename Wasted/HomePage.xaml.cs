@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Wasted.Dummy_API;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.DummyDataAPI;
-using Xamarin.Forms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -32,12 +27,28 @@ namespace Wasted
         {
             base.OnAppearing();
             AllFoodPlaces = new List<FoodPlace>(DummyDataProvider.GetFoodPlacesList());
-            nearbyRestaurantsCollectionView.ItemsSource = AllFoodPlaces;
-
             AllDeals = new List<Deal>(DummyDataProvider.GetDealsList());
+            AddRestaurantsToDeals();
+
+            nearbyRestaurantsCollectionView.ItemsSource = AllFoodPlaces;
             specialOffersCollectionView.ItemsSource = AllDeals;
 
             popularRestaurantsCollectionView.ItemsSource = AllFoodPlaces;
+        }
+
+        /// <summary>
+        /// Adds restaurants from which deals came from by using hashmaps.
+        /// </summary>
+        public void AddRestaurantsToDeals()
+        {
+            foreach (FoodPlace foodPlace in AllFoodPlaces)
+            {
+                foreach (int dealId in foodPlace.DealsIDs)
+                {
+                    Deal deal = HashMaps.DealsHashMap[dealId];
+                    deal.FoodPlaces.Add(foodPlace);
+                }
+            }
         }
 
         /// <summary>
@@ -48,9 +59,9 @@ namespace Wasted
             UpdateRestaurantsSelectionData(e.CurrentSelection);
         }
 
-        void UpdateRestaurantsSelectionData(IEnumerable<object> currentSelectedContact)
+        void UpdateRestaurantsSelectionData(IEnumerable<object> currentSelectedFoodPlace)
         {
-            FoodPlace selectedPlace = currentSelectedContact.FirstOrDefault() as FoodPlace;
+            FoodPlace selectedPlace = currentSelectedFoodPlace.FirstOrDefault() as FoodPlace;
             //TODO: pass selectedPlace to Restaurant activity.
         }
 
@@ -62,9 +73,9 @@ namespace Wasted
             UpdateDealsSelectionData(e.CurrentSelection);
         }
 
-        void UpdateDealsSelectionData(IEnumerable<object> currentSelectedContact)
+        void UpdateDealsSelectionData(IEnumerable<object> currentSelectedDeal)
         {
-            FoodPlace selectedPlace = currentSelectedContact.FirstOrDefault() as FoodPlace;
+            Deal selectedDeal = currentSelectedDeal.FirstOrDefault() as Deal;
             //TODO: pass selectedPlace to Deal activity.
         }
     }

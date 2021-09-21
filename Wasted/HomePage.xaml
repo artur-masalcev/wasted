@@ -100,7 +100,7 @@
                                                 <Label Text="{Binding Rating}" Style="{StaticResource LabelStyle}" />
                                             </StackLayout>
                                             <StackLayout Style="{StaticResource imageLableStackLayout}">
-                                                <Label Text="{Binding Deals}" Style="{StaticResource LabelStyle}" />
+                                                <Label Text="{Binding DealsCount}" Style="{StaticResource LabelStyle}" />
                                                 <Label Text="deals" Style="{StaticResource LabelStyle}" />
                                             </StackLayout>
                                         </StackLayout>
@@ -130,7 +130,7 @@
                                         <StackLayout Orientation="Horizontal">
                                             <StackLayout Style="{StaticResource detailsStackLayout}">
                                                 <Label Text="{Binding Title}" Style="{StaticResource NameLabel}" />
-                                                <Label Text="TODO: add restaurant" Style="{StaticResource LabelStyle}" />
+                                                <Label Text="{Binding FoodPlaceTitle}" Style="{StaticResource LabelStyle}" />
                                             </StackLayout>
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="{Binding CurrentCost}" Style="{StaticResource DiscountLabel}" />

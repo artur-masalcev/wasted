@@ -87,7 +87,7 @@
     "previousCost": 2.24,
     "quantity": 5,
     "due": "2021-09-12",
-    "imageUrl": ""
+    "imageURL": "https://rimibaltic-res.cloudinary.com/image/upload/b_white,c_fit,f_auto,h_480,q_auto,w_480/d_ecommerce:backend-fallback.png/MAT_226054_PCE_LT"
   },
   {
     "id": 10,
@@ -97,7 +97,7 @@
     "previousCost": 6.80,
     "quantity": 10,
     "due": "2021-09-13",
-    "imageUrl": ""
+    "imageURL": "https://worldrecipes.eu/storage/2722/conversions/saldziarugste-kiauliena-su-darzovemis-medium.jpg"
   },
   {
     "id": 11,
@@ -107,7 +107,7 @@
     "previousCost": 16.50,
     "quantity": 5,
     "due": "2021-09-22",
-    "imageUrl": "https://wolt-menu-images-cdn.wolt.com/menu-images/5b1d5a6fb84dde000b9ba827/ce6c33c4-e3dd-11eb-a631-f6a4f8c9228d_kfc.jpeg"
+    "imageURL": "https://wolt-menu-images-cdn.wolt.com/menu-images/5b1d5a6fb84dde000b9ba827/ce6c33c4-e3dd-11eb-a631-f6a4f8c9228d_kfc.jpeg"
   },
   {
     "id": 12,
@@ -117,7 +117,7 @@
     "previousCost": 14.50,
     "quantity": 7,
     "due": "2021-09-23",
-    "imageUrl": "https://wolt-menu-images-cdn.wolt.com/menu-images/5b44f612e71869000dc049f9/0179f03e-9065-11eb-b2bf-f258ef50dde1_kfc_wolt_naujas_2_1_.jpeg"
+    "imageURL": "https://wolt-menu-images-cdn.wolt.com/menu-images/5b44f612e71869000dc049f9/0179f03e-9065-11eb-b2bf-f258ef50dde1_kfc_wolt_naujas_2_1_.jpeg"
   },
   {
     "id": 13,
@@ -127,7 +127,7 @@
     "previousCost": 6.50,
     "quantity": 6,
     "due": "2021-09-24",
-    "imageUrl": "https://wolt-menu-images-cdn.wolt.com/menu-images/5dcd03e545242295c484295e/897892f0-d071-11eb-98bd-16399ba02884_bianco_meat_lovers.jpeg"
+    "imageURL": "https://wolt-menu-images-cdn.wolt.com/menu-images/5dcd03e545242295c484295e/897892f0-d071-11eb-98bd-16399ba02884_bianco_meat_lovers.jpeg"
   },
   {
     "id": 14,
@@ -137,7 +137,7 @@
     "previousCost": 0.78,
     "quantity": 11,
     "due": "2021-09-26",
-    "imageUrl": "https://cdn.barbora.lt/products/7c72baa4-c777-4cf2-ac21-4b9508644376_m.png"
+    "imageURL": "https://cdn.barbora.lt/products/7c72baa4-c777-4cf2-ac21-4b9508644376_m.png"
   },
   {
       "id": 15,
