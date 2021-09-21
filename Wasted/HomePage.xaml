@@ -167,7 +167,7 @@
                                                 <Label Text="{Binding Rating}" Style="{StaticResource LabelStyle}" />
                                             </StackLayout>
                                             <StackLayout Style="{StaticResource imageLableStackLayout}">
-                                                <Label Text="{Binding Deals}" Style="{StaticResource LabelStyle}" />
+                                                <Label Text="{Binding DealsCount}" Style="{StaticResource LabelStyle}" />
                                                 <Label Text="deals" Style="{StaticResource LabelStyle}" />
                                             </StackLayout>
                                         </StackLayout>
