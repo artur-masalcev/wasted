@@ -159,8 +159,8 @@
                                     <Image Style="{StaticResource CardHeaderImage}" Source="{Binding ImageURL}" />
                                     <StackLayout HorizontalOptions="Center">
 
-                                        <Label Text="{Binding Title}" Style="{StaticResource CardTitle}" HorizontalTextAlignment="Center"/>
-                                        <Label Text="{Binding FoodPlaceTitle}" Style="{StaticResource DealFoodPlaceLabel}"/>
+                                        <Label Text="{Binding Title}" Style="{StaticResource CardTitle}" HorizontalTextAlignment="Center" Padding="5, 0, 5, 0"/>
+                                        <Label Text="{Binding FoodPlaceTitle}" Style="{StaticResource DealFoodPlaceLabel}" Padding="5, 0, 5, 0"/>
 
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                                             <Label Text="{Binding PreviousCost, StringFormat='{0:F2}€'}" Style="{StaticResource PreviousCostLabel}"/>
