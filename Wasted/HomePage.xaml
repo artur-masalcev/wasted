@@ -121,14 +121,8 @@
 
                                         <StackLayout Style="{StaticResource CardContent}">
                                             <Label Text="{Binding Title}" Style="{StaticResource CardTitle}" />
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="☆"/>
-                                                <Label Text="{Binding Rating}"/>
-                                            </StackLayout>
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="{Binding DealsCount}" FontAttributes="Bold" TextColor="{StaticResource AccentColor}" />
-                                                <Label Text="deals" FontAttributes="Bold" TextColor="{StaticResource AccentColor}"/>
-                                            </StackLayout>
+                                            <Label Text="{Binding Rating, StringFormat='☆ {0:F1}'}"/>
+                                            <Label Text="{Binding DealsCount, StringFormat='{0} deals'}" FontAttributes="Bold" TextColor="{StaticResource AccentColor}" />
                                         </StackLayout>
                                     </StackLayout>
 
@@ -169,10 +163,8 @@
                                         <Label Text="{Binding FoodPlaceTitle}" Style="{StaticResource DealFoodPlaceLabel}"/>
 
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                                            <Label Text="{Binding PreviousCost}" Style="{StaticResource PreviousCostLabel}"/>
-                                            <Label Text="€" Style="{StaticResource PreviousCostLabel}"/>
-                                            <Label Text="{Binding CurrentCost}" Style="{StaticResource CurrentCostLabel}"/>
-                                            <Label Text="€" Style="{StaticResource CurrentCostLabel}"/>
+                                            <Label Text="{Binding PreviousCost, StringFormat='{0:F2}€'}" Style="{StaticResource PreviousCostLabel}"/>
+                                            <Label Text="{Binding CurrentCost, StringFormat='{0:F2}€'}" Style="{StaticResource CurrentCostLabel}"/>
                                         </StackLayout>
 
                                     </StackLayout>
@@ -212,14 +204,8 @@
 
                                         <StackLayout Style="{StaticResource CardContent}">
                                             <Label Text="{Binding Title}" Style="{StaticResource CardTitle}" />
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="☆"/>
-                                                <Label Text="{Binding Rating}"/>
-                                            </StackLayout>
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="{Binding DealsCount}" FontAttributes="Bold" TextColor="{StaticResource AccentColor}" />
-                                                <Label Text="deals" FontAttributes="Bold" TextColor="{StaticResource AccentColor}"/>
-                                            </StackLayout>
+                                            <Label Text="{Binding Rating, StringFormat='☆ {0:F1}'}"/>
+                                            <Label Text="{Binding DealsCount, StringFormat='{0} deals'}" FontAttributes="Bold" TextColor="{StaticResource AccentColor}" />
                                         </StackLayout>
                                     </StackLayout>
 
