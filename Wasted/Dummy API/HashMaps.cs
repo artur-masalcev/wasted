@@ -8,7 +8,7 @@ namespace Wasted.Dummy_API
 {
     public static class HashMaps
     {
-        //Map from deal id to deal.
+        // Map from deal id to deal //
         public static Dictionary<int, Deal> dealsHashMap = new Dictionary<int, Deal>();
         public static Dictionary<int, Deal> DealsHashMap
         {
@@ -16,7 +16,7 @@ namespace Wasted.Dummy_API
             set { dealsHashMap = value; }
         }
 
-        //Map from food place id to food place.
+        // Map from food place id to food place //
         private static Dictionary<int, FoodPlace> foodPlacesHashMap = new Dictionary<int, FoodPlace>();
         public static Dictionary<int, FoodPlace> FoodPlacesHashMap
         { 
@@ -26,5 +26,4 @@ namespace Wasted.Dummy_API
 
     }
 
- 
 }

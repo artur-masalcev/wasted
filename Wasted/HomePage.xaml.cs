@@ -5,6 +5,7 @@ using Wasted.DummyAPI.BusinessObjects;
 using Wasted.DummyDataAPI;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace Wasted
 {
@@ -18,6 +19,8 @@ namespace Wasted
         public HomePage()
         {
             InitializeComponent();
+
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
         }
 
         /// <summary>
