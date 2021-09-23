@@ -26,7 +26,6 @@ namespace Wasted.DummyAPI.BusinessObjects
 
         public FoodPlace(int id, string title, string description, double longitude, double latitude, string street, string city, string workingHours, double rating, string logoURL, string headerURL, int[] dealIDs)
         {
-            Debug.WriteLine("Not bad");
             ID = id;
             Title = title;
             Description = description;

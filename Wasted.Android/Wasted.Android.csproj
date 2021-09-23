@@ -155,9 +155,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\outline_star_outline_black_48dp.png" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Wasted\Wasted.csproj">
       <Project>{CD72773B-6891-4AF8-9F2C-DF849075C540}</Project>
       <Name>Wasted</Name>
