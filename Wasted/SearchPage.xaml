@@ -2,11 +2,130 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wasted.SearchPage">
+
+    <!--#region Resources-->
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Colors -->
+
+            <Color x:Key="AccentColor">#7eab55</Color>
+
+            <!-- Implicit styles -->
+
+            <Style x:Key="SectionTitle" TargetType="Label">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="FontSize" Value="22" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+
+            <Style x:Key="CardTitle" TargetType="Label">
+                <Setter Property="LineBreakMode" Value="TailTruncation"/>
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+
+            <Style x:Key="CardContent" TargetType="StackLayout">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand" />
+                <Setter Property="Spacing" Value="2" />
+                <Setter Property="Padding" Value="3, 3, 8, 8"/>
+            </Style>
+
+            <Style x:Key="Image" TargetType="Image">
+                <Setter Property="WidthRequest" Value="8" />
+                <Setter Property="HeightRequest" Value="8" />
+            </Style>
+
+            <Style x:Key="CardPlaceImage" TargetType="Image">
+                <Setter Property="WidthRequest" Value="300" />
+                <Setter Property="HeightRequest" Value="90" />
+                <Setter Property="Aspect" Value="AspectFill" />
+            </Style>
+
+            <Style x:Key="CardView" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="OutlineColor" Value="LightGray" />
+                <Setter Property="BorderColor" Value="LightGray" />
+                <Setter Property="HasShadow" Value="True" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <!--#endregion-->
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Search page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                
+                <!--#region Search Bar-->
+
+                <Entry TextChanged="SearchBar_OnTextChanged" BackgroundColor="#f9f9f9" TextColor="#FF464859" FontSize="16" PlaceholderColor="#646b7a" x:Name="searchBar" Placeholder="Try Manami" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None"/>
+                <ListView x:Name="placesListView" IsVisible="False" CachingStrategy="RecycleElement" BackgroundColor="White" ItemTapped="ListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame>
+                                    <StackLayout BackgroundColor="White">
+                                        <Label Text="{Binding .}" FontSize="16" TextColor="#FF464859"/>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <!--#endregion-->
+
+                <!--#region All places-->
+
+                <Label Text="All places" Style="{StaticResource SectionTitle}"></Label>
+
+                <CollectionView x:Name="allPlacesCollectionView" 
+                        SelectionChanged="PlacesCollectionViewListSelectionChanged">
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame Style="{StaticResource CardView}">
+                                    <StackLayout>
+
+                                        <!--#region Card content-->
+
+                                        <StackLayout>
+                                            <Image Style="{StaticResource CardPlaceImage}" Source="{Binding LogoURL}" />
+
+                                            <StackLayout Style="{StaticResource CardContent}">
+                                                <Label Text="{Binding Title}" Style="{StaticResource CardTitle}" />
+                                            </StackLayout>
+                                        </StackLayout>
+
+                                        <!--#endregion-->
+
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+
+                </CollectionView>
+
+                <!--#endregion-->
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
+    
 </ContentPage>

@@ -10,6 +10,12 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
+    <ItemGroup>
+	    <Compile Remove="Images\**" />
+	    <EmbeddedResource Remove="Images\**" />
+	    <None Remove="Images\**" />
+    </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
@@ -30,7 +36,6 @@
     <None Remove="Newtonsoft.Json" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Dummy API\" />
     <Folder Include="Dummy API\Dummy Data\" />
     <Folder Include="Utils\" />
     <Folder Include="Dummy API\Business Objects\" />
