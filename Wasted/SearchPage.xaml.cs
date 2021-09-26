@@ -50,6 +50,9 @@ namespace Wasted
             //TODO: pass selectedPlace to Place activity.
         }
 
+        /// <summary>
+        /// Function that sets the observable list of food place names.
+        /// </summary>
         public void SetFoodPlaceObservableList()
         {
             AllFoodPlaces = new List<FoodPlace>(DummyDataProvider.GetFoodPlacesList());
@@ -59,6 +62,9 @@ namespace Wasted
             }
         }
 
+        /// <summary>
+        /// Function that changes the drop down elements when something is written into the search box.
+        /// </summary>
         private void SearchBar_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             placesListView.IsVisible = true;
@@ -82,6 +88,9 @@ namespace Wasted
             placesListView.EndRefresh();
         }
 
+        /// <summary>
+        /// Function that does the following when an item of the drop box is pressed.
+        /// </summary>
         private void ListView_OnItemTapped(Object sender, ItemTappedEventArgs e)
         {
             //EmployeeListView.IsVisible = false;  
