@@ -13,7 +13,6 @@ namespace Wasted.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            Window.AddFlags(WindowManagerFlags.DrawsSystemBarBackgrounds);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
