@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Wasted.DummyAPI.BusinessObjects;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace Wasted
@@ -16,7 +17,10 @@ namespace Wasted
         public FoodPlacesPage(FoodPlace selectedFoodPlace)
         {
             SelectedFoodPlace = selectedFoodPlace;
+
             InitializeComponent();
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+
             InitializeViews();
         }
 
