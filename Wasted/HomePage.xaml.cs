@@ -50,6 +50,8 @@ namespace Wasted
                 {
                     Deal deal = HashMaps.DealsHashMap[dealId];
                     deal.FoodPlaces.Add(foodPlace);
+
+                    foodPlace.Deals.Add(deal);
                 }
             }
         }
@@ -65,6 +67,7 @@ namespace Wasted
         void UpdateRestaurantsSelectionData(IEnumerable<object> currentSelectedFoodPlace)
         {
             FoodPlace selectedPlace = currentSelectedFoodPlace.FirstOrDefault() as FoodPlace;
+            Navigation.PushAsync(new FoodPlacesPage(selectedPlace));
             //TODO: pass selectedPlace to Restaurant activity.
         }
 

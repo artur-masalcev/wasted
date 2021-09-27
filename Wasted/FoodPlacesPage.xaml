@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:wasted="clr-namespace:Wasted"
+             x:Class="Wasted.FoodPlacesPage">
+
+    <ContentPage.Content>
+        <ScrollView x:Name="contentScrollView">
+            <StackLayout>
+                <Image x:Name="headerImage"
+                       Source="{Binding HeaderURL}" />
+
+                <Frame Style="{StaticResource CardView}">
+                    <StackLayout Style="{StaticResource CardContent}">
+                        <StackLayout Style="{StaticResource CardContent}"
+                                         Orientation="Horizontal">
+                            <Label Text="{Binding Title}" Style="{StaticResource CardTitle}"/>
+                            <Label Text="{Binding Rating, StringFormat='☆ {0:F1}'}" Style="{StaticResource CardTitle}"
+                                   HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                        
+                        <Label x:Name="descriptionLabel" Text="{Binding Description}"/>
+                    </StackLayout>
+                </Frame>
+
+
+                <Label Text="Offers" Style="{StaticResource SectionTitle}"/>
+                
+                <CollectionView x:Name="dealsCollectionView"
+                    SelectionChanged="DealsCollectionViewListSelectionChanged"
+                    ItemTemplate="{StaticResource DealsCollectionViewTemplate}">
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2"/>
+                    </CollectionView.ItemsLayout>
+
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -21,6 +21,12 @@ namespace Wasted.DummyAPI.BusinessObjects
         public string HeaderURL { get; set; }
         public int[] DealsIDs { get; set; }
 
+        private List<Deal> deals = new List<Deal>();
+        public List<Deal> Deals
+        {
+            get { return deals; }
+            set { deals = value; }
+        }
 
         public int DealsCount => DealsIDs.Length;
 
