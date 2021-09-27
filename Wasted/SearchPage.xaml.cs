@@ -47,9 +47,9 @@ namespace Wasted
             //TODO: pass selectedPlace to Place activity.
         }
 
-        // <summary>
-        // Function that sets the observable list of food place names.
-        // </summary>
+        /// <summary>
+        /// Function that sets the observable list of food place names.
+        /// </summary>
         public void SetFoodPlaceObservableList()
         {
             AllFoodPlaces = new List<FoodPlace>(DummyDataProvider.GetFoodPlacesList());
