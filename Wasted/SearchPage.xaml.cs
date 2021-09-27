@@ -81,7 +81,7 @@ namespace Wasted
                 else
                     placesListView.ItemsSource = FoodPlacesNames.Where(i => i.ToLower().Contains(e.NewTextValue.ToLower()));
             }
-            catch (exception ex)
+            catch (NullReferenceException ex)
             {
                 placesListView.IsVisible = false;
             }
