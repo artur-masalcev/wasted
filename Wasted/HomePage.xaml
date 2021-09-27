@@ -28,11 +28,17 @@
             <Label Text="Special offers" Style="{StaticResource SectionTitle}"></Label>
 
             <CollectionView x:Name="specialOffersCollectionView" Style="{StaticResource HorizontalCollectionView}"
-                        SelectionChanged="DealsCollectionViewListSelectionChanged"
-                        ItemTemplate="{StaticResource DealsCollectionViewTemplate}">
+                    SelectionChanged="DealsCollectionViewListSelectionChanged"
+                    ItemTemplate="{StaticResource DealsCollectionViewTemplate}">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+            </CollectionView>
 
 
-            <!--#endregion-->
+
+                <!--#endregion-->
 
             <!--#region Popular restaurants-->
 
