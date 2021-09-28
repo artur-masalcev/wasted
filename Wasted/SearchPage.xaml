@@ -74,20 +74,7 @@
                 
                 <!--#region Search Bar-->
 
-                <SearchBar TextChanged="SearchBar_OnTextChanged" BackgroundColor="#f9f9f9" TextColor="#FF464859" FontSize="16" PlaceholderColor="#646b7a" x:Name="searchBar" Placeholder="Try Manami" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None"/>
-                <ListView x:Name="placesListView" IsVisible="False" CachingStrategy="RecycleElement" BackgroundColor="White" ItemTapped="ListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Frame>
-                                    <StackLayout BackgroundColor="White">
-                                        <Label Text="{Binding .}" FontSize="16" TextColor="#FF464859"/>
-                                    </StackLayout>
-                                </Frame>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                <Entry TextChanged="SearchBar_OnTextChanged" BackgroundColor="#f9f9f9" TextColor="#FF464859" FontSize="16" PlaceholderColor="#646b7a" x:Name="searchBar" Placeholder="Try Manami" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None"/>
 
                 <!--#endregion-->
 

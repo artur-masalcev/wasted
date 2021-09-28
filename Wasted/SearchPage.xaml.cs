@@ -19,9 +19,7 @@ namespace Wasted
         public SearchPage()
         {
             InitializeComponent();
-
             SetFoodPlaceObservableList();
-
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
         }
 
@@ -32,7 +30,6 @@ namespace Wasted
         {
             base.OnAppearing();
             AllFoodPlaces = new List<FoodPlace>(DummyDataProvider.GetFoodPlacesList());
-
             allPlacesCollectionView.ItemsSource = AllFoodPlaces;
         }
 
@@ -67,40 +64,24 @@ namespace Wasted
         /// </summary>
         private void SearchBar_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            placesListView.IsVisible = true;
-            placesListView.BeginRefresh();
-
+            AllFoodPlaces = new List<FoodPlace>(DummyDataProvider.GetFoodPlacesList());
             try
             {
                 var dataEmpty = FoodPlacesNames.Where(i => i.ToLower().Contains(e.NewTextValue.ToLower()));
 
-                if (string.IsNullOrWhiteSpace(e.NewTextValue))
-                    placesListView.IsVisible = false;
-                else if (dataEmpty.Max().Length == 0)
-                    placesListView.IsVisible = false;
+                if (string.IsNullOrWhiteSpace(e.NewTextValue) || dataEmpty.Max().Length == 0)
+                {
+                    allPlacesCollectionView.ItemsSource = AllFoodPlaces;
+                }   
                 else
-                    placesListView.ItemsSource = FoodPlacesNames.Where(i => i.ToLower().Contains(e.NewTextValue.ToLower()));
+                {                    
+                    allPlacesCollectionView.ItemsSource = AllFoodPlaces.Where(i => i.Title.ToLower().Contains(e.NewTextValue.ToLower()));
+                }
             }
-            catch (exception ex)
+            catch (NullReferenceException ex)
             {
-                placesListView.IsVisible = false;
+                // do nothing
             }
-            placesListView.EndRefresh();
-        }
-
-        /// <summary>
-        /// Function that does the following when an item of the drop box is pressed.
-        /// </summary>
-        private void ListView_OnItemTapped(Object sender, ItemTappedEventArgs e)
-        {
-            //EmployeeListView.IsVisible = false;  
-
-            String list = e.Item as string;
-            searchBar.Text = list;
-            placesListView.IsVisible = false;
-
-            ((Xamarin.Forms.ListView)sender).SelectedItem = null;
-
         }
     }
 }
