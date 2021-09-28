@@ -15,15 +15,16 @@
 
             <Style x:Key="SectionTitle" TargetType="Label">
                 <Setter Property="Margin" Value="5" />
-                <Setter Property="FontSize" Value="22" />
+                <Setter Property="FontSize" Value="30" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="FontFamily" Value="Arial" />
                 <Setter Property="TextColor" Value="Black" />
             </Style>
 
             <Style x:Key="CardTitle" TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="LineBreakMode" Value="TailTruncation"/>
-                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontSize" Value="20" />
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="TextColor" Value="Black" />
             </Style>
@@ -41,20 +42,26 @@
             </Style>
 
             <Style x:Key="CardPlaceImage" TargetType="Image">
+                <Setter Property="Margin" Value="15" />
                 <Setter Property="WidthRequest" Value="300" />
                 <Setter Property="HeightRequest" Value="90" />
-                <Setter Property="Aspect" Value="AspectFill" />
+                <Setter Property="Aspect" Value="AspectFit" />
             </Style>
 
             <Style x:Key="CardView" TargetType="Frame">
-                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="HeightRequest" Value="170"/>
+                <Setter Property="WidthRequest" Value="100"/>
+                <Setter Property="CornerRadius" Value="20" />
                 <Setter Property="Margin" Value="5" />
                 <Setter Property="Padding" Value="0" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
                 <Setter Property="OutlineColor" Value="LightGray" />
                 <Setter Property="BorderColor" Value="LightGray" />
                 <Setter Property="HasShadow" Value="True" />
+                <Setter Property="IsClippedToBounds" Value="False"/>
             </Style>
+
+            
 
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -67,7 +74,7 @@
                 
                 <!--#region Search Bar-->
 
-                <Entry TextChanged="SearchBar_OnTextChanged" BackgroundColor="#f9f9f9" TextColor="#FF464859" FontSize="16" PlaceholderColor="#646b7a" x:Name="searchBar" Placeholder="Try Manami" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None"/>
+                <SearchBar TextChanged="SearchBar_OnTextChanged" BackgroundColor="#f9f9f9" TextColor="#FF464859" FontSize="16" PlaceholderColor="#646b7a" x:Name="searchBar" Placeholder="Try Manami" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None"/>
                 <ListView x:Name="placesListView" IsVisible="False" CachingStrategy="RecycleElement" BackgroundColor="White" ItemTapped="ListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
