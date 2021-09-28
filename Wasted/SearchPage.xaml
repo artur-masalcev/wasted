@@ -7,10 +7,6 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <!-- Colors -->
-
-            <Color x:Key="AccentColor">#7eab55</Color>
-
             <!-- Implicit styles -->
 
             <Style x:Key="SectionTitle" TargetType="Label">
@@ -34,11 +30,6 @@
                 <Setter Property="VerticalOptions" Value="FillAndExpand" />
                 <Setter Property="Spacing" Value="2" />
                 <Setter Property="Padding" Value="3, 3, 8, 8"/>
-            </Style>
-
-            <Style x:Key="Image" TargetType="Image">
-                <Setter Property="WidthRequest" Value="8" />
-                <Setter Property="HeightRequest" Value="8" />
             </Style>
 
             <Style x:Key="CardPlaceImage" TargetType="Image">
@@ -74,7 +65,15 @@
 
                 <!--#region Search Bar-->
 
-                <Entry TextChanged="SearchBar_OnTextChanged" BackgroundColor="#f9f9f9" TextColor="#FF464859" FontSize="16" PlaceholderColor="#646b7a" x:Name="searchBar" Placeholder="Try Manami" AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None"/>
+                <Entry x:Name="searchBar"
+                       TextChanged="SearchBar_OnTextChanged"
+                       BackgroundColor="#f9f9f9"
+                       TextColor="#FF464859"
+                       FontSize="16"
+                       PlaceholderColor="#646b7a"
+                       Placeholder="Try Manami"
+                       AbsoluteLayout.LayoutBounds="15,70,285,38"
+                       AbsoluteLayout.LayoutFlags="None"/>
 
                 <!--#endregion-->
 
@@ -83,7 +82,8 @@
                 <Label Text="All places" Style="{StaticResource SectionTitle}"></Label>
 
                 <CollectionView x:Name="allPlacesCollectionView" 
-                        SelectionChanged="PlacesCollectionViewListSelectionChanged">
+                        SelectionChanged="PlacesCollectionViewListSelectionChanged"
+                        SelectionMode="Single">
 
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Vertical" Span="2" />
