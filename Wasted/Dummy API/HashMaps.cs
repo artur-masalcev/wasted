@@ -19,7 +19,7 @@ namespace Wasted.Dummy_API
         // Map from food place id to food place //
         private static Dictionary<int, FoodPlace> foodPlacesHashMap = new Dictionary<int, FoodPlace>();
         public static Dictionary<int, FoodPlace> FoodPlacesHashMap
-        { 
+        {
             get { return foodPlacesHashMap; }
             set { foodPlacesHashMap = value; }
         }

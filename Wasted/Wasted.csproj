@@ -10,6 +10,12 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
+    <ItemGroup>
+	    <Compile Remove="Images\**" />
+	    <EmbeddedResource Remove="Images\**" />
+	    <None Remove="Images\**" />
+    </ItemGroup>
+
   <ItemGroup>
     <Compile Remove="Images\**" />
     <EmbeddedResource Remove="Images\**" />
