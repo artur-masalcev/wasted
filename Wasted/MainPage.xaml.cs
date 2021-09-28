@@ -10,7 +10,7 @@ namespace Wasted
         public MainPage()
         {
             InitializeComponent();
+            SelectedTabColor = Color.Black;
         }
-
     }
 }

@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
+using Wasted.Dummy_API;
+
 namespace Wasted.DummyAPI.BusinessObjects
 {
     public class FoodPlace
@@ -16,7 +21,16 @@ namespace Wasted.DummyAPI.BusinessObjects
         public string HeaderURL { get; set; }
         public int[] DealsIDs { get; set; }
 
-        public FoodPlace(int id, string title, string description, double longitude, double latitude, string street, string city, string workingHours, double rating, string logoURL, string headerURL, int[] dealsIDs)
+        private List<Deal> deals = new List<Deal>();
+        public List<Deal> Deals
+        {
+            get { return deals; }
+            set { deals = value; }
+        }
+
+        public int DealsCount => DealsIDs.Length;
+
+        public FoodPlace(int id, string title, string description, double longitude, double latitude, string street, string city, string workingHours, double rating, string logoURL, string headerURL, int[] dealIDs)
         {
             ID = id;
             Title = title;
@@ -29,7 +43,9 @@ namespace Wasted.DummyAPI.BusinessObjects
             Rating = rating;
             LogoURL = logoURL;
             HeaderURL = headerURL;
-            DealsIDs = dealsIDs;
+            DealsIDs = dealIDs;
+
+            HashMaps.FoodPlacesHashMap[id] = this;
         }
     }
 }

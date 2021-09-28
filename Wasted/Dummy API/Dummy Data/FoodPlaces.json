@@ -2,7 +2,7 @@
   {
     "id": 1,
     "title": "McDonald's",
-    "description": "Fast food restaurant\\nMost offers between 21:00-22:00",
+    "description": "Fast food restaurant\nMost offers between 21:00-22:00",
     "longitude": 54.700382,
     "latitude": 25.256319,
     "street": "Saltoniškių g. 9",
@@ -16,7 +16,7 @@
   {
     "id": 2,
     "title": "Sushi Express",
-    "description": "Sushi restaurant\\nMost offers between",
+    "description": "Sushi restaurant\nMost offers between 20:00-21:00",
     "longitude": 54.687779,
     "latitude": 25.279760,
     "street": "Vilniaus g. 9",
@@ -30,7 +30,7 @@
   {
     "id": 3,
     "title": "Maxima",
-    "description": "Grocery store\\nMost offers between",
+    "description": "Grocery store\nMost offers between 19:00-20:00",
     "longitude": 54.710029,
     "latitude": 25.188552,
     "street": "Pilaitės pr. 31",
@@ -44,7 +44,7 @@
   {
     "id": 4,
     "title": "Manami",
-    "description": "Asian restaurant\\nMost offers between",
+    "description": "Asian restaurant\nMost offers between 21:00-22:00",
     "longitude": 54.686360,
     "latitude": 25.279604,
     "street": "Vilniaus g. 10",
@@ -58,7 +58,7 @@
   {
     "id": 5,
     "title": "KFC",
-    "description": "American fast food restaurant\\nMost offers between",
+    "description": "American fast food restaurant\nMost offers between 20:30-21:30",
     "longitude": 54.68737456936855,
     "latitude": 25.283247827082384,
     "street": "Gedimino pr. 5",
@@ -72,7 +72,7 @@
   {
     "id": 6,
     "title": "Charlie Pizza",
-    "description": "Pizzas and light snacks\\nMost offers between",
+    "description": "Pizzas and light snacks\nMost offers between 21:00-22:00",
     "longitude": 54.687779,
     "latitude": 25.279760,
     "street": "Gedimino pr. 5",

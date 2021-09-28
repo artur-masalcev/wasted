@@ -1,12 +1,62 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wasted.HomePage">
+
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout>
-            <Label Text="Home page"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+            <!--#region Nearby restaurants-->
+
+            <Label Text="Restaurants near you" Style="{StaticResource SectionTitle}"></Label>
+
+            <CollectionView x:Name="nearbyRestaurantsCollectionView" Style="{StaticResource HorizontalCollectionView}"
+                        SelectionChanged="RestaurantsCollectionViewListSelectionChanged"
+                        ItemTemplate="{StaticResource RestaurantsCollectionViewTemplate}">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+
+            </CollectionView>
+
+            <!--#endregion-->
+
+            <!--#region Special offers-->
+
+            <Label Text="Special offers" Style="{StaticResource SectionTitle}"></Label>
+
+                <CollectionView x:Name="specialOffersCollectionView" Style="{StaticResource HorizontalCollectionView}"
+                    SelectionChanged="DealsCollectionViewListSelectionChanged"
+                    SelectionMode="Single"
+                    ItemTemplate="{StaticResource DealsCollectionViewTemplate}">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+            </CollectionView>
+
+
+
+                <!--#endregion-->
+
+            <!--#region Popular restaurants-->
+
+            <Label Text="Popular restaurants" Style="{StaticResource SectionTitle}"></Label>
+
+            <CollectionView x:Name="popularRestaurantsCollectionView" Style="{StaticResource HorizontalCollectionView}"
+                        SelectionChanged="RestaurantsCollectionViewListSelectionChanged"
+                        ItemTemplate="{StaticResource RestaurantsCollectionViewTemplate}">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+            </CollectionView>
+
+            <!--#endregion-->
+
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
