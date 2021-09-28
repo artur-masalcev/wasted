@@ -7,6 +7,7 @@ using Xamarin.Forms.Xaml;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using System;
 using System.Collections.ObjectModel;
+using Wasted.Dummy_API;
 
 namespace Wasted
 {
@@ -14,12 +15,10 @@ namespace Wasted
     public partial class SearchPage : ContentPage
     {
         public List<FoodPlace> AllFoodPlaces { get; set; }
-        ObservableCollection<string> FoodPlacesNames = new ObservableCollection<string>();
 
         public SearchPage()
         {
             InitializeComponent();
-            SetFoodPlaceObservableList();
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
         }
 
@@ -30,6 +29,9 @@ namespace Wasted
         {
             base.OnAppearing();
             AllFoodPlaces = new List<FoodPlace>(DummyDataProvider.GetFoodPlacesList());
+            DummyDataProvider.GetDealsList(); //Adds deals to hashmap.
+            HashMaps.AddRestaurantsToDeals(AllFoodPlaces);
+
             allPlacesCollectionView.ItemsSource = AllFoodPlaces;
         }
 
@@ -38,25 +40,8 @@ namespace Wasted
         /// </summary>
         void PlacesCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UpdatePlacesSelectionData(e.CurrentSelection);
-        }
-
-        void UpdatePlacesSelectionData(IEnumerable<object> currentSelectedFoodPlace)
-        {
-            FoodPlace selectedPlace = currentSelectedFoodPlace.FirstOrDefault() as FoodPlace;
-            //TODO: pass selectedPlace to Place activity.
-        }
-
-        /// <summary>
-        /// Function that sets the observable list of food place names.
-        /// </summary>
-        public void SetFoodPlaceObservableList()
-        {
-            AllFoodPlaces = new List<FoodPlace>(DummyDataProvider.GetFoodPlacesList());
-            foreach (FoodPlace OneFoodPlace in AllFoodPlaces)
-            {
-                FoodPlacesNames.Add(OneFoodPlace.Title);
-            }
+            FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
+            Navigation.PushAsync(new FoodPlacesPage(selectedPlace));
         }
 
         /// <summary>
@@ -64,23 +49,23 @@ namespace Wasted
         /// </summary>
         private void SearchBar_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            AllFoodPlaces = new List<FoodPlace>(DummyDataProvider.GetFoodPlacesList());
             try
             {
-                var dataEmpty = FoodPlacesNames.Where(i => i.ToLower().Contains(e.NewTextValue.ToLower()));
+                Func<FoodPlace, bool> maskFunction = i => i.Title.ToLower().Contains(e.NewTextValue.ToLower());
+                var filteredPlaces = AllFoodPlaces.Where(maskFunction);
 
-                if (string.IsNullOrWhiteSpace(e.NewTextValue) || dataEmpty.Max().Length == 0)
+                if (string.IsNullOrWhiteSpace(e.NewTextValue) || filteredPlaces.Max(i => i.Title).Length == 0)
                 {
                     allPlacesCollectionView.ItemsSource = AllFoodPlaces;
                 }   
                 else
-                {                    
-                    allPlacesCollectionView.ItemsSource = AllFoodPlaces.Where(i => i.Title.ToLower().Contains(e.NewTextValue.ToLower()));
+                {
+                    allPlacesCollectionView.ItemsSource = filteredPlaces;
                 }
             }
-            catch (NullReferenceException ex)
+            catch (NullReferenceException)
             {
-                // do nothing
+                Console.WriteLine("Null reference exception");
             }
         }
     }

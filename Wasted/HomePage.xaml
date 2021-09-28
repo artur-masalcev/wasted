@@ -27,8 +27,9 @@
 
             <Label Text="Special offers" Style="{StaticResource SectionTitle}"></Label>
 
-            <CollectionView x:Name="specialOffersCollectionView" Style="{StaticResource HorizontalCollectionView}"
+                <CollectionView x:Name="specialOffersCollectionView" Style="{StaticResource HorizontalCollectionView}"
                     SelectionChanged="DealsCollectionViewListSelectionChanged"
+                    SelectionMode="Single"
                     ItemTemplate="{StaticResource DealsCollectionViewTemplate}">
 
                 <CollectionView.ItemsLayout>

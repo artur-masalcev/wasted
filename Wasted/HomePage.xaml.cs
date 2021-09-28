@@ -6,6 +6,7 @@ using Wasted.DummyDataAPI;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
+using System;
 
 namespace Wasted
 {
@@ -31,7 +32,7 @@ namespace Wasted
             base.OnAppearing();
             AllFoodPlaces = new List<FoodPlace>(DummyDataProvider.GetFoodPlacesList());
             AllDeals = new List<Deal>(DummyDataProvider.GetDealsList());
-            AddRestaurantsToDeals();
+            HashMaps.AddRestaurantsToDeals(AllFoodPlaces);
 
             nearbyRestaurantsCollectionView.ItemsSource = AllFoodPlaces;
             specialOffersCollectionView.ItemsSource = AllDeals;
@@ -40,35 +41,12 @@ namespace Wasted
         }
 
         /// <summary>
-        /// Adds restaurants from which deals came from by using hashmaps.
-        /// </summary>
-        public void AddRestaurantsToDeals()
-        {
-            foreach (FoodPlace foodPlace in AllFoodPlaces)
-            {
-                foreach (int dealId in foodPlace.DealsIDs)
-                {
-                    Deal deal = HashMaps.DealsHashMap[dealId];
-                    deal.FoodPlaces.Add(foodPlace);
-
-                    foodPlace.Deals.Add(deal);
-                }
-            }
-        }
-
-        /// <summary>
         /// Function is called when user selects food place from nearby restaurants collectionView. Called from xaml file.
         /// </summary>
         void RestaurantsCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UpdateRestaurantsSelectionData(e.CurrentSelection);
-        }
-
-        void UpdateRestaurantsSelectionData(IEnumerable<object> currentSelectedFoodPlace)
-        {
-            FoodPlace selectedPlace = currentSelectedFoodPlace.FirstOrDefault() as FoodPlace;
+            FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
             Navigation.PushAsync(new FoodPlacesPage(selectedPlace));
-            //TODO: pass selectedPlace to Restaurant activity.
         }
 
         /// <summary>
@@ -76,12 +54,7 @@ namespace Wasted
         /// </summary>
         void DealsCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UpdateDealsSelectionData(e.CurrentSelection);
-        }
-
-        void UpdateDealsSelectionData(IEnumerable<object> currentSelectedDeal)
-        {
-            Deal selectedDeal = currentSelectedDeal.FirstOrDefault() as Deal;
+            Deal selectedDeal = e.CurrentSelection.FirstOrDefault() as Deal;
             //TODO: pass selectedPlace to Deal activity.
         }
     }

@@ -126,6 +126,8 @@
                     </StackLayout>
                 </Frame>
             </StackLayout>
+
+
         </DataTemplate>
 
     </Application.Resources>
