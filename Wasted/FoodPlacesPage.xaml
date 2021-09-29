@@ -14,8 +14,17 @@
                         <StackLayout Style="{StaticResource CardContent}"
                                          Orientation="Horizontal">
                             <Label Text="{Binding Title}" Style="{StaticResource CardTitle}"/>
-                            <Label Text="{Binding Rating, StringFormat='☆ {0:F1}'}" Style="{StaticResource CardTitle}"
-                                   HorizontalOptions="EndAndExpand"/>
+                            <Label Style="{StaticResource CardTitle}"
+                                HorizontalOptions="EndAndExpand">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="☆ " TextColor="{StaticResource Yellow}" />
+                                        <Span Text="{Binding Rating, StringFormat='{0:F1}'}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                                
+                            </Label>
+
                         </StackLayout>
                         
                         <Label x:Name="descriptionLabel" Text="{Binding Description}"/>
