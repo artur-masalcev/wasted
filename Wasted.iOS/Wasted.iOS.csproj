@@ -65,6 +65,8 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\Contents.json" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -158,7 +160,30 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets.xcassets\nav_bar_home.imageset\" />
-    <Folder Include="Assets.xcassets\nav_bar_search.imageset\" />
+    <ImageAsset Include="Assets.xcassets\item_due.imageset\item_due.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\nav_bar_home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\nav_bar_home-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\nav_bar_home-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\nav_bar_search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\nav_bar_search-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\nav_bar_search-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\item_location.imageset\item_location.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\item_quantity.imageset\item_quantity.png" />
   </ItemGroup>
 </Project>
