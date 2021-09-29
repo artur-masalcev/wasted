@@ -16,6 +16,8 @@ namespace Wasted.DummyAPI.BusinessObjects
         public string Due { get; set; }
         public string ImageURL { get; set; }
 
+        public string Description { get; set; }
+
         private List<FoodPlace> foodPlaces = new List<FoodPlace>();
         public List<FoodPlace> FoodPlaces
         {
@@ -28,10 +30,12 @@ namespace Wasted.DummyAPI.BusinessObjects
             get { return FoodPlaces.First().Title; }
         }
 
-        public Deal(int id, string title, double currentCost, double previousCost, int quantity, string due, string imageURL)
+        public Deal(int id, string title, string description, double currentCost,
+            double previousCost, int quantity, string due, string imageURL)
         {
             ID = id;
             Title = title;
+            Description = description;
             CurrentCost = currentCost;
             PreviousCost = previousCost;
             Quantity = quantity;

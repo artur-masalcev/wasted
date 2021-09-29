@@ -55,6 +55,7 @@ namespace Wasted
         void DealsCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Deal selectedDeal = e.CurrentSelection.FirstOrDefault() as Deal;
+            Navigation.PushAsync(new ItemsPage(selectedDeal));
             //TODO: pass selectedPlace to Deal activity.
         }
     }

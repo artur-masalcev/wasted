@@ -37,6 +37,7 @@ namespace Wasted
         void UpdateDealsSelectionData(IEnumerable<object> currentSelectedDeal)
         {
             Deal selectedDeal = currentSelectedDeal.FirstOrDefault() as Deal;
+            Navigation.PushAsync(new ItemsPage(selectedDeal));
             //TODO: pass selectedPlace to Deal activity.
         }
     }

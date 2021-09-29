@@ -53,6 +53,11 @@
             <Setter Property="Aspect" Value="AspectFill" />
         </Style>
 
+        <Style x:Key="IconImage" TargetType="Image">
+            <Setter Property="WidthRequest" Value="20" />
+            <Setter Property="Margin" Value="5,0,0,0" />
+        </Style>
+
         <Style x:Key="DealFoodPlaceLabel" TargetType="Label">
             <Setter Property="FontSize" Value="15"/>
             <Setter Property="TextColor" Value="LightSlateGray"/>
@@ -75,11 +80,40 @@
             <Setter Property="HorizontalTextAlignment" Value="Center"/>
         </Style>
 
+        <Style x:Key="DealCostLabel" TargetType="Label">
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+
         <Style x:Key="CardContent" TargetType="StackLayout">
             <Setter Property="HorizontalOptions" Value="FillAndExpand" />
             <Setter Property="VerticalOptions" Value="FillAndExpand" />
             <Setter Property="Spacing" Value="2" />
             <Setter Property="Padding" Value="3, 3, 8, 8"/>
+        </Style>
+
+        <Style x:Key="RoundedCardView" TargetType="Frame">
+            <Setter Property="HeightRequest" Value="170"/>
+            <Setter Property="WidthRequest" Value="100"/>
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="OutlineColor" Value="LightGray" />
+            <Setter Property="BorderColor" Value="LightGray" />
+            <Setter Property="HasShadow" Value="True" />
+            <Setter Property="IsClippedToBounds" Value="False"/>
+        </Style>
+
+        <Style x:Key="OrderButton" TargetType="Button">
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="VerticalOptions" Value="EndAndExpand" />
+            <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="Margin" Value="30" />
         </Style>
 
         <!-- Data templates -->
