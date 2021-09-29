@@ -54,17 +54,34 @@
         <ScrollView>
             <StackLayout>
 
+
                 <!--#region Search Bar-->
 
-                <Entry x:Name="searchBar"
-                       TextChanged="SearchBar_OnTextChanged"
-                       BackgroundColor="#f9f9f9"
-                       TextColor="#FF464859"
-                       FontSize="16"
-                       PlaceholderColor="#646b7a"
-                       Placeholder="Try Manami"
-                       AbsoluteLayout.LayoutBounds="15,70,285,38"
-                       AbsoluteLayout.LayoutFlags="None"/>
+                <StackLayout>
+                    <Frame Style="{StaticResource CardView}"
+                           HeightRequest="50">
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="nav_bar_search.png"
+                                   Margin="10,10,5,10"/>
+
+                            <Entry x:Name="searchBar" 
+                                TextChanged="SearchBar_OnTextChanged"
+                                TextColor="#FF464859"
+                                Margin="0,0,20,0"
+                                FontSize="16"
+                                Placeholder="Try Manami"
+                                AbsoluteLayout.LayoutFlags="None"
+                                HorizontalOptions="FillAndExpand"/>
+                                <!--
+                                     BackgroundColor="#F9F9F9"
+                                     AbsoluteLayout.LayoutBounds="15,70,285,38"
+                                     PlaceholderColor="#646b7a"
+                                -->
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+                    
 
                 <!--#endregion-->
 
