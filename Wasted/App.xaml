@@ -105,7 +105,7 @@
             </StackLayout>
         </DataTemplate>
 
-        <DataTemplate x:Key="RestaurantsCollectionViewTemplate">
+        <DataTemplate x:Key="FoodPlacesCollectionViewTemplate">
             <StackLayout>
                 <Frame Style="{StaticResource CardView}">
                     <StackLayout>

@@ -25,32 +25,32 @@ namespace Wasted
         }
 
         /// <summary>
-        /// Puts restaurants from json file to collectionView.
+        /// Puts food places from json file to collectionView.
         /// </summary>
         protected override void OnAppearing()
         {
             base.OnAppearing();
             AllFoodPlaces = new List<FoodPlace>(DummyDataProvider.GetFoodPlacesList());
             AllDeals = new List<Deal>(DummyDataProvider.GetDealsList());
-            HashMaps.AddRestaurantsToDeals(AllFoodPlaces);
+            HashMaps.AddFoodPlacesToDeals(AllFoodPlaces);
 
-            nearbyRestaurantsCollectionView.ItemsSource = AllFoodPlaces;
+            nearbyFoodPlacesCollectionView.ItemsSource = AllFoodPlaces;
             specialOffersCollectionView.ItemsSource = AllDeals;
 
-            popularRestaurantsCollectionView.ItemsSource = AllFoodPlaces;
+            popularFoodPlacesCollectionView.ItemsSource = AllFoodPlaces;
         }
 
         /// <summary>
-        /// Function is called when user selects food place from nearby restaurants collectionView. Called from xaml file.
+        /// Function is called when user selects food place from nearby food places collectionView. Called from xaml file.
         /// </summary>
-        void RestaurantsCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
+        void FoodPlacesCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
             Navigation.PushAsync(new FoodPlacesPage(selectedPlace));
         }
 
         /// <summary>
-        /// Function is called when user selects deal from nearby restaurants collectionView. Called from xaml file.
+        /// Function is called when user selects deal from nearby food places collectionView. Called from xaml file.
         /// </summary>
         void DealsCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {

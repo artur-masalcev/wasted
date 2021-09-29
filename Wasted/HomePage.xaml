@@ -7,13 +7,13 @@
         <ScrollView>
         <StackLayout>
 
-            <!--#region Nearby restaurants-->
+            <!--#region Nearby food places-->
 
-            <Label Text="Restaurants near you" Style="{StaticResource SectionTitle}"></Label>
+            <Label Text="Food places near you" Style="{StaticResource SectionTitle}"></Label>
 
-            <CollectionView x:Name="nearbyRestaurantsCollectionView" Style="{StaticResource HorizontalCollectionView}"
-                        SelectionChanged="RestaurantsCollectionViewListSelectionChanged"
-                        ItemTemplate="{StaticResource RestaurantsCollectionViewTemplate}">
+            <CollectionView x:Name="nearbyFoodPlacesCollectionView" Style="{StaticResource HorizontalCollectionView}"
+                        SelectionChanged="FoodPlacesCollectionViewListSelectionChanged"
+                        ItemTemplate="{StaticResource FoodPlacesCollectionViewTemplate}">
 
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Horizontal" />
@@ -41,13 +41,13 @@
 
                 <!--#endregion-->
 
-            <!--#region Popular restaurants-->
+            <!--#region Popular food places-->
 
-            <Label Text="Popular restaurants" Style="{StaticResource SectionTitle}"></Label>
+            <Label Text="Popular food places" Style="{StaticResource SectionTitle}"></Label>
 
-            <CollectionView x:Name="popularRestaurantsCollectionView" Style="{StaticResource HorizontalCollectionView}"
-                        SelectionChanged="RestaurantsCollectionViewListSelectionChanged"
-                        ItemTemplate="{StaticResource RestaurantsCollectionViewTemplate}">
+            <CollectionView x:Name="popularFoodPlacesCollectionView" Style="{StaticResource HorizontalCollectionView}"
+                        SelectionChanged="FoodPlacesCollectionViewListSelectionChanged"
+                        ItemTemplate="{StaticResource FoodPlacesCollectionViewTemplate}">
 
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Horizontal" />

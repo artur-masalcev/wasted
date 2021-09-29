@@ -23,14 +23,14 @@ namespace Wasted
         }
 
         /// <summary>
-        /// Puts restaurants from json file to collectionView.
+        /// Puts food places from json file to collectionView.
         /// </summary>
         protected override void OnAppearing()
         {
             base.OnAppearing();
             AllFoodPlaces = new List<FoodPlace>(DummyDataProvider.GetFoodPlacesList());
             DummyDataProvider.GetDealsList(); //Adds deals to hashmap.
-            HashMaps.AddRestaurantsToDeals(AllFoodPlaces);
+            HashMaps.AddFoodPlacesToDeals(AllFoodPlaces);
 
             allPlacesCollectionView.ItemsSource = AllFoodPlaces;
         }

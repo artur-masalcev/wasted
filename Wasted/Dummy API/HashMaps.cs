@@ -25,10 +25,10 @@ namespace Wasted.Dummy_API
         }
 
         /// <summary>
-        /// Adds restaurants from which deals came from by using hashmaps.
+        /// Adds food places from which deals came from by using hashmaps.
         /// !!! Deals must be created before for this function to work
         /// </summary>
-        public static void AddRestaurantsToDeals(List<FoodPlace> AllFoodPlaces)
+        public static void AddFoodPlacesToDeals(List<FoodPlace> AllFoodPlaces)
         {
             foreach (FoodPlace foodPlace in AllFoodPlaces)
             {
