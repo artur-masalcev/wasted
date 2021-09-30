@@ -9,13 +9,14 @@
                 <Image x:Name="headerImage"
                        Source="{Binding HeaderURL}" />
 
-                <Frame Style="{StaticResource CardView}">
+                <Frame Style="{StaticResource BaseCardView}">
                     <StackLayout Style="{StaticResource CardContent}">
                         <StackLayout Style="{StaticResource CardContent}"
                                          Orientation="Horizontal">
                             <Label Text="{Binding Title}" Style="{StaticResource CardTitle}"/>
                             <Label Style="{StaticResource CardTitle}"
                                 HorizontalOptions="EndAndExpand">
+                                
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="☆ " TextColor="{StaticResource Yellow}" />
@@ -36,6 +37,7 @@
                 
                 <CollectionView x:Name="dealsCollectionView"
                     SelectionChanged="DealsCollectionViewListSelectionChanged"
+                    SelectionMode="Single"
                     ItemTemplate="{StaticResource DealsCollectionViewTemplate}">
 
                     <CollectionView.ItemsLayout>

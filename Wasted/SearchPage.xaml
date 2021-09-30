@@ -3,40 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wasted.SearchPage">
 
-    <!--#region Resources-->
-
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <!-- Implicit styles -->
-
-            <Style x:Key="SectionTitle" TargetType="Label">
-                <Setter Property="Margin" Value="5" />
-                <Setter Property="FontSize" Value="30" />
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="FontFamily" Value="Arial" />
-                <Setter Property="TextColor" Value="Black" />
-            </Style>
-
-            <Style x:Key="CardTitle" TargetType="Label">
-                <Setter Property="HorizontalTextAlignment" Value="Center"/>
-                <Setter Property="LineBreakMode" Value="TailTruncation"/>
-                <Setter Property="FontSize" Value="20" />
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="TextColor" Value="Black" />
-            </Style>
-
-            <Style x:Key="CardPlaceImage" TargetType="Image">
-                <Setter Property="Margin" Value="15" />
-                <Setter Property="WidthRequest" Value="300" />
-                <Setter Property="HeightRequest" Value="90" />
-                <Setter Property="Aspect" Value="AspectFit" />
-            </Style>
-
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
-    <!--#endregion-->
-
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
@@ -49,21 +15,11 @@
                            HeightRequest="50">
                         <StackLayout Orientation="Horizontal">
                             <Image Source="nav_bar_search.png"
-                                   Margin="10,10,5,10"/>
+                                   Style="{StaticResource IconImage}"/>
 
-                            <Entry x:Name="searchBar" 
+                            <Entry x:Name="searchBar" Style="{StaticResource Entry}"
                                 TextChanged="SearchBar_OnTextChanged"
-                                TextColor="#FF464859"
-                                Margin="0,0,20,0"
-                                FontSize="16"
-                                Placeholder="Try Manami"
-                                AbsoluteLayout.LayoutFlags="None"
-                                HorizontalOptions="FillAndExpand"/>
-                                <!--
-                                     BackgroundColor="#F9F9F9"
-                                     AbsoluteLayout.LayoutBounds="15,70,285,38"
-                                     PlaceholderColor="#646b7a"
-                                -->
+                                Placeholder="Try Manami" />
                         </StackLayout>
                     </Frame>
                 </StackLayout>
@@ -96,7 +52,7 @@
                                             <Image Style="{StaticResource CardPlaceImage}" Source="{Binding LogoURL}" />
 
                                             <StackLayout Style="{StaticResource CardContent}">
-                                                <Label Text="{Binding Title}" Style="{StaticResource CardTitle}" />
+                                                <Label Text="{Binding Title}" Style="{StaticResource SearchCardTitle}" />
                                             </StackLayout>
                                         </StackLayout>
 

@@ -8,27 +8,18 @@
         <Color x:Key="AccentColor">#7eab55</Color>
         <Color x:Key="Yellow">#FEDD00</Color>
         <Color x:Key="SeparatorColor">#D3D3D3</Color>
-
+        <Color x:Key="EntryTextColor">#FF464859</Color>
 
         <!-- Implicit styles -->
-        
+
+        <!-- Labels -->
+
         <Style x:Key="SectionTitle" TargetType="Label">
             <Setter Property="Margin" Value="5" />
             <Setter Property="FontSize" Value="22" />
             <Setter Property="FontAttributes" Value="Bold" />
             <Setter Property="FontFamily" Value="Arial" />
             <Setter Property="TextColor" Value="Black" />
-        </Style>
-
-        <Style x:Key="DealCardViewLayout" TargetType="StackLayout">
-            <Setter Property="Spacing" Value="8"/>
-            <Setter Property="WidthRequest" Value="170"/>
-            <Setter Property="HeightRequest" Value="200"/>
-        </Style>
-
-        <Style x:Key="HorizontalCollectionView" TargetType="CollectionView">
-            <Setter Property="HeightRequest" Value="200"/>
-            <Setter Property="SelectionMode" Value="Single"/>
         </Style>
 
         <Style x:Key="CardTitle" TargetType="Label">
@@ -38,25 +29,10 @@
             <Setter Property="TextColor" Value="Black" />
         </Style>
 
-        <Style x:Key="CardView" TargetType="Frame">
-            <Setter Property="CornerRadius" Value="0" />
-            <Setter Property="Margin" Value="5" />
-            <Setter Property="Padding" Value="0" />
-            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-            <Setter Property="OutlineColor" Value="LightGray" />
-            <Setter Property="BorderColor" Value="LightGray" />
-            <Setter Property="HasShadow" Value="True" />
-        </Style>
-
-        <Style x:Key="CardHeaderImage" TargetType="Image">
-            <Setter Property="WidthRequest" Value="300" />
-            <Setter Property="HeightRequest" Value="90" />
-            <Setter Property="Aspect" Value="AspectFill" />
-        </Style>
-
-        <Style x:Key="IconImage" TargetType="Image">
-            <Setter Property="WidthRequest" Value="20" />
-            <Setter Property="Margin" Value="5,0,0,0" />
+        <Style x:Key="SearchCardTitle" TargetType="Label"
+            BasedOn="{StaticResource CardTitle}">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
         </Style>
 
         <Style x:Key="DealFoodPlaceLabel" TargetType="Label">
@@ -89,6 +65,14 @@
             <Setter Property="TextColor" Value="White" />
         </Style>
 
+        <!-- StackLayouts -->
+
+        <Style x:Key="DealCardViewLayout" TargetType="StackLayout">
+            <Setter Property="Spacing" Value="8"/>
+            <Setter Property="WidthRequest" Value="170"/>
+            <Setter Property="HeightRequest" Value="200"/>
+        </Style>
+
         <Style x:Key="CardContent" TargetType="StackLayout">
             <Setter Property="HorizontalOptions" Value="FillAndExpand" />
             <Setter Property="VerticalOptions" Value="FillAndExpand" />
@@ -96,18 +80,61 @@
             <Setter Property="Padding" Value="3, 3, 8, 8"/>
         </Style>
 
-        <Style x:Key="RoundedCardView" TargetType="Frame">
-            <Setter Property="HeightRequest" Value="170"/>
-            <Setter Property="WidthRequest" Value="100"/>
-            <Setter Property="CornerRadius" Value="20" />
+        <!-- CollectionViews -->
+
+        <Style x:Key="HorizontalCollectionView" TargetType="CollectionView">
+            <Setter Property="HeightRequest" Value="200"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+        </Style>
+
+        <!-- Frames -->
+
+        <Style x:Key="BaseCardView" TargetType="Frame">
             <Setter Property="Margin" Value="5" />
             <Setter Property="Padding" Value="0" />
             <Setter Property="HorizontalOptions" Value="FillAndExpand" />
             <Setter Property="OutlineColor" Value="LightGray" />
             <Setter Property="BorderColor" Value="LightGray" />
             <Setter Property="HasShadow" Value="True" />
+        </Style>
+
+        <Style x:Key="RoundedCardView" TargetType="Frame"
+             BasedOn="{StaticResource BaseCardView}">
+            <Setter Property="HeightRequest" Value="170"/>
+            <Setter Property="WidthRequest" Value="100"/>
+            <Setter Property="CornerRadius" Value="20" />
             <Setter Property="IsClippedToBounds" Value="False"/>
         </Style>
+
+        <Style x:Key="SearchBarView" TargetType="Frame"
+             BasedOn="{StaticResource RoundedCardView}">
+            <Setter Property="HeightRequest" Value="50"/>
+        </Style>
+
+        <!-- Images -->
+
+        <Style x:Key="BaseCardHeaderImage" TargetType="Image">
+            <Setter Property="WidthRequest" Value="300" />
+            <Setter Property="HeightRequest" Value="90" />
+        </Style>
+
+        <Style x:Key="CardHeaderImage" TargetType="Image"
+             BasedOn="{StaticResource BaseCardHeaderImage}">
+            <Setter Property="Aspect" Value="AspectFill" />
+        </Style>
+
+        <Style x:Key="CardPlaceImage" TargetType="Image"
+             BasedOn="{StaticResource BaseCardHeaderImage}">
+            <Setter Property="Aspect" Value="AspectFit" />
+            <Setter Property="Margin" Value="15" />
+        </Style>
+
+        <Style x:Key="IconImage" TargetType="Image">
+            <Setter Property="WidthRequest" Value="20" />
+            <Setter Property="Margin" Value="5,0,0,0" />
+        </Style>
+
+        <!-- Buttons -->
 
         <Style x:Key="OrderButton" TargetType="Button">
             <Setter Property="CornerRadius" Value="20" />
@@ -117,16 +144,28 @@
             <Setter Property="Margin" Value="30" />
         </Style>
 
+        <!-- BoxViews -->
+
         <Style x:Key="Separator" TargetType="BoxView">
             <Setter Property="HeightRequest" Value="1" />
             <Setter Property="Color" Value="{StaticResource SeparatorColor}" />
         </Style>
 
+        <!-- Entries -->
+
+        <Style x:Key="Entry" TargetType="Entry">
+            <Setter Property="TextColor" Value="{StaticResource EntryTextColor}" />
+            <Setter Property="Margin" Value="0,0,20,0" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        </Style>
+
+
         <!-- Data templates -->
 
         <DataTemplate x:Key="DealsCollectionViewTemplate">
             <StackLayout Style="{StaticResource DealCardViewLayout}">
-                <Frame Style="{StaticResource CardView}">
+                <Frame Style="{StaticResource BaseCardView}">
                     <StackLayout>
                         <Image Style="{StaticResource CardHeaderImage}" Source="{Binding ImageURL}" />
                         <StackLayout HorizontalOptions="Center">
@@ -147,7 +186,7 @@
 
         <DataTemplate x:Key="FoodPlacesCollectionViewTemplate">
             <StackLayout>
-                <Frame Style="{StaticResource CardView}">
+                <Frame Style="{StaticResource BaseCardView}">
                     <StackLayout>
 
                         <!--#region Card content-->
@@ -167,8 +206,6 @@
                     </StackLayout>
                 </Frame>
             </StackLayout>
-
-
         </DataTemplate>
 
     </Application.Resources>
