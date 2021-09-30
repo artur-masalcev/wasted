@@ -1,51 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:wasted="clr-namespace:Wasted"
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:wasted="clr-namespace:Wasted"
              x:Class="Wasted.FoodPlacesPage">
+	<ContentPage.Content>
+		<ScrollView x:Name="contentScrollView">
+			<StackLayout>
+				<!--#region Header image-->
+				<Image x:Name="headerImage"
+                       Source="{Binding HeaderURL}"
+                       Aspect="AspectFill"
+                       HeightRequest="180"
+                  />
+				<!--#endregion-->
 
-    <ContentPage.Content>
-        <ScrollView x:Name="contentScrollView">
-            <StackLayout>
-                <Image x:Name="headerImage"
-                       Source="{Binding HeaderURL}" />
-
-                <Frame Style="{StaticResource BaseCardView}">
-                    <StackLayout Style="{StaticResource CardContent}">
-                        <StackLayout Style="{StaticResource CardContent}"
+				<!--#region Foodplace description-->
+				<StackLayout Style="{StaticResource CardContent}" Margin="5, 0, 0, 0">
+					<StackLayout Style="{StaticResource CardContent}"
                                          Orientation="Horizontal">
-                            <Label Text="{Binding Title}" Style="{StaticResource CardTitle}"/>
-                            <Label Style="{StaticResource CardTitle}"
+						<Label Text="{Binding Title}" Style="{StaticResource CardTitle}" FontSize="Title"/>
+						<Label Style="{StaticResource CardTitle}"
                                 HorizontalOptions="EndAndExpand">
-                                
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="☆ " TextColor="{StaticResource Yellow}" />
-                                        <Span Text="{Binding Rating, StringFormat='{0:F1}'}" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                                
-                            </Label>
+							<Label.FormattedText>
+								<FormattedString>
+									<Span Text="☆ " TextColor="{StaticResource Yellow}" />
+									<Span Text="{Binding Rating, StringFormat='{0:F1}'}" />
+								</FormattedString>
+							</Label.FormattedText>
+						</Label>
+					</StackLayout>
+					<Label x:Name="descriptionLabel" Text="{Binding Description}" TextColor="{StaticResource TextGrey}"/>
+				</StackLayout>
 
-                        </StackLayout>
-                        
-                        <Label x:Name="descriptionLabel" Text="{Binding Description}"/>
-                    </StackLayout>
-                </Frame>
+				<BoxView Style="{StaticResource Separator}"/>
 
+				<!--#region Foodplace orders-->
+				<Label Text="Offers" Style="{StaticResource SectionTitle}"/>
 
-                <Label Text="Offers" Style="{StaticResource SectionTitle}"/>
-                
-                <CollectionView x:Name="dealsCollectionView"
+				<CollectionView x:Name="dealsCollectionView"
                     SelectionChanged="DealsCollectionViewListSelectionChanged"
                     SelectionMode="Single"
                     ItemTemplate="{StaticResource DealsCollectionViewTemplate}">
+					<CollectionView.ItemsLayout>
+						<GridItemsLayout Orientation="Vertical" Span="2"/>
+					</CollectionView.ItemsLayout>
+				</CollectionView>
+				<!--#endregion-->
 
-                    <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Vertical" Span="2"/>
-                    </CollectionView.ItemsLayout>
-
-                </CollectionView>
-            </StackLayout>
-        </ScrollView>
-    </ContentPage.Content>
+			</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
 </ContentPage>

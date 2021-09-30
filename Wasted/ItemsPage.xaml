@@ -18,6 +18,8 @@
                            Grid.RowSpan="3"
                            Grid.Row="0"
                            Margin="0"
+						   Aspect="AspectFill"
+						   HeightRequest="300"
 					/>
 					<!--#endregion-->
 
@@ -48,15 +50,15 @@
 						<Label Text="{Binding Title}" Style="{StaticResource SectionTitle}" FontSize="Title"/>
 						<StackLayout Orientation="Horizontal">
 							<Image Source="item_location.png" Style="{StaticResource IconImage}" Opacity="0.5"/>
-							<Label Text="{Binding FoodPlaceTitle}" VerticalOptions="Center" FontAttributes="Bold"/>
+							<Label Text="{Binding FoodPlaceTitle}" VerticalOptions="Center" TextColor="{StaticResource TextGrey}"/>
 						</StackLayout>
 						<StackLayout Orientation="Horizontal">
-							<Image Source="item_due.png" Style="{StaticResource IconImage}"/>
-							<Label Text="{Binding Due, StringFormat='Due {0}'}" FontAttributes="Bold"/>
+							<Image Source="item_due.png" Style="{StaticResource IconImage}" Opacity="0.5"/>
+							<Label Text="{Binding Due, StringFormat='Due {0}'}" TextColor="{StaticResource TextGrey}"/>
 						</StackLayout>
 						<StackLayout Orientation="Horizontal">
-							<Image Source="item_quantity.png" Style="{StaticResource IconImage}"/>
-							<Label Text="{Binding Quantity, StringFormat='Quantity: {0}'}" FontAttributes="Bold"/>
+							<Image Source="item_quantity.png" Style="{StaticResource IconImage}" Opacity="0.5"/>
+							<Label Text="{Binding Quantity, StringFormat='Quantity: {0}'}" TextColor="{StaticResource TextGrey}"/>
 						</StackLayout>
 					</StackLayout>
 					<BoxView Style="{StaticResource Separator}"/>
