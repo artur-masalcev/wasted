@@ -7,6 +7,7 @@
         
         <Color x:Key="AccentColor">#7eab55</Color>
         <Color x:Key="Yellow">#FEDD00</Color>
+        <Color x:Key="SeparatorColor">#D3D3D3</Color>
 
 
         <!-- Implicit styles -->
@@ -114,6 +115,11 @@
             <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
             <Setter Property="TextColor" Value="White" />
             <Setter Property="Margin" Value="30" />
+        </Style>
+
+        <Style x:Key="Separator" TargetType="BoxView">
+            <Setter Property="HeightRequest" Value="1" />
+            <Setter Property="Color" Value="{StaticResource SeparatorColor}" />
         </Style>
 
         <!-- Data templates -->
