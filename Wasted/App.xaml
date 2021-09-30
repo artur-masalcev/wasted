@@ -10,23 +10,29 @@
         <Color x:Key="SeparatorColor">#D3D3D3</Color>
         <Color x:Key="EntryTextColor">#FF464859</Color>
 
+        <Color x:Key="TextBlack">#272626</Color>
+        <Color x:Key="TextGrey">#757171</Color>
+
         <!-- Implicit styles -->
 
         <!-- Labels -->
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource TextBlack}" />
+        </Style>
 
         <Style x:Key="SectionTitle" TargetType="Label">
             <Setter Property="Margin" Value="5" />
             <Setter Property="FontSize" Value="22" />
             <Setter Property="FontAttributes" Value="Bold" />
             <Setter Property="FontFamily" Value="Arial" />
-            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="TextColor" Value="{StaticResource TextBlack}" />
         </Style>
 
         <Style x:Key="CardTitle" TargetType="Label">
             <Setter Property="LineBreakMode" Value="TailTruncation"/>
             <Setter Property="FontSize" Value="18" />
             <Setter Property="FontAttributes" Value="Bold" />
-            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="TextColor" Value="{StaticResource TextBlack}" />
         </Style>
 
         <Style x:Key="SearchCardTitle" TargetType="Label"
