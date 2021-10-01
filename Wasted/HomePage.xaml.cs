@@ -35,15 +35,23 @@ namespace Wasted
             HashMaps.AddFoodPlacesToDeals(AllFoodPlaces);
 
             nearbyFoodPlacesCollectionView.ItemsSource = AllFoodPlaces;
-            specialOffersCollectionView.ItemsSource = AllDeals;
+            specialOffersCollectionView.ItemsSource = getSpecialOffers(AllDeals, 10);
 
             popularFoodPlacesCollectionView.ItemsSource = AllFoodPlaces;
         }
 
         /// <summary>
+        /// Sorts deals by the percentage of change in cost. Takes the first 'offerCount' of them.
+        /// </summary>
+        public IEnumerable<Deal> getSpecialOffers(List<Deal> allDeals, int offerCount)
+        {
+            return allDeals.OrderBy(deal => deal.CurrentCost / deal.PreviousCost).Take(offerCount);
+        }
+
+        /// <summary>
         /// Function is called when user selects food place from nearby food places collectionView. Called from xaml file.
         /// </summary>
-        void FoodPlacesCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void FoodPlacesCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
             Navigation.PushAsync(new FoodPlacesPage(selectedPlace));
@@ -52,7 +60,7 @@ namespace Wasted
         /// <summary>
         /// Function is called when user selects deal from nearby food places collectionView. Called from xaml file.
         /// </summary>
-        void DealsCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DealsCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Deal selectedDeal = e.CurrentSelection.FirstOrDefault() as Deal;
             Navigation.PushAsync(new ItemsPage(selectedDeal));

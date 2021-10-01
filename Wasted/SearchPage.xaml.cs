@@ -38,7 +38,7 @@ namespace Wasted
         /// <summary>
         /// Function is called when user selects food place from nearby places collectionView. Called from xaml file.
         /// </summary>
-        void PlacesCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void PlacesCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
             Navigation.PushAsync(new FoodPlacesPage(selectedPlace));
