@@ -74,10 +74,18 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <ImageAsset Include="Assets.xcassets\item_due.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\item_location.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\item_due.imageset\item_due-1.png" />
-    <ImageAsset Include="Assets.xcassets\item_quantity.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\item_due.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\item_location.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\item_due.imageset\item_due-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\item_quantity.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
