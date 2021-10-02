@@ -16,7 +16,18 @@ namespace Wasted.DummyAPI.BusinessObjects
         public string Street { get; set; }
         public string City { get; set; }
         public string WorkingHours { get; set; }
-        public double Rating { get; set; }
+
+        private double rating;
+        public int RatingCount { get; set; }
+        public double Rating
+        {
+            get { return rating; }
+            set
+            { 
+                rating = (value + rating * RatingCount) / (RatingCount + 1);
+                //++RatingCount; //Do not increment rating count to prevent rating multiple times for the same place.
+            }
+        }
         public string LogoURL { get; set; }
         public string HeaderURL { get; set; }
         public int[] DealsIDs { get; set; }
@@ -30,7 +41,8 @@ namespace Wasted.DummyAPI.BusinessObjects
 
         public int DealsCount => DealsIDs.Length;
 
-        public FoodPlace(int id, string title, string description, double longitude, double latitude, string street, string city, string workingHours, double rating, string logoURL, string headerURL, int[] dealIDs)
+        public FoodPlace(int id, string title, string description, double longitude, double latitude, string street, string city,
+            string workingHours, double rating, int ratingCount, string logoURL, string headerURL, int[] dealIDs)
         {
             ID = id;
             Title = title;
@@ -40,7 +52,8 @@ namespace Wasted.DummyAPI.BusinessObjects
             Street = street;
             City = city;
             WorkingHours = workingHours;
-            Rating = rating;
+            this.rating = rating;
+            RatingCount = ratingCount;
             LogoURL = logoURL;
             HeaderURL = headerURL;
             DealsIDs = dealIDs;

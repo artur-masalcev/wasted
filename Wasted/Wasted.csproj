@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dummy API\Dummy Data\" />
-    <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Dummy API\Dummy Data\Deals.json" />

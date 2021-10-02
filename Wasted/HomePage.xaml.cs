@@ -35,17 +35,24 @@ namespace Wasted
             HashMaps.AddFoodPlacesToDeals(AllFoodPlaces);
 
             nearbyFoodPlacesCollectionView.ItemsSource = AllFoodPlaces;
-            specialOffersCollectionView.ItemsSource = getSpecialOffers(AllDeals, 10);
-
-            popularFoodPlacesCollectionView.ItemsSource = AllFoodPlaces;
+            specialOffersCollectionView.ItemsSource = GetSpecialOffers(AllDeals, 10);
+            popularFoodPlacesCollectionView.ItemsSource = GetPopularFoodPlaces(AllFoodPlaces, 10);
         }
 
         /// <summary>
         /// Sorts deals by the percentage of change in cost. Takes the first 'offerCount' of them.
         /// </summary>
-        public IEnumerable<Deal> getSpecialOffers(List<Deal> allDeals, int offerCount)
+        public IEnumerable<Deal> GetSpecialOffers(List<Deal> allDeals, int offerCount)
         {
             return allDeals.OrderBy(deal => deal.CurrentCost / deal.PreviousCost).Take(offerCount);
+        }
+
+        /// <summary>
+        /// Sorts food places by the number of ratings.
+        /// </summary>
+        public IEnumerable<FoodPlace> GetPopularFoodPlaces(List<FoodPlace> allFoodPlaces, int offerCount)
+        {
+            return allFoodPlaces.OrderBy(place => -place.RatingCount).Take(offerCount);
         }
 
         /// <summary>
@@ -64,7 +71,6 @@ namespace Wasted
         {
             Deal selectedDeal = e.CurrentSelection.FirstOrDefault() as Deal;
             Navigation.PushAsync(new ItemsPage(selectedDeal));
-            //TODO: pass selectedPlace to Deal activity.
         }
     }
 }
