@@ -25,7 +25,7 @@ namespace Wasted.DummyAPI.BusinessObjects
             set
             { 
                 rating = (value + rating * RatingCount) / (RatingCount + 1);
-                //++RatingCount; //Do not increment rating count to prevent rating multiple times for the same place.
+                ++RatingCount;
             }
         }
         public string LogoURL { get; set; }

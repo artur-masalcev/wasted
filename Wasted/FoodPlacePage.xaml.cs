@@ -15,6 +15,7 @@ namespace Wasted
     public partial class FoodPlacesPage : ContentPage
     {
         public FoodPlace SelectedFoodPlace { get; set; }
+        private int previousRating = -1;
         private int selectedRating;
         public FoodPlacesPage(FoodPlace selectedFoodPlace)
         {
@@ -57,11 +58,24 @@ namespace Wasted
             ClosePopup();
         }
 
+        private void ResetRating() //TODO: handle when user exits and reenters page.
+        {
+            --SelectedFoodPlace.RatingCount;
+            SelectedFoodPlace.Rating =
+                (SelectedFoodPlace.Rating * (SelectedFoodPlace.RatingCount + 1) - previousRating) / SelectedFoodPlace.RatingCount * (SelectedFoodPlace.RatingCount + 1)
+                - SelectedFoodPlace.Rating * SelectedFoodPlace.RatingCount;
+            --SelectedFoodPlace.RatingCount;
+        }
+
         private void OnConfirmClicked(object sender, EventArgs e)
         {
             ClosePopup();
+            if (previousRating != -1)
+                ResetRating();
+
             SelectedFoodPlace.Rating = selectedRating;
             ratingSpan.Text = string.Format("{0:F1}", SelectedFoodPlace.Rating); //TODO: add view models.
+            previousRating = selectedRating;
         }
 
         private void InitializeStars()
