@@ -12,7 +12,8 @@
 
                 <StackLayout>
                     <Frame Style="{StaticResource RoundedCardView}"
-                           HeightRequest="50">
+                           Padding="5"
+                           HeightRequest="40">
                         <StackLayout Orientation="Horizontal">
                             <Image Source="nav_bar_search.png"
                                    Style="{StaticResource IconImage}"/>

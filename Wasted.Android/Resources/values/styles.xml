@@ -2,6 +2,7 @@
 <resources>
 	<style name="MainTheme" parent="MainTheme.Base">
 		<item name="colorPrimary">@android:color/white</item>
+		<item name="colorAccent">@color/blue</item>
 		<item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
 	</style>
 

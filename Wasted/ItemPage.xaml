@@ -9,17 +9,15 @@
 				<Grid RowSpacing="0">
 					<Grid.RowDefinitions>
 						<RowDefinition Height="200" />
-						<RowDefinition Height="70" />
-						<RowDefinition Height="30" />
+						<RowDefinition Height="75" />
+						<RowDefinition Height="25" />
 					</Grid.RowDefinitions>
 
 					<!--#region Header image-->
 					<Image x:Name="dealImage" Source="{Binding ImageURL}"
                            Grid.RowSpan="3"
                            Grid.Row="0"
-                           Margin="0"
 						   Aspect="AspectFill"
-						   HeightRequest="300"
 					/>
 					<!--#endregion-->
 
@@ -27,17 +25,17 @@
 					<StackLayout
                         Grid.Row="1">
 						<Frame Style="{StaticResource RoundedCardView}" HasShadow="False" BorderColor="Transparent"
+                           Padding="0"
                            CornerRadius="10"
 						   WidthRequest="110"
                            HorizontalOptions="End"
-                           VerticalOptions="Center"
                            Background="#272626">
 							<StackLayout>
-								<Label Text="{Binding CurrentCost, StringFormat='{0:F2}€'}"
-                                    Style="{StaticResource DealCostLabel}"
-                                    TextDecorations="Strikethrough" FontAttributes="None"/>
 								<Label Text="{Binding PreviousCost, StringFormat='{0:F2}€'}"
-                                    Style="{StaticResource DealCostLabel}" FontAttributes="Bold"/>
+									Style="{StaticResource DealCostLabel}"
+									TextDecorations="Strikethrough" FontAttributes="None"/>
+								<Label Text="{Binding CurrentCost, StringFormat='{0:F2}€'}"
+									Style="{StaticResource DealCostLabel}" FontAttributes="Bold"/>
 							</StackLayout>
 						</Frame>
 					</StackLayout>
