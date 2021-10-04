@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using Wasted.Dummy_API;
+using Wasted.Dummy_API.Business_Objects;
 
 namespace Wasted.DummyAPI.BusinessObjects
 {
-    public class FoodPlace
+    public class FoodPlace : ChangeableProperty
     {
         public int ID;
         public string Title { get; set; }
@@ -17,15 +20,17 @@ namespace Wasted.DummyAPI.BusinessObjects
         public string City { get; set; }
         public string WorkingHours { get; set; }
 
-        private double rating;
         public int RatingCount { get; set; }
+
+        private double rating;
         public double Rating
         {
             get { return rating; }
             set
-            { 
+            {                
                 rating = (value + rating * RatingCount) / (RatingCount + 1);
                 ++RatingCount;
+                OnPropertyChanged();
             }
         }
         public string LogoURL { get; set; }

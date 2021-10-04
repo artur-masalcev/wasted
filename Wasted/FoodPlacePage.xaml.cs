@@ -74,7 +74,6 @@ namespace Wasted
                 ResetRating();
 
             SelectedFoodPlace.Rating = selectedRating;
-            ratingSpan.Text = string.Format("{0:F1}", SelectedFoodPlace.Rating); //TODO: add view models.
             previousRating = selectedRating;
         }
 
