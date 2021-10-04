@@ -25,7 +25,6 @@
 					<StackLayout
                         Grid.Row="1">
 						<Frame Style="{StaticResource RoundedCardView}" HasShadow="False" BorderColor="Transparent"
-                           Padding="0"
                            CornerRadius="10"
 						   WidthRequest="110"
                            HorizontalOptions="End"
@@ -60,7 +59,7 @@
 						</StackLayout>
 					</StackLayout>
 					<BoxView Style="{StaticResource Separator}"/>
-					<StackLayout Margin="5,0,0,0">
+					<StackLayout>
 						<Label Text="Description" Style="{StaticResource CardTitle}"/>
 						<Label x:Name="description"
                             Text="{Binding Description}"/>
