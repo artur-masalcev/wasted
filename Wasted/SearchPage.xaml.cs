@@ -8,6 +8,7 @@ using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using System;
 using System.Collections.ObjectModel;
 using Wasted.Dummy_API;
+using System.Text.RegularExpressions;
 
 namespace Wasted
 {
@@ -49,12 +50,17 @@ namespace Wasted
         /// </summary>
         private void SearchBar_OnTextChanged(object sender, TextChangedEventArgs e)
         {
+            const string passwordRegex = @"^[a-zA-Z0-9ąčęėįšųūĄČĘĖĮŠŲŪ']*$";
+
             try
             {
                 Func<FoodPlace, bool> maskFunction = i => i.Title.ToLower().Contains(e.NewTextValue.ToLower());
                 var filteredPlaces = AllFoodPlaces.Where(maskFunction);
 
-                if (string.IsNullOrWhiteSpace(e.NewTextValue) || filteredPlaces.Max(i => i.Title).Length == 0)
+                bool isValid = Regex.IsMatch(e.NewTextValue, passwordRegex);
+                ((Xamarin.Forms.Entry)sender).TextColor = isValid ? Color.Default : Color.Red;
+
+                if (string.IsNullOrWhiteSpace(e.NewTextValue))
                 {
                     allPlacesCollectionView.ItemsSource = AllFoodPlaces;
                 }   
@@ -62,6 +68,7 @@ namespace Wasted
                 {
                     allPlacesCollectionView.ItemsSource = filteredPlaces;
                 }
+              
             }
             catch (NullReferenceException)
             {
