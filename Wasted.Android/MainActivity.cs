@@ -4,6 +4,7 @@ using Android.Runtime;
 using Android.OS;
 using Android.Views;
 using AndroidX.Core.Content;
+using Acr.UserDialogs;
 
 namespace Wasted.Droid
 {
@@ -15,6 +16,7 @@ namespace Wasted.Droid
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            UserDialogs.Init(this);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
         }

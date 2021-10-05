@@ -3,77 +3,125 @@
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wasted.ItemsPage">
-	<ContentPage.Content>
-		<ScrollView x:Name="contentScrollView">
-			<StackLayout Spacing="0">
-				<Grid RowSpacing="0">
-					<Grid.RowDefinitions>
-						<RowDefinition Height="200" />
-						<RowDefinition Height="75" />
-						<RowDefinition Height="25" />
-					</Grid.RowDefinitions>
+    <ContentPage.Content>
+        <AbsoluteLayout x:Name="content" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ScrollView>
+                <StackLayout Spacing="0">
+                    <Grid RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="200" />
+                            <RowDefinition Height="75" />
+                            <RowDefinition Height="25" />
+                        </Grid.RowDefinitions>
 
-					<!--#region Header image-->
-					<Image x:Name="dealImage" Source="{Binding ImageURL}"
+                        <!--#region Header image-->
+                        <Image x:Name="dealImage" Source="{Binding ImageURL}"
                            Grid.RowSpan="3"
                            Grid.Row="0"
 						   Aspect="AspectFill"
 					/>
-					<!--#endregion-->
+                        <!--#endregion-->
 
-					<!--#region Price label-->
-					<StackLayout
+                        <!--#region Price label-->
+                        <StackLayout
                         Grid.Row="1">
-						<Frame Style="{StaticResource RoundedCardView}" HasShadow="False" BorderColor="Transparent"
+                            <Frame Style="{StaticResource RoundedCardView}" HasShadow="False" BorderColor="Transparent"
                            CornerRadius="10"
 						   WidthRequest="110"
                            HorizontalOptions="End"
                            Background="#272626">
-							<StackLayout>
-								<Label Text="{Binding PreviousCost, StringFormat='{0:F2}€'}"
+                                <StackLayout>
+                                    <Label Text="{Binding PreviousCost, StringFormat='{0:F2}€'}"
 									Style="{StaticResource DealCostLabel}"
 									TextDecorations="Strikethrough" FontAttributes="None"/>
-								<Label Text="{Binding CurrentCost, StringFormat='{0:F2}€'}"
+                                    <Label Text="{Binding CurrentCost, StringFormat='{0:F2}€'}"
 									Style="{StaticResource DealCostLabel}" FontAttributes="Bold"/>
-							</StackLayout>
-						</Frame>
-					</StackLayout>
-					<!--#endregion-->
-				</Grid>
-				
-				<!--#region Deal description-->
-				<StackLayout>
-					<StackLayout>
-						<Label Text="{Binding Title}" Style="{StaticResource SectionTitle}" FontSize="Title"/>
-						<StackLayout Orientation="Horizontal">
-							<Image Source="item_location.png" Style="{StaticResource IconImage}" Opacity="0.5"/>
-							<Label Text="{Binding FoodPlaceTitle}" VerticalOptions="Center" TextColor="{StaticResource TextGrey}"/>
-						</StackLayout>
-						<StackLayout Orientation="Horizontal">
-							<Image Source="item_due.png" Style="{StaticResource IconImage}" Opacity="0.5"/>
-							<Label Text="{Binding Due, StringFormat='Due {0}'}" TextColor="{StaticResource TextGrey}"/>
-						</StackLayout>
-						<StackLayout Orientation="Horizontal">
-							<Image Source="item_quantity.png" Style="{StaticResource IconImage}" Opacity="0.5"/>
-							<Label Text="{Binding Quantity, StringFormat='Quantity: {0}'}" TextColor="{StaticResource TextGrey}"/>
-						</StackLayout>
-					</StackLayout>
-					<BoxView Style="{StaticResource Separator}"/>
-					<StackLayout>
-						<Label Text="Description" Style="{StaticResource CardTitle}"/>
-						<Label x:Name="description"
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                        <!--#endregion-->
+                    </Grid>
+
+                    <!--#region Deal description-->
+                    <StackLayout>
+                        <StackLayout>
+                            <Label Text="{Binding Title}" Style="{StaticResource SectionTitle}" FontSize="Title"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="item_location.png" Style="{StaticResource IconImage}" Opacity="0.5"/>
+                                <Label Text="{Binding FoodPlaceTitle}" VerticalOptions="Center" TextColor="{StaticResource TextGrey}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="item_due.png" Style="{StaticResource IconImage}" Opacity="0.5"/>
+                                <Label Text="{Binding Due, StringFormat='Due {0}'}" TextColor="{StaticResource TextGrey}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="item_quantity.png" Style="{StaticResource IconImage}" Opacity="0.5"/>
+                                <Label Text="{Binding Quantity, StringFormat='Quantity: {0}'}" TextColor="{StaticResource TextGrey}"/>
+                            </StackLayout>
+                        </StackLayout>
+                        <BoxView Style="{StaticResource Separator}"/>
+                        <StackLayout>
+                            <Label Text="Description" Style="{StaticResource CardTitle}"/>
+                            <Label x:Name="description"
                             Text="{Binding Description}"/>
-					</StackLayout>
-					<BoxView Style="{StaticResource Separator}"/>
-				</StackLayout>
-				<!--#endregion-->
+                        </StackLayout>
+                        <BoxView Style="{StaticResource Separator}"/>
+                    </StackLayout>
+                    <!--#endregion-->
 
-				<!--#region Action button-->
-				<Button Text="Order" Style="{StaticResource OrderButton}"
-                        VerticalOptions="EndAndExpand" FontAttributes="Bold"/>
-				<!--#endregion-->
+                    <!--#region Action button-->
+                    <Button Text="Order" Style="{StaticResource OrderButton}"
+                        VerticalOptions="EndAndExpand"
+                        FontAttributes="Bold"
+                        Clicked="OnOrderClicked"/>
+                    <!--#endregion-->
 
-			</StackLayout>
-		</ScrollView>
-	</ContentPage.Content>
+                </StackLayout>
+            </ScrollView>
+
+            <!--#region Rating bar-->
+            <ContentView x:Name="popupLoadingView"
+                         BackgroundColor="#C0808080"
+                         Padding="10, 0"
+                         IsVisible="false"
+                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                         AbsoluteLayout.LayoutFlags="All">
+
+                <StackLayout Style="{StaticResource DealCardViewLayout}"
+                             VerticalOptions="Center">
+                    <StackLayout BackgroundColor="White">
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            HorizontalOptions="Center"
+                            Spacing="20">
+                            <Label x:Name="countLabel" Style="{StaticResource RatingLabel}"
+                                   Text="{Binding SelectedCount, StringFormat='Count: {0}'}" />
+
+
+                            <Stepper x:Name="stepper"
+                                     Maximum="{Binding Quantity}"
+                                     Increment="1"
+                                     ValueChanged="Stepper_ValueChanged"/>
+
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal"
+                                 Margin="10">
+                            <Button Text="Cancel" Style="{StaticResource RateButton}"
+                                    HorizontalOptions="EndAndExpand"
+                                    Clicked="OnCancelClicked"/>
+                            <Button Text="Confirm" Style="{StaticResource RateButton}"
+                                    Clicked="OnConfirmClicked"
+                                    BackgroundColor="{StaticResource Blue}"
+                                    TextColor="White"/>
+                        </StackLayout>
+
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
+            <!--#endregion-->
+            
+        </AbsoluteLayout>
+    </ContentPage.Content>
 </ContentPage>
