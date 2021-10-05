@@ -27,7 +27,14 @@ namespace Wasted
 
         private void OnOrderClicked(object sender, EventArgs e)
         {
-            popupLoadingView.IsVisible = true;
+            if (SelectedDeal.Quantity > 0)
+            {
+                popupLoadingView.IsVisible = true;
+            }
+            else
+            {
+                Acr.UserDialogs.UserDialogs.Instance.Toast("No orders left!", new TimeSpan(3));
+            }
         }
 
         private void ClosePopup()
@@ -43,9 +50,18 @@ namespace Wasted
         private void OnConfirmClicked(object sender, EventArgs e)
         {
             ClosePopup();
-            SelectedDeal.Quantity -= (int)stepper.Value;
-            if (stepper.Value > 0)
-                Acr.UserDialogs.UserDialogs.Instance.Toast("Order confirmed", new TimeSpan(3));
+            if (SelectedDeal.Quantity == stepper.Value)
+            {
+                ((StackLayout)stepper.Parent).Children.Remove(stepper);
+                SelectedDeal.Quantity = 0;
+            }
+            else
+            {
+                SelectedDeal.Quantity -= (int)stepper.Value;
+                stepper.Value = 0;
+            }
+
+            Acr.UserDialogs.UserDialogs.Instance.Toast("Order confirmed", new TimeSpan(3));
         }
 
         private void Stepper_ValueChanged(object sender, ValueChangedEventArgs e)
