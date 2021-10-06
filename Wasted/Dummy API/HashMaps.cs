@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
 
 namespace Wasted.Dummy_API
@@ -22,6 +23,27 @@ namespace Wasted.Dummy_API
         {
             get { return foodPlacesHashMap; }
             set { foodPlacesHashMap = value; }
+        }
+
+        // Map from food place type to food place //
+        private static List<FoodPlace>[] foodPlaceTypeHashMap = initializeFoodPlaceTypeHashMap();
+
+        public static List<FoodPlace>[] initializeFoodPlaceTypeHashMap()
+        {
+            int enumMemberCount = Enum.GetNames(typeof(PlaceType)).Length;
+            List<FoodPlace>[] map = new List<FoodPlace>[enumMemberCount];
+
+            for (int i = 0; i < enumMemberCount; ++i)
+            {
+                map[i] = new List<FoodPlace>();
+            }
+            return map;
+        }
+
+        public static List<FoodPlace>[] FoodPlaceTypeHashMap
+        {
+            get { return foodPlaceTypeHashMap; }
+            set { foodPlaceTypeHashMap = value; }
         }
 
         /// <summary>

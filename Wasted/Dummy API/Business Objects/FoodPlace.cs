@@ -46,8 +46,8 @@ namespace Wasted.DummyAPI.BusinessObjects
 
         public int DealsCount => DealsIDs.Length;
 
-        public FoodPlace(int id, string title, string description, double longitude, double latitude, string street, string city,
-            string workingHours, double rating, int ratingCount, string logoURL, string headerURL, int[] dealIDs)
+        public FoodPlace(int id, string title, int placeType, string description, double longitude, double latitude, string street,
+            string city, string workingHours, double rating, int ratingCount, string logoURL, string headerURL, int[] dealIDs)
         {
             ID = id;
             Title = title;
@@ -63,7 +63,11 @@ namespace Wasted.DummyAPI.BusinessObjects
             HeaderURL = headerURL;
             DealsIDs = dealIDs;
 
-            HashMaps.FoodPlacesHashMap[id] = this;
+            if (!HashMaps.FoodPlacesHashMap.ContainsKey(id))
+            {
+                HashMaps.FoodPlaceTypeHashMap[placeType].Add(this);
+                HashMaps.FoodPlacesHashMap[id] = this;
+            }  
         }
     }
 }

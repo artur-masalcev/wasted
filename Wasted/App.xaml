@@ -10,6 +10,8 @@
         <Color x:Key="SeparatorColor">#D3D3D3</Color>
         <Color x:Key="EntryTextColor">#FF464859</Color>
         <Color x:Key="Blue">#1E90FF</Color>
+        <Color x:Key="LightBlue">#ADD8E6</Color>
+        <Color x:Key="ContentBackgroundColor">#C0808080</Color>
 
         <Color x:Key="TextBlack">#272626</Color>
         <Color x:Key="TextGrey">#757171</Color>
@@ -210,6 +212,22 @@
             <Setter Property="HorizontalOptions" Value="FillAndExpand" />
         </Style>
 
+        <!-- AbsoluteLayouts -->
+
+        <Style TargetType="AbsoluteLayout">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="VerticalOptions" Value="FillAndExpand" />
+        </Style>
+        
+        <!-- ContentViews -->
+        <Style TargetType="ContentView">
+            <Setter Property="BackgroundColor" Value="{StaticResource ContentBackgroundColor}" />
+            <Setter Property="Padding" Value="10, 0" />
+            <Setter Property="IsVisible" Value="false" />
+            <Setter Property="AbsoluteLayout.LayoutBounds" Value="0, 0, 1, 1" />
+            <Setter Property="AbsoluteLayout.LayoutFlags" Value="All" />
+        </Style>
 
         <!-- Data templates -->
 

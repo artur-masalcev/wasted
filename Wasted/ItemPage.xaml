@@ -4,7 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wasted.ItemsPage">
     <ContentPage.Content>
-        <AbsoluteLayout x:Name="content" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <AbsoluteLayout x:Name="content">
             <ScrollView>
                 <StackLayout Spacing="0">
                     <Grid RowSpacing="0">
@@ -80,12 +80,7 @@
             </ScrollView>
 
             <!--#region Order view-->
-            <ContentView x:Name="orderView"
-                         BackgroundColor="#C0808080"
-                         Padding="10, 0"
-                         IsVisible="false"
-                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
-                         AbsoluteLayout.LayoutFlags="All">
+            <ContentView x:Name="orderView">
 
                 <StackLayout Style="{StaticResource DealCardViewLayout}"
                              VerticalOptions="Center">

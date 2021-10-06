@@ -5,7 +5,7 @@
 	xmlns:wasted="clr-namespace:Wasted"
              x:Class="Wasted.FoodPlacesPage">
     <ContentPage.Content>
-        <AbsoluteLayout Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <AbsoluteLayout>
             <ScrollView x:Name="contentScrollView">
                 <StackLayout>
                     <!--#region Header image-->
@@ -61,12 +61,7 @@
             </ScrollView>
 
             <!--#region Rating bar-->
-            <ContentView x:Name="ratingView"
-                         BackgroundColor="#C0808080"
-                         Padding="10, 0"
-                         IsVisible="false"
-                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
-                         AbsoluteLayout.LayoutFlags="All">
+            <ContentView x:Name="ratingView">
 
                 <StackLayout Style="{StaticResource DealCardViewLayout}"
                              VerticalOptions="Center">
