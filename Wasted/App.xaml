@@ -91,6 +91,11 @@
 
         <!-- StackLayouts -->
 
+        <Style x:Key="ConfirmCancelLayout" TargetType="StackLayout">
+            <Setter Property="Orientation" Value="Horizontal" />
+            <Setter Property="Margin" Value="10" />
+        </Style>
+        
         <Style x:Key="DealCardViewLayout" TargetType="StackLayout">
             <Setter Property="Spacing" Value="8"/>
             <Setter Property="WidthRequest" Value="170"/>
@@ -159,14 +164,6 @@
 
         <!-- Buttons -->
 
-        <Style x:Key="OrderButton" TargetType="Button">
-            <Setter Property="CornerRadius" Value="20" />
-            <Setter Property="VerticalOptions" Value="EndAndExpand" />
-            <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
-            <Setter Property="TextColor" Value="White" />
-            <Setter Property="Margin" Value="30" />
-        </Style>
-
         <Style x:Key="RateButton" TargetType="Button">
             <Setter Property="Margin" Value="0, 5" />
             <Setter Property="HeightRequest" Value="35" />
@@ -175,6 +172,26 @@
             <Setter Property="BackgroundColor" Value="White" />
             <Setter Property="BorderColor" Value="{StaticResource TextBlack}" />
             <Setter Property="HorizontalOptions" Value="End" />
+        </Style>
+
+        <Style x:Key="CancelButton" TargetType="Button"
+            BasedOn="{StaticResource RateButton}">
+            <Setter Property="Text" Value="Cancel" />
+            <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+        </Style>
+
+        <Style x:Key="ConfirmButton" TargetType="Button"
+            BasedOn="{StaticResource RateButton}">
+            <Setter Property="Text" Value="Confirm" />
+            <Setter Property="BackgroundColor" Value="{StaticResource Blue}" />
+        </Style>
+
+        <Style x:Key="OrderButton" TargetType="Button">
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="VerticalOptions" Value="EndAndExpand" />
+            <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="Margin" Value="30" />
         </Style>
 
         <!-- BoxViews -->

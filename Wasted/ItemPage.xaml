@@ -79,8 +79,8 @@
                 </StackLayout>
             </ScrollView>
 
-            <!--#region Rating bar-->
-            <ContentView x:Name="popupLoadingView"
+            <!--#region Order view-->
+            <ContentView x:Name="orderView"
                          BackgroundColor="#C0808080"
                          Padding="10, 0"
                          IsVisible="false"
@@ -102,19 +102,13 @@
                             <Stepper x:Name="stepper"
                                      Maximum="{Binding Quantity}"
                                      Increment="1"
-                                     ValueChanged="Stepper_ValueChanged"/>
+                                     ValueChanged="StepperValueChanged"/>
 
                         </StackLayout>
 
-                        <StackLayout Orientation="Horizontal"
-                                 Margin="10">
-                            <Button Text="Cancel" Style="{StaticResource RateButton}"
-                                    HorizontalOptions="EndAndExpand"
-                                    Clicked="OnCancelClicked"/>
-                            <Button Text="Confirm" Style="{StaticResource RateButton}"
-                                    Clicked="OnConfirmClicked"
-                                    BackgroundColor="{StaticResource Blue}"
-                                    TextColor="White"/>
+                        <StackLayout Style="{StaticResource ConfirmCancelLayout}">
+                            <Button Style="{StaticResource CancelButton}" Clicked="OnCancelClicked" />
+                            <Button Style="{StaticResource ConfirmButton}" Clicked="OnConfirmClicked"/>
                         </StackLayout>
 
                     </StackLayout>

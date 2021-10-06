@@ -20,16 +20,22 @@ namespace Wasted
             InitializeViews();
         }
 
+        /// <summary>
+        /// Sets binding for xaml file.
+        /// </summary>
         public void InitializeViews()
         {
             content.BindingContext = SelectedDeal;
         }
 
+        /// <summary>
+        /// Checks if there are available deals.
+        /// </summary>
         private void OnOrderClicked(object sender, EventArgs e)
         {
             if (SelectedDeal.Quantity > 0)
             {
-                popupLoadingView.IsVisible = true;
+                orderView.IsVisible = true;
             }
             else
             {
@@ -39,7 +45,7 @@ namespace Wasted
 
         private void ClosePopup()
         {
-            popupLoadingView.IsVisible = false;
+            orderView.IsVisible = false;
         }
 
         private void OnCancelClicked(object sender, EventArgs e)
@@ -47,9 +53,15 @@ namespace Wasted
             ClosePopup();
         }
 
+        /// <summary>
+        /// Reduces deal count from deal by stepper value.
+        /// If all deals are taken, stepper is removed from layout to prevent exceptions.
+        /// </summary>
         private void OnConfirmClicked(object sender, EventArgs e)
         {
             ClosePopup();
+            bool selectedSomething = stepper.Value != 0;
+
             if (SelectedDeal.Quantity == stepper.Value)
             {
                 ((StackLayout)stepper.Parent).Children.Remove(stepper);
@@ -61,10 +73,11 @@ namespace Wasted
                 stepper.Value = 0;
             }
 
-            Acr.UserDialogs.UserDialogs.Instance.Toast("Order confirmed", new TimeSpan(3));
+            if (selectedSomething)
+                Acr.UserDialogs.UserDialogs.Instance.Toast("Order confirmed", new TimeSpan(3));
         }
 
-        private void Stepper_ValueChanged(object sender, ValueChangedEventArgs e)
+        private void StepperValueChanged(object sender, ValueChangedEventArgs e)
         {
             SelectedDeal.SelectedCount = (int)stepper.Value;
         }
