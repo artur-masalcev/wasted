@@ -45,9 +45,8 @@
 
                     <BoxView Style="{StaticResource Separator}"/>
 
-                    <!--#region Foodplace orders-->
+                    <!--#region Foodplace deals-->
                     <Label Text="Offers" Style="{StaticResource SectionTitle}"/>
-
                     <CollectionView x:Name="dealsCollectionView"
                     SelectionChanged="DealsCollectionViewListSelectionChanged"
                     SelectionMode="Single"
@@ -57,6 +56,7 @@
                         </CollectionView.ItemsLayout>
                     </CollectionView>
                     <!--#endregion-->
+
                 </StackLayout>
             </ScrollView>
 
