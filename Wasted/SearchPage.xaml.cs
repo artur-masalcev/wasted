@@ -20,7 +20,39 @@ namespace Wasted
         public List<FoodPlace> AvailablePlaces { get; set; }
 
         public string[] PlaceTypeNames = Enum.GetNames(typeof(PlaceType));
-        public string CurrentPlaceType { get; set; }
+
+        private string currentPlaceType;
+        public string CurrentPlaceType
+        {
+            get { return currentPlaceType; }
+            set
+            { 
+                currentPlaceType = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string sectionTitleText = "All places";
+        public string SectionTitleText
+        {
+            get { return sectionTitleText; }
+            set
+            {
+                sectionTitleText = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string allPlaceButtonText;
+        public string AllPlaceButtonText
+        {
+            get { return allPlaceButtonText; }
+            set
+            {
+                allPlaceButtonText = value;
+                OnPropertyChanged();
+            }
+        }
 
         public SearchPage()
         {
@@ -35,14 +67,19 @@ namespace Wasted
         {
             base.OnAppearing();
             AllFoodPlaces = new List<FoodPlace>(DummyDataProvider.GetFoodPlacesList());
+            AvailablePlaces = AllFoodPlaces;
+
             DummyDataProvider.GetDealsList(); //Adds deals to hashmap.
             HashMaps.AddFoodPlacesToDeals(AllFoodPlaces);
 
-            restaurantTypeCollectionView.ItemsSource = getRestaurantTypeCollectionViewItemsSource();
-            sectionTitle.Text = "All places";
+            restaurantLayout.BindingContext = this;
+            restaurantTypeCollectionView.ItemsSource = GetRestaurantTypeCollectionViewItemsSource();
         }
 
-        private Pair<string, int>[] getRestaurantTypeCollectionViewItemsSource()
+        /// <summary>
+        /// Returns an array of pairs (place type, index).
+        /// </summary>
+        private Pair<string, int>[] GetRestaurantTypeCollectionViewItemsSource()
         {
             
             Pair<string, int>[] source = new Pair<string, int>[PlaceTypeNames.Length];
@@ -78,22 +115,29 @@ namespace Wasted
                 return;
 
             ShowFoodPlaces();
+
             int index = ((Pair<string, int>)e.CurrentSelection.FirstOrDefault()).Second;
             AvailablePlaces = HashMaps.FoodPlaceTypeHashMap[index];
             allPlacesCollectionView.ItemsSource = AvailablePlaces;
 
-            sectionTitle.Text = PlaceTypeNames[index] + "s";
+            SectionTitleText = PlaceTypeNames[index] + "s";
+
             allPlaceButton.IsVisible = true;
-            allPlaceButton.Text = "x " + PlaceTypeNames[index] + "s";
+            AllPlaceButtonText = SectionTitleText;
 
         }
 
+        /// <summary>
+        /// Clicked on x. Resets restaurants to show all of them.
+        /// </summary>
         private void AllPlaceButtonClicked(object sender, EventArgs e)
         {
             ShowFoodPlaces(false);
             allPlaceButton.IsVisible = false;
-            allPlacesCollectionView.ItemsSource = AllFoodPlaces;
-            sectionTitle.Text = "All places";
+            AvailablePlaces = AllFoodPlaces;
+            allPlacesCollectionView.ItemsSource = AvailablePlaces;
+
+            SectionTitleText = "All places";
             restaurantTypeCollectionView.SelectedItem = null;
         }
 
@@ -110,18 +154,18 @@ namespace Wasted
                 var filteredPlaces = AvailablePlaces.Where(maskFunction);
 
                 bool isValid = Regex.IsMatch(e.NewTextValue, restaurantNameRegex);
-                ((Xamarin.Forms.Entry)sender).TextColor = isValid ? Color.Default : Color.Red;
+                searchBar.TextColor = isValid ? Color.Default : Color.Red;
 
                 if (string.IsNullOrWhiteSpace(e.NewTextValue))
                 {
                     ShowFoodPlaces(false);
                     allPlacesCollectionView.ItemsSource = AvailablePlaces;
-                }   
+                }
                 else
                 {
                     ShowFoodPlaces();
                     allPlacesCollectionView.ItemsSource = filteredPlaces;
-                }     
+                }
             }
             catch (NullReferenceException)
             {

@@ -10,25 +10,16 @@ namespace Wasted.Dummy_API
     public static class HashMaps
     {
         // Map from deal id to deal //
-        public static Dictionary<int, Deal> dealsHashMap = new Dictionary<int, Deal>();
-        public static Dictionary<int, Deal> DealsHashMap
-        {
-            get { return dealsHashMap; }
-            set { dealsHashMap = value; }
-        }
+        public static Dictionary<int, Deal> DealsHashMap { get; set; } = new Dictionary<int, Deal>();
 
         // Map from food place id to food place //
-        private static Dictionary<int, FoodPlace> foodPlacesHashMap = new Dictionary<int, FoodPlace>();
-        public static Dictionary<int, FoodPlace> FoodPlacesHashMap
-        {
-            get { return foodPlacesHashMap; }
-            set { foodPlacesHashMap = value; }
-        }
+        public static Dictionary<int, FoodPlace> FoodPlacesHashMap { get; set; } = new Dictionary<int, FoodPlace>();
+  
 
         // Map from food place type to food place //
-        private static List<FoodPlace>[] foodPlaceTypeHashMap = initializeFoodPlaceTypeHashMap();
+        private static List<FoodPlace>[] foodPlaceTypeHashMap = InitializeFoodPlaceTypeHashMap();
 
-        public static List<FoodPlace>[] initializeFoodPlaceTypeHashMap()
+        public static List<FoodPlace>[] InitializeFoodPlaceTypeHashMap()
         {
             int enumMemberCount = Enum.GetNames(typeof(PlaceType)).Length;
             List<FoodPlace>[] map = new List<FoodPlace>[enumMemberCount];

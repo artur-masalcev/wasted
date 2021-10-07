@@ -40,12 +40,7 @@ namespace Wasted.DummyAPI.BusinessObjects
             }
         }
 
-        private List<FoodPlace> foodPlaces = new List<FoodPlace>();
-        public List<FoodPlace> FoodPlaces
-        {
-            get { return foodPlaces; }
-            set { foodPlaces = value; }
-        }
+        public List<FoodPlace> FoodPlaces { get; set; } = new List<FoodPlace>();
 
         public string FoodPlaceTitle
         {

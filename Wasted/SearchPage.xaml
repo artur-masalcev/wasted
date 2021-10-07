@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Wasted"  
+             xmlns:local="clr-namespace:Wasted"
              x:Class="Wasted.SearchPage">
 
     <ContentPage.Content>
@@ -37,14 +37,29 @@
 
                         <StackLayout Orientation="Horizontal">
                             <Label x:Name="sectionTitle" Style="{StaticResource SectionTitle}"
-                                   Text="All places"
+                                   Text="{Binding SectionTitleText}"
                                    HorizontalOptions="StartAndExpand"/>
-                            <Button x:Name="allPlaceButton"
-                                    Style="{StaticResource RateButton}"
-                                    Clicked="AllPlaceButtonClicked"
-                                    Margin="5, 0"
-                                    IsVisible="false"/>
 
+                            <Frame x:Name="allPlaceButton"
+                                   Style="{StaticResource RoundedCardView}"
+                                   HeightRequest="25"
+                                   WidthRequest="30"
+                                   IsVisible="false">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="AllPlaceButtonClicked" />
+                                </Frame.GestureRecognizers>
+
+                                <Label HorizontalOptions="Center"
+                                       VerticalOptions="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="x " FontSize="15" TextColor="Red"/>
+                                            <Span Text="{Binding AllPlaceButtonText}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                
+                            </Frame>
                         </StackLayout>
 
                         <CollectionView x:Name="allPlacesCollectionView" 

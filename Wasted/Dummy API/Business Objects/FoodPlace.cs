@@ -23,6 +23,7 @@ namespace Wasted.DummyAPI.BusinessObjects
         public int RatingCount { get; set; }
 
         private double rating;
+
         public double Rating
         {
             get { return rating; }
@@ -37,12 +38,7 @@ namespace Wasted.DummyAPI.BusinessObjects
         public string HeaderURL { get; set; }
         public int[] DealsIDs { get; set; }
 
-        private List<Deal> deals = new List<Deal>();
-        public List<Deal> Deals
-        {
-            get { return deals; }
-            set { deals = value; }
-        }
+        public List<Deal> Deals = new List<Deal>();
 
         public int DealsCount => DealsIDs.Length;
 
