@@ -2,31 +2,28 @@
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	xmlns:wasted="clr-namespace:Wasted"
              x:Class="Wasted.FoodPlacesPage">
+
+
     <ContentPage.Content>
-        <AbsoluteLayout>
-            <ScrollView x:Name="contentScrollView">
-                <StackLayout>
-                    <!--#region Header image-->
-                    <Image x:Name="headerImage"
-                       Source="{Binding HeaderURL}"
-                       Aspect="AspectFill"
-                       HeightRequest="180"
-                  />
-                    <!--#endregion-->
+        <ScrollView x:Name="contentScrollView">
+            <AbsoluteLayout>
+                    <StackLayout>
+                        <!--#region Header image-->
+                        <Image x:Name="headerImage"
+                           Source="{Binding HeaderURL}"
+                           Aspect="AspectFill"
+                           HeightRequest="180"
+                        />
+                        <!--#endregion-->
 
-                    <!--#region Foodplace description-->
-                    <StackLayout Style="{StaticResource CardContent}" Margin="5, 0, 0, 0"
-                    Orientation="Horizontal">
+                        <!--#region Foodplace description-->
+                        <StackLayout Style="{StaticResource CardContent}" Padding="5, 0, 5, 0">
 
-                        <StackLayout Style="{StaticResource CardContent}">
+                        <StackLayout Style="{StaticResource CardContent}" Orientation="Horizontal" VerticalOptions="Center">
                             <Label Text="{Binding Title}" Style="{StaticResource CardTitle}" FontSize="Title"/>
-                            <Label x:Name="descriptionLabel" Text="{Binding Description}" TextColor="{StaticResource TextGrey}"/>
-                        </StackLayout>
-
-                        <StackLayout Style="{StaticResource CardContent}">
-                            <Label x:Name="rating" Style="{StaticResource CardTitle}" Padding="5, 0, 5, 0" 
+                                
+                            <Label x:Name="rating" Style="{StaticResource CardTitle}" Padding="5, 0, 5, 0" VerticalOptions="Center"
                             HorizontalOptions="EndAndExpand">
                                 <Label.FormattedText>
                                     <FormattedString>
@@ -35,62 +32,65 @@
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
+                         </StackLayout>
 
-                            <Button Style="{StaticResource RateButton}"
-                                Text="Rate"
-                                Clicked="OnRateButtonClicked"/>
+                        <Label x:Name="descriptionLabel" Text="{Binding Description}" TextColor="{StaticResource TextGrey}"/>
 
+                        <Button Style="{StaticResource RateButton}"
+                                    Text="Rate"
+                                    Clicked="OnRateButtonClicked"/>
                         </StackLayout>
+                        <!--#endregion-->
+
+                        <BoxView Style="{StaticResource Separator}"/>
+
+                        <!--#region Foodplace deals-->
+                        <Label Text="Offers" Style="{StaticResource SectionTitle}"/>
+                        <CollectionView x:Name="dealsCollectionView"
+                        SelectionChanged="DealsCollectionViewListSelectionChanged"
+                        SelectionMode="Single"
+                        ItemTemplate="{StaticResource DealsCollectionViewTemplate}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical" Span="2"/>
+                            </CollectionView.ItemsLayout>
+                        </CollectionView>
+                        <!--#endregion-->
+
                     </StackLayout>
+            
 
-                    <BoxView Style="{StaticResource Separator}"/>
+                <!--#region Rating bar-->
+                <ContentView x:Name="ratingView">
 
-                    <!--#region Foodplace deals-->
-                    <Label Text="Offers" Style="{StaticResource SectionTitle}"/>
-                    <CollectionView x:Name="dealsCollectionView"
-                    SelectionChanged="DealsCollectionViewListSelectionChanged"
-                    SelectionMode="Single"
-                    ItemTemplate="{StaticResource DealsCollectionViewTemplate}">
-                        <CollectionView.ItemsLayout>
-                            <GridItemsLayout Orientation="Vertical" Span="2"/>
-                        </CollectionView.ItemsLayout>
-                    </CollectionView>
-                    <!--#endregion-->
-
-                </StackLayout>
-            </ScrollView>
-
-            <!--#region Rating bar-->
-            <ContentView x:Name="ratingView">
-
-                <StackLayout Style="{StaticResource DealCardViewLayout}"
-                             VerticalOptions="Center">
-                    <StackLayout BackgroundColor="White">
+                    <StackLayout Style="{StaticResource DealCardViewLayout}"
+                                 VerticalOptions="Center">
+                        <StackLayout BackgroundColor="White">
                            
-                        <Label Text="Select rating" Style="{StaticResource RatingLabel}"/>
-                        <StackLayout x:Name="starsLayout" 
-                                    Orientation="Horizontal"
-                                    HorizontalOptions="Center"
-                                    Spacing="20">
+                            <Label Text="Select rating" Style="{StaticResource RatingLabel}"/>
+                            <StackLayout x:Name="starsLayout" 
+                                        Orientation="Horizontal"
+                                        HorizontalOptions="Center"
+                                        Spacing="20">
 
-                            <Label Style="{StaticResource RatingStar}" />
-                            <Label Style="{StaticResource RatingStar}"/>
-                            <Label Style="{StaticResource RatingStar}"/>
-                            <Label Style="{StaticResource RatingStar}"/>
-                            <Label Style="{StaticResource RatingStar}"/>
+                                <Label Style="{StaticResource RatingStar}" />
+                                <Label Style="{StaticResource RatingStar}"/>
+                                <Label Style="{StaticResource RatingStar}"/>
+                                <Label Style="{StaticResource RatingStar}"/>
+                                <Label Style="{StaticResource RatingStar}"/>
+
+                            </StackLayout>
+
+                            <StackLayout Style="{StaticResource ConfirmCancelLayout}">
+                                <Button Style="{StaticResource CancelButton}" Clicked="OnCancelClicked" />
+                                <Button Style="{StaticResource ConfirmButton}" Clicked="OnConfirmClicked"/>
+                            </StackLayout>
 
                         </StackLayout>
-
-                        <StackLayout Style="{StaticResource ConfirmCancelLayout}">
-                            <Button Style="{StaticResource CancelButton}" Clicked="OnCancelClicked" />
-                            <Button Style="{StaticResource ConfirmButton}" Clicked="OnConfirmClicked"/>
-                        </StackLayout>
-
                     </StackLayout>
-                </StackLayout>
-            </ContentView>
-            <!--#endregion-->
+                </ContentView>
+                <!--#endregion-->
 
-        </AbsoluteLayout>
+            </AbsoluteLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

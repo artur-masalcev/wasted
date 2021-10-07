@@ -17,6 +17,7 @@ namespace Wasted
         public FoodPlace SelectedFoodPlace { get; set; }
         private int previousRating = -1;
         private int selectedRating;
+
         public FoodPlacesPage(FoodPlace selectedFoodPlace)
         {
             SelectedFoodPlace = selectedFoodPlace;
