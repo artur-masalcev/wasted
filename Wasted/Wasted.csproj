@@ -14,6 +14,9 @@
 	    <Compile Remove="Images\**" />
 	    <EmbeddedResource Remove="Images\**" />
 	    <None Remove="Images\**" />
+	    <None Remove="Xamarin.Rating" />
+	    <None Remove="Rg.Plugins.Popup" />
+	    <None Remove="FoodPlaceRatingSystem\" />
     </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +33,8 @@
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Xamarin.Rating" Version="1.0.0.2" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.13" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Dummy Data API\" />
@@ -47,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dummy API\Dummy Data\" />
+    <Folder Include="FoodPlaceRatingSystem\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Dummy API\Dummy Data\Deals.json" />

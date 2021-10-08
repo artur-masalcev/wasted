@@ -86,6 +86,10 @@
     <ImageAsset Include="Assets.xcassets\item_quantity.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\star_outline.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\star_fill.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\star_fill.imageset\star_fill-1.png" />
+    <ImageAsset Include="Assets.xcassets\star_outline.imageset\star_outline-1.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -225,5 +229,7 @@
     <Folder Include="Assets.xcassets\item_due.imageset\" />
     <Folder Include="Assets.xcassets\item_location.imageset\" />
     <Folder Include="Assets.xcassets\item_quantity.imageset\" />
+    <Folder Include="Assets.xcassets\star_outline.imageset\" />
+    <Folder Include="Assets.xcassets\star_fill.imageset\" />
   </ItemGroup>
 </Project>

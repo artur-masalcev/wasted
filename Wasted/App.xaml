@@ -83,6 +83,7 @@
         <Style x:Key="RatingLabel" TargetType="Label">
             <Setter Property="Margin" Value="10, 5" />
             <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontAttributes" Value="Bold"/>
         </Style>
 
         <Style x:Key="RatingStar" TargetType="Label">
@@ -177,16 +178,20 @@
             <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
         </Style>
 
-        <Style x:Key="CancelButton" TargetType="Button"
-            BasedOn="{StaticResource RateButton}">
-            <Setter Property="Text" Value="Cancel" />
+        <Style x:Key="CancelButton" TargetType="Button">
+            <Setter Property="Text" Value="ⓧ" />
+            <Setter Property="TextColor" Value="{StaticResource TextBlack}" />
+            <Setter Property="FontSize" Value="25" />
             <Setter Property="HorizontalOptions" Value="EndAndExpand" />
         </Style>
 
         <Style x:Key="ConfirmButton" TargetType="Button"
             BasedOn="{StaticResource RateButton}">
-            <Setter Property="Text" Value="Confirm" />
-            <Setter Property="BackgroundColor" Value="{StaticResource Blue}" />
+            <Setter Property="Text" Value="Submit" />
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="BorderColor" Value="Transparent"/>
+            <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
         </Style>
 
         <Style x:Key="OrderButton" TargetType="Button">
