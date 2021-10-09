@@ -10,13 +10,7 @@ namespace Wasted
 
         public String FoodPlaceTitle { get; }
         public int FoodPlaceID { get; }
-        public int Rating
-        {
-            get
-            {
-                return ratingBar.SelectedStarValue;
-            }
-        }
+        public int Rating => ratingBar.SelectedStarValue;
         public String RatingEmoji { get; set; }
         public String RatingComment { get; set; }
 
