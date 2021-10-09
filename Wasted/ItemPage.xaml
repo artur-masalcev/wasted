@@ -84,7 +84,9 @@
 
                 <StackLayout Style="{StaticResource DealCardViewLayout}"
                              VerticalOptions="Center">
-                    <StackLayout BackgroundColor="White">
+                    <Frame BackgroundColor="White" CornerRadius="20">
+                    <StackLayout>
+                        <Button Style="{StaticResource CancelButton}" Clicked="OnCancelClicked" HorizontalOptions="EndAndExpand"/>
 
                         <StackLayout
                             Orientation="Horizontal"
@@ -100,13 +102,10 @@
                                      ValueChanged="StepperValueChanged"/>
 
                         </StackLayout>
-
-                        <StackLayout Style="{StaticResource ConfirmCancelLayout}">
-                            <Button Style="{StaticResource CancelButton}" Clicked="OnCancelClicked" />
-                            <Button Style="{StaticResource ConfirmButton}" Clicked="OnConfirmClicked"/>
-                        </StackLayout>
-
+                        
+                        <Button Style="{StaticResource ConfirmButton}" Clicked="OnConfirmClicked"/>
                     </StackLayout>
+                    </Frame>
                 </StackLayout>
             </ContentView>
             <!--#endregion-->
