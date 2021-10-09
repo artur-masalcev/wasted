@@ -14,8 +14,9 @@ namespace Wasted.DummyAPI.BusinessObjects
         public int ID;
         public string Title { get; set; }
         public string Description { get; set; }
-        public double Longitude { get; set; }
-        public double Latitude { get; set; }
+
+        public Coordinates Location { get; set; }
+  
         public string Street { get; set; }
         public string City { get; set; }
         public string WorkingHours { get; set; }
@@ -48,8 +49,7 @@ namespace Wasted.DummyAPI.BusinessObjects
             ID = id;
             Title = title;
             Description = description;
-            Longitude = longitude;
-            Latitude = latitude;
+            Location = new Coordinates(longitude, latitude);
             Street = street;
             City = city;
             WorkingHours = workingHours;
