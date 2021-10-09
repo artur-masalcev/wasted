@@ -13,11 +13,17 @@ namespace Wasted
         public ItemsPage(Deal selectedDeal)
         {
             SelectedDeal = selectedDeal;
-
+           
             InitializeComponent();
+
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
 
             InitializeViews();
+        }
+
+        private void removeStepper()
+        {
+            ((StackLayout)stepper.Parent).Children.Remove(stepper);
         }
 
         /// <summary>
@@ -25,6 +31,10 @@ namespace Wasted
         /// </summary>
         public void InitializeViews()
         {
+            if (SelectedDeal.Quantity < 1)
+            {
+                removeStepper();
+            }
             content.BindingContext = SelectedDeal;
         }
 
@@ -64,7 +74,7 @@ namespace Wasted
 
             if (SelectedDeal.Quantity == stepper.Value)
             {
-                ((StackLayout)stepper.Parent).Children.Remove(stepper);
+                removeStepper();
                 SelectedDeal.Quantity = 0;
             }
             else

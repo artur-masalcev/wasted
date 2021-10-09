@@ -4,8 +4,8 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wasted.ItemsPage">
     <ContentPage.Content>
-        <AbsoluteLayout x:Name="content">
-            <ScrollView>
+        <ScrollView>
+            <AbsoluteLayout x:Name="content">
                 <StackLayout Spacing="0">
                     <Grid RowSpacing="0">
                         <Grid.RowDefinitions>
@@ -77,40 +77,40 @@
                     <!--#endregion-->
 
                 </StackLayout>
-            </ScrollView>
 
-            <!--#region Order view-->
-            <ContentView x:Name="orderView">
+                <!--#region Order view-->
+                <ContentView x:Name="orderView">
 
-                <StackLayout Style="{StaticResource DealCardViewLayout}"
+                    <StackLayout Style="{StaticResource DealCardViewLayout}"
                              VerticalOptions="Center">
-                    <StackLayout BackgroundColor="White">
+                        <StackLayout BackgroundColor="White">
 
-                        <StackLayout
+                            <StackLayout
                             Orientation="Horizontal"
                             HorizontalOptions="Center"
                             Spacing="20">
-                            <Label x:Name="countLabel" Style="{StaticResource RatingLabel}"
+                                <Label x:Name="countLabel" Style="{StaticResource RatingLabel}"
                                    Text="{Binding SelectedCount, StringFormat='Count: {0}'}" />
 
 
-                            <Stepper x:Name="stepper"
+                                <Stepper x:Name="stepper"
                                      Maximum="{Binding Quantity}"
                                      Increment="1"
                                      ValueChanged="StepperValueChanged"/>
 
-                        </StackLayout>
+                            </StackLayout>
 
-                        <StackLayout Style="{StaticResource ConfirmCancelLayout}">
-                            <Button Style="{StaticResource CancelButton}" Clicked="OnCancelClicked" />
-                            <Button Style="{StaticResource ConfirmButton}" Clicked="OnConfirmClicked"/>
-                        </StackLayout>
+                            <StackLayout Style="{StaticResource ConfirmCancelLayout}">
+                                <Button Style="{StaticResource CancelButton}" Clicked="OnCancelClicked" />
+                                <Button Style="{StaticResource ConfirmButton}" Clicked="OnConfirmClicked"/>
+                            </StackLayout>
 
+                        </StackLayout>
                     </StackLayout>
-                </StackLayout>
-            </ContentView>
-            <!--#endregion-->
-            
-        </AbsoluteLayout>
+                </ContentView>
+                <!--#endregion-->
+
+            </AbsoluteLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
