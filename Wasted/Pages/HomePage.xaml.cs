@@ -7,6 +7,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using System;
+using Xamarin.Essentials;
+using System.Threading.Tasks;
 
 namespace Wasted
 {
@@ -14,14 +16,23 @@ namespace Wasted
 
     public partial class HomePage : ContentPage
     {
+        public Location UserLocation { get; set; }
         public List<FoodPlace> AllFoodPlaces { get; set; }
         public List<Deal> AllDeals { get; set; }
 
         public HomePage()
         {
             InitializeComponent();
-
+            UserLocation = GetLocation().Result;
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+        }
+
+        /// <summary>
+        /// Gets user location.
+        /// </summary>
+        public async Task<Location> GetLocation()
+        {
+            return await Geolocation.GetLastKnownLocationAsync();
         }
 
         /// <summary>
@@ -34,9 +45,20 @@ namespace Wasted
             AllDeals = new List<Deal>(DummyDataProvider.GetDealsList());
             HashMaps.AddFoodPlacesToDeals(AllFoodPlaces);
 
-            nearbyFoodPlacesCollectionView.ItemsSource = AllFoodPlaces;
+            nearbyFoodPlacesCollectionView.ItemsSource = GetNearbyPlaces(AllFoodPlaces, 50);
             specialOffersCollectionView.ItemsSource = GetSpecialOffers(AllDeals, 10);
             popularFoodPlacesCollectionView.ItemsSource = GetPopularFoodPlaces(AllFoodPlaces, 10);
+        }
+
+
+        /// <summary>
+        /// Sorts food places by the location to the user.
+        /// </summary>
+        public IEnumerable<FoodPlace> GetNearbyPlaces(List<FoodPlace> allFoodPlaces, int maxKilometers)
+        {
+            Func<Location, FoodPlace, double> GetDistance = (location, place) => Location.CalculateDistance(location, place.PlaceLocation, DistanceUnits.Kilometers);
+
+            return allFoodPlaces.OrderBy(place => GetDistance(UserLocation, place)).Where(place => GetDistance(UserLocation, place) <= maxKilometers);
         }
 
         /// <summary>

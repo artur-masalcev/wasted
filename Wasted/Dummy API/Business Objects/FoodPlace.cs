@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Wasted.Dummy_API;
 using Wasted.Dummy_API.Business_Objects;
+using Xamarin.Essentials;
 
 namespace Wasted.DummyAPI.BusinessObjects
 {
@@ -15,7 +16,7 @@ namespace Wasted.DummyAPI.BusinessObjects
         public string Title { get; set; }
         public string Description { get; set; }
 
-        public Coordinates Location { get; set; }
+        public Location PlaceLocation { get; set; }
   
         public string Street { get; set; }
         public string City { get; set; }
@@ -49,7 +50,7 @@ namespace Wasted.DummyAPI.BusinessObjects
             ID = id;
             Title = title;
             Description = description;
-            Location = new Coordinates(longitude, latitude);
+            PlaceLocation = new Location(longitude, latitude);
             Street = street;
             City = city;
             WorkingHours = workingHours;

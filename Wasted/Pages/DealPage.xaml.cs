@@ -21,7 +21,7 @@ namespace Wasted
             InitializeViews();
         }
 
-        private void removeStepper()
+        private void RemoveStepper()
         {
             ((StackLayout)stepper.Parent).Children.Remove(stepper);
         }
@@ -33,7 +33,7 @@ namespace Wasted
         {
             if (SelectedDeal.Quantity < 1)
             {
-                removeStepper();
+                RemoveStepper();
             }
             content.BindingContext = SelectedDeal;
         }
@@ -74,7 +74,7 @@ namespace Wasted
 
             if (SelectedDeal.Quantity == stepper.Value)
             {
-                removeStepper();
+                RemoveStepper();
                 SelectedDeal.Quantity = 0;
             }
             else

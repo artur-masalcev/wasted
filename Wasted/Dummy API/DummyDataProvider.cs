@@ -28,7 +28,6 @@ namespace Wasted.DummyDataAPI
         /// <returns>string containing all food providers in JSON format</returns>
         public static string GetFoodPlaces()
         {
-            Console.WriteLine(EmbeddedDataReader.ReadString(FoodPlacesJSONPath));
             return EmbeddedDataReader.ReadString(FoodPlacesJSONPath);
         }
 
