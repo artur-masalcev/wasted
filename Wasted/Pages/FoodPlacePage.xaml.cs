@@ -34,6 +34,9 @@ namespace Wasted
         {
             contentScrollView.BindingContext = SelectedFoodPlace;
             dealsCollectionView.ItemsSource = SelectedFoodPlace.Deals;
+
+            const int dealHeight = 220;
+            dealsCollectionView.HeightRequest = dealHeight * ((SelectedFoodPlace.Deals.Count  + 1) / 2); //Two items in one row
         }
 
         /// <summary>
