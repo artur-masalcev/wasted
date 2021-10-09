@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pcview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="Wasted.App">
     <Application.Resources>
         <!-- Colors -->
@@ -19,6 +20,7 @@
         <!-- Implicit styles -->
 
         <!-- Labels -->
+        
         <Style TargetType="Label">
             <Setter Property="TextColor" Value="{StaticResource TextBlack}" />
             <Setter Property="Margin" Value="5, 0" />
@@ -94,13 +96,21 @@
 
         <!-- StackLayouts -->
 
+        <Style x:Key="BaseStackLayout" TargetType="StackLayout">
+            <Setter Property="Spacing" Value="0" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        </Style>
+           
+        
         <Style x:Key="ConfirmCancelLayout" TargetType="StackLayout">
             <Setter Property="Orientation" Value="Horizontal" />
             <Setter Property="Margin" Value="10" />
         </Style>
-        
-        <Style x:Key="DealCardViewLayout" TargetType="StackLayout">
-            <Setter Property="Spacing" Value="8"/>
+
+        <Style x:Key="DealCardViewLayout" TargetType="StackLayout"
+               BasedOn="{StaticResource BaseStackLayout}">
             <Setter Property="WidthRequest" Value="170"/>
             <Setter Property="HeightRequest" Value="200"/>
         </Style>
@@ -239,47 +249,47 @@
 
         <DataTemplate x:Key="DealsCollectionViewTemplate">
             <StackLayout Style="{StaticResource DealCardViewLayout}">
-                <Frame Style="{StaticResource BaseCardView}">
-                    <StackLayout>
-                        <Image Style="{StaticResource CardHeaderImage}" Source="{Binding ImageURL}" />
-                        <StackLayout HorizontalOptions="Center">
+                
+                <pcview:PancakeView CornerRadius="10, 10, 0, 0">
+                    <Image Style="{StaticResource CardHeaderImage}" Source="{Binding ImageURL}" />
+                </pcview:PancakeView>
 
-                            <Label Text="{Binding Title}" Style="{StaticResource CardTitle}" HorizontalTextAlignment="Center" Padding="5, 0, 5, 0" />
-                            <Label Text="{Binding FoodPlaceTitle}" Style="{StaticResource DealFoodPlaceLabel}" Padding="5, 0, 5, 0" />
+                <Frame Padding="0">
+                    <StackLayout HorizontalOptions="Center">
 
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                                <Label Text="{Binding PreviousCost, StringFormat='{0:F2}€'}" Style="{StaticResource PreviousCostLabel}" />
-                                <Label Text="{Binding CurrentCost, StringFormat='{0:F2}€'}" Style="{StaticResource CurrentCostLabel}" />
-                            </StackLayout>
+                        <Label Text="{Binding Title}" Style="{StaticResource CardTitle}" HorizontalTextAlignment="Center" Padding="5, 0, 5, 0" />
+                        <Label Text="{Binding FoodPlaceTitle}" Style="{StaticResource DealFoodPlaceLabel}" Padding="5, 0, 5, 0" />
 
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                            <Label Text="{Binding PreviousCost, StringFormat='{0:F2}€'}" Style="{StaticResource PreviousCostLabel}" />
+                            <Label Text="{Binding CurrentCost, StringFormat='{0:F2}€'}" Style="{StaticResource CurrentCostLabel}" />
                         </StackLayout>
+
                     </StackLayout>
                 </Frame>
             </StackLayout>
         </DataTemplate>
 
         <DataTemplate x:Key="FoodPlacesCollectionViewTemplate">
-            <StackLayout>
-                <Frame Style="{StaticResource BaseCardView}" Padding="0">
-                    <StackLayout>
+                <StackLayout Style="{StaticResource BaseStackLayout}">
 
-                        <!--#region Card content-->
+                    <!--#region Card content-->
 
-                        <StackLayout>
-                            <Image Style="{StaticResource CardHeaderImage}" Source="{Binding HeaderURL}" />
+                    <pcview:PancakeView CornerRadius="15, 15, 0, 0">
+                        <Image Style="{StaticResource CardHeaderImage}" Source="{Binding HeaderURL}" />
+                    </pcview:PancakeView>
 
-                            <StackLayout Style="{StaticResource CardContent}">
-                                <Label Text="{Binding Title}" Style="{StaticResource CardTitle}" />
-                                <Label Text="{Binding Rating, StringFormat='☆ {0:F1}'}"/>
-                                <Label Text="{Binding DealsCount, StringFormat='{0} deals'}" FontAttributes="Bold" TextColor="{StaticResource AccentColor}" />
-                            </StackLayout>
+                    <Frame Padding="0">
+                        <StackLayout Style="{StaticResource CardContent}">
+                            <Label Text="{Binding Title}" Style="{StaticResource CardTitle}" />
+                            <Label Text="{Binding Rating, StringFormat='☆ {0:F1}'}"/>
+                            <Label Text="{Binding DealsCount, StringFormat='{0} deals'}" FontAttributes="Bold" TextColor="{StaticResource AccentColor}" />
                         </StackLayout>
+                    </Frame>
 
-                        <!--#endregion-->
+                    <!--#endregion-->
 
-                    </StackLayout>
-                </Frame>
-            </StackLayout>
+                </StackLayout>
         </DataTemplate>
 
     </Application.Resources>
