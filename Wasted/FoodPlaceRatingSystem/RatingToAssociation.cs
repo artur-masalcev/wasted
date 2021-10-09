@@ -1,6 +1,9 @@
 ﻿using System;
 namespace Wasted.FoodPlaceRatingSystem
 {
+    //TODO: as several languages might be supported in future, all functions
+    //should take some arrays of objects(probably strings) and return elements from them instead of predefined values
+
     /// <summary>
     /// Includes functions for representing numeric values of rating in user-friendly way
     /// </summary>
@@ -15,13 +18,16 @@ namespace Wasted.FoodPlaceRatingSystem
         /// <returns>Emoji representation for provided 'rating'</returns>
         public static String ConvertToEmoji(int rating)
         {
-            if (rating <= 1) return "🤢";
-            else if (rating == 2) return "😡";
-            else if (rating == 3) return "😐";
-            else if (rating == 4) return "😋";
-            else if (rating >= 5) return "😍";
-
-            return "";
+            switch (rating)
+            {
+                case 0: return "🤬";
+                case 1: return "🤢";
+                case 2: return "😡";
+                case 3: return "😐";
+                case 4: return "😋";
+                case 5: return "😍";
+                default: throw new ArgumentOutOfRangeException();
+            }
         }
 
         /// <summary>
@@ -33,13 +39,16 @@ namespace Wasted.FoodPlaceRatingSystem
         /// <returns>Associative comment for provided 'rating'</returns>
         public static String ConvertToComment(int rating)
         {
-            if (rating <= 1) return "Disgusting";
-            else if (rating == 2) return "Ew";
-            else if (rating == 3) return "Not bad";
-            else if (rating == 4) return "Great";
-            else if (rating >= 5) return "Amazing";
-
-            return "";
+            switch (rating)
+            {
+                case 0: return "#@$?!";
+                case 1: return "Disgusting";
+                case 2: return "Ew";
+                case 3: return "Not bad";
+                case 4: return "Great";
+                case 5: return "Amazing";
+                default: throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }

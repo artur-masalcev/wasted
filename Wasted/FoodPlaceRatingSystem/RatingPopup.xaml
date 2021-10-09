@@ -20,8 +20,9 @@
                                     FillStarImage="star_fill"
                                     EmptyStarImage="star_outline"
                                     HorizontalOptions="Center"
-                                    PropertyChanged="OnRatingSet"></fRating:RatingBar>
-				<Button x:Name="confirmButton" Style="{StaticResource ConfirmButton}" Clicked="OnConfirmClicked"/>
+                                    PropertyChanged="OnRatingSet"
+				/>
+                <Button x:Name="confirmButton" Style="{StaticResource ConfirmButton}" Clicked="OnConfirmClicked"/>
 			</StackLayout>
 		</Frame>
 	</StackLayout>
