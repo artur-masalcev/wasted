@@ -40,7 +40,6 @@ namespace Wasted
 
         private void OnRatingSet(object sender, EventArgs e)
         {
-
             UpdateAssociationView();
         }
 
