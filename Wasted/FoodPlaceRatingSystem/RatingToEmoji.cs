@@ -1,9 +1,35 @@
 ﻿using System;
 namespace Wasted.FoodPlaceRatingSystem
 {
+    //TODO: as several languages might be supported in future, all functions
+    //should take some arrays of objects(probably strings) and return elements from them instead of predefined values
+
     /// <summary>
     /// Includes functions for representing numeric values of rating in user-friendly way
     /// </summary>
+
+    public class Emojis
+    {
+        static string[] emojis = new string[]
+        {
+            "🤬", "🤢", "😡", "😐", "😋", "😍"
+        };
+
+        public string this[int index] =>
+            index >= 0 && index < emojis.Length ? emojis[index] : throw new ArgumentOutOfRangeException();
+    }
+
+    public class Comments
+    {
+        static string[] comments = new string[]
+        {
+            "#@$?!", "Disgusting", "Ew", "Not bad", "Great", "Amazing"
+        };
+
+        public string this[int index] =>
+            index >= 0 && index < comments.Length ? comments[index] : throw new ArgumentOutOfRangeException();
+    }
+
     public class RatingToAssociation
     {
         /// <summary>
@@ -15,13 +41,7 @@ namespace Wasted.FoodPlaceRatingSystem
         /// <returns>Emoji representation for provided 'rating'</returns>
         public static String ConvertToEmoji(int rating)
         {
-            if (rating <= 1) return "🤢";
-            else if (rating == 2) return "😡";
-            else if (rating == 3) return "😐";
-            else if (rating == 4) return "😋";
-            else if (rating >= 5) return "😍";
-
-            return "";
+            return new Emojis()[rating];
         }
 
         /// <summary>
@@ -33,13 +53,7 @@ namespace Wasted.FoodPlaceRatingSystem
         /// <returns>Associative comment for provided 'rating'</returns>
         public static String ConvertToComment(int rating)
         {
-            if (rating <= 1) return "Disgusting";
-            else if (rating == 2) return "Ew";
-            else if (rating == 3) return "Not bad";
-            else if (rating == 4) return "Great";
-            else if (rating >= 5) return "Amazing";
-
-            return "";
+            return new Comments()[rating];
         }
     }
 }

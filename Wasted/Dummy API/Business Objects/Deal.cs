@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using Wasted.Dummy_API.Business_Objects;
 
 namespace Wasted.DummyAPI.BusinessObjects
 {
-    public class Deal : ChangeableProperty
+    public class Deal : ChangeablePropertyObject
     {
         public int ID { get; set; }
         public string Title { get; set; }
@@ -40,6 +41,7 @@ namespace Wasted.DummyAPI.BusinessObjects
             }
         }
 
+        [JsonIgnore]
         public List<FoodPlace> FoodPlaces { get; set; } = new List<FoodPlace>();
 
         public string FoodPlaceTitle

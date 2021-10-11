@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Wasted.Dummy_API.Business_Objects
 {
-    public class ChangeableProperty : INotifyPropertyChanged
+    public abstract class ChangeablePropertyObject : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

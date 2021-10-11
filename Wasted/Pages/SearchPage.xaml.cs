@@ -16,7 +16,6 @@ namespace Wasted
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchPage : ContentPage
     {
-        public List<FoodPlace> AllFoodPlaces { get; set; }
         public List<FoodPlace> AvailablePlaces { get; set; }
 
         public string[] PlaceTypeNames = Enum.GetNames(typeof(PlaceType));
@@ -66,11 +65,7 @@ namespace Wasted
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            AllFoodPlaces = new List<FoodPlace>(DummyDataProvider.GetFoodPlacesList());
-            AvailablePlaces = AllFoodPlaces;
-
-            DummyDataProvider.GetDealsList(); //Adds deals to hashmap.
-            HashMaps.AddFoodPlacesToDeals(AllFoodPlaces);
+            AvailablePlaces = App.AllFoodPlaces;
 
             restaurantLayout.BindingContext = this;
             restaurantTypeCollectionView.ItemsSource = GetRestaurantTypeCollectionViewItemsSource();
@@ -134,7 +129,7 @@ namespace Wasted
         {
             ShowFoodPlaces(false);
             allPlaceButton.IsVisible = false;
-            AvailablePlaces = AllFoodPlaces;
+            AvailablePlaces = App.AllFoodPlaces;
             allPlacesCollectionView.ItemsSource = AvailablePlaces;
 
             SectionTitleText = "All places";

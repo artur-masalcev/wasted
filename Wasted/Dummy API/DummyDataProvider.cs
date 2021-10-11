@@ -57,5 +57,15 @@ namespace Wasted.DummyDataAPI
         {
             return JsonConvert.DeserializeObject<List<Deal>>(GetDeals());
         }
+
+        public static void WriteFoodPlacesList()
+        {
+            EmbeddedDataReader.WriteString(FoodPlacesJSONPath, JsonConvert.SerializeObject(App.AllFoodPlaces));
+        }
+
+        public static void WriteDealsList()
+        {
+            EmbeddedDataReader.WriteString(DealsJSONPath, JsonConvert.SerializeObject(App.AllDeals));
+        }
     }
 }

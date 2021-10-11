@@ -9,6 +9,7 @@ using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using System;
 using Xamarin.Essentials;
 using System.Threading.Tasks;
+using Wasted.Dummy_API.Business_Objects;
 
 namespace Wasted
 {
@@ -17,8 +18,6 @@ namespace Wasted
     public partial class HomePage : ContentPage
     {
         public Location UserLocation { get; set; }
-        public List<FoodPlace> AllFoodPlaces { get; set; }
-        public List<Deal> AllDeals { get; set; }
 
         public HomePage()
         {
@@ -41,13 +40,10 @@ namespace Wasted
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            AllFoodPlaces = new List<FoodPlace>(DummyDataProvider.GetFoodPlacesList());
-            AllDeals = new List<Deal>(DummyDataProvider.GetDealsList());
-            HashMaps.AddFoodPlacesToDeals(AllFoodPlaces);
 
-            nearbyFoodPlacesCollectionView.ItemsSource = GetNearbyPlaces(AllFoodPlaces, 50);
-            specialOffersCollectionView.ItemsSource = GetSpecialOffers(AllDeals, 10);
-            popularFoodPlacesCollectionView.ItemsSource = GetPopularFoodPlaces(AllFoodPlaces, 10);
+            nearbyFoodPlacesCollectionView.ItemsSource = GetNearbyPlaces(App.AllFoodPlaces, 50);
+            specialOffersCollectionView.ItemsSource = GetSpecialOffers(App.AllDeals, 10);
+            popularFoodPlacesCollectionView.ItemsSource = GetPopularFoodPlaces(App.AllFoodPlaces, 10);
         }
 
 

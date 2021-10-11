@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,11 +7,12 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Wasted.Dummy_API;
 using Wasted.Dummy_API.Business_Objects;
+using Wasted.DummyDataAPI;
 using Xamarin.Essentials;
 
 namespace Wasted.DummyAPI.BusinessObjects
 {
-    public class FoodPlace : ChangeableProperty
+    public class FoodPlace : ChangeablePropertyObject
     {
         public int ID;
         public string Title { get; set; }
@@ -40,6 +42,7 @@ namespace Wasted.DummyAPI.BusinessObjects
         public string HeaderURL { get; set; }
         public int[] DealsIDs { get; set; }
 
+        [JsonIgnore]
         public List<Deal> Deals = new List<Deal>();
 
         public int DealsCount => DealsIDs.Length;
