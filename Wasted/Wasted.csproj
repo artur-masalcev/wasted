@@ -14,6 +14,7 @@
 	    <Compile Remove="Images\**" />
 	    <EmbeddedResource Remove="Images\**" />
 	    <None Remove="Images\**" />
+	    <None Remove="Dummy API\Dummy Data\Ratings.json" />
 	    <None Remove="Xamarin.Rating" />
 	    <None Remove="Rg.Plugins.Popup" />
 	    <None Remove="FoodPlaceRatingSystem\" />
@@ -51,12 +52,12 @@
     <None Remove="Newtonsoft.Json" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Dummy API\Dummy Data\" />
     <Folder Include="FoodPlaceRatingSystem\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Dummy API\Dummy Data\Deals.json" />
     <EmbeddedResource Include="Dummy API\Dummy Data\FoodPlaces.json" />
+    <EmbeddedResource Include="Dummy API\Dummy Data\Ratings.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Pages\FoodPlacePage.xaml.cs">

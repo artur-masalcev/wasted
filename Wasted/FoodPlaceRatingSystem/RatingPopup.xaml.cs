@@ -7,16 +7,10 @@ namespace Wasted
 {
     public partial class RatingPopup : Rg.Plugins.Popup.Pages.PopupPage
     {
-
-        public String FoodPlaceTitle { get; }
+        public FoodPlace SelectedFoodPlace { get; set; }
         public int FoodPlaceID { get; }
-        public int Rating
-        {
-            get
-            {
-                return ratingBar.SelectedStarValue;
-            }
-        }
+        public int Rating => ratingBar.SelectedStarValue;
+  
         public String RatingEmoji { get; set; }
         public String RatingComment { get; set; }
 
@@ -26,17 +20,19 @@ namespace Wasted
         /// <param name="foodPlace">Food place to be rated</param>
         public RatingPopup(FoodPlace foodPlace)
         {
-            this.FoodPlaceTitle = foodPlace.Title;
-            this.FoodPlaceID = foodPlace.ID;
-
+            SelectedFoodPlace = foodPlace;
             InitializeComponent();
 
-            BindingContext = this;
+            foodPlaceTitleLabel.BindingContext = SelectedFoodPlace;
+            ratingEmoji.BindingContext = this;
+            ratingComment.BindingContext = this;
         }
 
         private void OnConfirmClicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync(true); // Close the popup
+            FoodPlaceRatingModifier.SetUserVote(App.UserID, SelectedFoodPlace, Rating);
+
         }
 
         private void OnCancelClicked(object sender, EventArgs e)

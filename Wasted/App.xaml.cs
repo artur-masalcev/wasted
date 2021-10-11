@@ -13,6 +13,11 @@ namespace Wasted
         public static List<FoodPlace> AllFoodPlaces { get; set; } = new List<FoodPlace>(DummyDataProvider.GetFoodPlacesList());
         public static List<Deal> AllDeals { get; set; } = new List<Deal>(DummyDataProvider.GetDealsList());
 
+        public static int UserID = 8080;
+
+        //               FoodPlaceID  Given rating
+        public static Dictionary<int, int> ratings = DummyDataProvider.GetRatingsDictionary();
+
         public App()
         {
             InitializeComponent();
