@@ -16,7 +16,7 @@ namespace Wasted
         public App()
         {
             InitializeComponent();
-            HashMaps.AddFoodPlacesToDeals(AllFoodPlaces);
+            HashMaps.AddFoodPlacesToDeals(AllFoodPlaces, AllDeals);
             MainPage = new NavigationPage(new MainPage());
         }
 

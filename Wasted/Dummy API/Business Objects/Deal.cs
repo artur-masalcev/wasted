@@ -60,7 +60,6 @@ namespace Wasted.DummyAPI.BusinessObjects
             Due = due;
             ImageURL = imageURL;
 
-            HashMaps.DealsHashMap[id] = this;
         }
     }
 }

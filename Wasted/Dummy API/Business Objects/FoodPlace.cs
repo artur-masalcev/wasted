@@ -61,13 +61,7 @@ namespace Wasted.DummyAPI.BusinessObjects
             RatingCount = ratingCount;
             LogoURL = logoURL;
             HeaderURL = headerURL;
-            DealsIDs = dealIDs;
-
-            if (!HashMaps.FoodPlacesHashMap.ContainsKey(id))
-            {
-                HashMaps.FoodPlaceTypeHashMap[placeType].Add(this);
-                HashMaps.FoodPlacesHashMap[id] = this;
-            }  
+            DealsIDs = dealIDs; 
         }
     }
 }
