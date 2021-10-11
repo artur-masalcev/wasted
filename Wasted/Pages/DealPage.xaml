@@ -18,8 +18,7 @@
                         <Image x:Name="dealImage" Source="{Binding ImageURL}"
                            Grid.RowSpan="3"
                            Grid.Row="0"
-						   Aspect="AspectFill"
-					/>
+						   Aspect="AspectFill" />
                         <!--#endregion-->
 
                         <!--#region Price label-->
@@ -31,11 +30,11 @@
                            HorizontalOptions="End"
                            Background="#272626">
                                 <StackLayout>
-                                    <Label Text="{Binding PreviousCost, StringFormat='{0:F2}€'}"
-									Style="{StaticResource DealCostLabel}"
-									TextDecorations="Strikethrough" FontAttributes="None"/>
-                                    <Label Text="{Binding CurrentCost, StringFormat='{0:F2}€'}"
-									Style="{StaticResource DealCostLabel}" FontAttributes="Bold"/>
+                                    <Label Text="{Binding DealCosts.PreviousCost, StringFormat='{0:F2}€'}"
+									    Style="{StaticResource DealCostLabel}"
+									    TextDecorations="Strikethrough" FontAttributes="None"/>
+                                    <Label Text="{Binding DealCosts.CurrentCost, StringFormat='{0:F2}€'}"
+									    Style="{StaticResource DealCostLabel}" FontAttributes="Bold"/>
                                 </StackLayout>
                             </Frame>
                         </StackLayout>

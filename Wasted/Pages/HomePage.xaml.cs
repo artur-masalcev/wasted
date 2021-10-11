@@ -66,7 +66,7 @@ namespace Wasted
         /// </summary>
         public IEnumerable<Deal> GetSpecialOffers(List<Deal> allDeals, int offerCount)
         {
-            return allDeals.OrderBy(deal => deal.CurrentCost / deal.PreviousCost).Take(offerCount);
+            return allDeals.OrderBy(deal => deal.DealCosts.Change()).Take(offerCount);
         }
 
         /// <summary>

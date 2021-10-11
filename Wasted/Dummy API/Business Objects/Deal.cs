@@ -11,8 +11,8 @@ namespace Wasted.DummyAPI.BusinessObjects
     {
         public int ID { get; set; }
         public string Title { get; set; }
-        public double CurrentCost { get; set; }
-        public double PreviousCost { get; set; }
+
+        public Costs DealCosts { get; set; }
 
         public int quantity = 0;
         public int Quantity
@@ -53,8 +53,7 @@ namespace Wasted.DummyAPI.BusinessObjects
             ID = id;
             Title = title;
             Description = description;
-            CurrentCost = currentCost;
-            PreviousCost = previousCost;
+            DealCosts = new Costs(previousCost, currentCost);
             Quantity = quantity;
             Due = due;
             ImageURL = imageURL;
