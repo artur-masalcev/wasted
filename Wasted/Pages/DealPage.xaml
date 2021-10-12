@@ -100,8 +100,8 @@
                             </StackLayout>
 
                             <StackLayout Style="{StaticResource ConfirmCancelLayout}">
-                                <Button Style="{StaticResource CancelButton}" Clicked="OnCancelClicked" />
-                                <Button Style="{StaticResource ConfirmButton}" Clicked="OnConfirmClicked"/>
+                                <Button Style="{StaticResource CancelButton}" Clicked="OnCancelClicked"  WidthRequest="75"/>
+                                <Button Style="{StaticResource ConfirmButton}" Clicked="OnConfirmClicked" WidthRequest="220"/>
                             </StackLayout>
 
                         </StackLayout>
