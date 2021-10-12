@@ -73,12 +73,12 @@ namespace Wasted.DummyDataAPI
         }
 
         /// <summary>
-        /// Provides a dictionary in <FoodPlaceID, Rating> format
+        /// Provides a dictionary in <UserID, <FoodPlaceID, Rating>> format
         /// </summary>
         /// <returns>dictionary containing all ratings from user</returns>
-        public static Dictionary<int, int> GetRatingsDictionary()
+        public static Dictionary<int, Dictionary<int, int>> GetRatingsDictionary()
         {
-            return JsonConvert.DeserializeObject<Dictionary<int, int>>(GetRatings());
+            return JsonConvert.DeserializeObject<Dictionary<int, Dictionary<int, int>>>(GetRatings());
         }
 
         public static void WriteFoodPlacesList()
@@ -89,6 +89,11 @@ namespace Wasted.DummyDataAPI
         public static void WriteDealsList()
         {
             EmbeddedDataReader.WriteString(DealsJSONPath, JsonConvert.SerializeObject(App.AllDeals));
+        }
+
+        public static void WriteRatingsDictionary()
+        {
+            EmbeddedDataReader.WriteString(RatingsJSONPath, JsonConvert.SerializeObject(App.Ratings));
         }
     }
 }

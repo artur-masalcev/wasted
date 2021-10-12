@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Wasted.DummyAPI.BusinessObjects;
 
 namespace Wasted.FoodPlaceRatingSystem
@@ -19,23 +20,23 @@ namespace Wasted.FoodPlaceRatingSystem
         private static void ResetRating(FoodPlace SelectedFoodPlace, int previousRating)
         {
             --SelectedFoodPlace.RatingCount;
-            SelectedFoodPlace.Rating =
-                (SelectedFoodPlace.Rating * (SelectedFoodPlace.RatingCount + 1) - previousRating) / SelectedFoodPlace.RatingCount * (SelectedFoodPlace.RatingCount + 1)
-                - SelectedFoodPlace.Rating * SelectedFoodPlace.RatingCount;
+            double previousRestaurantRating = (SelectedFoodPlace.Rating * (double)(SelectedFoodPlace.RatingCount + 1) - previousRating) / SelectedFoodPlace.RatingCount;
+            double tempRating = previousRestaurantRating * (SelectedFoodPlace.RatingCount + 1) - SelectedFoodPlace.Rating * SelectedFoodPlace.RatingCount;
+
+            SelectedFoodPlace.Rating = tempRating;
             --SelectedFoodPlace.RatingCount;
         }
 
         public static void SetUserVote(int userID, FoodPlace selectedFoodPlace, int newRating)
         {
-            selectedFoodPlace.Rating = newRating;
             int key = selectedFoodPlace.ID;
+            Dictionary<int, int> userRatings = App.Ratings[userID];
 
-            if (App.ratings.ContainsKey(key))
-                ResetRating(selectedFoodPlace, App.ratings[key]);
+            if (userRatings.ContainsKey(key))
+                ResetRating(selectedFoodPlace, userRatings[key]);
 
             selectedFoodPlace.Rating = newRating;
-            App.ratings[key] = newRating; //TODO: save ratings to file after exiting the app.
-
+            userRatings[key] = newRating;
         }
     }
 }

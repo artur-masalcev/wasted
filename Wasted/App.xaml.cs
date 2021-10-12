@@ -13,10 +13,10 @@ namespace Wasted
         public static List<FoodPlace> AllFoodPlaces { get; set; } = new List<FoodPlace>(DummyDataProvider.GetFoodPlacesList());
         public static List<Deal> AllDeals { get; set; } = new List<Deal>(DummyDataProvider.GetDealsList());
 
-        public static int UserID = 8080;
+        public static int UserID => 8080;
 
-        //               FoodPlaceID  Given rating
-        public static Dictionary<int, int> ratings = DummyDataProvider.GetRatingsDictionary();
+        //                     UserID FoodPlaceID  Given rating
+        public static Dictionary<int, Dictionary<int, int>> Ratings { get; set; } = DummyDataProvider.GetRatingsDictionary();
 
         public App()
         {
@@ -33,6 +33,7 @@ namespace Wasted
         {
             DummyDataProvider.WriteFoodPlacesList();
             DummyDataProvider.WriteDealsList();
+            DummyDataProvider.WriteRatingsDictionary();
         }
 
         protected override void OnResume()

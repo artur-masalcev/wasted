@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Rg.Plugins.Popup.Services;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.FoodPlaceRatingSystem;
@@ -23,6 +24,11 @@ namespace Wasted
             SelectedFoodPlace = foodPlace;
             InitializeComponent();
 
+            Dictionary<int, int> userRatings = App.Ratings[App.UserID];
+            if (userRatings.ContainsKey(foodPlace.ID))
+            {
+                ratingBar.SelectedStarValue = userRatings[foodPlace.ID];
+            }
             foodPlaceTitleLabel.BindingContext = SelectedFoodPlace;
             ratingEmoji.BindingContext = this;
             ratingComment.BindingContext = this;
