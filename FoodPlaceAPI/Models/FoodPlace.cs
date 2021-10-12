@@ -19,8 +19,7 @@ namespace FoodPlaceAPI.Models
         public double Rating { get; set; }
         public string LogoURL { get; set; }
         public string HeaderURL { get; set; }
-        [NotMapped]
-        public int[] DealsIDs { get; set; }
+        public string DealsIDs { get; set; }
 
 
         public FoodPlace()
@@ -28,7 +27,7 @@ namespace FoodPlaceAPI.Models
 
         }
 
-        public FoodPlace(int id, string title, string description, double longitude, double latitude, string street, string city, string workingHours, double rating, string logoURL, string headerURL, int[] dealIDs)
+        public FoodPlace(int id, string title, string description, double longitude, double latitude, string street, string city, string workingHours, double rating, string logoURL, string headerURL, string dealIDs)
         {
             ID = id;
             Title = title;
