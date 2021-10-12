@@ -54,7 +54,10 @@ namespace Wasted
         {
             Func<Location, FoodPlace, double> GetDistance = (location, place) => Location.CalculateDistance(location, place.PlaceLocation, DistanceUnits.Kilometers);
 
-            return allFoodPlaces.OrderBy(place => GetDistance(UserLocation, place)).Where(place => GetDistance(UserLocation, place) <= maxKilometers);
+            return from place in allFoodPlaces
+                   orderby GetDistance(UserLocation, place)
+                   where GetDistance(UserLocation, place) <= maxKilometers
+                   select place;
         }
 
         /// <summary>
@@ -62,7 +65,12 @@ namespace Wasted
         /// </summary>
         public IEnumerable<Deal> GetSpecialOffers(List<Deal> allDeals, int offerCount)
         {
-            return allDeals.OrderBy(deal => deal.DealCosts.Change()).Take(offerCount);
+            return (
+                   from deal in allDeals
+                   orderby deal.DealCosts.Change()
+                   select deal
+                   )
+                   .Take(offerCount);
         }
 
         /// <summary>
@@ -70,7 +78,12 @@ namespace Wasted
         /// </summary>
         public IEnumerable<FoodPlace> GetPopularFoodPlaces(List<FoodPlace> allFoodPlaces, int offerCount)
         {
-            return allFoodPlaces.OrderBy(place => -place.RatingCount).Take(offerCount);
+            return (
+                   from place in allFoodPlaces
+                   orderby -place.RatingCount
+                   select place
+                   )
+                   .Take(offerCount);
         }
 
         /// <summary>
