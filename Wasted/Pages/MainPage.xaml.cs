@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 
 namespace Wasted
 {
@@ -12,5 +13,6 @@ namespace Wasted
             InitializeComponent();
             SelectedTabColor = Color.Black;
         }
+
     }
 }

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage
+	xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:fRating="clr-namespace:Rating;assembly=Rating"
+    x:Class="Wasted.RatingPopup">
+	<!--#region Rating screen-->
+	<StackLayout VerticalOptions="Center">
+		<Frame CornerRadius="20" BackgroundColor="White" Margin="8, 0, 8, 0">
+			<StackLayout>
+				<Button Style="{StaticResource CancelButton}" Clicked="OnCancelClicked"/>
+				<Label x:Name="foodPlaceTitleLabel" Text="{Binding Title, StringFormat='How do you like {0}?'}"  Style="{StaticResource RatingLabel}" HorizontalOptions="Center"/>
+				<Label x:Name="ratingEmoji" Text="{Binding RatingEmoji}"  Style="{StaticResource RatingLabel}" HorizontalOptions="Center" FontSize="70"/>
+				<Label x:Name="ratingComment" Text="Great"  Style="{StaticResource RatingLabel}" HorizontalOptions="Center"/>
+				<fRating:RatingBar  x:Name="ratingBar"
+                                    SelectedStarValue="4"
+                                    ImageHeight="40"
+                                    ImageWidth="40"
+                                    FillStarImage="star_fill"
+                                    EmptyStarImage="star_outline"
+                                    HorizontalOptions="Center"
+                                    PropertyChanged="OnRatingSet"></fRating:RatingBar>
+				<Button x:Name="confirmButton" Style="{StaticResource ConfirmButton}" Clicked="OnConfirmClicked"/>
+			</StackLayout>
+		</Frame>
+	</StackLayout>
+	<!--#endregion-->
+</pages:PopupPage>

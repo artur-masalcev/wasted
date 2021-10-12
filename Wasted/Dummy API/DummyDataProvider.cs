@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Wasted.DummyAPI.BusinessObjects;
@@ -22,6 +23,11 @@ namespace Wasted.DummyDataAPI
         private const string DealsJSONPath = "Wasted.Dummy_API.Dummy_Data.Deals.json";
 
         /// <summary>
+        /// Path to foodPlace ratings embeedded resource JSON file
+        /// </summary>
+        private const string RatingsJSONPath = "Wasted.Dummy_API.Dummy_Data.Ratings.json";
+
+        /// <summary>
         /// Provides a list of all food providers in JSON format string
         /// </summary>
         /// <returns>string containing all food providers in JSON format</returns>
@@ -40,6 +46,15 @@ namespace Wasted.DummyDataAPI
         }
 
         /// <summary>
+        /// Provides a list of all deals in JSON format string
+        /// </summary>
+        /// <returns>string containing all deals in JSON format</returns>
+        public static string GetRatings()
+        {
+            return EmbeddedDataReader.ReadString(RatingsJSONPath);
+        }
+
+        /// <summary>
         /// Provides a list of all food providers in List<FoodPlace> format
         /// </summary>
         /// <returns>list containing all food providers from JSON data</returns>
@@ -55,6 +70,30 @@ namespace Wasted.DummyDataAPI
         public static IEnumerable<Deal> GetDealsList()
         {
             return JsonConvert.DeserializeObject<List<Deal>>(GetDeals());
+        }
+
+        /// <summary>
+        /// Provides a dictionary in <UserID, <FoodPlaceID, Rating>> format
+        /// </summary>
+        /// <returns>dictionary containing all ratings from user</returns>
+        public static Dictionary<int, Dictionary<int, int>> GetRatingsDictionary()
+        {
+            return JsonConvert.DeserializeObject<Dictionary<int, Dictionary<int, int>>>(GetRatings());
+        }
+
+        public static void WriteFoodPlacesList()
+        {
+            EmbeddedDataReader.WriteString(FoodPlacesJSONPath, JsonConvert.SerializeObject(App.AllFoodPlaces));
+        }
+
+        public static void WriteDealsList()
+        {
+            EmbeddedDataReader.WriteString(DealsJSONPath, JsonConvert.SerializeObject(App.AllDeals));
+        }
+
+        public static void WriteRatingsDictionary()
+        {
+            EmbeddedDataReader.WriteString(RatingsJSONPath, JsonConvert.SerializeObject(App.Ratings));
         }
     }
 }

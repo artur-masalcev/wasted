@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
+using Xamarin.Forms;
 
 namespace Wasted.Utils
 {
@@ -11,7 +13,8 @@ namespace Wasted.Utils
         /// <param name="path">Path to the data</param>
         /// <returns>String containing the embedded data</returns>
         /// <exception cref="System.ArgumentNullException">Thrown when there is not data in the given path</exception>
-        public static string ReadString(string path)
+
+        private static string ReadStringFirstTime(string path)
         {
             var assembly = IntrospectionExtensions.GetTypeInfo(typeof(MainPage)).Assembly;
             Stream stream = assembly.GetManifestResourceStream(path);
@@ -23,6 +26,24 @@ namespace Wasted.Utils
             }
 
             return text;
+        }
+
+        
+        public static string ReadString(string filePath)
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string filename = Path.Combine(path, filePath);
+            if (File.Exists(filename))
+                return File.ReadAllText(filename);
+            return ReadStringFirstTime(filePath);
+        }
+        
+
+        public static void WriteString(string filePath, string content)
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string filename = Path.Combine(path, filePath);
+            File.WriteAllText(filename, content);
         }
     }
 }
