@@ -114,8 +114,8 @@
                                            HeightRequest="30"
                                            Padding="5"
                                            BackgroundColor="{StaticResource LightBlue}">
-                                        <Label Text="{Binding First}"
-                                               VerticalOptions="Center" />
+                                        <Label
+                                               Text="{Binding}" VerticalOptions="Center" />
                                     </Frame>
 
                                 </StackLayout>

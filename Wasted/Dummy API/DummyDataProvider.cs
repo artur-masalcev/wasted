@@ -27,6 +27,22 @@ namespace Wasted.DummyDataAPI
         /// </summary>
         private const string RatingsJSONPath = "Wasted.Dummy_API.Dummy_Data.Ratings.json";
 
+       
+
+        public static string[] placeTypes = new string[]{ "Restaurant", "Supermarket", "Person" };
+
+        public static Dictionary<string, int> placeTypeDictionary = GetIndexDictionary(placeTypes);
+
+        public static Dictionary<string, int> GetIndexDictionary(string[] strings)
+        {
+            Dictionary<string, int> indexDictionary = new Dictionary<string, int>();
+            for (int i = 0; i < strings.Length; ++i)
+            {
+                indexDictionary[strings[i]] = i;
+            }
+            return indexDictionary;
+        }
+
         /// <summary>
         /// Provides a list of all food providers in JSON format string
         /// </summary>

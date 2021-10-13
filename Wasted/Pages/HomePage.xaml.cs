@@ -10,6 +10,7 @@ using System;
 using Xamarin.Essentials;
 using System.Threading.Tasks;
 using Wasted.Dummy_API.Business_Objects;
+using System.Threading;
 
 namespace Wasted
 {
@@ -26,11 +27,14 @@ namespace Wasted
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
         }
 
+
         /// <summary>
         /// Gets user location.
         /// </summary>
         public async Task<Location> GetLocation()
         {
+            
+            //await Geolocation.GetLocationAsync();
             return await Geolocation.GetLastKnownLocationAsync();
         }
 

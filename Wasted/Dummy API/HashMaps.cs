@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
+using Wasted.DummyDataAPI;
 
 namespace Wasted.Dummy_API
 {
@@ -13,13 +14,12 @@ namespace Wasted.Dummy_API
 
         // Map from food place type to food place //
         private static List<FoodPlace>[] foodPlaceTypeHashMap = InitializeFoodPlaceTypeHashMap();
-
         public static List<FoodPlace>[] InitializeFoodPlaceTypeHashMap()
         {
-            int enumMemberCount = Enum.GetNames(typeof(PlaceType)).Length;
-            List<FoodPlace>[] map = new List<FoodPlace>[enumMemberCount];
+            int length = DummyDataProvider.placeTypes.Length;
+            List<FoodPlace>[] map = new List<FoodPlace>[length];
 
-            for (int i = 0; i < enumMemberCount; ++i)
+            for (int i = 0; i < length; ++i)
             {
                 map[i] = new List<FoodPlace>();
             }

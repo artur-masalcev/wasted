@@ -20,7 +20,7 @@ namespace Wasted.FoodPlaceRatingSystem
         private static void ResetRating(FoodPlace SelectedFoodPlace, int previousRating)
         {
             --SelectedFoodPlace.RatingCount;
-            double previousRestaurantRating = (SelectedFoodPlace.Rating * (double)(SelectedFoodPlace.RatingCount + 1) - previousRating) / SelectedFoodPlace.RatingCount;
+            double previousRestaurantRating = (SelectedFoodPlace.Rating * (SelectedFoodPlace.RatingCount + 1) - previousRating) / SelectedFoodPlace.RatingCount;
             double tempRating = previousRestaurantRating * (SelectedFoodPlace.RatingCount + 1) - SelectedFoodPlace.Rating * SelectedFoodPlace.RatingCount;
 
             SelectedFoodPlace.Rating = tempRating;

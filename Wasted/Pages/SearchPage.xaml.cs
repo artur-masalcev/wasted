@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using Wasted.Dummy_API;
 using System.Text.RegularExpressions;
 using Wasted.Dummy_API.Business_Objects;
+using Wasted.Utils;
 
 namespace Wasted
 {
@@ -18,7 +19,7 @@ namespace Wasted
     {
         public List<FoodPlace> AvailablePlaces { get; set; }
 
-        public string[] PlaceTypeNames = Enum.GetNames(typeof(PlaceType));
+        public string[] PlaceTypeNames = DummyDataProvider.placeTypes;
 
         private string currentPlaceType;
         public string CurrentPlaceType
@@ -66,24 +67,9 @@ namespace Wasted
         {
             base.OnAppearing();
             AvailablePlaces = App.AllFoodPlaces;
-
             restaurantLayout.BindingContext = this;
-            restaurantTypeCollectionView.ItemsSource = GetRestaurantTypeCollectionViewItemsSource();
-        }
-
-        /// <summary>
-        /// Returns an array of pairs (place type, index).
-        /// </summary>
-        private Pair<string, int>[] GetRestaurantTypeCollectionViewItemsSource()
-        {
-            
-            Pair<string, int>[] source = new Pair<string, int>[PlaceTypeNames.Length];
-
-            for (int i = 0; i < PlaceTypeNames.Length; ++i)
-            {
-                source[i] = new Pair<string, int>(PlaceTypeNames[i], i);
-            }
-            return source;
+            restaurantTypeCollectionView.ItemsSource = DummyDataProvider.placeTypes;
+        
         }
 
         /// <summary>
@@ -91,8 +77,12 @@ namespace Wasted
         /// </summary>
         private void PlacesCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (allPlacesCollectionView.SelectedItem == null)
+                return;
+
             FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
             Navigation.PushAsync(new FoodPlacesPage(selectedPlace));
+            allPlacesCollectionView.SelectedItem = null;
         }
 
         private void ShowFoodPlaces(bool show = true)
@@ -111,7 +101,9 @@ namespace Wasted
 
             ShowFoodPlaces();
 
-            int index = ((Pair<string, int>)e.CurrentSelection.FirstOrDefault()).Second;
+            string type = (string)e.CurrentSelection.FirstOrDefault();
+            int index = DummyDataProvider.placeTypeDictionary[type];
+
             AvailablePlaces = HashMaps.FoodPlaceTypeHashMap[index];
             allPlacesCollectionView.ItemsSource = AvailablePlaces;
 
