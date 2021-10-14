@@ -27,7 +27,7 @@ namespace Wasted
         }
 
         /// <summary>
-        /// Sets binding for xaml file.
+        /// Sets binding for xaml file. Removes deal stepper if it is already taken
         /// </summary>
         public void InitializeViews()
         {

@@ -44,10 +44,10 @@ namespace Wasted.DummyAPI.BusinessObjects
         [JsonIgnore]
         public List<FoodPlace> FoodPlaces { get; set; } = new List<FoodPlace>();
 
-        public string FoodPlaceTitle
-        {
-            get { return FoodPlaces.First().Title; }
-        }
+        /// <summary>
+        /// Food place which has the item. Can be any from FoodPlaces list
+        /// </summary>
+        public string FoodPlaceTitle => FoodPlaces.First().Title;
 
         public Deal(int id, string title, string description, double currentCost,
             double previousCost, int quantity, string due, string imageURL)

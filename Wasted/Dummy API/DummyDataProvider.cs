@@ -27,12 +27,17 @@ namespace Wasted.DummyDataAPI
         /// </summary>
         private const string RatingsJSONPath = "Wasted.Dummy_API.Dummy_Data.Ratings.json";
 
-       
 
+        /// <summary>
+        /// Place types that are shown in the search page
+        /// </summary>
         public static string[] placeTypes = new string[]{ "Restaurant", "Supermarket", "Person" };
 
         public static Dictionary<string, int> placeTypeDictionary = GetIndexDictionary(placeTypes);
 
+        /// <summary>
+        /// Creates a hashmap from string to corresponding index
+        /// </summary>
         public static Dictionary<string, int> GetIndexDictionary(string[] strings)
         {
             Dictionary<string, int> indexDictionary = new Dictionary<string, int>();
@@ -97,16 +102,25 @@ namespace Wasted.DummyDataAPI
             return JsonConvert.DeserializeObject<Dictionary<int, Dictionary<int, int>>>(GetRatings());
         }
 
+        /// <summary>
+        /// Writes all food places to device
+        /// </summary>
         public static void WriteFoodPlacesList()
         {
             EmbeddedDataReader.WriteString(FoodPlacesJSONPath, JsonConvert.SerializeObject(App.AllFoodPlaces));
         }
 
+        /// <summary>
+        /// Writes all deals to device
+        /// </summary>
         public static void WriteDealsList()
         {
             EmbeddedDataReader.WriteString(DealsJSONPath, JsonConvert.SerializeObject(App.AllDeals));
         }
 
+        /// <summary>
+        /// Writes all ratings to device
+        /// </summary>
         public static void WriteRatingsDictionary()
         {
             EmbeddedDataReader.WriteString(RatingsJSONPath, JsonConvert.SerializeObject(App.Ratings));

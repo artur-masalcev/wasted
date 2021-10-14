@@ -37,7 +37,7 @@ namespace Wasted
             contentScrollView.BindingContext = SelectedFoodPlace;
             dealsCollectionView.ItemsSource = SelectedFoodPlace.Deals;
 
-            const int dealHeight = 220;
+            const int dealHeight = 220; //Dirty fix to prevent too much scroll area
             dealsCollectionView.HeightRequest = dealHeight * ((SelectedFoodPlace.Deals.Count  + 1) / 2); //Two items in one row
         }
 
@@ -51,7 +51,7 @@ namespace Wasted
 
             Deal selectedDeal = e.CurrentSelection.FirstOrDefault() as Deal;
             Navigation.PushAsync(new ItemsPage(selectedDeal));
-            dealsCollectionView.SelectedItem = null;
+            dealsCollectionView.SelectedItem = null; //Prevents setting border
         }
 
         /// <summary>

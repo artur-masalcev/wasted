@@ -28,17 +28,21 @@ namespace Wasted.Utils
             return text;
         }
 
-        
+        /// <summary>
+        /// Gets content in string format from file
+        /// </summary>
         public static string ReadString(string filePath)
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string filename = Path.Combine(path, filePath);
-            if (File.Exists(filename))
+            if (File.Exists(filename)) //If file is already created from the function above
                 return File.ReadAllText(filename);
             return ReadStringFirstTime(filePath);
         }
-        
 
+        /// <summary>
+        /// Writes content to device
+        /// </summary>
         public static void WriteString(string filePath, string content)
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);

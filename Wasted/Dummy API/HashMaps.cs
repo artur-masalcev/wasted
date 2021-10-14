@@ -13,7 +13,7 @@ namespace Wasted.Dummy_API
     {
 
         // Map from food place type to food place //
-        private static List<FoodPlace>[] foodPlaceTypeHashMap = InitializeFoodPlaceTypeHashMap();
+        public static List<FoodPlace>[] FoodPlaceTypeHashMap { get; set; } = InitializeFoodPlaceTypeHashMap();
         public static List<FoodPlace>[] InitializeFoodPlaceTypeHashMap()
         {
             int length = DummyDataProvider.placeTypes.Length;
@@ -26,14 +26,8 @@ namespace Wasted.Dummy_API
             return map;
         }
 
-        public static List<FoodPlace>[] FoodPlaceTypeHashMap
-        {
-            get { return foodPlaceTypeHashMap; }
-            set { foodPlaceTypeHashMap = value; }
-        }
-
         /// <summary>
-        /// Adds food places from which deals came from by using hashmaps.
+        /// Adds food places from which deals came from by using ids in a groupjoin
         /// </summary>
         public static void AddFoodPlacesToDeals(List<FoodPlace> AllFoodPlaces, List<Deal> AllDeals)
         {

@@ -33,7 +33,7 @@ namespace Wasted
         /// </summary>
         public async Task<Location> GetLocation()
         {
-            
+            //Uncomment this for the first time, then comment it later. GPS should be available
             //await Geolocation.GetLocationAsync();
             return await Geolocation.GetLastKnownLocationAsync();
         }
@@ -100,7 +100,7 @@ namespace Wasted
 
             FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
             Navigation.PushAsync(new FoodPlacesPage(selectedPlace));
-            ((CollectionView)sender).SelectedItem = null;
+            ((CollectionView)sender).SelectedItem = null; //Prevents borders from appearing
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Wasted
 
             Deal selectedDeal = e.CurrentSelection.FirstOrDefault() as Deal;
             Navigation.PushAsync(new ItemsPage(selectedDeal));
-            specialOffersCollectionView.SelectedItem = null;
+            specialOffersCollectionView.SelectedItem = null; //Prevents borders from appearing
         }
     }
 }

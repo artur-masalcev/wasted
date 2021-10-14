@@ -25,7 +25,7 @@ namespace Wasted
             InitializeComponent();
 
             Dictionary<int, int> userRatings = App.Ratings[App.UserID];
-            if (userRatings.ContainsKey(foodPlace.ID))
+            if (userRatings.ContainsKey(foodPlace.ID)) //Sets value to the user's previous rating
             {
                 ratingBar.SelectedStarValue = userRatings[foodPlace.ID];
             }

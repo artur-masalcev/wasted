@@ -42,7 +42,8 @@ namespace Wasted.DummyAPI.BusinessObjects
         public string HeaderURL { get; set; }
         public int[] DealsIDs { get; set; }
 
-        [JsonIgnore]
+
+        [JsonIgnore] //Prevents infinite recursion when serializing to json file
         public List<Deal> Deals = new List<Deal>();
 
         public int DealsCount => DealsIDs.Length;

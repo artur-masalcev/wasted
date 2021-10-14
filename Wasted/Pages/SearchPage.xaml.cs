@@ -82,9 +82,12 @@ namespace Wasted
 
             FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
             Navigation.PushAsync(new FoodPlacesPage(selectedPlace));
-            allPlacesCollectionView.SelectedItem = null;
+            allPlacesCollectionView.SelectedItem = null; //Prevents borders from appearing
         }
 
+        /// <summary>
+        /// Swaps place type window to places window and otherwise
+        /// </summary>
         private void ShowFoodPlaces(bool show = true)
         {
             restaurantLayout.IsVisible = show;
@@ -109,7 +112,7 @@ namespace Wasted
 
             SectionTitleText = PlaceTypeNames[index] + "s";
 
-            allPlaceButton.IsVisible = true;
+            allPlaceButton.IsVisible = true; //Return to all places from current place type
             AllPlaceButtonText = SectionTitleText;
 
         }

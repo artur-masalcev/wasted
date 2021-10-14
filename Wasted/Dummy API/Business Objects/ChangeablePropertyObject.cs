@@ -6,6 +6,9 @@ using System.Text;
 
 namespace Wasted.Dummy_API.Business_Objects
 {
+    /// <summary>
+    /// Class that allows to notify that binded property is changed to invoke changes in UI
+    /// </summary>
     public abstract class ChangeablePropertyObject : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
