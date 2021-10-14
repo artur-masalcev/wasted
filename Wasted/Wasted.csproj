@@ -60,21 +60,27 @@
     <EmbeddedResource Include="Dummy API\Dummy Data\Ratings.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Pages\Deals\OrderPopup.xaml.cs">
+      <DependentUpon>OrderPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\FoodPlacePage.xaml.cs">
       <DependentUpon>FoodPlacePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Pages\DealPage.xaml.cs">
+    <Compile Update="Pages\Deals\DealPage.xaml.cs">
       <DependentUpon>DealPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Pages\Deals\OrderPopup.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\FoodPlacePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\HomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\DealPage.xaml">
+    <EmbeddedResource Update="Pages\Deals\DealPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\SearchPage.xaml">

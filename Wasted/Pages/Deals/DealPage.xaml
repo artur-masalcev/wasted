@@ -77,38 +77,6 @@
 
                 </StackLayout>
 
-                <!--#region Order view-->
-                <ContentView x:Name="orderView">
-
-                    <StackLayout Style="{StaticResource DealCardViewLayout}"
-                             VerticalOptions="Center">
-                        <StackLayout BackgroundColor="White">
-
-                            <StackLayout
-                            Orientation="Horizontal"
-                            HorizontalOptions="Center"
-                            Spacing="20">
-                                <Label x:Name="countLabel" Style="{StaticResource RatingLabel}"
-                                   Text="{Binding SelectedCount, StringFormat='Count: {0}'}" />
-
-
-                                <Stepper x:Name="stepper"
-                                     Maximum="{Binding Quantity}"
-                                     Increment="1"
-                                     ValueChanged="StepperValueChanged"/>
-
-                            </StackLayout>
-
-                            <StackLayout Style="{StaticResource ConfirmCancelLayout}">
-                                <Button Style="{StaticResource CancelButton}" Clicked="OnCancelClicked"  WidthRequest="75"/>
-                                <Button Style="{StaticResource ConfirmButton}" Clicked="OnConfirmClicked" WidthRequest="220"/>
-                            </StackLayout>
-
-                        </StackLayout>
-                    </StackLayout>
-                </ContentView>
-                <!--#endregion-->
-
             </AbsoluteLayout>
         </ScrollView>
     </ContentPage.Content>

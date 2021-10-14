@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.FoodPlaceRatingSystem;
 
 namespace Wasted
 {
-    public partial class RatingPopup : Rg.Plugins.Popup.Pages.PopupPage
+    public partial class RatingPopup : PopupPage
     {
         public FoodPlace SelectedFoodPlace { get; set; }
         public int FoodPlaceID { get; }

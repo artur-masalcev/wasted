@@ -5,6 +5,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:fRating="clr-namespace:Rating;assembly=Rating"
     x:Class="Wasted.RatingPopup">
+    
 	<!--#region Rating screen-->
 	<StackLayout VerticalOptions="Center">
 		<Frame CornerRadius="20" BackgroundColor="White" Margin="8, 0, 8, 0">

@@ -30,17 +30,6 @@ namespace Wasted.DummyAPI.BusinessObjects
 
         public string Description { get; set; }
 
-        private int selectedCount = 0;
-        public int SelectedCount
-        {
-            get { return selectedCount; }
-            set
-            {
-                selectedCount = value;
-                OnPropertyChanged();
-            }
-        }
-
         [JsonIgnore]
         public List<FoodPlace> FoodPlaces { get; set; } = new List<FoodPlace>();
 
