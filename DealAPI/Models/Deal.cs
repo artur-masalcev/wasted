@@ -9,6 +9,7 @@ namespace DealAPI.Models
     {
         public int ID { get; set; }
         public string Title { get; set; }
+        public string Description { get; set; }
         public double CurrentCost { get; set; }
         public double PreviousCost { get; set; }
         public int Quantity { get; set; }
@@ -20,10 +21,11 @@ namespace DealAPI.Models
 
         }
 
-        public Deal(int id, string title, double currentCost, double previousCost, int quantity, string due, string imageURL)
+        public Deal(int id, string title, string description, double currentCost, double previousCost, int quantity, string due, string imageURL)
         {
             ID = id;
             Title = title;
+            Description = description;
             CurrentCost = currentCost;
             PreviousCost = previousCost;
             Quantity = quantity;

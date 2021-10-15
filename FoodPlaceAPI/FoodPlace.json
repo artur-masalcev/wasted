@@ -1,0 +1,16 @@
+{
+  "ID": 1,
+  "Title": "McDonald's",
+  "Description": "Fast food restaurant\nMost offers between 21:00-22:00",
+  "Longitude": 54.700382,
+  "Latitude": 25.256319,
+  "Street": "Saltoniškių g. 9",
+  "City": "Vilnius",
+  "WorkingHours": "8:00-22:00",
+  "RatingCount": 16,
+  "Rating": 4.7,
+  "LogoURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/877px-McDonald%27s_Golden_Arches.svg.png",
+  "HeaderURL": "https://prod-wolt-venue-images-cdn.wolt.com/5cdbbe8702e5c2e15888fb4d/68757acc-5a39-11eb-9d45-16259b33b38f_210538_mcd_mcdelivery_menuimage_1200x8002_8__3_.jpg",
+  "DealIDs": "[ 1, 2, 3, 4 ]",
+  "PlaceType": 0
+}

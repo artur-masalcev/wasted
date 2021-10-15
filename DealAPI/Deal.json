@@ -1,0 +1,10 @@
+{
+  "ID": 1,
+  "Title": "Big Mac™",
+  "Description": null,
+  "CurrentCost": 1.7,
+  "PreviousCost": 2.0,
+  "Quantity": 2,
+  "Due": "2021-09-27",
+  "ImageURL": "https://mcd.lt/wp-content/uploads/2021/05/0001s_0014_McD_web2021_BigMac.jpg"
+}

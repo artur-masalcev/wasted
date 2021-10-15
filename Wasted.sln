@@ -11,7 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wasted", "Wasted\Wasted.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodPlaceAPI", "FoodPlaceAPI\FoodPlaceAPI.csproj", "{E764B363-1E82-4C16-BF48-C71A9F08C6AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DealAPI", "DealAPI\DealAPI.csproj", "{9D946655-7C2F-4803-947F-EDDF89DAF16D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DealAPI", "DealAPI\DealAPI.csproj", "{9D946655-7C2F-4803-947F-EDDF89DAF16D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5756BFDD-42B5-4D9C-8909-4F4B9373D471}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

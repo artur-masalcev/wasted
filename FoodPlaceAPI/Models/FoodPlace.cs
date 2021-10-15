@@ -16,18 +16,19 @@ namespace FoodPlaceAPI.Models
         public string Street { get; set; }
         public string City { get; set; }
         public string WorkingHours { get; set; }
+        public int RatingCount { get; set; }
         public double Rating { get; set; }
         public string LogoURL { get; set; }
         public string HeaderURL { get; set; }
-        public string DealsIDs { get; set; }
-
+        public string DealIDs { get; set; }
+        public int PlaceType { get; set; }
 
         public FoodPlace()
         {
 
         }
 
-        public FoodPlace(int id, string title, string description, double longitude, double latitude, string street, string city, string workingHours, double rating, string logoURL, string headerURL, string dealIDs)
+        public FoodPlace(int id, string title, string description, double longitude, double latitude, string street, string city, string workingHours, int ratingCount, double rating, string logoURL, string headerURL, string dealIDs, int placeType)
         {
             ID = id;
             Title = title;
@@ -37,10 +38,12 @@ namespace FoodPlaceAPI.Models
             Street = street;
             City = city;
             WorkingHours = workingHours;
+            RatingCount = ratingCount;
             Rating = rating;
             LogoURL = logoURL;
             HeaderURL = headerURL;
-            DealsIDs = dealIDs;
+            DealIDs = dealIDs;
+            PlaceType = placeType;
         }
     }
 }

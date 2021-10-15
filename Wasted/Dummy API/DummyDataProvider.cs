@@ -15,12 +15,12 @@ namespace Wasted.DummyDataAPI
         /// <summary>
         /// Path to food providers embeedded resource JSON file
         /// </summary>
-        private const string FoodPlacesJSONPath = "Wasted.Dummy_API.Dummy_Data.FoodPlaces.json";
+        private const string FoodPlacesJSONPath = "FoodPlaceAPI.FoodPlaces.json";
 
         /// <summary>
         /// Path to deals embeedded resource JSON file
         /// </summary>
-        private const string DealsJSONPath = "Wasted.Dummy_API.Dummy_Data.Deals.json";
+        private const string DealsJSONPath = "DealAPI.Deals.json";
 
         /// <summary>
         /// Path to foodPlace ratings embeedded resource JSON file
