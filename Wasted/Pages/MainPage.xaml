@@ -4,7 +4,8 @@
             xmlns:wasted="clr-namespace:Wasted"
             x:Class="Wasted.MainPage"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core" 
-            android:TabbedPage.ToolbarPlacement="Bottom">
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            NavigationPage.HasNavigationBar="false">
 
     <wasted:HomePage x:Name="homePage"
                      Title="Home"

@@ -65,9 +65,31 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <ImageAsset Include="Assets.xcassets\item_due.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\item_location.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\item_due.imageset\item_due-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\item_quantity.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\star_outline.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\star_fill.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\star_fill.imageset\star_fill-1.png" />
+    <ImageAsset Include="Assets.xcassets\star_outline.imageset\star_outline-1.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -158,7 +180,56 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets.xcassets\nav_bar_home.imageset\" />
-    <Folder Include="Assets.xcassets\nav_bar_search.imageset\" />
+    <ImageAsset Include="Assets.xcassets\item_due.imageset\item_due.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\nav_bar_home.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\nav_bar_home-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\nav_bar_home-2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\nav_bar_search.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\nav_bar_search-1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\nav_bar_search-2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\item_location.imageset\item_location.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\item_quantity.imageset\item_quantity.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets.xcassets\deal_due.imageset\" />
+    <Folder Include="Assets.xcassets\item_due.imageset\" />
+    <Folder Include="Assets.xcassets\item_location.imageset\" />
+    <Folder Include="Assets.xcassets\item_quantity.imageset\" />
+    <Folder Include="Assets.xcassets\star_outline.imageset\" />
+    <Folder Include="Assets.xcassets\star_fill.imageset\" />
   </ItemGroup>
 </Project>
