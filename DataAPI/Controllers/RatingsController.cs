@@ -19,5 +19,11 @@ namespace DataAPI.Controllers
         {
             return DummyDataProvider.GetRatingsDictionary();
         }
+
+        [HttpPost("add")]
+        public void Create([FromBody] string Ratings)
+        {
+            DummyDataProvider.WriteRatings(Ratings);
+        }
     }
 }

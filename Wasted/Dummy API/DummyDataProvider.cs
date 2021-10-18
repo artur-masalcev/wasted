@@ -9,6 +9,7 @@ using Wasted.Utils;
 using System.Configuration;
 using System.Reflection;
 using Xamarin.Forms;
+using System.Text;
 
 namespace Wasted.DummyDataAPI
 {
@@ -57,6 +58,27 @@ namespace Wasted.DummyDataAPI
         {
             string ratingJson = await client.GetStringAsync(linkStart + "ratings");
             return JsonConvert.DeserializeObject<Dictionary<int, Dictionary<int, int>>>(ratingJson);
+        }
+
+        public static async Task WriteFoodPlaces(HttpClient client, List<FoodPlace> AllFoodPlaces)
+        {
+            string content = JsonConvert.SerializeObject(JsonConvert.SerializeObject(AllFoodPlaces));
+            StringContent sc = new StringContent(content, Encoding.UTF8, "application/json");
+            await client.PostAsync(linkStart + "foodplaces/add", sc);
+        }
+
+        public static async Task WriteDeals(HttpClient client, List<Deal> AllDeals)
+        {
+            string content = JsonConvert.SerializeObject(JsonConvert.SerializeObject(AllDeals));
+            StringContent sc = new StringContent(content, Encoding.UTF8, "application/json");
+            await client.PostAsync(linkStart + "deals/add", sc);
+        }
+
+        public static async Task WriteRatings(HttpClient client, Dictionary<int, Dictionary<int, int>> Ratings)
+        {
+            string content = JsonConvert.SerializeObject(JsonConvert.SerializeObject(Ratings));
+            StringContent sc = new StringContent(content, Encoding.UTF8, "application/json");
+            await client.PostAsync(linkStart + "ratings/add", sc);
         }
     }
 }

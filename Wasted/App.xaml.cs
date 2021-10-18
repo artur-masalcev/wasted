@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Wasted.Dummy_API;
@@ -24,7 +25,7 @@ namespace Wasted
 
         public App()
         {
-            Task.Run(() => { GetData(); }).Wait();
+            Task.Run(() => GetData()).Wait();
             HashMaps.AddFoodPlacesToDeals(AllFoodPlaces, AllDeals);
 
             InitializeComponent();
@@ -41,7 +42,16 @@ namespace Wasted
 
         protected override void OnSleep()
         {
+            Task.Run(() => WriteData()).Wait();
+            
             //TODO: write data to API
+        }
+
+        public void WriteData()
+        {
+            DummyDataProvider.WriteFoodPlaces(client, AllFoodPlaces).Wait();
+            DummyDataProvider.WriteDeals(client, AllDeals).Wait();
+            DummyDataProvider.WriteRatings(client, Ratings).Wait();
         }
 
         protected override void OnResume()

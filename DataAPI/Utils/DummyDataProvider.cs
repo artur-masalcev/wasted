@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using Wasted.DummyAPI.BusinessObjects;
 
 namespace DataAPI.Utils
@@ -33,10 +34,27 @@ namespace DataAPI.Utils
             return GetText(RatingsJSONPath);
         }
 
+        public static void WriteFoodPlaces(string AllFoodPlaces)
+        {
+            using StreamWriter file = new StreamWriter(FoodPlacesJSONPath);
+            file.WriteLine(AllFoodPlaces);
+        }
+
+        public static void WriteDeals(string AllDeals)
+        {
+            using StreamWriter file = new StreamWriter(DealsJSONPath);
+            file.WriteLine(AllDeals);
+        }
+
+        public static void WriteRatings(string Ratings)
+        {
+            using StreamWriter file = new StreamWriter(RatingsJSONPath);
+            file.WriteLine(Ratings);
+        }
 
         public static string GetText(string path)
         {
-            return System.IO.File.ReadAllText(path);
+            return File.ReadAllText(path);
         }
 
     }

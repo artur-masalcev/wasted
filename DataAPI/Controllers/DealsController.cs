@@ -19,5 +19,11 @@ namespace DataAPI.Controllers
         {
             return DummyDataProvider.GetDeals();
         }
+
+        [HttpPost("add")]
+        public void Create([FromBody] string AllDeals)
+        {
+            DummyDataProvider.WriteDeals(AllDeals);
+        }
     }
 }

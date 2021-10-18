@@ -1,13 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using Wasted.Dummy_API;
-using Wasted.Dummy_API.Business_Objects;
-using Xamarin.Essentials;
+﻿using Xamarin.Essentials;
 
 namespace Wasted.DummyAPI.BusinessObjects
 {
