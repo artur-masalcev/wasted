@@ -60,6 +60,7 @@ namespace Wasted.DummyDataAPI
             return JsonConvert.DeserializeObject<Dictionary<int, Dictionary<int, int>>>(ratingJson);
         }
 
+
         public static async Task WriteFoodPlaces(HttpClient client, List<FoodPlace> AllFoodPlaces)
         {
             string content = JsonConvert.SerializeObject(JsonConvert.SerializeObject(AllFoodPlaces));

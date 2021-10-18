@@ -17,15 +17,15 @@ namespace DataAPI.Controllers
     {   
 
         [HttpGet]
-        public IEnumerable<FoodPlace> Get()
+        public string Get()
         {
-            return DummyDataProvider.GetFoodPlaces();
+            return DummyDataProvider.GetText(DummyDataProvider.FoodPlacesJSONPath);
         }
 
         [HttpPost("add")]
         public void Create([FromBody] string AllFoodPlaces)
         {
-            DummyDataProvider.WriteFoodPlaces(AllFoodPlaces);
+            DummyDataProvider.WriteText(DummyDataProvider.FoodPlacesJSONPath, AllFoodPlaces);
         }
     }
 }

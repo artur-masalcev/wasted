@@ -17,13 +17,13 @@ namespace DataAPI.Controllers
         [HttpGet]
         public string Get()
         {
-            return DummyDataProvider.GetRatingsDictionary();
+            return DummyDataProvider.GetText(DummyDataProvider.RatingsJSONPath);
         }
 
         [HttpPost("add")]
         public void Create([FromBody] string Ratings)
         {
-            DummyDataProvider.WriteRatings(Ratings);
+            DummyDataProvider.WriteText(DummyDataProvider.RatingsJSONPath, Ratings);
         }
     }
 }

@@ -15,15 +15,15 @@ namespace DataAPI.Controllers
     public class DealsController : ControllerBase
     {
         [HttpGet]
-        public IEnumerable<Deal> Get()
+        public string Get()
         {
-            return DummyDataProvider.GetDeals();
+            return DummyDataProvider.GetText(DummyDataProvider.DealsJSONPath);
         }
 
         [HttpPost("add")]
         public void Create([FromBody] string AllDeals)
         {
-            DummyDataProvider.WriteDeals(AllDeals);
+            DummyDataProvider.WriteText(DummyDataProvider.DealsJSONPath, AllDeals);
         }
     }
 }

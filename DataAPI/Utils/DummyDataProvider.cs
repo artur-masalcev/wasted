@@ -13,43 +13,17 @@ namespace DataAPI.Utils
     public class DummyDataProvider
     {
 
-        private const string FoodPlacesJSONPath = "Dummy Data/FoodPlaces.json";
+        public static string FoodPlacesJSONPath => "Dummy Data/FoodPlaces.json";
 
-        private const string DealsJSONPath = "Dummy Data/Deals.json";
+        public static string DealsJSONPath => "Dummy Data/Deals.json";
 
-        private const string RatingsJSONPath = "Dummy Data/Ratings.json";
+        public static string RatingsJSONPath => "Dummy Data/Ratings.json";
 
-        public static List<FoodPlace> GetFoodPlaces()
+
+        public static void WriteText(string path, string content)
         {
-            return JsonConvert.DeserializeObject<List<FoodPlace>>(GetText(FoodPlacesJSONPath));
-        }
-
-        public static List<Deal> GetDeals()
-        {
-            return JsonConvert.DeserializeObject<List<Deal>>(GetText(DealsJSONPath));
-        }
-
-        public static string GetRatingsDictionary()
-        {
-            return GetText(RatingsJSONPath);
-        }
-
-        public static void WriteFoodPlaces(string AllFoodPlaces)
-        {
-            using StreamWriter file = new StreamWriter(FoodPlacesJSONPath);
-            file.WriteLine(AllFoodPlaces);
-        }
-
-        public static void WriteDeals(string AllDeals)
-        {
-            using StreamWriter file = new StreamWriter(DealsJSONPath);
-            file.WriteLine(AllDeals);
-        }
-
-        public static void WriteRatings(string Ratings)
-        {
-            using StreamWriter file = new StreamWriter(RatingsJSONPath);
-            file.WriteLine(Ratings);
+            using StreamWriter file = new StreamWriter(path);
+            file.WriteLine(content);
         }
 
         public static string GetText(string path)
