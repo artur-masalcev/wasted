@@ -39,15 +39,5 @@ namespace Wasted.Utils
                 return File.ReadAllText(filename);
             return ReadStringFirstTime(filePath);
         }
-
-        /// <summary>
-        /// Writes content to device
-        /// </summary>
-        public static void WriteString(string filePath, string content)
-        {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string filename = Path.Combine(path, filePath);
-            File.WriteAllText(filename, content);
-        }
     }
 }

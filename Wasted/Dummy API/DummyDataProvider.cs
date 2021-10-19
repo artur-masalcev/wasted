@@ -100,29 +100,5 @@ namespace Wasted.DummyDataAPI
         {
             return JsonConvert.DeserializeObject<Dictionary<int, Dictionary<int, int>>>(GetRatings());
         }
-
-        /// <summary>
-        /// Writes all food places to device
-        /// </summary>
-        public static void WriteFoodPlacesList()
-        {
-            EmbeddedDataReader.WriteString(FoodPlacesJSONPath, JsonConvert.SerializeObject(App.AllFoodPlaces));
-        }
-
-        /// <summary>
-        /// Writes all deals to device
-        /// </summary>
-        public static void WriteDealsList()
-        {
-            EmbeddedDataReader.WriteString(DealsJSONPath, JsonConvert.SerializeObject(App.AllDeals));
-        }
-
-        /// <summary>
-        /// Writes all ratings to device
-        /// </summary>
-        public static void WriteRatingsDictionary()
-        {
-            EmbeddedDataReader.WriteString(RatingsJSONPath, JsonConvert.SerializeObject(App.Ratings));
-        }
     }
 }

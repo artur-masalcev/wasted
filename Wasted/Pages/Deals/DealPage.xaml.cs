@@ -23,7 +23,6 @@ namespace Wasted
             InitializeViews();
         }
 
-
         /// <summary>
         /// Sets binding for xaml file. Removes deal stepper if it is already taken
         /// </summary>

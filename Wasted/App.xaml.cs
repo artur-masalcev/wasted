@@ -12,10 +12,6 @@ namespace Wasted
     {
         public static List<FoodPlace> AllFoodPlaces { get; set; } = new List<FoodPlace>(DummyDataProvider.GetFoodPlacesList());
         public static List<Deal> AllDeals { get; set; } = new List<Deal>(DummyDataProvider.GetDealsList());
-
-        public static int UserID => 8080;
-
-        //                     UserID FoodPlaceID  Given rating
         public static Dictionary<int, Dictionary<int, int>> Ratings { get; set; } = DummyDataProvider.GetRatingsDictionary();
 
         public App()
@@ -23,21 +19,6 @@ namespace Wasted
             InitializeComponent();
             HashMaps.AddFoodPlacesToDeals(AllFoodPlaces, AllDeals);
             MainPage = new NavigationPage(new MainPage());
-        }
-
-        protected override void OnStart()
-        {
-        }
-
-        protected override void OnSleep()
-        {
-            DummyDataProvider.WriteFoodPlacesList();
-            DummyDataProvider.WriteDealsList();
-            DummyDataProvider.WriteRatingsDictionary();
-        }
-
-        protected override void OnResume()
-        {
         }
     }
 }

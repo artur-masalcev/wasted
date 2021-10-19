@@ -25,13 +25,6 @@ namespace Wasted
             SelectedFoodPlace = foodPlace;
             InitializeComponent();
 
-            Dictionary<int, int> userRatings = App.Ratings[App.UserID];
-
-            if (userRatings.ContainsKey(foodPlace.ID)) 
-            {
-                ratingBar.SelectedStarValue = userRatings[foodPlace.ID]; //Set value to the user's previous rating
-            }
-
             foodPlaceTitleLabel.BindingContext = SelectedFoodPlace;
             ratingEmoji.BindingContext = this;
             ratingComment.BindingContext = this;
@@ -40,8 +33,6 @@ namespace Wasted
         private void OnConfirmClicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync(true); // Close the popup
-            FoodPlaceRatingModifier.SetUserVote(App.UserID, SelectedFoodPlace, Rating);
-
         }
 
         private void OnCancelClicked(object sender, EventArgs e)
