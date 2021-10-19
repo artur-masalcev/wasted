@@ -20,13 +20,16 @@ namespace Wasted
     {
         public Location UserLocation { get; set; }
 
+        const int MaxNearbyPlacesCount = 50;
+        const int MaxSpecialOffersCount = 10;
+        const int MaxPopularPlacesCount = 10;
+
         public HomePage()
         {
             InitializeComponent();
             UserLocation = GetLocation().Result;
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
         }
-
 
         /// <summary>
         /// Gets user location.
@@ -45,11 +48,10 @@ namespace Wasted
         {
             base.OnAppearing();
 
-            nearbyFoodPlacesCollectionView.ItemsSource = GetNearbyPlaces(App.AllFoodPlaces, 50);
-            specialOffersCollectionView.ItemsSource = GetSpecialOffers(App.AllDeals, 10);
-            popularFoodPlacesCollectionView.ItemsSource = GetPopularFoodPlaces(App.AllFoodPlaces, 10);
+            nearbyFoodPlacesCollectionView.ItemsSource = GetNearbyPlaces(App.AllFoodPlaces, MaxNearbyPlacesCount);
+            specialOffersCollectionView.ItemsSource = GetSpecialOffers(App.AllDeals, MaxSpecialOffersCount);
+            popularFoodPlacesCollectionView.ItemsSource = GetPopularFoodPlaces(App.AllFoodPlaces, MaxPopularPlacesCount);
         }
-
 
         /// <summary>
         /// Sorts food places by the location to the user.
