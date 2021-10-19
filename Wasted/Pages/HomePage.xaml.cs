@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Wasted.Dummy_API;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.DummyDataAPI;
 using Xamarin.Forms;
@@ -9,8 +8,6 @@ using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using System;
 using Xamarin.Essentials;
 using System.Threading.Tasks;
-using Wasted.Dummy_API.Business_Objects;
-using System.Threading;
 
 namespace Wasted
 {
@@ -48,48 +45,14 @@ namespace Wasted
         {
             base.OnAppearing();
 
-            nearbyFoodPlacesCollectionView.ItemsSource = GetNearbyPlaces(App.AllFoodPlaces, MaxNearbyPlacesCount);
-            specialOffersCollectionView.ItemsSource = GetSpecialOffers(App.AllDeals, MaxSpecialOffersCount);
-            popularFoodPlacesCollectionView.ItemsSource = GetPopularFoodPlaces(App.AllFoodPlaces, MaxPopularPlacesCount);
-        }
+            nearbyFoodPlacesCollectionView.ItemsSource =
+                DummyAPI.DataFilters.GetNearbyPlaces(App.AllFoodPlaces, UserLocation, MaxNearbyPlacesCount);
 
-        /// <summary>
-        /// Sorts food places by the location to the user.
-        /// </summary>
-        public IEnumerable<FoodPlace> GetNearbyPlaces(List<FoodPlace> allFoodPlaces, int maxKilometers)
-        {
-            Func<Location, FoodPlace, double> GetDistance = (location, place) => Location.CalculateDistance(location, place.PlaceLocation, DistanceUnits.Kilometers);
+            specialOffersCollectionView.ItemsSource =
+                DummyAPI.DataFilters.GetSpecialOffers(App.AllDeals, MaxSpecialOffersCount);
 
-            return from place in allFoodPlaces
-                   orderby GetDistance(UserLocation, place)
-                   where GetDistance(UserLocation, place) <= maxKilometers
-                   select place;
-        }
-
-        /// <summary>
-        /// Sorts deals by the percentage of change in cost. Takes the first 'offerCount' of them.
-        /// </summary>
-        public IEnumerable<Deal> GetSpecialOffers(List<Deal> allDeals, int offerCount)
-        {
-            return (
-                   from deal in allDeals
-                   orderby deal.DealCosts.PriceChange()
-                   select deal
-                   )
-                   .Take(offerCount);
-        }
-
-        /// <summary>
-        /// Sorts food places by the number of ratings.
-        /// </summary>
-        public IEnumerable<FoodPlace> GetPopularFoodPlaces(List<FoodPlace> allFoodPlaces, int offerCount)
-        {
-            return (
-                   from place in allFoodPlaces
-                   orderby -place.RatingCount
-                   select place
-                   )
-                   .Take(offerCount);
+            popularFoodPlacesCollectionView.ItemsSource =
+                DummyAPI.DataFilters.GetPopularFoodPlaces(App.AllFoodPlaces, MaxPopularPlacesCount);
         }
 
         /// <summary>
