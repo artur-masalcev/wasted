@@ -71,7 +71,7 @@ namespace Wasted
         {
             return (
                    from deal in allDeals
-                   orderby deal.DealCosts.Change()
+                   orderby deal.DealCosts.PriceChange()
                    select deal
                    )
                    .Take(offerCount);
