@@ -29,7 +29,8 @@ namespace Wasted
             HashMaps.AddFoodPlacesToDeals(AllFoodPlaces, AllDeals);
 
             InitializeComponent();
-            MainPage = new NavigationPage(new MainPage());
+
+            MainPage = new LoginPage();
         }
 
         public void GetData()

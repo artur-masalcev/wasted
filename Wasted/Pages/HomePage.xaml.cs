@@ -29,7 +29,7 @@ namespace Wasted
 
 
         /// <summary>
-        /// Gets user location.
+        /// Gets user location. Not fully working
         /// </summary>
         public async Task GetLocation()
         {
