@@ -199,6 +199,8 @@
 			<Setter Property="TextColor" Value="{StaticResource TextBlack}" />
 			<Setter Property="FontSize" Value="25" />
 			<Setter Property="HorizontalOptions" Value="EndAndExpand" />
+			<Setter Property="BorderColor" Value="Transparent"/>
+			<Setter Property="BackgroundColor" Value="Transparent"/>
 		</Style>
 
 		<Style x:Key="ConfirmButton" TargetType="Button"
