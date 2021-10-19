@@ -17,7 +17,8 @@ namespace Wasted
     {
         public Location UserLocation { get; set; }
 
-        const int MaxNearbyPlacesCount = 50;
+        const int MaxRadiusInKilometers = 50;
+        const int MaxNearbyPlacesCount = 10;
         const int MaxSpecialOffersCount = 10;
         const int MaxPopularPlacesCount = 10;
 
@@ -46,7 +47,7 @@ namespace Wasted
             base.OnAppearing();
 
             nearbyFoodPlacesCollectionView.ItemsSource =
-                DummyAPI.DataFilters.GetNearbyPlaces(App.AllFoodPlaces, UserLocation, MaxNearbyPlacesCount);
+                DummyAPI.DataFilters.GetNearbyPlaces(App.AllFoodPlaces, UserLocation, MaxNearbyPlacesCount, MaxRadiusInKilometers);
 
             specialOffersCollectionView.ItemsSource =
                 DummyAPI.DataFilters.GetSpecialOffers(App.AllDeals, MaxSpecialOffersCount);

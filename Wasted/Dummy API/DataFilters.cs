@@ -16,15 +16,18 @@ namespace Wasted.DummyAPI
         /// <summary>
         /// Sorts food places by the location to the user.
         /// </summary>
-        public static IEnumerable<FoodPlace> GetNearbyPlaces(List<FoodPlace> allFoodPlaces, Location UserLocation, int maxKilometers)
+        public static IEnumerable<FoodPlace> GetNearbyPlaces(List<FoodPlace> allFoodPlaces, Location userLocation, int offerCount, int maxRadiusInKilometers)
         {
             Func<Location, FoodPlace, double> GetDistance =
                 (location, place) => Location.CalculateDistance(location, place.PlaceLocation, DistanceUnits.Kilometers);
 
-            return from place in allFoodPlaces
-                   orderby GetDistance(UserLocation, place)
-                   where GetDistance(UserLocation, place) <= maxKilometers
-                   select place;
+            return (
+                   from place in allFoodPlaces
+                   orderby GetDistance(userLocation, place)
+                   where GetDistance(userLocation, place) <= maxRadiusInKilometers
+                   select place
+                   )
+                   .Take(offerCount);
         }
 
         /// <summary>
