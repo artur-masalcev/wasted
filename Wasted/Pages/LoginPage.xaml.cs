@@ -21,9 +21,13 @@ namespace Wasted
         {
             string userName = "";
             string userPassword = "";
+
             if (UserProvider.UserExists(userName, userPassword))
             {
                 int userID = UserProvider.GetUserID(userName, userPassword);
+                IUserService userService = DependencyService.Get<IUserService>();
+                userService.SetUserID(userID);
+
                 await Navigation.PushModalAsync(new NavigationPage(new MainPage()));
             }
             else

@@ -4,6 +4,8 @@ using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.FoodPlaceRatingSystem;
+using Wasted.Utils;
+using Xamarin.Forms;
 
 namespace Wasted
 {
@@ -16,6 +18,8 @@ namespace Wasted
         public String RatingEmoji { get; set; }
         public String RatingComment { get; set; }
 
+        public IUserService userService { get; set; }
+
         /// <summary>
         /// Initialiser for RatingPopup class
         /// </summary>
@@ -25,7 +29,9 @@ namespace Wasted
             SelectedFoodPlace = foodPlace;
             InitializeComponent();
 
-            Dictionary<int, int> userRatings = App.Ratings[App.UserID];
+            userService = DependencyService.Get<IUserService>();
+            Dictionary<int, int> userRatings = App.Ratings[userService.GetUserID()];
+
             if (userRatings.ContainsKey(foodPlace.ID)) //Sets value to the user's previous rating
             {
                 ratingBar.SelectedStarValue = userRatings[foodPlace.ID];
@@ -35,10 +41,11 @@ namespace Wasted
             ratingComment.BindingContext = this;
         }
 
+
         private void OnConfirmClicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync(true); // Close the popup
-            FoodPlaceRatingModifier.SetUserVote(App.UserID, SelectedFoodPlace, Rating);
+            FoodPlaceRatingModifier.SetUserVote(userService.GetUserID(), SelectedFoodPlace, Rating);
 
         }
 

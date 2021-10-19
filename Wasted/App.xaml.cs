@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Wasted.Dummy_API;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.DummyDataAPI;
+using Wasted.Utils;
 using Xamarin.Forms;
 
 namespace Wasted
@@ -16,8 +17,6 @@ namespace Wasted
         public static List<FoodPlace> AllFoodPlaces { get; set; }
         public static List<Deal> AllDeals { get; set; }
 
-        public static int UserID => 8080;
-
         //                     UserID FoodPlaceID  Given rating
         public static Dictionary<int, Dictionary<int, int>> Ratings { get; set; }
 
@@ -25,6 +24,8 @@ namespace Wasted
 
         public App()
         {
+            DependencyService.Register<UserService>();
+
             Task.Run(() => GetData()).Wait();
             HashMaps.AddFoodPlacesToDeals(AllFoodPlaces, AllDeals);
 
