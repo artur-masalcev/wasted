@@ -11,7 +11,7 @@ namespace Wasted
     {
         public FoodPlace SelectedFoodPlace { get; set; }
         public int FoodPlaceID { get; }
-        public int Rating => ratingBar.SelectedStarValue;
+        public int RatingBarRating => ratingBar.SelectedStarValue;
   
         public String RatingEmoji { get; set; }
         public String RatingComment { get; set; }
@@ -50,8 +50,8 @@ namespace Wasted
         /// </summary>
         private void UpdateAssociationView()
         {
-            ratingEmoji.Text = RatingToAssociation.ConvertToEmoji(Rating);
-            ratingComment.Text = RatingToAssociation.ConvertToComment(Rating);
+            ratingEmoji.Text = RatingToAssociation.ConvertToEmoji(RatingBarRating);
+            ratingComment.Text = RatingToAssociation.ConvertToComment(RatingBarRating);
         }
     }
 }
