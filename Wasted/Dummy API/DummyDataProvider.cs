@@ -27,7 +27,6 @@ namespace Wasted.DummyDataAPI
         /// </summary>
         private const string RatingsJSONPath = "Wasted.Dummy_API.Dummy_Data.Ratings.json";
 
-
         /// <summary>
         /// Place types that are shown in the search page
         /// </summary>
