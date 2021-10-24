@@ -8,6 +8,8 @@
             <Entry x:Name="Password" />
             <Button Text="Login"
                 Clicked="LoginClicked"/>
+            <Button Text="Sign up"
+                Clicked="SignUpClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

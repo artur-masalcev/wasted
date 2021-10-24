@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wasted.Pages;
 using Wasted.Utils;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -34,6 +36,11 @@ namespace Wasted
             {
                 await DisplayAlert("", "Username or password is incorrect. Try Again.", "OK");
             }
+        }
+
+        private void SignUpClicked(object sender, EventArgs e)
+        {
+            PopupNavigation.Instance.PushAsync(new UserRegistrationPopup());
         }
     }
 }
