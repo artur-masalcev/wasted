@@ -60,26 +60,37 @@ namespace Wasted.DummyDataAPI
             return JsonConvert.DeserializeObject<Dictionary<int, Dictionary<int, int>>>(ratingJson);
         }
 
+        public static async Task<Dictionary<string, Dictionary<string, int>>> GetUsers(HttpClient client)
+        {
+            string userJson = await client.GetStringAsync(linkStart + "users");
+            return JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, int>>>(userJson);
+        }
+
 
         public static async Task WriteFoodPlaces(HttpClient client, List<FoodPlace> AllFoodPlaces)
         {
-            string content = JsonConvert.SerializeObject(JsonConvert.SerializeObject(AllFoodPlaces));
-            StringContent sc = new StringContent(content, Encoding.UTF8, "application/json");
-            await client.PostAsync(linkStart + "foodplaces/add", sc);
+            await client.PostAsync(linkStart + "foodplaces/add", GetStringContent(AllFoodPlaces));
         }
 
         public static async Task WriteDeals(HttpClient client, List<Deal> AllDeals)
         {
-            string content = JsonConvert.SerializeObject(JsonConvert.SerializeObject(AllDeals));
-            StringContent sc = new StringContent(content, Encoding.UTF8, "application/json");
-            await client.PostAsync(linkStart + "deals/add", sc);
+            await client.PostAsync(linkStart + "deals/add", GetStringContent(AllDeals));
         }
 
         public static async Task WriteRatings(HttpClient client, Dictionary<int, Dictionary<int, int>> Ratings)
         {
-            string content = JsonConvert.SerializeObject(JsonConvert.SerializeObject(Ratings));
-            StringContent sc = new StringContent(content, Encoding.UTF8, "application/json");
-            await client.PostAsync(linkStart + "ratings/add", sc);
+            await client.PostAsync(linkStart + "ratings/add", GetStringContent(Ratings));
+        }
+
+        public static async Task WriteUsers(HttpClient client, Dictionary<string, Dictionary<string, int>> Users)
+        {
+            await client.PostAsync(linkStart + "users/add", GetStringContent(Users));
+        }
+
+        public static StringContent GetStringContent(object obj)
+        {
+            string content = JsonConvert.SerializeObject(JsonConvert.SerializeObject(obj));
+            return new StringContent(content, Encoding.UTF8, "application/json");
         }
     }
 }

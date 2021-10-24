@@ -19,6 +19,8 @@ namespace Wasted
 
         //                     UserID FoodPlaceID  Given rating
         public static Dictionary<int, Dictionary<int, int>> Ratings { get; set; }
+        //                  username  password   userID
+        public static Dictionary<string, Dictionary<string, int>> Users { get; set; }
 
         private HttpClient client;
 
@@ -40,6 +42,7 @@ namespace Wasted
             AllFoodPlaces = DummyDataProvider.GetFoodPlaces(client).Result;
             AllDeals = DummyDataProvider.GetDeals(client).Result;
             Ratings = DummyDataProvider.GetRatings(client).Result;
+            Users = DummyDataProvider.GetUsers(client).Result;
         }
 
         protected override void OnSleep()
@@ -54,6 +57,7 @@ namespace Wasted
             DummyDataProvider.WriteFoodPlaces(client, AllFoodPlaces).Wait();
             DummyDataProvider.WriteDeals(client, AllDeals).Wait();
             DummyDataProvider.WriteRatings(client, Ratings).Wait();
+            DummyDataProvider.WriteUsers(client, Users).Wait();
         }
 
         protected override void OnResume()

@@ -19,14 +19,14 @@ namespace Wasted
 
         private async void LoginClicked(object sender, EventArgs e)
         {
-            string userName = "";
-            string userPassword = "";
+            string userName = Username.Text;
+            string userPassword = Password.Text;
 
             if (UserProvider.UserExists(userName, userPassword))
             {
                 int userID = UserProvider.GetUserID(userName, userPassword);
                 IUserService userService = DependencyService.Get<IUserService>();
-                userService.SetUserID(userID);
+                userService.SetUserID(userID); //Sets user id for whole app
 
                 await Navigation.PushModalAsync(new NavigationPage(new MainPage()));
             }

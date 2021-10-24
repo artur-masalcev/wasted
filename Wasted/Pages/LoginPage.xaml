@@ -4,9 +4,9 @@
              x:Class="Wasted.LoginPage">
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand"
+            <Entry x:Name="Username" />
+            <Entry x:Name="Password" />
+            <Button Text="Login"
                 Clicked="LoginClicked"/>
         </StackLayout>
     </ContentPage.Content>

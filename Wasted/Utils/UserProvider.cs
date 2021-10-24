@@ -8,12 +8,13 @@ namespace Wasted.Utils
     {
         public static bool UserExists(string name, string password)
         {
-            return true;
+            return name != null && App.Users.ContainsKey(name) &&
+                password != null && App.Users[name].ContainsKey(password);
         }
 
         public static int GetUserID(string name, string password)
         {
-            return 8080;
+            return App.Users[name][password];
         }
     }
 }
