@@ -30,7 +30,10 @@ namespace Wasted
             InitializeComponent();
 
             userService = DependencyService.Get<IUserService>();
-            Dictionary<int, int> userRatings = App.Ratings[userService.GetUserID()];
+            int id = userService.GetUserID();
+            if (!App.Ratings.ContainsKey(id))
+                App.Ratings[id] = new Dictionary<int, int>();
+            Dictionary<int, int> userRatings = App.Ratings[id];
 
             if (userRatings.ContainsKey(foodPlace.ID)) //Sets value to the user's previous rating
             {

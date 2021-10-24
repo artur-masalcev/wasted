@@ -30,8 +30,10 @@ namespace Wasted.Pages
             {
                 if(!UserProvider.UserExists(userName, userPassword))
                 {
-                    var dictionary = new Dictionary<string, int>();
-                    dictionary.Add(userPassword, App.Users.Count);
+                    var dictionary = new Dictionary<string, int>
+                    {
+                        { userPassword, App.Users.Count }
+                    };
                     App.Users.Add(userName, dictionary);
                     PopupNavigation.Instance.PopAsync(true);
                 }
@@ -42,7 +44,7 @@ namespace Wasted.Pages
             }
             else
             {
-                DisplayAlert("", "Passwords do not match. ", "OK");
+                DisplayAlert("", "Passwords do not match.", "OK");
             }
         }
     }

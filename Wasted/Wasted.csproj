@@ -63,7 +63,7 @@
     <Compile Update="Pages\Deals\DealPage.xaml.cs">
       <DependentUpon>DealPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Pages\LoginPage.xaml.cs">
+    <Compile Update="Pages\Login\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -80,7 +80,7 @@
     <EmbeddedResource Update="Pages\Deals\DealPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\LoginPage.xaml">
+    <EmbeddedResource Update="Pages\Login\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\SearchPage.xaml">
