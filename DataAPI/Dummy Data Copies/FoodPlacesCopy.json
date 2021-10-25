@@ -18,7 +18,7 @@
   {
     "id": 2,
     "title": "Sushi Express",
-    "placeType" :  0,
+    "placeType": 0,
     "description": "Sushi restaurant\nMost offers between 20:00-21:00",
     "longitude": 54.687779,
     "latitude": 25.279760,

@@ -6,13 +6,13 @@
     x:Class="Wasted.Pages.Deals.OrderPopup">
 
     <!--#region Order view-->
-    <StackLayout VerticalOptions="Center">
-        <Frame CornerRadius="20" BackgroundColor="White" Margin="8, 0, 8, 0">
+    <StackLayout x:Name="orderView" Style="{StaticResource DealCardViewLayout}"
+                 VerticalOptions="Center">
+        <StackLayout BackgroundColor="White">
 
-            <StackLayout x:Name="orderView">
-            <Button Style="{StaticResource CancelButton}" Clicked="OnCancelClicked"  WidthRequest="75"/>
-
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <StackLayout Orientation="Horizontal"
+                    HorizontalOptions="Center"
+                    Spacing="20">
                 <Label x:Name="countLabel" Style="{StaticResource RatingLabel}"
                         Text="{Binding SelectedCount, StringFormat='Count: {0}'}" />
 
@@ -24,11 +24,13 @@
 
             </StackLayout>
 
-            <Button Style="{StaticResource ConfirmButton}" Clicked="OnConfirmClicked" WidthRequest="220"/>
+            <StackLayout Style="{StaticResource ConfirmCancelLayout}">
+                <Button Style="{StaticResource CancelButton}" Clicked="OnCancelClicked"  WidthRequest="75"/>
+                <Button Style="{StaticResource ConfirmButton}" Clicked="OnConfirmClicked" WidthRequest="220"/>
             </StackLayout>
 
-        </Frame>
+        </StackLayout>
     </StackLayout>
     <!--#endregion-->
-    
+
 </pages:PopupPage>

@@ -8,6 +8,7 @@ using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using System;
 using Xamarin.Essentials;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Wasted
 {
@@ -24,19 +25,29 @@ namespace Wasted
 
         public HomePage()
         {
+            GetLocation().Wait();
             InitializeComponent();
-            UserLocation = GetLocation().Result;
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
         }
 
         /// <summary>
-        /// Gets user location.
+        /// Gets user location. Not fully working
         /// </summary>
-        public async Task<Location> GetLocation()
+        public async Task GetLocation()
         {
-            //Uncomment this for the first time, then comment it later. GPS should be available
-            //await Geolocation.GetLocationAsync();
-            return await Geolocation.GetLastKnownLocationAsync();
+            var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+            if (status == PermissionStatus.Granted)
+            {
+                Task.Run(async () => UserLocation = await Geolocation.GetLocationAsync(
+                    new GeolocationRequest(GeolocationAccuracy.Default, TimeSpan.FromSeconds(1)))).Wait();
+            }
+            else
+            {
+                var statusAsync = Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+                new Thread(() => statusAsync.GetAwaiter().GetResult()).Start();
+                Thread.Sleep(5);
+                await GetLocation();
+            }            
         }
 
         /// <summary>

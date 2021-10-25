@@ -15,7 +15,16 @@ namespace Wasted.DummyAPI.BusinessObjects
 
         public Costs DealCosts { get; set; }
 
-        public int Quantity { get; set; }
+        public int quantity = 0;
+        public int Quantity
+        {
+            get { return quantity; }
+            set
+            {
+                quantity = value;
+                OnPropertyChanged();
+            }
+        }
         public string Due { get; set; }
         public string ImageURL { get; set; }
 
@@ -39,6 +48,7 @@ namespace Wasted.DummyAPI.BusinessObjects
             Quantity = quantity;
             Due = due;
             ImageURL = imageURL;
+
         }
     }
 }

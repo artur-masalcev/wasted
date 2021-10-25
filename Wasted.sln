@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wasted.Android", "Wasted.An
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wasted.iOS", "Wasted.iOS\Wasted.iOS.csproj", "{CE376137-ADA2-4CE8-9363-0D16B4903627}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wasted", "Wasted\Wasted.csproj", "{CD72773B-6891-4AF8-9F2C-DF849075C540}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wasted", "Wasted\Wasted.csproj", "{CD72773B-6891-4AF8-9F2C-DF849075C540}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAPI", "DataAPI\DataAPI.csproj", "{80011834-817A-4FE0-ABD9-02C704424F83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +75,18 @@ Global
 		{CD72773B-6891-4AF8-9F2C-DF849075C540}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{CD72773B-6891-4AF8-9F2C-DF849075C540}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{CD72773B-6891-4AF8-9F2C-DF849075C540}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
+		{80011834-817A-4FE0-ABD9-02C704424F83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80011834-817A-4FE0-ABD9-02C704424F83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80011834-817A-4FE0-ABD9-02C704424F83}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{80011834-817A-4FE0-ABD9-02C704424F83}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{80011834-817A-4FE0-ABD9-02C704424F83}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{80011834-817A-4FE0-ABD9-02C704424F83}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{80011834-817A-4FE0-ABD9-02C704424F83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80011834-817A-4FE0-ABD9-02C704424F83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80011834-817A-4FE0-ABD9-02C704424F83}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{80011834-817A-4FE0-ABD9-02C704424F83}.Release|iPhone.Build.0 = Release|Any CPU
+		{80011834-817A-4FE0-ABD9-02C704424F83}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{80011834-817A-4FE0-ABD9-02C704424F83}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

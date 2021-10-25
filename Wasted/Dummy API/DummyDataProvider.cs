@@ -2,8 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
+using System.Configuration;
+using System.Reflection;
+using Xamarin.Forms;
+using System.Text;
+using Wasted.Dummy_API.Business_Objects;
 
 namespace Wasted.DummyDataAPI
 {
@@ -12,20 +19,8 @@ namespace Wasted.DummyDataAPI
     /// </summary>
     public class DummyDataProvider
     {
-        /// <summary>
-        /// Path to food providers embeedded resource JSON file
-        /// </summary>
-        private const string FoodPlacesJSONPath = "Wasted.Dummy_API.Dummy_Data.FoodPlaces.json";
-
-        /// <summary>
-        /// Path to deals embeedded resource JSON file
-        /// </summary>
-        private const string DealsJSONPath = "Wasted.Dummy_API.Dummy_Data.Deals.json";
-
-        /// <summary>
-        /// Path to foodPlace ratings embeedded resource JSON file
-        /// </summary>
-        private const string RatingsJSONPath = "Wasted.Dummy_API.Dummy_Data.Ratings.json";
+        public static string IP = ConfigurationProperties.LocalIPAddress;
+        public static string linkStart = "http://" + IP + ":5001/";
 
         /// <summary>
         /// Place types that are shown in the search page
@@ -47,58 +42,45 @@ namespace Wasted.DummyDataAPI
             return indexDictionary;
         }
 
-        /// <summary>
-        /// Provides a list of all food providers in JSON format string
-        /// </summary>
-        /// <returns>string containing all food providers in JSON format</returns>
-        public static string GetFoodPlaces()
+
+        public static async Task<List<FoodPlace>> GetFoodPlaces(HttpClient client)
         {
-            return EmbeddedDataReader.ReadString(FoodPlacesJSONPath);
+            string foodPlaceJson = await client.GetStringAsync(linkStart + "foodplaces");
+            return JsonConvert.DeserializeObject<List<FoodPlace>>(foodPlaceJson);
         }
 
-        /// <summary>
-        /// Provides a list of all deals in JSON format string
-        /// </summary>
-        /// <returns>string containing all deals in JSON format</returns>
-        public static string GetDeals()
+        public static async Task<List<Deal>> GetDeals(HttpClient client)
         {
-            return EmbeddedDataReader.ReadString(DealsJSONPath);
+            string dealJson = await client.GetStringAsync(linkStart + "deals");
+            return JsonConvert.DeserializeObject<List<Deal>>(dealJson);
         }
 
-        /// <summary>
-        /// Provides a list of all deals in JSON format string
-        /// </summary>
-        /// <returns>string containing all deals in JSON format</returns>
-        public static string GetRatings()
+        public static async Task<Dictionary<string, User>> GetUsers(HttpClient client)
         {
-            return EmbeddedDataReader.ReadString(RatingsJSONPath);
+            string userJson = await client.GetStringAsync(linkStart + "users");
+            return JsonConvert.DeserializeObject<Dictionary<string, User>>(userJson);
         }
 
-        /// <summary>
-        /// Provides a list of all food providers in List<FoodPlace> format
-        /// </summary>
-        /// <returns>list containing all food providers from JSON data</returns>
-        public static IEnumerable<FoodPlace> GetFoodPlacesList()
+
+        public static async Task WriteFoodPlaces(HttpClient client, List<FoodPlace> AllFoodPlaces)
         {
-            return JsonConvert.DeserializeObject<List<FoodPlace>>(GetFoodPlaces());
+            await client.PostAsync(linkStart + "foodplaces/add", GetStringContent(AllFoodPlaces));
         }
 
-        /// <summary>
-        /// Provides a list of all deals in List<FoodPlace> format
-        /// </summary>
-        /// <returns>list containing all deals from JSON data</returns>
-        public static IEnumerable<Deal> GetDealsList()
+        public static async Task WriteDeals(HttpClient client, List<Deal> AllDeals)
         {
-            return JsonConvert.DeserializeObject<List<Deal>>(GetDeals());
+            await client.PostAsync(linkStart + "deals/add", GetStringContent(AllDeals));
         }
 
-        /// <summary>
-        /// Provides a dictionary in <UserID, <FoodPlaceID, Rating>> format
-        /// </summary>
-        /// <returns>dictionary containing all ratings from user</returns>
-        public static Dictionary<int, Dictionary<int, int>> GetRatingsDictionary()
+        public static async Task WriteUsers(HttpClient client, Dictionary<string, User> Users)
         {
-            return JsonConvert.DeserializeObject<Dictionary<int, Dictionary<int, int>>>(GetRatings());
+            await client.PostAsync(linkStart + "users/add", GetStringContent(Users));
+        }
+
+        public static StringContent GetStringContent(object obj)
+        {
+            string content = JsonConvert.SerializeObject(JsonConvert.SerializeObject(obj));
+            return new StringContent(content, Encoding.UTF8, "application/json");
         }
     }
 }

@@ -14,7 +14,6 @@
 	    <Compile Remove="Images\**" />
 	    <EmbeddedResource Remove="Images\**" />
 	    <None Remove="Images\**" />
-	    <None Remove="Dummy API\Dummy Data\Ratings.json" />
 	    <None Remove="Xamarin.Rating" />
 	    <None Remove="Rg.Plugins.Popup" />
 	    <None Remove="FoodPlaceRatingSystem\" />
@@ -29,6 +28,7 @@
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.1.0.514" />
     <PackageReference Include="Sharpnado.MaterialFrame" Version="1.2.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
@@ -48,16 +48,10 @@
     <None Remove="Images\outline_search_black_24dp.png" />
     <None Remove="Utils\" />
     <None Remove="Dummy API\Business Objects\" />
-    <None Remove="Dummy API\Dummy Data\FoodPlaces.json" />
     <None Remove="Newtonsoft.Json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FoodPlaceRatingSystem\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Dummy API\Dummy Data\Deals.json" />
-    <EmbeddedResource Include="Dummy API\Dummy Data\FoodPlaces.json" />
-    <EmbeddedResource Include="Dummy API\Dummy Data\Ratings.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Pages\Deals\OrderPopup.xaml.cs">
@@ -68,6 +62,9 @@
     </Compile>
     <Compile Update="Pages\Deals\DealPage.xaml.cs">
       <DependentUpon>DealPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Login\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +78,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Deals\DealPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Login\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\SearchPage.xaml">
