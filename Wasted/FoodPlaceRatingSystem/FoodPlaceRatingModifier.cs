@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
 
 namespace Wasted.FoodPlaceRatingSystem
@@ -30,16 +31,15 @@ namespace Wasted.FoodPlaceRatingSystem
         /// <param name="NewRating">Rating for the food place</param>
         /// 
 
-        public static void SetUserVote(int userID, FoodPlace selectedFoodPlace, int newRating)
+        public static void SetUserVote(User user, FoodPlace selectedFoodPlace, int newRating)
         {
             int key = selectedFoodPlace.ID;
-            Dictionary<int, int> userRatings = App.Ratings[userID];
 
-            if (userRatings.ContainsKey(key))
-                ResetRating(selectedFoodPlace, userRatings[key]);
+            if (user.Ratings.ContainsKey(key))
+                ResetRating(selectedFoodPlace, user.Ratings[key]);
 
             selectedFoodPlace.Rating = newRating;
-            userRatings[key] = newRating;
+            user.Ratings[key] = newRating;
         }
     }
 }

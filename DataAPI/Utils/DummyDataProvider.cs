@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using Wasted.DummyAPI.BusinessObjects;
-
 namespace DataAPI.Utils
 {
     /// <summary>
@@ -15,7 +13,6 @@ namespace DataAPI.Utils
 
         public static string FoodPlacesJSONPath => "Dummy Data/FoodPlaces.json";
         public static string DealsJSONPath => "Dummy Data/Deals.json";
-        public static string RatingsJSONPath => "Dummy Data/Ratings.json";
         public static string UsersJSONPath => "Dummy Data/Users.json";
 
         public static void WriteText(string path, string content)

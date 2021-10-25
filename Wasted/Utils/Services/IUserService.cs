@@ -1,8 +1,10 @@
-﻿namespace Wasted.Utils
+﻿using Wasted.Dummy_API.Business_Objects;
+
+namespace Wasted.Utils
 {
     public interface IUserService
     {
-        int GetUserID();
-        void SetUserID(int UserID);
+        User GetUser();
+        void SetUser(User user);
     }
 }

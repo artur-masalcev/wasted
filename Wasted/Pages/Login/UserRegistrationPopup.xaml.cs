@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Wasted.Utils;
+using Wasted.Dummy_API.Business_Objects;
 
 namespace Wasted.Pages
 {
@@ -28,13 +29,10 @@ namespace Wasted.Pages
 
             if (userPassword.Equals(repeatedPassword))
             {
-                if(!UserProvider.UserExists(userName, userPassword))
-                {
-                    var dictionary = new Dictionary<string, int>
-                    {
-                        { userPassword, App.Users.Count }
-                    };
-                    App.Users.Add(userName, dictionary);
+                if(!App.Users.ContainsKey(userName))
+                { 
+                    App.Users.Add(userName,
+                        new User(userName, userPassword));
                     PopupNavigation.Instance.PopAsync(true);
                 }
                 else

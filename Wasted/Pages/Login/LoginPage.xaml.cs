@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wasted.Dummy_API.Business_Objects;
 using Wasted.Pages;
 using Wasted.Utils;
 using Xamarin.Forms;
@@ -24,11 +25,11 @@ namespace Wasted
             string userName = Username.Text;
             string userPassword = Password.Text;
 
-            if (UserProvider.UserExists(userName, userPassword))
+            if (App.Users.ContainsKey(userName))
             {
-                int userID = UserProvider.GetUserID(userName, userPassword);
+                User user = App.Users[userName];
                 IUserService userService = DependencyService.Get<IUserService>();
-                userService.SetUserID(userID); //Sets user id for whole app
+                userService.SetUser(user); //Sets user id for whole app
 
                 await Navigation.PushModalAsync(new NavigationPage(new MainPage()));
             }

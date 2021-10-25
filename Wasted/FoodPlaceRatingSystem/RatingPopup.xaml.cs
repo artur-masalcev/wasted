@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
+using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.FoodPlaceRatingSystem;
 using Wasted.Utils;
@@ -30,14 +31,11 @@ namespace Wasted
             InitializeComponent();
 
             userService = DependencyService.Get<IUserService>();
-            int id = userService.GetUserID();
-            if (!App.Ratings.ContainsKey(id))
-                App.Ratings[id] = new Dictionary<int, int>();
-            Dictionary<int, int> userRatings = App.Ratings[id];
+            User user = userService.GetUser();
 
-            if (userRatings.ContainsKey(foodPlace.ID)) //Sets value to the user's previous rating
+            if (user.Ratings.ContainsKey(foodPlace.ID)) //Sets value to the user's previous rating
             {
-                ratingBar.SelectedStarValue = userRatings[foodPlace.ID];
+                ratingBar.SelectedStarValue = user.Ratings[foodPlace.ID];
             }
             foodPlaceTitleLabel.BindingContext = SelectedFoodPlace;
             ratingEmoji.BindingContext = this;
@@ -48,7 +46,7 @@ namespace Wasted
         private void OnConfirmClicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync(true); // Close the popup
-            FoodPlaceRatingModifier.SetUserVote(userService.GetUserID(), SelectedFoodPlace, Rating);
+            FoodPlaceRatingModifier.SetUserVote(userService.GetUser(), SelectedFoodPlace, Rating);
 
         }
 

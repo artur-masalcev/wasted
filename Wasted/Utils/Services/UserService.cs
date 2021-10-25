@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Wasted.Dummy_API.Business_Objects;
 using Wasted.Utils;
 using Xamarin.Forms;
 
@@ -9,15 +10,15 @@ namespace Wasted.Utils
 {
     public class UserService : IUserService
     {
-        private int UserID;
-        public int GetUserID()
+        private User user;
+        public User GetUser()
         {
-            return UserID;
+            return user;
         }
 
-        public void SetUserID(int UserID)
+        public void SetUser(User user)
         {
-            this.UserID = UserID;
+            this.user = user;
         }
     }
 }

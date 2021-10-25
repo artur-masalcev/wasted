@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Reflection;
 using Xamarin.Forms;
 using System.Text;
+using Wasted.Dummy_API.Business_Objects;
 
 namespace Wasted.DummyDataAPI
 {
@@ -54,16 +55,10 @@ namespace Wasted.DummyDataAPI
             return JsonConvert.DeserializeObject<List<Deal>>(dealJson);
         }
 
-        public static async Task<Dictionary<int, Dictionary<int, int>>> GetRatings(HttpClient client)
-        {
-            string ratingJson = await client.GetStringAsync(linkStart + "ratings");
-            return JsonConvert.DeserializeObject<Dictionary<int, Dictionary<int, int>>>(ratingJson);
-        }
-
-        public static async Task<Dictionary<string, Dictionary<string, int>>> GetUsers(HttpClient client)
+        public static async Task<Dictionary<string, User>> GetUsers(HttpClient client)
         {
             string userJson = await client.GetStringAsync(linkStart + "users");
-            return JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, int>>>(userJson);
+            return JsonConvert.DeserializeObject<Dictionary<string, User>>(userJson);
         }
 
 
@@ -77,12 +72,7 @@ namespace Wasted.DummyDataAPI
             await client.PostAsync(linkStart + "deals/add", GetStringContent(AllDeals));
         }
 
-        public static async Task WriteRatings(HttpClient client, Dictionary<int, Dictionary<int, int>> Ratings)
-        {
-            await client.PostAsync(linkStart + "ratings/add", GetStringContent(Ratings));
-        }
-
-        public static async Task WriteUsers(HttpClient client, Dictionary<string, Dictionary<string, int>> Users)
+        public static async Task WriteUsers(HttpClient client, Dictionary<string, User> Users)
         {
             await client.PostAsync(linkStart + "users/add", GetStringContent(Users));
         }

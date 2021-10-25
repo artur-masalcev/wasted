@@ -5,6 +5,7 @@ using System.Collections.Specialized;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Wasted.Dummy_API;
+using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.DummyDataAPI;
 using Wasted.Utils;
@@ -16,11 +17,8 @@ namespace Wasted
     {
         public static List<FoodPlace> AllFoodPlaces { get; set; }
         public static List<Deal> AllDeals { get; set; }
-
-        //                     UserID FoodPlaceID  Given rating
-        public static Dictionary<int, Dictionary<int, int>> Ratings { get; set; }
-        //                  username  password   userID
-        public static Dictionary<string, Dictionary<string, int>> Users { get; set; }
+        //                       username
+        public static Dictionary<string, User> Users { get; set; }
 
         private HttpClient client;
 
@@ -41,22 +39,18 @@ namespace Wasted
             client = new HttpClient();
             AllFoodPlaces = DummyDataProvider.GetFoodPlaces(client).Result;
             AllDeals = DummyDataProvider.GetDeals(client).Result;
-            Ratings = DummyDataProvider.GetRatings(client).Result;
             Users = DummyDataProvider.GetUsers(client).Result;
         }
 
         protected override void OnSleep()
         {
             Task.Run(() => WriteData()).Wait();
-            
-            //TODO: write data to API
         }
 
         public void WriteData()
         {
             DummyDataProvider.WriteFoodPlaces(client, AllFoodPlaces).Wait();
             DummyDataProvider.WriteDeals(client, AllDeals).Wait();
-            DummyDataProvider.WriteRatings(client, Ratings).Wait();
             DummyDataProvider.WriteUsers(client, Users).Wait();
         }
 
