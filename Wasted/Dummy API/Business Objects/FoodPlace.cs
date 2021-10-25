@@ -26,18 +26,8 @@ namespace Wasted.DummyAPI.BusinessObjects
 
         public int RatingCount { get; set; }
 
-        private double rating;
+        public double Rating { get; set; }
 
-        public double Rating
-        {
-            get { return rating; }
-            set
-            {                
-                rating = (value + rating * RatingCount) / (RatingCount + 1);
-                ++RatingCount;
-                OnPropertyChanged();
-            }
-        }
         public string LogoURL { get; set; }
         public string HeaderURL { get; set; }
         public int[] DealsIDs { get; set; }
@@ -60,7 +50,7 @@ namespace Wasted.DummyAPI.BusinessObjects
             Street = street;
             City = city;
             WorkingHours = workingHours;
-            this.rating = rating;
+            Rating = rating;
             RatingCount = ratingCount;
             LogoURL = logoURL;
             HeaderURL = headerURL;

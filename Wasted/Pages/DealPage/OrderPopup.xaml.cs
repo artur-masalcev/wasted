@@ -38,20 +38,8 @@ namespace Wasted.Pages.Deals
             PopupNavigation.Instance.PopAsync(true); // Close the popup
             bool selectedSomething = stepper.Value != 0;
 
-            if (SelectedDeal.Quantity == stepper.Value)
-            {
-                stepper.Maximum = 1; //Prevents crashing from invalid maximum - 0
-                SelectedDeal.Quantity = 0;
-            }
-            else
-            {
-                SelectedDeal.Quantity -= (int)stepper.Value;
-                stepper.Value = 0;
-            }
-
             if (selectedSomething)
                 Acr.UserDialogs.UserDialogs.Instance.Toast("Order confirmed", new TimeSpan(3));
-
         }
 
         public void OnCancelClicked(object sender, EventArgs e)

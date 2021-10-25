@@ -18,7 +18,7 @@ namespace Wasted.Dummy_API.Business_Objects
         /// <summary>
         /// Percentage of current cost compared to previous cost. Used in ordering deals
         /// </summary>
-        public double Change()
+        public double PriceChange()
         {
             return CurrentCost / PreviousCost;
         }
