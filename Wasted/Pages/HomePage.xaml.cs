@@ -8,6 +8,7 @@ using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using System;
 using Xamarin.Essentials;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Wasted
 {

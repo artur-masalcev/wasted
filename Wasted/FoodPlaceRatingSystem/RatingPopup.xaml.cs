@@ -46,7 +46,7 @@ namespace Wasted
         private void OnConfirmClicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync(true); // Close the popup
-            FoodPlaceRatingModifier.SetUserVote(userService.GetUser(), SelectedFoodPlace, Rating);
+            FoodPlaceRatingModifier.SetUserVote(userService.GetUser(), SelectedFoodPlace, RatingBarRating);
 
         }
 

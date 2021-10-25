@@ -14,17 +14,15 @@ namespace Wasted.Dummy_API
 
         // Map from food place type to food place //
         public static List<FoodPlace>[] FoodPlaceTypeHashMap { get; set; } = InitializeFoodPlaceTypeHashMap();
-
         public static List<FoodPlace>[] InitializeFoodPlaceTypeHashMap()
         {
-            var length = DummyDataProvider.placeTypes.Length;
-            var map = new List<FoodPlace>[length];
+            int length = DummyDataProvider.placeTypes.Length;
+            List<FoodPlace>[] map = new List<FoodPlace>[length];
 
             for (int i = 0; i < length; ++i)
             {
                 map[i] = new List<FoodPlace>();
             }
-
             return map;
         }
 
@@ -46,7 +44,7 @@ namespace Wasted.Dummy_API
                 foreach (Deal deal in query)
                 {
                     foodPlace.Deals.Add(deal);
-                    deal.FoodPlaces.Add(foodPlace); 
+                    deal.FoodPlaces.Add(foodPlace);
                 }
             }
         }
