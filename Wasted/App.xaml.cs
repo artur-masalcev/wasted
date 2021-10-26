@@ -31,7 +31,7 @@ namespace Wasted
 
             InitializeComponent();
 
-            MainPage = new LoginPage();
+            MainPage = new NavigationPage(new LoginPage());
         }
 
         public void GetData()

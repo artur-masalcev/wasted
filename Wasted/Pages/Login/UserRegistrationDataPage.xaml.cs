@@ -10,18 +10,19 @@ using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Wasted.Utils;
 using Wasted.Dummy_API.Business_Objects;
+using Wasted.Pages.Login;
 
 namespace Wasted.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class UserRegistrationPopup : PopupPage
+    public partial class UserRegistrationDataPage : ContentPage
     {
-        public UserRegistrationPopup()
+        public UserRegistrationDataPage()
         {
             InitializeComponent();
         }
 
-        private void SignUpClicked(object sender, EventArgs e)
+        private void NextClicked(object sender, EventArgs e)
         {
             string userName = Username.Text;
             string userPassword = Password.Text;
@@ -30,10 +31,13 @@ namespace Wasted.Pages
             if (userPassword.Equals(repeatedPassword))
             {
                 if(!App.Users.ContainsKey(userName))
-                { 
-                    App.Users.Add(userName,
-                        new User(userName, userPassword));
-                    PopupNavigation.Instance.PopAsync(true);
+                {
+                    User user = new User();
+                    IUserService userService = DependencyService.Get<IUserService>();
+                    userService.SetUser(user);
+                    user.Username = userName;
+                    user.Password = userPassword;
+                    Navigation.PushAsync(new UserRegistrationDeliveryPage());
                 }
                 else
                 {

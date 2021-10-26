@@ -33,5 +33,9 @@ namespace Wasted.Dummy_API.Business_Objects
             Username = username;
             Password = password;
         }
+
+        public User()
+        {
+        }
     }
 }

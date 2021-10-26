@@ -23,13 +23,12 @@ namespace Wasted
         private async void LoginClicked(object sender, EventArgs e)
         {
             string userName = Username.Text;
-            string userPassword = Password.Text;
 
             if (App.Users.ContainsKey(userName))
             {
                 User user = App.Users[userName];
                 IUserService userService = DependencyService.Get<IUserService>();
-                userService.SetUser(user); //Sets user id for whole app
+                userService.SetUser(user); //Sets user for whole app
 
                 await Navigation.PushModalAsync(new NavigationPage(new MainPage()));
             }
@@ -41,7 +40,7 @@ namespace Wasted
 
         private void SignUpClicked(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PushAsync(new UserRegistrationPopup());
+            Navigation.PushAsync(new UserRegistrationDataPage());
         }
     }
 }

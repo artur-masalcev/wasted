@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Entry x:Name="Username" />
-            <Entry x:Name="Password" />
+            <Entry x:Name="Password" IsPassword="True"/>
             <Button Text="Login"
                 Clicked="LoginClicked"/>
             <Button Text="Sign up"
