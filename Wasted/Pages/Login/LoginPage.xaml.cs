@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.Pages;
+using Wasted.Pages.Login;
 using Wasted.Utils;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -24,13 +25,15 @@ namespace Wasted
         {
             string userName = Username.Text;
 
-            if (App.Users.ContainsKey(userName))
+            bool isClient = App.ClientUsers.ContainsKey(userName);
+            bool isPlace = App.PlaceUsers.ContainsKey(userName);
+            if (isClient || isPlace)
             {
-                User user = App.Users[userName];
+                User user = isClient ? (User)App.ClientUsers[userName] : App.PlaceUsers[userName];
                 IUserService userService = DependencyService.Get<IUserService>();
                 userService.SetUser(user); //Sets user for whole app
 
-                await Navigation.PushModalAsync(new NavigationPage(new MainPage()));
+                user.PushPage(this); //Creates appropriate page
             }
             else
             {
@@ -40,7 +43,7 @@ namespace Wasted
 
         private void SignUpClicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new UserRegistrationDataPage());
+            Navigation.PushAsync(new UserAccountTypePage());
         }
     }
 }

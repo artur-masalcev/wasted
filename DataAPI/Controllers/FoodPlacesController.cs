@@ -12,19 +12,11 @@ namespace DataAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class FoodPlacesController : ControllerBase
-    {   
-
-        [HttpGet]
-        public string Get()
+    public class FoodPlacesController : DataController
+    {
+        public override string GetPathToData()
         {
-            return DummyDataProvider.GetText(DummyDataProvider.FoodPlacesJSONPath);
-        }
-
-        [HttpPost("add")]
-        public void Create([FromBody] string AllFoodPlaces)
-        {
-            DummyDataProvider.WriteText(DummyDataProvider.FoodPlacesJSONPath, AllFoodPlaces);
+            return DummyDataProvider.FoodPlacesJSONPath;
         }
     }
 }

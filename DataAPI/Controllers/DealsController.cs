@@ -11,18 +11,11 @@ namespace DataAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class DealsController : ControllerBase
+    public class DealsController : DataController
     {
-        [HttpGet]
-        public string Get()
+        public override string GetPathToData()
         {
-            return DummyDataProvider.GetText(DummyDataProvider.DealsJSONPath);
-        }
-
-        [HttpPost("add")]
-        public void Create([FromBody] string AllDeals)
-        {
-            DummyDataProvider.WriteText(DummyDataProvider.DealsJSONPath, AllDeals);
+            return DummyDataProvider.DealsJSONPath;
         }
     }
 }

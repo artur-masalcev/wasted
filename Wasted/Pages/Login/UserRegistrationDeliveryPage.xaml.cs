@@ -27,7 +27,7 @@ namespace Wasted.Pages.Login
             currentUser.City = City.Text;
             currentUser.Address = Address.Text;
 
-            App.Users[currentUser.Username] = currentUser; //Creates user
+            currentUser.CreateUser();
             Navigation.PushAsync(new LoginPage());
         }
     }

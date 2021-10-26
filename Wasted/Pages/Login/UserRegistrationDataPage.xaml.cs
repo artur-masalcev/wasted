@@ -30,11 +30,12 @@ namespace Wasted.Pages
 
             if (userPassword.Equals(repeatedPassword))
             {
-                if(!App.Users.ContainsKey(userName))
+                bool isClient = App.ClientUsers.ContainsKey(userName);
+                bool isPlace = App.PlaceUsers.ContainsKey(userName);
+                if(!isClient && !isPlace)
                 {
-                    User user = new User();
                     IUserService userService = DependencyService.Get<IUserService>();
-                    userService.SetUser(user);
+                    User user = userService.GetUser();
                     user.Username = userName;
                     user.Password = userPassword;
                     Navigation.PushAsync(new UserRegistrationDeliveryPage());

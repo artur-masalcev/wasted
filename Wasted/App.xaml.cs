@@ -18,7 +18,8 @@ namespace Wasted
         public static List<FoodPlace> AllFoodPlaces { get; set; }
         public static List<Deal> AllDeals { get; set; }
         //                       username
-        public static Dictionary<string, User> Users { get; set; }
+        public static Dictionary<string, UserClient> ClientUsers { get; set; }
+        public static Dictionary<string, UserPlace> PlaceUsers { get; set; }
 
         private HttpClient client;
 
@@ -26,7 +27,7 @@ namespace Wasted
         {
             DependencyService.Register<UserService>();
 
-            Task.Run(() => GetData()).Wait();
+            Task.Run(GetData).Wait();
             HashMaps.AddFoodPlacesToDeals(AllFoodPlaces, AllDeals);
 
             InitializeComponent();
@@ -39,7 +40,8 @@ namespace Wasted
             client = new HttpClient();
             AllFoodPlaces = DummyDataProvider.GetFoodPlaces(client).Result;
             AllDeals = DummyDataProvider.GetDeals(client).Result;
-            Users = DummyDataProvider.GetUsers(client).Result;
+            ClientUsers = DummyDataProvider.GetClientUsers(client).Result;
+            PlaceUsers = DummyDataProvider.GetPlaceUsers(client).Result;
         }
 
         protected override void OnSleep()
@@ -51,7 +53,8 @@ namespace Wasted
         {
             DummyDataProvider.WriteFoodPlaces(client, AllFoodPlaces).Wait();
             DummyDataProvider.WriteDeals(client, AllDeals).Wait();
-            DummyDataProvider.WriteUsers(client, Users).Wait();
+            DummyDataProvider.WriteClientUsers(client, ClientUsers).Wait();
+            DummyDataProvider.WritePlaceUsers(client, PlaceUsers).Wait();
         }
 
         protected override void OnResume()

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wasted.Pages.Login.UserAccountTypePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Choose account type" />
+            <Button Text="User" Clicked="UserClicked" />
+            <Button Text="Place" Clicked="PlaceClicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

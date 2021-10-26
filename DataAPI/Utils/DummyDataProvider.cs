@@ -13,7 +13,9 @@ namespace DataAPI.Utils
 
         public static string FoodPlacesJSONPath => "Dummy Data/FoodPlaces.json";
         public static string DealsJSONPath => "Dummy Data/Deals.json";
-        public static string UsersJSONPath => "Dummy Data/Users.json";
+        public static string PlaceUsersJSONPath => "Dummy Data/PlaceUsers.json";
+
+        public static string ClientUsersJSONPath => "Dummy Data/ClientUsers.json";
 
         public static void WriteText(string path, string content)
         {

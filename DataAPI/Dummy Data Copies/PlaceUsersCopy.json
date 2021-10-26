@@ -1,0 +1,15 @@
+﻿{
+  "b": {
+    "username": "b",
+    "password": "a",
+    "name": "Antanas",
+    "surname": "Antanauskas",
+    "city": "Vilnius",
+    "address": "Pelkynų g. 3",
+    "ratings": {
+      "1": 3,
+      "2": 5,
+      "4": 3
+    }
+  }
+}

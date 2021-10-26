@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace Wasted.Dummy_API.Business_Objects
 {
-    public class User
+    public abstract class User
     {
         public string Username { get; set; }
         public string Password { get; set; }
@@ -16,7 +17,7 @@ namespace Wasted.Dummy_API.Business_Objects
         public Dictionary<int, int> Ratings { get; set; } = new Dictionary<int, int>();
 
         [JsonConstructor]
-        public User(string username, string password, string name, string surname,
+        protected User(string username, string password, string name, string surname,
             string city, string address, Dictionary<int, int> ratings)
         {
             Username = username;
@@ -28,14 +29,16 @@ namespace Wasted.Dummy_API.Business_Objects
             Ratings = ratings;
         }
 
-        public User(string username, string password)
+        protected User(string username, string password)
         {
             Username = username;
             Password = password;
         }
 
-        public User()
+        protected User()
         {
         }
+        public abstract void PushPage(ContentPage page);
+        public abstract void CreateUser();
     }
 }

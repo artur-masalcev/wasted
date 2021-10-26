@@ -17,6 +17,22 @@
 	    <None Remove="Xamarin.Rating" />
 	    <None Remove="Rg.Plugins.Popup" />
 	    <None Remove="FoodPlaceRatingSystem\" />
+	    <Compile Update="Pages\Client\FoodPlacePage.xaml.cs">
+	      <DependentUpon>FoodPlacePage.xaml</DependentUpon>
+	      <SubType>Code</SubType>
+	    </Compile>
+	    <Compile Update="Pages\Client\HomePage.xaml.cs">
+	      <DependentUpon>HomePage.xaml</DependentUpon>
+	      <SubType>Code</SubType>
+	    </Compile>
+	    <Compile Update="Pages\Client\MainPage.xaml.cs">
+	      <DependentUpon>MainPage.xaml</DependentUpon>
+	      <SubType>Code</SubType>
+	    </Compile>
+	    <Compile Update="Pages\Client\SearchPage.xaml.cs">
+	      <DependentUpon>SearchPage.xaml</DependentUpon>
+	      <SubType>Code</SubType>
+	    </Compile>
     </ItemGroup>
 
   <ItemGroup>
@@ -57,9 +73,6 @@
     <Compile Update="Pages\Deals\OrderPopup.xaml.cs">
       <DependentUpon>OrderPopup.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Pages\FoodPlacePage.xaml.cs">
-      <DependentUpon>FoodPlacePage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Pages\Deals\DealPage.xaml.cs">
       <DependentUpon>DealPage.xaml</DependentUpon>
     </Compile>
@@ -74,12 +87,6 @@
     <EmbeddedResource Update="Pages\Deals\OrderPopup.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\FoodPlacePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\HomePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Pages\Deals\DealPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -87,9 +94,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Login\UserRegistrationDeliveryPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\SearchPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

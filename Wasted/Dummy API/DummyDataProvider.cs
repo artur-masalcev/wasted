@@ -35,10 +35,16 @@ namespace Wasted.DummyDataAPI
             return JsonConvert.DeserializeObject<List<Deal>>(dealJson);
         }
 
-        public static async Task<Dictionary<string, User>> GetUsers(HttpClient client)
+        public static async Task<Dictionary<string, UserClient>> GetClientUsers(HttpClient client)
         {
-            string userJson = await client.GetStringAsync(linkStart + "users");
-            return JsonConvert.DeserializeObject<Dictionary<string, User>>(userJson);
+            string userJson = await client.GetStringAsync(linkStart + "clientusers");
+            return JsonConvert.DeserializeObject<Dictionary<string, UserClient>>(userJson);
+        }
+        
+        public static async Task<Dictionary<string, UserPlace>> GetPlaceUsers(HttpClient client)
+        {
+            string userJson = await client.GetStringAsync(linkStart + "placeusers");
+            return JsonConvert.DeserializeObject<Dictionary<string, UserPlace>>(userJson);
         }
 
 
@@ -52,9 +58,14 @@ namespace Wasted.DummyDataAPI
             await client.PostAsync(linkStart + "deals/add", GetStringContent(AllDeals));
         }
 
-        public static async Task WriteUsers(HttpClient client, Dictionary<string, User> Users)
+        public static async Task WritePlaceUsers(HttpClient client, Dictionary<string, UserPlace> Users)
         {
-            await client.PostAsync(linkStart + "users/add", GetStringContent(Users));
+            await client.PostAsync(linkStart + "placeusers/add", GetStringContent(Users));
+        }
+        
+        public static async Task WriteClientUsers(HttpClient client, Dictionary<string, UserClient> Users)
+        {
+            await client.PostAsync(linkStart + "clientusers/add", GetStringContent(Users));
         }
 
         public static StringContent GetStringContent(object obj)
