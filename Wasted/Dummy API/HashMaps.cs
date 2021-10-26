@@ -11,20 +11,11 @@ namespace Wasted.Dummy_API
 {
     public static class HashMaps
     {
-
-        // Map from food place type to food place //
-        public static List<FoodPlace>[] FoodPlaceTypeHashMap { get; set; } = InitializeFoodPlaceTypeHashMap();
-        public static List<FoodPlace>[] InitializeFoodPlaceTypeHashMap()
-        {
-            int length = DummyDataProvider.placeTypes.Length;
-            List<FoodPlace>[] map = new List<FoodPlace>[length];
-
-            for (int i = 0; i < length; ++i)
-            {
-                map[i] = new List<FoodPlace>();
-            }
-            return map;
-        }
+        /// <summary>
+        /// Dictionary from place type to places of that type
+        /// </summary>
+        public static Dictionary<string, List<FoodPlace>> PlaceTypeDictionary { get; set; } = new Dictionary<string, List<FoodPlace>>();
+            
 
         /// <summary>
         /// Adds food places from which deals came from by using ids in a groupjoin

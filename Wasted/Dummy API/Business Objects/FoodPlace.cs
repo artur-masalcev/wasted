@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using Wasted.Dummy_API;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyDataAPI;
+using Wasted.Utils;
 using Xamarin.Essentials;
 
 namespace Wasted.DummyAPI.BusinessObjects
@@ -48,9 +49,9 @@ namespace Wasted.DummyAPI.BusinessObjects
 
         public int DealsCount => DealsIDs.Length;
 
-        public int PlaceType { get; set; }
+        public string PlaceType { get; set; }
 
-        public FoodPlace(int id, string title, int placeType, string description, double longitude, double latitude, string street,
+        public FoodPlace(int id, string title, string placeType, string description, double longitude, double latitude, string street,
             string city, string workingHours, double rating, int ratingCount, string logoURL, string headerURL, int[] dealIDs)
         {
             ID = id;
@@ -67,7 +68,7 @@ namespace Wasted.DummyAPI.BusinessObjects
             DealsIDs = dealIDs;
 
             PlaceType = placeType;
-            HashMaps.FoodPlaceTypeHashMap[PlaceType].Add(this);
+            HashMaps.PlaceTypeDictionary.PutDefaultKey(placeType, this);
         }
     }
 }

@@ -7,7 +7,6 @@
   <ItemGroup>
     <Content Remove="Dummy Data Copies\DealsCopy.json" />
     <Content Remove="Dummy Data Copies\FoodPlacesCopy.json" />
-    <Content Remove="Dummy Data Copies\RatingsCopy.json" />
     <Content Remove="Dummy Data\Deals.json" />
     <Content Remove="Dummy Data\FoodPlaces.json" />
   </ItemGroup>
@@ -15,7 +14,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Dummy Data Copies\DealsCopy.json" />
     <EmbeddedResource Include="Dummy Data Copies\FoodPlacesCopy.json" />
-    <EmbeddedResource Include="Dummy Data Copies\RatingsCopy.json" />
     <EmbeddedResource Include="Dummy Data\Deals.json" />
     <EmbeddedResource Include="Dummy Data\FoodPlaces.json" />
   </ItemGroup>

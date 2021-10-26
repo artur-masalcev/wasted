@@ -19,7 +19,7 @@ namespace Wasted
     {
         public List<FoodPlace> AvailablePlaces { get; set; }
 
-        public string[] PlaceTypeNames = DummyDataProvider.placeTypes;
+        public string[] PlaceTypeNames { get; set; } = HashMaps.PlaceTypeDictionary.Keys.ToArray();
 
         private string currentPlaceType;
         public string CurrentPlaceType
@@ -68,7 +68,7 @@ namespace Wasted
             base.OnAppearing();
             AvailablePlaces = App.AllFoodPlaces;
             restaurantLayout.BindingContext = this;
-            restaurantTypeCollectionView.ItemsSource = DummyDataProvider.placeTypes;
+            restaurantTypeCollectionView.ItemsSource = PlaceTypeNames;
         
         }
 
@@ -105,12 +105,11 @@ namespace Wasted
             ShowFoodPlaces();
 
             string type = (string)e.CurrentSelection.FirstOrDefault();
-            int index = DummyDataProvider.placeTypeDictionary[type];
 
-            AvailablePlaces = HashMaps.FoodPlaceTypeHashMap[index];
+            AvailablePlaces = HashMaps.PlaceTypeDictionary[type];
             allPlacesCollectionView.ItemsSource = AvailablePlaces;
 
-            SectionTitleText = PlaceTypeNames[index] + "s";
+            SectionTitleText = type + "s";
 
             allPlaceButton.IsVisible = true; //Return to all places from current place type
             AllPlaceButtonText = SectionTitleText;

@@ -22,26 +22,6 @@ namespace Wasted.DummyDataAPI
         public static string IP = ConfigurationProperties.LocalIPAddress;
         public static string linkStart = "http://" + IP + ":5001/";
 
-        /// <summary>
-        /// Place types that are shown in the search page
-        /// </summary>
-        public static string[] placeTypes = new string[]{ "Restaurant", "Supermarket", "Person" };
-
-        public static Dictionary<string, int> placeTypeDictionary = GetIndexDictionary(placeTypes);
-
-        /// <summary>
-        /// Creates a hashmap from string to corresponding index
-        /// </summary>
-        public static Dictionary<string, int> GetIndexDictionary(string[] strings)
-        {
-            Dictionary<string, int> indexDictionary = new Dictionary<string, int>();
-            for (int i = 0; i < strings.Length; ++i)
-            {
-                indexDictionary[strings[i]] = i;
-            }
-            return indexDictionary;
-        }
-
 
         public static async Task<List<FoodPlace>> GetFoodPlaces(HttpClient client)
         {
