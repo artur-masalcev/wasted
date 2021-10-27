@@ -8,7 +8,7 @@ namespace Wasted.Dummy_API.Business_Objects
     {
         public static void PushClientPage(ContentPage page)
         {
-            page.Navigation.PushAsync(new HomePage());
+            page.Navigation.PushAsync(new MainPage());
         }
 
         public static void PushPlacePage(ContentPage page)

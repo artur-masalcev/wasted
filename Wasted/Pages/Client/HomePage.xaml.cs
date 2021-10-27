@@ -9,6 +9,7 @@ using System;
 using Xamarin.Essentials;
 using System.Threading.Tasks;
 using System.Threading;
+using Wasted.Utils;
 
 namespace Wasted
 {
@@ -16,6 +17,7 @@ namespace Wasted
 
     public partial class HomePage : ContentPage
     {
+        private DataService service;
         public Location UserLocation { get; set; }
 
         const int MaxRadiusInKilometers = 50;
@@ -25,6 +27,7 @@ namespace Wasted
 
         public HomePage()
         {
+            service = DependencyService.Get<DataService>();
             GetLocation().Wait();
             InitializeComponent();
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
@@ -58,13 +61,13 @@ namespace Wasted
             base.OnAppearing();
 
             nearbyFoodPlacesCollectionView.ItemsSource =
-                DummyAPI.DataFilters.GetNearbyPlaces(App.AllFoodPlaces, UserLocation, MaxNearbyPlacesCount, MaxRadiusInKilometers);
+                DummyAPI.DataFilters.GetNearbyPlaces(service.AllFoodPlaces, UserLocation, MaxNearbyPlacesCount, MaxRadiusInKilometers);
 
             specialOffersCollectionView.ItemsSource =
-                DummyAPI.DataFilters.GetSpecialOffers(App.AllDeals, MaxSpecialOffersCount);
+                DummyAPI.DataFilters.GetSpecialOffers(service.AllDeals, MaxSpecialOffersCount);
 
             popularFoodPlacesCollectionView.ItemsSource =
-                DummyAPI.DataFilters.GetPopularFoodPlaces(App.AllFoodPlaces, MaxPopularPlacesCount);
+                DummyAPI.DataFilters.GetPopularFoodPlaces(service.AllFoodPlaces, MaxPopularPlacesCount);
         }
 
         /// <summary>

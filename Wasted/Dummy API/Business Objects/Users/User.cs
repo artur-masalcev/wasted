@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Wasted.Utils;
 using Xamarin.Forms;
 
 namespace Wasted.Dummy_API.Business_Objects
@@ -39,6 +40,6 @@ namespace Wasted.Dummy_API.Business_Objects
         {
         }
         public abstract void PushPage(ContentPage page);
-        public abstract void CreateUser();
+        public abstract void CreateUser(DataService service);
     }
 }

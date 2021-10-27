@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Wasted.Utils;
+using Xamarin.Forms;
 
 namespace Wasted.Dummy_API.Business_Objects
 {
@@ -9,9 +10,9 @@ namespace Wasted.Dummy_API.Business_Objects
             PageManager.PushPlacePage(page);
         }
 
-        public override void CreateUser()
+        public override void CreateUser(DataService service)
         {
-            App.PlaceUsers[Username] = this;
+            service.PlaceUsers[Username] = this;
         }
     }
 }

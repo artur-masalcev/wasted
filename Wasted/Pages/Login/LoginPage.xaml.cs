@@ -16,8 +16,10 @@ namespace Wasted
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        private DataService service;
         public LoginPage()
         {
+            service = DependencyService.Get<DataService>();
             InitializeComponent();
         }
 
@@ -25,13 +27,13 @@ namespace Wasted
         {
             string userName = Username.Text;
 
-            bool isClient = App.ClientUsers.ContainsKey(userName);
-            bool isPlace = App.PlaceUsers.ContainsKey(userName);
+            bool isClient = service.ClientUsers.ContainsKey(userName);
+            bool isPlace = service.PlaceUsers.ContainsKey(userName);
             if (isClient || isPlace)
             {
-                User user = isClient ? (User)App.ClientUsers[userName] : App.PlaceUsers[userName];
-                UserService userService = DependencyService.Get<UserService>();
-                userService.CurrentUser = user; //Sets user for whole app
+                User user = isClient ? (User)service.ClientUsers[userName] : service.PlaceUsers[userName];
+                DataService dataService = DependencyService.Get<DataService>();
+                dataService.CurrentUser = user; //Sets user for whole app
 
                 user.PushPage(this); //Creates appropriate page
             }

@@ -19,6 +19,8 @@ namespace Wasted.DummyDataAPI
     /// </summary>
     public class DummyDataProvider
     {
+        private DataService service;
+        
         public static string IP = ConfigurationProperties.LocalIPAddress;
         public static string linkStart = "http://" + IP + ":5001/";
 
@@ -26,19 +28,23 @@ namespace Wasted.DummyDataAPI
         public static string DealsEnd => "deals";
         public static string ClientUsersEnd => "clientusers";
         public static string PlaceUsersEnd => "placeusers";
-
-        public static async Task<T> GetData<T>(HttpClient client, string linkEnd)
+        public DummyDataProvider()
         {
-            string dataJson = await client.GetStringAsync(linkStart + linkEnd);
+            service = DependencyService.Get<DataService>();
+            service.Client = new HttpClient();
+        }
+        public async Task<T> GetData<T>(string linkEnd)
+        {
+            string dataJson = await service.Client.GetStringAsync(linkStart + linkEnd);
             return JsonConvert.DeserializeObject<T>(dataJson); 
         }
 
-        public static async Task WriteData<T>(HttpClient client, T data, string linkEnd)
+        public async Task WriteData<T>(T data, string linkEnd)
         {
-            await client.PostAsync(linkStart + linkEnd + "/add", GetStringContent(data));
+            await service.Client.PostAsync(linkStart + linkEnd + "/add", GetStringContent(data));
         }
 
-        public static StringContent GetStringContent(object obj)
+        public StringContent GetStringContent(object obj)
         {
             string content = JsonConvert.SerializeObject(JsonConvert.SerializeObject(obj));
             return new StringContent(content, Encoding.UTF8, "application/json");

@@ -20,14 +20,14 @@ namespace Wasted.Pages.Login
 
         private void CreateClicked(object sender, EventArgs e)
         {
-            UserService userService = DependencyService.Get<UserService>();
-            User currentUser = userService.CurrentUser;
+            DataService dataService = DependencyService.Get<DataService>();
+            User currentUser = dataService.CurrentUser;
             currentUser.Name = Name.Text;
             currentUser.Surname = Surname.Text;
             currentUser.City = City.Text;
             currentUser.Address = Address.Text;
 
-            currentUser.CreateUser();
+            currentUser.CreateUser(dataService);
             Navigation.PushAsync(new LoginPage());
         }
     }

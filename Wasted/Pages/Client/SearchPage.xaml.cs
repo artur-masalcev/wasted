@@ -17,6 +17,7 @@ namespace Wasted
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchPage : ContentPage
     {
+        private DataService service;
         public List<FoodPlace> AvailablePlaces { get; set; }
 
         public string[] PlaceTypeNames { get; set; } = HashMaps.PlaceTypeDictionary.Keys.ToArray();
@@ -56,6 +57,7 @@ namespace Wasted
 
         public SearchPage()
         {
+            service = DependencyService.Get<DataService>();
             InitializeComponent();
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
         }
@@ -66,7 +68,7 @@ namespace Wasted
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            AvailablePlaces = App.AllFoodPlaces;
+            AvailablePlaces = service.AllFoodPlaces;
             restaurantLayout.BindingContext = this;
             restaurantTypeCollectionView.ItemsSource = PlaceTypeNames;
         
@@ -123,7 +125,7 @@ namespace Wasted
         {
             ShowFoodPlaces(false);
             allPlaceButton.IsVisible = false;
-            AvailablePlaces = App.AllFoodPlaces;
+            AvailablePlaces = service.AllFoodPlaces;
             allPlacesCollectionView.ItemsSource = AvailablePlaces;
 
             SectionTitleText = "All places";

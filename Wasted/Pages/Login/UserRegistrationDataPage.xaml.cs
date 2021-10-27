@@ -17,8 +17,10 @@ namespace Wasted.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserRegistrationDataPage : ContentPage
     {
+        private DataService service;
         public UserRegistrationDataPage()
         {
+            service = DependencyService.Get<DataService>();
             InitializeComponent();
         }
 
@@ -30,12 +32,12 @@ namespace Wasted.Pages
 
             if (userPassword.Equals(repeatedPassword))
             {
-                bool isClient = App.ClientUsers.ContainsKey(userName);
-                bool isPlace = App.PlaceUsers.ContainsKey(userName);
+                bool isClient = service.ClientUsers.ContainsKey(userName);
+                bool isPlace = service.PlaceUsers.ContainsKey(userName);
                 if(!isClient && !isPlace)
                 {
-                    UserService userService = DependencyService.Get<UserService>();
-                    User user = userService.CurrentUser;
+                    DataService dataService = DependencyService.Get<DataService>();
+                    User user = dataService.CurrentUser;
                     user.Username = userName;
                     user.Password = userPassword;
                     Navigation.PushAsync(new UserRegistrationDeliveryPage());
