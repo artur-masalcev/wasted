@@ -19,7 +19,7 @@ namespace Wasted
         public String RatingEmoji { get; set; }
         public String RatingComment { get; set; }
 
-        public IUserService userService { get; set; }
+        public UserService userService { get; set; }
 
         /// <summary>
         /// Initialiser for RatingPopup class
@@ -30,8 +30,8 @@ namespace Wasted
             SelectedFoodPlace = foodPlace;
             InitializeComponent();
 
-            userService = DependencyService.Get<IUserService>();
-            User user = userService.GetUser();
+            userService = DependencyService.Get<UserService>();
+            User user = userService.CurrentUser;
 
             if (user.Ratings.ContainsKey(foodPlace.ID)) //Sets value to the user's previous rating
             {
@@ -46,7 +46,7 @@ namespace Wasted
         private void OnConfirmClicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync(true); // Close the popup
-            FoodPlaceRatingModifier.SetUserVote(userService.GetUser(), SelectedFoodPlace, RatingBarRating);
+            FoodPlaceRatingModifier.SetUserVote(userService.CurrentUser, SelectedFoodPlace, RatingBarRating);
 
         }
 

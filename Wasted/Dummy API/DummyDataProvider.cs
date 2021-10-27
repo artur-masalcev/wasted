@@ -22,50 +22,20 @@ namespace Wasted.DummyDataAPI
         public static string IP = ConfigurationProperties.LocalIPAddress;
         public static string linkStart = "http://" + IP + ":5001/";
 
+        public static string FoodPlacesEnd => "foodplaces";
+        public static string DealsEnd => "deals";
+        public static string ClientUsersEnd => "clientusers";
+        public static string PlaceUsersEnd => "placeusers";
 
-        public static async Task<List<FoodPlace>> GetFoodPlaces(HttpClient client)
+        public static async Task<T> GetData<T>(HttpClient client, string linkEnd)
         {
-            string foodPlaceJson = await client.GetStringAsync(linkStart + "foodplaces");
-            return JsonConvert.DeserializeObject<List<FoodPlace>>(foodPlaceJson);
+            string dataJson = await client.GetStringAsync(linkStart + linkEnd);
+            return JsonConvert.DeserializeObject<T>(dataJson); 
         }
 
-        public static async Task<List<Deal>> GetDeals(HttpClient client)
+        public static async Task WriteData<T>(HttpClient client, T data, string linkEnd)
         {
-            string dealJson = await client.GetStringAsync(linkStart + "deals");
-            return JsonConvert.DeserializeObject<List<Deal>>(dealJson);
-        }
-
-        public static async Task<Dictionary<string, UserClient>> GetClientUsers(HttpClient client)
-        {
-            string userJson = await client.GetStringAsync(linkStart + "clientusers");
-            return JsonConvert.DeserializeObject<Dictionary<string, UserClient>>(userJson);
-        }
-        
-        public static async Task<Dictionary<string, UserPlace>> GetPlaceUsers(HttpClient client)
-        {
-            string userJson = await client.GetStringAsync(linkStart + "placeusers");
-            return JsonConvert.DeserializeObject<Dictionary<string, UserPlace>>(userJson);
-        }
-
-
-        public static async Task WriteFoodPlaces(HttpClient client, List<FoodPlace> AllFoodPlaces)
-        {
-            await client.PostAsync(linkStart + "foodplaces/add", GetStringContent(AllFoodPlaces));
-        }
-
-        public static async Task WriteDeals(HttpClient client, List<Deal> AllDeals)
-        {
-            await client.PostAsync(linkStart + "deals/add", GetStringContent(AllDeals));
-        }
-
-        public static async Task WritePlaceUsers(HttpClient client, Dictionary<string, UserPlace> Users)
-        {
-            await client.PostAsync(linkStart + "placeusers/add", GetStringContent(Users));
-        }
-        
-        public static async Task WriteClientUsers(HttpClient client, Dictionary<string, UserClient> Users)
-        {
-            await client.PostAsync(linkStart + "clientusers/add", GetStringContent(Users));
+            await client.PostAsync(linkStart + linkEnd + "/add", GetStringContent(data));
         }
 
         public static StringContent GetStringContent(object obj)

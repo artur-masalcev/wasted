@@ -8,17 +8,8 @@ using Xamarin.Forms;
 [assembly:Dependency(typeof(UserService))]
 namespace Wasted.Utils
 {
-    public class UserService : IUserService
+    public class UserService
     {
-        private User user;
-        public User GetUser()
-        {
-            return user;
-        }
-
-        public void SetUser(User user)
-        {
-            this.user = user;
-        }
+        public User CurrentUser { get; set; }
     }
 }

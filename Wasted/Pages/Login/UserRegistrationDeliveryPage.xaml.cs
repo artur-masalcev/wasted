@@ -20,8 +20,8 @@ namespace Wasted.Pages.Login
 
         private void CreateClicked(object sender, EventArgs e)
         {
-            IUserService userService = DependencyService.Get<IUserService>();
-            User currentUser = userService.GetUser();
+            UserService userService = DependencyService.Get<UserService>();
+            User currentUser = userService.CurrentUser;
             currentUser.Name = Name.Text;
             currentUser.Surname = Surname.Text;
             currentUser.City = City.Text;

@@ -34,8 +34,8 @@ namespace Wasted.Pages
                 bool isPlace = App.PlaceUsers.ContainsKey(userName);
                 if(!isClient && !isPlace)
                 {
-                    IUserService userService = DependencyService.Get<IUserService>();
-                    User user = userService.GetUser();
+                    UserService userService = DependencyService.Get<UserService>();
+                    User user = userService.CurrentUser;
                     user.Username = userName;
                     user.Password = userPassword;
                     Navigation.PushAsync(new UserRegistrationDeliveryPage());

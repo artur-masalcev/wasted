@@ -13,23 +13,23 @@ namespace Wasted.Pages.Login
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserAccountTypePage : ContentPage
     {
-        public IUserService UserService { get; set; }
+        public UserService UserService { get; set; }
         public UserAccountTypePage()
         {
             InitializeComponent();
-            UserService = DependencyService.Get<IUserService>();
+            UserService = DependencyService.Get<UserService>();
 
         }
 
         private void PlaceClicked(object sender, EventArgs e)
         {
-            UserService.SetUser(new UserPlace());
+            UserService.CurrentUser = new UserPlace();
             Navigation.PushAsync(new UserRegistrationDataPage());
         }
 
         private void UserClicked(object sender, EventArgs e)
         {
-            UserService.SetUser(new UserClient());
+            UserService.CurrentUser = new UserClient();
             Navigation.PushAsync(new UserRegistrationDataPage());
         }
     }

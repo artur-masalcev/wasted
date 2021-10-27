@@ -38,10 +38,10 @@ namespace Wasted
         public void GetData()
         {
             client = new HttpClient();
-            AllFoodPlaces = DummyDataProvider.GetFoodPlaces(client).Result;
-            AllDeals = DummyDataProvider.GetDeals(client).Result;
-            ClientUsers = DummyDataProvider.GetClientUsers(client).Result;
-            PlaceUsers = DummyDataProvider.GetPlaceUsers(client).Result;
+            AllFoodPlaces = DummyDataProvider.GetData<List<FoodPlace>>(client, DummyDataProvider.FoodPlacesEnd).Result;
+            AllDeals = DummyDataProvider.GetData<List<Deal>>(client, DummyDataProvider.DealsEnd).Result;
+            ClientUsers = DummyDataProvider.GetData<Dictionary<string, UserClient>>(client, DummyDataProvider.ClientUsersEnd).Result;
+            PlaceUsers = DummyDataProvider.GetData<Dictionary<string, UserPlace>>(client, DummyDataProvider.PlaceUsersEnd).Result;
         }
 
         protected override void OnSleep()
@@ -51,10 +51,10 @@ namespace Wasted
 
         public void WriteData()
         {
-            DummyDataProvider.WriteFoodPlaces(client, AllFoodPlaces).Wait();
-            DummyDataProvider.WriteDeals(client, AllDeals).Wait();
-            DummyDataProvider.WriteClientUsers(client, ClientUsers).Wait();
-            DummyDataProvider.WritePlaceUsers(client, PlaceUsers).Wait();
+            DummyDataProvider.WriteData(client, AllFoodPlaces, DummyDataProvider.FoodPlacesEnd).Wait();
+            DummyDataProvider.WriteData(client, AllDeals, DummyDataProvider.DealsEnd).Wait();
+            DummyDataProvider.WriteData(client, ClientUsers, DummyDataProvider.ClientUsersEnd).Wait();
+            DummyDataProvider.WriteData(client, PlaceUsers, DummyDataProvider.PlaceUsersEnd).Wait();
         }
 
         protected override void OnResume()

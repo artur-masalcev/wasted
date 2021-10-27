@@ -30,8 +30,8 @@ namespace Wasted
             if (isClient || isPlace)
             {
                 User user = isClient ? (User)App.ClientUsers[userName] : App.PlaceUsers[userName];
-                IUserService userService = DependencyService.Get<IUserService>();
-                userService.SetUser(user); //Sets user for whole app
+                UserService userService = DependencyService.Get<UserService>();
+                userService.CurrentUser = user; //Sets user for whole app
 
                 user.PushPage(this); //Creates appropriate page
             }
