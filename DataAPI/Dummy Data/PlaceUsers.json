@@ -1,1 +1,1 @@
-{"b":{"Username":"b","Password":"a","Name":"Antanas","Surname":"Antanauskas","City":"Vilnius","Address":"Pelkynų g. 3","Ratings":{"1":3,"2":5,"4":3}}}
+{"b":{"OwnedPlaceIDs":[1,2,3],"Username":"b","Password":"a","Name":"Antanas","Surname":"Antanauskas","City":"Vilnius","Address":"Pelkynų g. 3","Ratings":{"1":3,"2":5,"4":3}}}

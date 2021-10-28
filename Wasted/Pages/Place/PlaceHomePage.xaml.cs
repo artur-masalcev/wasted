@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Wasted.Dummy_API.Business_Objects;
+using Wasted.DummyAPI.BusinessObjects;
+using Wasted.Utils;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,9 +14,21 @@ namespace Wasted.Pages.Place
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PlaceHomePage : HomePage
     {
+        private DataService service;
+        public UserPlace CurrentUser { get; set; }
+        public IEnumerable<FoodPlace> OwnedPlaces { get; set; }
         public PlaceHomePage()
         {
+            service = DependencyService.Get<DataService>();
+            CurrentUser = (UserPlace)service.CurrentUser;
+            BindingContext = this;
+            OwnedPlaces = CurrentUser.OwnedPlaceIDs.Select(id => service.AllFoodPlaces.Find(place => place.ID == id));
             InitializeComponent();
+        }
+
+        private void YourPlacesCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ;
         }
     }
 }

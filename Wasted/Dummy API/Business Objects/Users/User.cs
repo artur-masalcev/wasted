@@ -29,14 +29,7 @@ namespace Wasted.Dummy_API.Business_Objects
             Address = address;           
             Ratings = ratings;
         }
-
-        protected User(string username, string password)
-        {
-            Username = username;
-            Password = password;
-        }
-
-        protected User()
+        public User()
         {
         }
         public abstract void PushPage(ContentPage page);

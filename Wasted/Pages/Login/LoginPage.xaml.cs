@@ -26,20 +26,26 @@ namespace Wasted
         private async void LoginClicked(object sender, EventArgs e)
         {
             string userName = Username.Text;
-
+            string userPassword = Password.Text;
             bool isClient = service.ClientUsers.ContainsKey(userName);
             bool isPlace = service.PlaceUsers.ContainsKey(userName);
             if (isClient || isPlace)
             {
                 User user = isClient ? (User)service.ClientUsers[userName] : service.PlaceUsers[userName];
-                DataService dataService = DependencyService.Get<DataService>();
-                dataService.CurrentUser = user; //Sets user for whole app
-
-                user.PushPage(this); //Creates appropriate page
+                if (user.Password == userPassword)
+                {
+                    DataService dataService = DependencyService.Get<DataService>();
+                    dataService.CurrentUser = user; //Sets user for whole app
+                    user.PushPage(this); //Creates appropriate page
+                }
+                else
+                {
+                    await DisplayAlert("", "Username or password is incorrect. Try Again.", "OK");
+                }
             }
             else
             {
-                await DisplayAlert("", "Username or password is incorrect. Try Again.", "OK");
+                await DisplayAlert("", "Username does not exist. Try Again.", "OK");
             }
         }
 

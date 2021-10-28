@@ -6,9 +6,28 @@
              x:Class="Wasted.Pages.Place.PlaceHomePage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Hello, world!"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
+            <Label Text="Your places" />
+            
+            <!--#region Your places-->
+
+            <CollectionView x:Name="YourPlacesCollectionView"
+                            SelectionChanged="YourPlacesCollectionViewSelectionChanged"
+                            ItemsLayout="VerticalList"
+                            ItemsSource="{Binding OwnedPlaces}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Title }" />
+                                <Label Text="{Binding City}" />
+                                <Label Text="{Binding DealsCount, StringFormat='{0} deals'}" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+            </CollectionView>
+            
         </StackLayout>
     </ContentPage.Content>
 </local:HomePage>
