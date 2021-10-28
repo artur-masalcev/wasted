@@ -20,27 +20,32 @@ namespace Wasted.Dummy_API
             
 
         /// <summary>
-        /// Adds food places from which deals came from by using ids in a groupjoin
+        /// Adds food places from which deals came from by using ids
         /// </summary>
         public static void AddFoodPlacesToDeals()
         {
             DataService service = DependencyService.Get<DataService>();
             foreach (FoodPlace foodPlace in service.AllFoodPlaces)
             {
-                var query = foodPlace.DealsIDs.
-                GroupJoin(
-                    service.AllDeals,
-                    id => id,
-                    deal => deal.ID,
-                    (id, deal) => deal.First()
-                );
-
-                foreach (Deal deal in query)
+                foreach (int dealID in foodPlace.DealsIDs)
                 {
-                    foodPlace.Deals.Add(deal);
-                    deal.FoodPlaces.Add(foodPlace);
+                    foodPlace.Deals.Add(service.AllDeals[dealID - 1]);
+                    service.AllDeals[dealID - 1].FoodPlaces.Add(foodPlace);
                 }
             }
+        }
+
+        /// <summary>
+        /// Sorts array by id
+        /// </summary>
+        public static List<T> CountingSort<T>(IDInterface[] array)
+        {
+            List<T> newArray = new List<T>(new T[array.Length]);
+            foreach (IDInterface elem in array)
+            {
+                newArray[elem.ID - 1] = (T)elem;
+            }
+            return newArray;
         }
     }
 

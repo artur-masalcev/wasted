@@ -13,9 +13,9 @@ using Xamarin.Essentials;
 
 namespace Wasted.DummyAPI.BusinessObjects
 {
-    public class FoodPlace : ChangeablePropertyObject
+    public class FoodPlace : ChangeablePropertyObject, IDInterface
     {
-        public int ID;
+        public int ID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
 
