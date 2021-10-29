@@ -33,6 +33,10 @@
 	      <DependentUpon>SearchPage.xaml</DependentUpon>
 	      <SubType>Code</SubType>
 	    </Compile>
+	    <Compile Update="Pages\Place\NewPlace\NewPlacePage.xaml.cs">
+	      <DependentUpon>NewPlacePage.xaml</DependentUpon>
+	      <SubType>Code</SubType>
+	    </Compile>
     </ItemGroup>
 
   <ItemGroup>

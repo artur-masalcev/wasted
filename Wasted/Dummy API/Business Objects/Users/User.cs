@@ -15,11 +15,12 @@ namespace Wasted.Dummy_API.Business_Objects
         public string Surname { get; set; }
         public string City { get; set; }
         public string Address { get; set; }
-        public Dictionary<int, int> Ratings { get; set; } = new Dictionary<int, int>();
+        public Dictionary<int, int> Ratings { get; set; }
 
         [JsonConstructor]
-        protected User(string username, string password, string name, string surname,
-            string city, string address, Dictionary<int, int> ratings)
+        protected User(string username = null, string password = null, string name = null,
+            string surname = null, string city = null, string address = null,
+            Dictionary<int, int> ratings = null)
         {
             Username = username;
             Password = password;
@@ -27,10 +28,7 @@ namespace Wasted.Dummy_API.Business_Objects
             Surname = surname;
             City = city;
             Address = address;           
-            Ratings = ratings;
-        }
-        public User()
-        {
+            Ratings = ratings ?? new Dictionary<int, int>();
         }
         public abstract void PushPage(ContentPage page);
         public abstract void CreateUser(DataService service);

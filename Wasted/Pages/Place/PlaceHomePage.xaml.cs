@@ -12,7 +12,7 @@ using Xamarin.Forms.Xaml;
 namespace Wasted.Pages.Place
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PlaceHomePage : HomePage
+    public partial class PlaceHomePage : ContentPage
     {
         private DataService service;
         public UserPlace CurrentUser { get; set; }
@@ -29,6 +29,11 @@ namespace Wasted.Pages.Place
         private void YourPlacesCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ;
+        }
+
+        private void AddNewPlaceButtonClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new NewPlacePage());
         }
     }
 }

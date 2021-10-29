@@ -7,11 +7,11 @@
             android:TabbedPage.ToolbarPlacement="Bottom"
             NavigationPage.HasNavigationBar="false">
 
-    <wasted:HomePage x:Name="homePage"
-                     Title="Home"
-                     Icon="nav_bar_home.png"/>
-    <wasted:SearchPage x:Name="searchPage"
-                     Title="Search"
-                       Icon="nav_bar_search.png"/>
+            <wasted:HomePage
+                 Title="Home"
+                 Icon="nav_bar_home.png"/>
+            <wasted:SearchPage
+                 Title="Search"
+                 Icon="nav_bar_search.png"/>
 </TabbedPage>
 

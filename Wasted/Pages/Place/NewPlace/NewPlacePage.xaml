@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:utils="clr-namespace:Wasted.Utils;assembly=Wasted"
+             x:Class="Wasted.Pages.Place.NewPlacePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Add new place" />
+            
+            <Label Text="Title" />
+            <Entry x:Name="TitleEntry"/>
+            
+            <Label Text="City" />
+            <Picker x:Name="CityPicker" />
+            
+            <Label Text="{Binding MaxEntryLength, StringFormat='Description (fewer than {0} words)'}" />
+            <Entry x:Name="DescriptionEntry" TextChanged="DescriptionEntryTextChanged"/>
+                <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding EntryLength}" />
+                        <Span Text="/" />
+                        <Span Text="{Binding MaxEntryLength}" />
+                    </FormattedString>
+                    
+                </Label.FormattedText>
+            </Label>
+            
+            <Button Text="Next" Clicked="NextButtonClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

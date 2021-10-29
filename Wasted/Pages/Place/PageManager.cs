@@ -13,7 +13,7 @@ namespace Wasted.Dummy_API.Business_Objects
 
         public static void PushPlacePage(ContentPage page)
         {
-            page.Navigation.PushAsync(new PlaceHomePage());
+            page.Navigation.PushAsync(new PlaceMainPage());
         }
     }
 }

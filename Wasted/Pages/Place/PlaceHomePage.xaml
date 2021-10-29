@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<local:HomePage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Wasted;assembly=Wasted"
              x:Class="Wasted.Pages.Place.PlaceHomePage">
     <ContentPage.Content>
         <StackLayout>
@@ -28,6 +27,8 @@
                 
             </CollectionView>
             
+            <Button Text="+" Clicked="AddNewPlaceButtonClicked"/>
+            
         </StackLayout>
     </ContentPage.Content>
-</local:HomePage>
+</ContentPage>

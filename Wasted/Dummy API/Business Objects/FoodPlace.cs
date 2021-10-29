@@ -41,18 +41,21 @@ namespace Wasted.DummyAPI.BusinessObjects
         }
         public string LogoURL { get; set; }
         public string HeaderURL { get; set; }
-        public int[] DealsIDs { get; set; }
+        public List<int> DealsIDs { get; set; }
 
 
         [JsonIgnore] //Prevents infinite recursion when serializing to json file
         public List<Deal> Deals = new List<Deal>();
 
-        public int DealsCount => DealsIDs.Length;
+        [JsonIgnore]
+        public int DealsCount => Deals.Count;
 
         public string PlaceType { get; set; }
 
-        public FoodPlace(int id, string title, string placeType, string description, double longitude, double latitude, string street,
-            string city, string workingHours, double rating, int ratingCount, string logoURL, string headerURL, int[] dealIDs)
+        public FoodPlace(int id = 0, string title = null, string placeType = null, string description = null,
+            double longitude = 0, double latitude = 0, string street = null, string city = null,
+            string workingHours = null, double rating = 0, int ratingCount = 0, string logoURL = null,
+            string headerURL = null, List<int> dealsIDs = null)
         {
             ID = id;
             Title = title;
@@ -65,10 +68,10 @@ namespace Wasted.DummyAPI.BusinessObjects
             RatingCount = ratingCount;
             LogoURL = logoURL;
             HeaderURL = headerURL;
-            DealsIDs = dealIDs;
-
+            DealsIDs = dealsIDs == null ? new List<int>() : dealsIDs;
             PlaceType = placeType;
-            HashMaps.PlaceTypeDictionary.PutDefaultKey(placeType, this);
+            if (placeType != null)
+                HashMaps.PlaceTypeDictionary.PutDefaultKey(placeType, this);
         }
     }
 }
