@@ -6,7 +6,7 @@ namespace Wasted.Utils
 {
     public class ConfigurationProperties
     {
-        public static string LocalIPAddress = "192.168.93.188";
+        public static string LocalIPAddress = "192.168.39.188";
 
         // Run cmd
         // ipconfig

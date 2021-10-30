@@ -46,12 +46,11 @@ namespace Wasted
         /// </summary>
         void DealsCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dealsCollectionView.SelectedItem == null)
-                return;
-
-            Deal selectedDeal = e.CurrentSelection.FirstOrDefault() as Deal;
-            Navigation.PushAsync(new ItemsPage(selectedDeal));
-            dealsCollectionView.SelectedItem = null; //Prevents setting border
+            SelectionChanger.ListSelectionChanged(sender, e, () =>
+            {
+                Deal selectedDeal = e.CurrentSelection.FirstOrDefault() as Deal;
+                Navigation.PushAsync(new ItemsPage(selectedDeal));
+            });
         }
 
         /// <summary>

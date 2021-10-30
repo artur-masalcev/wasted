@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
+using Wasted.Pages.Place.NewDeal;
 using Wasted.Utils;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -28,7 +29,11 @@ namespace Wasted.Pages.Place
 
         private void YourPlacesCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ;
+            SelectionChanger.ListSelectionChanged(sender, e, () =>
+            {
+                FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
+                Navigation.PushAsync(new NewDealPage(selectedPlace));
+            });
         }
 
         private void AddNewPlaceButtonClicked(object sender, EventArgs e)

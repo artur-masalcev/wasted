@@ -75,12 +75,11 @@ namespace Wasted
         /// </summary>
         private void FoodPlacesCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (((CollectionView)sender).SelectedItem == null)
-                return;
-
-            FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
-            Navigation.PushAsync(new FoodPlacesPage(selectedPlace));
-            ((CollectionView)sender).SelectedItem = null; //Prevents borders from appearing
+            SelectionChanger.ListSelectionChanged(sender, e, () =>
+            {
+                FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
+                Navigation.PushAsync(new FoodPlacesPage(selectedPlace));
+            });
         }
 
         /// <summary>
@@ -88,12 +87,11 @@ namespace Wasted
         /// </summary>
         private void DealsCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (specialOffersCollectionView.SelectedItem == null)
-                return;
-
-            Deal selectedDeal = e.CurrentSelection.FirstOrDefault() as Deal;
-            Navigation.PushAsync(new ItemsPage(selectedDeal));
-            specialOffersCollectionView.SelectedItem = null; //Prevents borders from appearing
+            SelectionChanger.ListSelectionChanged(sender, e, () =>
+            {
+                Deal selectedDeal = e.CurrentSelection.FirstOrDefault() as Deal;
+                Navigation.PushAsync(new ItemsPage(selectedDeal));
+            });
         }
     }
 }

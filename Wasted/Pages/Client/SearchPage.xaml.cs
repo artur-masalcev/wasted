@@ -79,12 +79,11 @@ namespace Wasted
         /// </summary>
         private void PlacesCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (allPlacesCollectionView.SelectedItem == null)
-                return;
-
-            FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
-            Navigation.PushAsync(new FoodPlacesPage(selectedPlace));
-            allPlacesCollectionView.SelectedItem = null; //Prevents borders from appearing
+            SelectionChanger.ListSelectionChanged(sender, e, () =>
+            {
+                FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
+                Navigation.PushAsync(new FoodPlacesPage(selectedPlace));
+            });
         }
 
         /// <summary>

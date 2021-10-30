@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wasted.Pages.Place.NewDeal.NewDealPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Add new deal" />
+            
+            <Label Text="Title" />
+            <Entry x:Name="TitleEntry" />
+            
+            <Label Text="Current cost" />
+            <Entry x:Name="CurrentCostEntry" TextChanged="NumberEntryTextChanged"/>
+            
+            <Label Text="Regular cost" />
+            <Entry x:Name="RegularCostEntry" TextChanged="NumberEntryTextChanged"/>
+            
+            <Button Text="Next" Clicked="NextButtonClicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

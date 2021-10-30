@@ -7,8 +7,10 @@
         <StackLayout>
             <Label Text="Add new place" />
             <Label Text="Header image" />
+            
             <Button Text="Choose" Clicked="HeaderButtonClicked" />
             <Label Text="Logo image" />
+            
             <Button Text="Choose" Clicked="LogoButtonClicked" />
             <Button Text="Done" Clicked="DoneButtonClicked" />
         </StackLayout>

@@ -11,6 +11,7 @@
 
             <CollectionView x:Name="YourPlacesCollectionView"
                             SelectionChanged="YourPlacesCollectionViewSelectionChanged"
+                            SelectionMode="Single"
                             ItemsLayout="VerticalList"
                             ItemsSource="{Binding OwnedPlaces}">
                 <CollectionView.ItemTemplate>

@@ -38,8 +38,8 @@ namespace Wasted.DummyAPI.BusinessObjects
         /// </summary>
         public string FoodPlaceTitle => FoodPlaces.First().Title;
 
-        public Deal(int id, string title, string description, double currentCost,
-            double previousCost, int quantity, string due, string imageURL)
+        public Deal(int id = 0, string title = null, string description = null, double currentCost = 0,
+            double previousCost = 0, int quantity = 0, string due = null, string imageURL = null)
         {
             ID = id;
             Title = title;
@@ -48,7 +48,6 @@ namespace Wasted.DummyAPI.BusinessObjects
             Quantity = quantity;
             Due = due;
             ImageURL = imageURL;
-
         }
     }
 }
