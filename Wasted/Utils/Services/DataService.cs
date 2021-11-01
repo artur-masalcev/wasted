@@ -7,6 +7,7 @@ using Wasted.Dummy_API;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 [assembly:Dependency(typeof(DataService))]
@@ -34,5 +35,7 @@ namespace Wasted.Utils
         //                username
         public Dictionary<string, UserPlace> PlaceUsers { get; set; }
         public HttpClient Client { get; set; }
+        
+        public Location UserLocation { get; set; }
     }
 }

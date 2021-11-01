@@ -16,7 +16,7 @@
             
             <Label Text="{Binding MaxEntryLength, StringFormat='Description (fewer than {0} words)'}" />
             <Entry x:Name="DescriptionEntry" TextChanged="DescriptionEntryTextChanged"/>
-                <Label>
+            <Label>
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="{Binding EntryLength}" />

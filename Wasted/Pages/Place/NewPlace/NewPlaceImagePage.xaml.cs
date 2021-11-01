@@ -25,7 +25,6 @@ namespace Wasted.Pages.Place.NewPlace
 
         private void HeaderButtonClicked(object sender, EventArgs e)
         {
-            
             PopupNavigation.Instance.PushAsync(new ChooseImagePopup(CurrentPlace, "HeaderURL"));
         }
 

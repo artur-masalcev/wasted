@@ -18,8 +18,7 @@ namespace Wasted
     public partial class HomePage : ContentPage
     {
         private DataService service;
-        public Location UserLocation { get; set; }
-
+        
         const int MaxRadiusInKilometers = 50;
         const int MaxNearbyPlacesCount = 10;
         const int MaxSpecialOffersCount = 10;
@@ -28,29 +27,8 @@ namespace Wasted
         public HomePage()
         {
             service = DependencyService.Get<DataService>();
-            GetLocation().Wait();
             InitializeComponent();
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
-        }
-
-        /// <summary>
-        /// Gets user location. Not fully working
-        /// </summary>
-        public async Task GetLocation()
-        {
-            var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
-            if (status == PermissionStatus.Granted)
-            {
-                Task.Run(async () => UserLocation = await Geolocation.GetLocationAsync(
-                    new GeolocationRequest(GeolocationAccuracy.Default, TimeSpan.FromSeconds(1)))).Wait();
-            }
-            else
-            {
-                var statusAsync = Permissions.RequestAsync<Permissions.LocationWhenInUse>();
-                new Thread(() => statusAsync.GetAwaiter().GetResult()).Start();
-                Thread.Sleep(5);
-                await GetLocation();
-            }            
         }
 
         /// <summary>
@@ -61,7 +39,7 @@ namespace Wasted
             base.OnAppearing();
 
             nearbyFoodPlacesCollectionView.ItemsSource =
-                DummyAPI.DataFilters.GetNearbyPlaces(service.AllFoodPlaces, UserLocation, MaxNearbyPlacesCount, MaxRadiusInKilometers);
+                DummyAPI.DataFilters.GetNearbyPlaces(service.AllFoodPlaces, service.UserLocation, MaxNearbyPlacesCount, MaxRadiusInKilometers);
 
             specialOffersCollectionView.ItemsSource =
                 DummyAPI.DataFilters.GetSpecialOffers(service.AllDeals, MaxSpecialOffersCount);

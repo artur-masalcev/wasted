@@ -8,7 +8,7 @@ using Wasted.Dummy_API.Business_Objects;
 
 namespace Wasted.DummyAPI.BusinessObjects
 {
-    public class Deal : ChangeablePropertyObject, IDInterface
+    public class Deal : ChangeablePropertyObject, IDInterface, ImageChooserInterface
     {
         public int ID { get; set; }
         public string Title { get; set; }
@@ -36,6 +36,7 @@ namespace Wasted.DummyAPI.BusinessObjects
         /// <summary>
         /// Food place which has the item. Can be any from FoodPlaces list
         /// </summary>
+        [JsonIgnore]
         public string FoodPlaceTitle => FoodPlaces.First().Title;
 
         public Deal(int id = 0, string title = null, string description = null, double currentCost = 0,

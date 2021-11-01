@@ -5,9 +5,28 @@
              x:Class="Wasted.Pages.Place.NewDeal.NewDealNextPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Hello, world!"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
+            <Label Text="Add new deal" />
+            
+            <Label Text="{Binding MaxEntryLength, StringFormat='Description (fewer than {0} words)'}" />
+            <Entry x:Name="DescriptionEntry" TextChanged="DescriptionEntryTextChanged"/>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding EntryLength}" />
+                        <Span Text="/" />
+                        <Span Text="{Binding MaxEntryLength}" />
+                    </FormattedString>
+                    
+                </Label.FormattedText>
+            </Label>
+            
+            <Label Text="Due" />
+            <DatePicker x:Name="DueDatePicker" Format="yyyy-MM-dd"/>
+            
+            <Label Text="Image" />
+            <Button Text="Choose" Clicked="ImageButtonClicked"/>
+            
+            <Button Text="Done" Clicked="DoneButtonClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

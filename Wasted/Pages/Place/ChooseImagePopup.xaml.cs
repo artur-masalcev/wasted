@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
+using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
 using Xamarin.Forms;
@@ -16,11 +17,11 @@ namespace Wasted.Pages.Place
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChooseImagePopup : PopupPage
     {
-        public FoodPlace CurrentPlace { get; set; }
+        public ImageChooserInterface CurrentPlace { get; set; }
         public PropertyInfo Property { get; set; }
-        public ChooseImagePopup(FoodPlace place, string property)
+        public ChooseImagePopup(ImageChooserInterface obj, string property)
         {
-            CurrentPlace = place;
+            CurrentPlace = obj;
             InitializeComponent();
             Property = typeof(FoodPlace).GetProperty(property);
             URLEntry.Text = (string)Property?.GetValue(CurrentPlace, null);

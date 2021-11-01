@@ -14,18 +14,18 @@ namespace Wasted.Pages.Place
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewPlacePage : ContentPage
     {
-        private EntryLengthValidator validator;
+        public EntryLengthValidator Validator { get; set; }
         public FoodPlace CurrentFoodPlace { get; set; }
         public NewPlacePage()
         {
             InitializeComponent();
-            validator = new EntryLengthValidator(maxEntryLength: 30);
-            BindingContext = validator;
+            Validator = new EntryLengthValidator(maxEntryLength: 30);
+            BindingContext = Validator;
             CityPicker.ItemsSource = new[] {"Vilnius"};
         }
         private void DescriptionEntryTextChanged(object sender, TextChangedEventArgs e)
         {
-            validator.EntryTextChanged(sender, e);
+            Validator.EntryTextChanged(sender, e);
         }
         private void NextButtonClicked(object sender, EventArgs e)
         {

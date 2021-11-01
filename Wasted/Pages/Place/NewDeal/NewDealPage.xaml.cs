@@ -37,7 +37,7 @@ namespace Wasted.Pages.Place.NewDeal
                 currentCost:ParseDouble(CurrentCostEntry.Text),
                 previousCost:ParseDouble(RegularCostEntry.Text)
             );
-            Navigation.PushAsync(new NewDealNextPage(currentDeal));
+            Navigation.PushAsync(new NewDealNextPage(currentDeal, SelectedPlace));
         }
     }
 }
