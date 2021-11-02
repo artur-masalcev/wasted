@@ -6,6 +6,7 @@
              x:Class="Wasted.App">
 	<Application.Resources>
 		<!--#region Colors -->
+		<Color x:Key="AppEmerald">#8dd5af</Color>
 		<Color x:Key="AccentColor">#7eab55</Color>
 		<Color x:Key="Yellow">#FEDD00</Color>
 		<Color x:Key="SeparatorColor">#D3D3D3</Color>
@@ -23,6 +24,10 @@
 		<Style TargetType="Label">
 			<Setter Property="TextColor" Value="{StaticResource TextBlack}" />
 			<Setter Property="Margin" Value="5, 0" />
+		</Style>
+
+		<Style TargetType="Entry">
+			<Setter Property="HeightRequest" Value="45"/>
 		</Style>
 
 		<Style x:Key="RedLabel" TargetType="Label">
