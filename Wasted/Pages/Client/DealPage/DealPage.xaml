@@ -5,7 +5,7 @@
              x:Class="Wasted.ItemsPage">
     <ContentPage.Content>
         <ScrollView>
-            <AbsoluteLayout x:Name="content">
+            <AbsoluteLayout>
                 <StackLayout Spacing="0">
                     <Grid RowSpacing="0">
                         <Grid.RowDefinitions>
@@ -15,7 +15,7 @@
                         </Grid.RowDefinitions>
 
                         <!--#region Header image-->
-                        <Image x:Name="dealImage" Source="{Binding ImageURL}"
+                        <Image Source="{Binding ImageURL}"
                            Grid.RowSpan="3"
                            Grid.Row="0"
 						   Aspect="AspectFill" />

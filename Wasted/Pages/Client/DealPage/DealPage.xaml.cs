@@ -20,15 +20,8 @@ namespace Wasted
 
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
 
-            InitializeViews();
-        }
+            BindingContext = SelectedDeal;
 
-        /// <summary>
-        /// Sets binding for xaml file. Removes deal stepper if it is already taken
-        /// </summary>
-        public void InitializeViews()
-        {
-            content.BindingContext = SelectedDeal;
         }
 
         /// <summary>

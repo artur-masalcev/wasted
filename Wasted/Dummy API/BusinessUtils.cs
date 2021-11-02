@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace Wasted.Dummy_API
 {
-    public static class HashMaps
+    public static class BusinessUtils
     {
         /// <summary>
         /// Dictionary from place type to places of that type

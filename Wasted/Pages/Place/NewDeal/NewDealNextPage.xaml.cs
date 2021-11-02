@@ -38,15 +38,20 @@ namespace Wasted.Pages.Place.NewDeal
             PopupNavigation.Instance.PushAsync(new ChooseImagePopup(CurrentDeal, "ImageURL"));
         }
 
-        private void DoneButtonClicked(object sender, EventArgs e)
+        private void FillDealValues(DataService service)
         {
-            DataService service = DependencyService.Get<DataService>();
             CurrentDeal.ID = service.AllDeals.Count + 1;
             CurrentDeal.Due = DueDatePicker.Date.ToString("yyyy-MM-dd");
             CurrentDeal.Description = DescriptionEntry.Text;
-            CurrentDeal.FoodPlaces.Add(SelectedPlace); //TODO: reuse same deals with multiple places?
-            
+            CurrentDeal.FoodPlaces.Add(SelectedPlace);
             service.AllDeals.Add(CurrentDeal);
+        }
+
+        private void DoneButtonClicked(object sender, EventArgs e)
+        {
+            DataService service = DependencyService.Get<DataService>();
+            FillDealValues(service);
+            
             SelectedPlace.Deals.Add(CurrentDeal);
             SelectedPlace.DealsIDs.Add(CurrentDeal.ID);
 

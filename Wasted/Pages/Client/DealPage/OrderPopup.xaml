@@ -6,19 +6,19 @@
     x:Class="Wasted.Pages.Deals.OrderPopup">
 
     <!--#region Order view-->
-    <StackLayout x:Name="orderView" Style="{StaticResource DealCardViewLayout}"
+    <StackLayout Style="{StaticResource DealCardViewLayout}"
                  VerticalOptions="Center">
         <StackLayout BackgroundColor="White">
 
             <StackLayout Orientation="Horizontal"
                     HorizontalOptions="Center"
                     Spacing="20">
-                <Label x:Name="countLabel" Style="{StaticResource RatingLabel}"
+                <Label Style="{StaticResource RatingLabel}"
                         Text="{Binding SelectedCount, StringFormat='Count: {0}'}" />
 
 
                 <Stepper x:Name="stepper"
-                        Maximum="{Binding Quantity}"
+                        Maximum="{Binding StepperDealQuantity}"
                         Increment="1"
                         ValueChanged="StepperValueChanged"/>
 

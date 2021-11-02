@@ -20,7 +20,7 @@ namespace Wasted
         private DataService service;
         public List<FoodPlace> AvailablePlaces { get; set; }
 
-        public string[] PlaceTypeNames { get; set; } = HashMaps.PlaceTypeDictionary.Keys.ToArray();
+        public string[] PlaceTypeNames { get; set; } = BusinessUtils.PlaceTypeDictionary.Keys.ToArray();
 
         private string currentPlaceType;
         public string CurrentPlaceType
@@ -71,7 +71,6 @@ namespace Wasted
             AvailablePlaces = service.AllFoodPlaces;
             restaurantLayout.BindingContext = this;
             restaurantTypeCollectionView.ItemsSource = PlaceTypeNames;
-        
         }
 
         /// <summary>
@@ -106,12 +105,10 @@ namespace Wasted
             ShowFoodPlaces();
 
             string type = (string)e.CurrentSelection.FirstOrDefault();
-
-            AvailablePlaces = HashMaps.PlaceTypeDictionary[type];
+            AvailablePlaces = BusinessUtils.PlaceTypeDictionary[type];
             allPlacesCollectionView.ItemsSource = AvailablePlaces;
 
             SectionTitleText = type + "s";
-
             allPlaceButton.IsVisible = true; //Return to all places from current place type
             AllPlaceButtonText = SectionTitleText;
 
@@ -140,8 +137,8 @@ namespace Wasted
 
             try
             {
-                Func<FoodPlace, bool> maskFunction = i => i.Title.ToLower().Contains(e.NewTextValue.ToLower());
-                var filteredPlaces = AvailablePlaces.Where(maskFunction);
+                bool MaskFunction(FoodPlace i) => i.Title.ToLower().Contains(e.NewTextValue.ToLower());
+                var filteredPlaces = AvailablePlaces.Where(MaskFunction);
 
                 bool isValid = Regex.IsMatch(e.NewTextValue, restaurantNameRegex);
                 searchBar.TextColor = isValid ? Color.Default : Color.Red;

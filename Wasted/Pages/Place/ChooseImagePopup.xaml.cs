@@ -17,19 +17,22 @@ namespace Wasted.Pages.Place
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChooseImagePopup : PopupPage
     {
-        public ImageChooserInterface CurrentPlace { get; set; }
+        public ImageChooserInterface Chooser { get; set; }
         public PropertyInfo Property { get; set; }
         public ChooseImagePopup(ImageChooserInterface obj, string property)
         {
-            CurrentPlace = obj;
+            Chooser = obj;
             InitializeComponent();
             Property = typeof(FoodPlace).GetProperty(property);
-            URLEntry.Text = (string)Property?.GetValue(CurrentPlace, null);
+            URLEntry.Text = (string)Property?.GetValue(Chooser, null);
         }
 
+        /// <summary>
+        /// Sets value of passed property in constructor
+        /// </summary>
         private void ImageButtonClicked(object sender, EventArgs e)
         {
-            Property?.SetValue(CurrentPlace, URLEntry.Text);
+            Property?.SetValue(Chooser, URLEntry.Text);
             PopupNavigation.Instance.PopAsync();
         }
     }

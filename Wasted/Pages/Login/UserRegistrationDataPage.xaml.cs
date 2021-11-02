@@ -34,7 +34,7 @@ namespace Wasted.Pages
             {
                 bool isClient = service.ClientUsers.ContainsKey(userName);
                 bool isPlace = service.PlaceUsers.ContainsKey(userName);
-                if(!isClient && !isPlace)
+                if (!isClient && !isPlace)
                 {
                     DataService dataService = DependencyService.Get<DataService>();
                     User user = dataService.CurrentUser;

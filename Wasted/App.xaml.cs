@@ -23,14 +23,14 @@ namespace Wasted
             service = DependencyService.Get<DataService>();
             provider = new DummyDataProvider();
             Task.Run(GetData).Wait();
-            HashMaps.AddFoodPlacesToDeals();
+            BusinessUtils.AddFoodPlacesToDeals();
 
             InitializeComponent();
 
             MainPage = new NavigationPage(new LoginPage());
         }
 
-        public void GetData()
+        private void GetData()
         {
             service.AllFoodPlaces = provider.GetData<List<FoodPlace>>(DummyDataProvider.FoodPlacesEnd).Result;
             service.AllDeals = provider.GetData<List<Deal>>(DummyDataProvider.DealsEnd).Result;
@@ -40,10 +40,10 @@ namespace Wasted
 
         protected override void OnSleep()
         {
-            Task.Run(() => WriteData()).Wait();
+            Task.Run(WriteData).Wait();
         }
 
-        public void WriteData()
+        private void WriteData()
         {
             provider.WriteData(service.AllFoodPlaces, DummyDataProvider.FoodPlacesEnd).Wait();
             provider.WriteData(service.AllDeals, DummyDataProvider.DealsEnd).Wait();
