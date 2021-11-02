@@ -1,14 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Wasted.LoginPage">
+             x:Class="Wasted.LoginPage"
+             BackgroundColor="#8dd5af"
+             NavigationPage.HasNavigationBar="false">
     <ContentPage.Content>
-        <StackLayout>
-            <Entry x:Name="Username" />
-            <Entry x:Name="Password" IsPassword="True"/>
+        <StackLayout Padding="15, 0, 15, 0">
+            <Image Source="logo_white" Scale="0.7"/>
+
+            <StackLayout Spacing="20" VerticalOptions="CenterAndExpand" Margin="0, 0, 0, 80">
+                <StackLayout>
+                    <Label Text="Username" TextColor="White" FontAttributes="Bold"/>
+                    <Entry x:Name="Username" HeightRequest="45"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Password" TextColor="White" FontAttributes="Bold"/>
+                    <Entry x:Name="Password" HeightRequest="45" IsPassword="True"/>
+                </StackLayout>
+            </StackLayout>
+
             <Button Text="Login"
+                    TextColor="Black"
+                    CornerRadius="10"
+                    BackgroundColor="White"
+                    Margin = "50, 0, 50, 0"
+                    FontAttributes="Bold"
                 Clicked="LoginClicked"/>
-            <Button Text="Sign up"
+
+            <Button Text="Create new account" TextColor="White"
                 Clicked="SignUpClicked"/>
         </StackLayout>
     </ContentPage.Content>
