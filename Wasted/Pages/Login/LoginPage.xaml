@@ -4,8 +4,8 @@
              x:Class="Wasted.LoginPage">
     <ContentPage.Content>
         <StackLayout>
-            <Entry x:Name="Username" />
-            <Entry x:Name="Password" IsPassword="True"/>
+            <Entry x:Name="UsernameEntry" />
+            <Entry x:Name="PasswordEntry" IsPassword="True"/>
             <Button Text="Login"
                 Clicked="LoginClicked"/>
             <Button Text="Sign up"

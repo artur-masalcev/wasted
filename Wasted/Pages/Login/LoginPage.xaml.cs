@@ -26,8 +26,8 @@ namespace Wasted
 
         private async void LoginClicked(object sender, EventArgs e)
         {
-            string userName = Username.Text;
-            string userPassword = Password.Text;
+            string userName = UsernameEntry.Text ?? "";
+            string userPassword = PasswordEntry.Text ?? "";
             bool isClient = service.ClientUsers.ContainsKey(userName);
             bool isPlace = service.PlaceUsers.ContainsKey(userName);
             if (isClient || isPlace)

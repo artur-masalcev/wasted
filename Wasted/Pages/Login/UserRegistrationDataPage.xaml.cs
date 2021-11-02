@@ -26,9 +26,9 @@ namespace Wasted.Pages
 
         private void NextClicked(object sender, EventArgs e)
         {
-            string userName = Username.Text;
-            string userPassword = Password.Text;
-            string repeatedPassword = RepeatedPassword.Text;
+            string userName = Username.Text ?? "";
+            string userPassword = Password.Text ?? "";
+            string repeatedPassword = RepeatedPassword.Text ?? "";
 
             if (userPassword.Equals(repeatedPassword))
             {

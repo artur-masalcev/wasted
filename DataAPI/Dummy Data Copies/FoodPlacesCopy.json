@@ -13,7 +13,7 @@
     "ratingCount": 16,
     "logoURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/877px-McDonald%27s_Golden_Arches.svg.png",
     "headerURL": "https://prod-wolt-venue-images-cdn.wolt.com/5cdbbe8702e5c2e15888fb4d/68757acc-5a39-11eb-9d45-16259b33b38f_210538_mcd_mcdelivery_menuimage_1200x8002_8__3_.jpg",
-    "dealIDs": [ 1, 2, 3, 4 ]
+    "dealsIDs": [ 1, 2, 3, 4 ]
   },
   {
     "id": 2,
@@ -29,7 +29,7 @@
     "ratingCount": 20,
     "logoURL": "https://www.logolynx.com/images/logolynx/50/5080ca765e9e8a85ba537b50057dadb7.jpeg",
     "headerURL": "https://prod-wolt-venue-images-cdn.wolt.com/5c7cf48a79e3ee000ba47d01/c9d67040-f9af-11ea-a8a3-ca2bebd1e85e_ivaizdine_1000x600.jpg",
-    "dealIDs": [ 5, 6, 7, 8 ]
+    "dealsIDs": [ 5, 6, 7, 8 ]
   },
   {
     "id": 3,
@@ -45,7 +45,7 @@
     "ratingCount": 17,
     "logoURL": "https://www.maxima.lt/images/front/logos/maxima_logo.png",
     "headerURL": "https://www.vz.lt/api/socialimage/VZ/20201001/MARKETING/201009992/AR/img.jpg",
-    "dealIDs": [ 9, 10, 11, 12, 13, 14, 15 ]
+    "dealsIDs": [ 9, 10, 11, 12, 13, 14, 15 ]
   },
   {
     "id": 4,
@@ -61,7 +61,7 @@
     "ratingCount": 10,
     "logoURL": "https://www.ucs.lt/wp-content/uploads/2016/09/manami-logo-300x300.png",
     "headerURL": "https://www.manami.lt/media/cache/category_thumb/uploads/category/5f314ce7005cf_Manami_web-meniu_2020-08_bento-rinkiniai.jpg",
-    "dealIDs": [ 16, 17, 18, 19 ]
+    "dealsIDs": [ 16, 17, 18, 19 ]
   },
   {
     "id": 5,
@@ -77,7 +77,7 @@
     "ratingCount": 21,
     "logoURL": "https://upload.wikimedia.org/wikipedia/en/thumb/b/bf/KFC_logo.svg/1200px-KFC_logo.svg.png",
     "headerURL": "https://prod-wolt-venue-images-cdn.wolt.com/s/vbGtGo5KbF7vhMQXnDBmBI9LK2ENSyjo0PECRJOCsys/5b4489fc009fa7000e843af2/b16a0bc8-309d-11eb-9243-eab5ddf67d43_kfc6_list.jpg",
-    "dealIDs": [ 20, 21, 22, 23 ]
+    "dealsIDs": [ 20, 21, 22, 23 ]
   },
   {
     "id": 6,
@@ -93,6 +93,6 @@
     "ratingCount": 20,
     "logoURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_bzGd26jVKnIdVN-ljua9Dv2zcmH3tTqSDQ&usqp=CAU",
     "headerURL": "https://prod-wolt-venue-images-cdn.wolt.com/s/ckQFy0qreTG5pM6v_mT1cVqoOrj5hoKbl5uv83C9z3g/5bfaa2521e727f000a53e505/701d2c88-6f8e-11eb-a9e0-4ed7b89d859d_39.charlie_pizza_list_2.jpg",
-    "dealIDs": [ 24, 25, 26, 27 ]
+    "dealsIDs": [ 24, 25, 26, 27 ]
   }
 ]
