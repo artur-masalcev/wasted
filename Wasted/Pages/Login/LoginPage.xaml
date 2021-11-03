@@ -1,15 +1,53 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Wasted.LoginPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Entry x:Name="UsernameEntry" />
-            <Entry x:Name="PasswordEntry" IsPassword="True"/>
-            <Button Text="Login"
-                Clicked="LoginClicked"/>
-            <Button Text="Sign up"
-                Clicked="SignUpClicked"/>
-        </StackLayout>
-    </ContentPage.Content>
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wasted.LoginPage"
+             BackgroundColor="{StaticResource AppEmerald}"
+             NavigationPage.HasNavigationBar="false">
+
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<Style x:Key="LoginButtonStyle" TargetType="Button">
+				<Setter Property="CornerRadius" Value="10"/>
+				<Setter Property="BackgroundColor" Value="White"/>
+				<Setter Property="FontAttributes" Value="Bold"/>
+				<Setter Property="TextColor" Value="{StaticResource TextBlack}"/>
+			</Style>
+			<Style TargetType="Label">
+				<Setter Property="FontAttributes" Value="Bold"/>
+				<Setter Property="TextColor" Value="White"/>
+			</Style>
+		</ResourceDictionary>
+	</ContentPage.Resources>
+
+	<ContentPage.Content>
+		<StackLayout Padding="15, 0, 15, 0">
+			<!--Logo-->
+			<Image Source="logo_white" Scale="0.7"/>
+
+			<!--#region Fields-->
+			<StackLayout Spacing="20" VerticalOptions="CenterAndExpand" Margin="0, 0, 0, 80">
+				<StackLayout>
+					<Label Text="Username"/>
+					<Entry x:Name="Username"/>
+				</StackLayout>
+				<StackLayout>
+					<Label Text="Password"/>
+					<Entry x:Name="Password" IsPassword="True"/>
+				</StackLayout>
+			</StackLayout>
+			<!--#endregion-->
+
+			<!--#region Action buttons-->
+			<Button Text="Login"
+                    Style="{StaticResource LoginButtonStyle}"
+                    Margin = "50, 0, 50, 0"
+                    Clicked="LoginClicked"/>
+			<Button Text="Create new account"
+                    TextColor="White"
+                    Clicked="SignUpClicked"/>
+			<!--#endregion-->
+		</StackLayout>
+	</ContentPage.Content>
 </ContentPage>
