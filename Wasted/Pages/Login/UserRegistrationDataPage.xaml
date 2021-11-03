@@ -2,19 +2,71 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Wasted.Pages.UserRegistrationDataPage">
+    x:Class="Wasted.Pages.UserRegistrationDataPage"
+    BackgroundColor="{StaticResource AppEmerald}"
+    NavigationPage.HasNavigationBar="False"
+    >
 
-    <StackLayout>
-        <Label Text="Username" />
-        <Entry x:Name="Username" />
-        
-        <Label Text="Password" />
-        <Entry x:Name="Password" IsPassword="True"/>
+    <ContentPage.Resources>
+        <!--#region Default styles-->
+        <Style TargetType="Label">
+			<Setter Property="FontAttributes" Value="Bold"/>
+			<Setter Property="TextColor" Value="White"/>
+		</Style>
 
-        <Label Text="Repeat password" />
-        <Entry x:Name="RepeatedPassword" IsPassword="True"/>
-        <Button Text="Next"
-            Clicked="NextClicked"/>
-    </StackLayout>
-    
+        <Style x:Key="ButtonStyle" TargetType="Button">
+			<Setter Property="CornerRadius" Value="10"/>
+			<Setter Property="BackgroundColor" Value="White"/>
+			<Setter Property="FontAttributes" Value="Bold"/>
+			<Setter Property="TextColor" Value="{StaticResource TextBlack}"/>
+		</Style>
+		<!--#endregion-->
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Padding="15, 0, 15, 0">
+            <!--#region Custom navigation bar-->
+            <StackLayout Orientation="Horizontal">
+                <Button Text="‹"
+                        BackgroundColor="Transparent"
+                        Clicked="BackClicked"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        FontSize="Title"/>
+
+                <Label Text="Basic information"
+                       VerticalTextAlignment="Center"
+                       FontSize="Title"/>
+            </StackLayout>
+            <!--#endregion-->
+
+            <!--#region Form-->
+            <StackLayout VerticalOptions="CenterAndExpand" Spacing="20">
+                <StackLayout>
+                    <Label Text="Username" />
+                    <Entry x:Name="Username" />
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Password" />
+                    <Entry x:Name="Password" IsPassword="True"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Repeat password" />
+                    <Entry x:Name="RepeatedPassword" IsPassword="True"/>
+                </StackLayout>
+            </StackLayout>
+            <!--#endregion-->
+
+            <!--#region Action buttons-->
+            <Button Text="Next"
+                Style="{StaticResource ButtonStyle}"
+                Clicked="NextClicked"
+                Margin="50, 0, 50, 20"
+                />
+            <!--#endregion-->
+        </StackLayout>
+    </ContentPage.Content>
+
 </ContentPage>

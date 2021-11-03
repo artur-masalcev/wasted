@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.Utils;
 using Xamarin.Forms;
@@ -17,13 +13,14 @@ namespace Wasted.Pages.Login
         enum UserType { User, FoodPlace}
 
         UserType SelectedUserType { get; set; }
+
         public DataService DataService { get; set; }
 
         public UserAccountTypePage()
         {
             InitializeComponent();
             DataService = DependencyService.Get<DataService>();
-            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true); // Put margin on iOS devices that have top notch
             SelectedUserType = UserType.User;
         }
 

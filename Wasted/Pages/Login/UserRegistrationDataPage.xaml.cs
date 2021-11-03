@@ -11,6 +11,7 @@ using Rg.Plugins.Popup.Services;
 using Wasted.Utils;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.Pages.Login;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace Wasted.Pages
 {
@@ -22,6 +23,7 @@ namespace Wasted.Pages
         {
             service = DependencyService.Get<DataService>();
             InitializeComponent();
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true); // Put margin on iOS devices that have top notch
         }
 
         private void NextClicked(object sender, EventArgs e)
@@ -51,6 +53,12 @@ namespace Wasted.Pages
             {
                 DisplayAlert("", "Passwords do not match.", "OK");
             }
+        }
+
+        private void BackClicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync(true);
+            base.OnBackButtonPressed();
         }
     }
 }
