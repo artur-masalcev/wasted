@@ -1,78 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Wasted.Pages.Login.UserRegistrationDeliveryPage"
-             BackgroundColor="{StaticResource AppEmerald}"
-             NavigationPage.HasNavigationBar="False">
-
-    <ContentPage.Resources>
-        <!--#region Default styles-->
-        <Style TargetType="Label">
-			<Setter Property="FontAttributes" Value="Bold"/>
-			<Setter Property="TextColor" Value="White"/>
-		</Style>
-
-        <Style x:Key="ButtonStyle" TargetType="Button">
-			<Setter Property="CornerRadius" Value="10"/>
-			<Setter Property="BackgroundColor" Value="White"/>
-			<Setter Property="FontAttributes" Value="Bold"/>
-			<Setter Property="TextColor" Value="{StaticResource TextBlack}"/>
-		</Style>
-
-        <Style x:Key="CustomNavBarBackButton" TargetType="Button">
-            <Setter Property="BackgroundColor" Value="Transparent"/>
-            <Setter Property="TextColor" Value="White"/>
-            <Setter Property="FontAttributes" Value="Bold"/>
-            <Setter Property="FontSize" Value="Title"/>
-        </Style>
-		<!--#endregion-->
-    </ContentPage.Resources>
-
+             x:Class="Wasted.Pages.Login.UserRegistrationDeliveryPage">
     <ContentPage.Content>
-        <StackLayout Padding="15, 0, 15, 0">
-            <!--#region Custom navigation bar-->
-            <StackLayout Orientation="Horizontal">
-                <Button Text="‹"
-                        Style="{StaticResource CustomNavBarBackButton}"
-                        Clicked="BackClicked"
-                        />
+        <StackLayout>
+            <Label Text="Name" />
+            <Entry x:Name="Name" />
 
-                <Label Text="Personal information"
-                       VerticalTextAlignment="Center"
-                       FontSize="Title"/>
-            </StackLayout>
-            <!--#endregion-->
+            <Label Text="Surname" />
+            <Entry x:Name="Surname" />
 
-            <!--#region Form-->
-            <StackLayout Spacing="20" VerticalOptions="CenterAndExpand">
-                <StackLayout>
-                    <Label Text="Name" />
-                    <Entry x:Name="Name" />
-                </StackLayout>
+            <Label Text="City" />
+            <Entry x:Name="City" />
 
-                <StackLayout>
-                    <Label Text="Surname" />
-                    <Entry x:Name="Surname" />
-                </StackLayout>
+            <Label Text="Address" />
+            <Entry x:Name="Address" />
 
-                <StackLayout>
-                    <Label Text="City" />
-                    <Entry x:Name="City" />
-                </StackLayout>
-
-                <StackLayout>
-                    <Label Text="Address" />
-                    <Entry x:Name="Address" />
-                </StackLayout>
-            </StackLayout>
-            <!--#endregion-->
-
-            <!--#region Action buttons-->
             <Button Text="Create new account"
-                    Style="{StaticResource ButtonStyle}"
-                    Margin="50, 0, 50, 20"
                     Clicked="CreateClicked" />
-            <!--#endregion-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

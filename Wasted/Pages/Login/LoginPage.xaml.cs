@@ -10,7 +10,6 @@ using Wasted.Pages.Login;
 using Wasted.Utils;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace Wasted
@@ -23,7 +22,6 @@ namespace Wasted
         {
             service = DependencyService.Get<DataService>();
             InitializeComponent();
-            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
         }
 
         private async void LoginClicked(object sender, EventArgs e)
