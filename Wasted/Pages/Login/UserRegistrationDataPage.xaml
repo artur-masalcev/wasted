@@ -20,6 +20,13 @@
 			<Setter Property="FontAttributes" Value="Bold"/>
 			<Setter Property="TextColor" Value="{StaticResource TextBlack}"/>
 		</Style>
+
+        <Style x:Key="CustomNavBarBackButton" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="Title"/>
+        </Style>
 		<!--#endregion-->
     </ContentPage.Resources>
 
@@ -28,11 +35,9 @@
             <!--#region Custom navigation bar-->
             <StackLayout Orientation="Horizontal">
                 <Button Text="‹"
-                        BackgroundColor="Transparent"
+                        Style="{StaticResource CustomNavBarBackButton}"
                         Clicked="BackClicked"
-                        TextColor="White"
-                        FontAttributes="Bold"
-                        FontSize="Title"/>
+                        />
 
                 <Label Text="Basic information"
                        VerticalTextAlignment="Center"
