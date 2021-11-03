@@ -36,7 +36,7 @@ namespace Wasted.FoodPlaceRatingSystem
             int key = selectedFoodPlace.ID;
 
             if (user.Ratings.ContainsKey(key))
-                ResetRating(selectedFoodPlace, user.Ratings[key]);
+                ResetRating(selectedFoodPlace, user.Ratings[key]); //Rethinking rating choice
 
             selectedFoodPlace.Rating = newRating;
             user.Ratings[key] = newRating;

@@ -21,20 +21,19 @@ namespace Wasted.Utils
         public List<FoodPlace> AllFoodPlaces
         {
             get { return allFoodPlaces; }
-            set { allFoodPlaces = HashMaps.CountingSort<FoodPlace>(value.ToArray()); }
+            set { allFoodPlaces = BusinessUtils.CountingSort<FoodPlace>(value.ToArray()); }
         }
 
         private List<Deal> allDeals;
         public List<Deal> AllDeals
         {
             get { return allDeals;}
-            set { allDeals = HashMaps.CountingSort<Deal>(value.ToArray()); }
+            set { allDeals = BusinessUtils.CountingSort<Deal>(value.ToArray()); }
         }
         //                username
         public Dictionary<string, UserClient> ClientUsers { get; set; }
         //                username
         public Dictionary<string, UserPlace> PlaceUsers { get; set; }
-        public HttpClient Client { get; set; }
         
         public Location UserLocation { get; set; }
     }

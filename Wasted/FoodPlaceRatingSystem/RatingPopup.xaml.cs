@@ -13,13 +13,14 @@ namespace Wasted
     public partial class RatingPopup : PopupPage
     {
         public FoodPlace SelectedFoodPlace { get; set; }
-        public int FoodPlaceID { get; }
+        public DataService DataService { get; set; }
+
         public int RatingBarRating => ratingBar.SelectedStarValue;
+
+        public int FoodPlaceID { get; }
   
         public String RatingEmoji { get; set; }
         public String RatingComment { get; set; }
-
-        public DataService DataService { get; set; }
 
         /// <summary>
         /// Initialiser for RatingPopup class
@@ -33,9 +34,9 @@ namespace Wasted
             DataService = DependencyService.Get<DataService>();
             User user = DataService.CurrentUser;
 
-            if (user.Ratings.ContainsKey(foodPlace.ID)) //Sets value to the user's previous rating
+            if (user.Ratings.ContainsKey(foodPlace.ID)) 
             {
-                ratingBar.SelectedStarValue = user.Ratings[foodPlace.ID];
+                ratingBar.SelectedStarValue = user.Ratings[foodPlace.ID]; //Sets value to the user's previous rating
             }
             foodPlaceTitleLabel.BindingContext = SelectedFoodPlace;
             ratingEmoji.BindingContext = this;

@@ -28,15 +28,15 @@ namespace Wasted.Pages
 
         private void NextClicked(object sender, EventArgs e)
         {
-            string userName = Username.Text;
-            string userPassword = Password.Text;
-            string repeatedPassword = RepeatedPassword.Text;
+            string userName = Username.Text ?? "";
+            string userPassword = Password.Text ?? "";
+            string repeatedPassword = RepeatedPassword.Text ?? "";
 
             if (userPassword.Equals(repeatedPassword))
             {
                 bool isClient = service.ClientUsers.ContainsKey(userName);
                 bool isPlace = service.PlaceUsers.ContainsKey(userName);
-                if(!isClient && !isPlace)
+                if (!isClient && !isPlace)
                 {
                     DataService dataService = DependencyService.Get<DataService>();
                     User user = dataService.CurrentUser;

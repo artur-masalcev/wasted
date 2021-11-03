@@ -11,6 +11,7 @@ namespace Wasted.Pages.Deals
     public partial class OrderPopup : PopupPage
     {
         public Deal SelectedDeal { get; set; }
+        public int StepperDealQuantity => SelectedDeal.Quantity == 0 ? 1 : SelectedDeal.Quantity;
 
         private int selectedCount = 0;
         public int SelectedCount
@@ -26,8 +27,7 @@ namespace Wasted.Pages.Deals
         {
             SelectedDeal = deal;
             InitializeComponent();
-            orderView.BindingContext = SelectedDeal;
-            countLabel.BindingContext = this;
+            BindingContext = this;
         }
 
         /// <summary>
@@ -36,22 +36,11 @@ namespace Wasted.Pages.Deals
         public void OnConfirmClicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync(true); // Close the popup
+            SelectedDeal.Quantity -= (int) stepper.Value;
+            
             bool selectedSomething = stepper.Value != 0;
-
-            if (SelectedDeal.Quantity == stepper.Value)
-            {
-                stepper.Maximum = 1; //Prevents crashing from invalid maximum - 0
-                SelectedDeal.Quantity = 0;
-            }
-            else
-            {
-                SelectedDeal.Quantity -= (int)stepper.Value;
-                stepper.Value = 0;
-            }
-
             if (selectedSomething)
                 Acr.UserDialogs.UserDialogs.Instance.Toast("Order confirmed", new TimeSpan(3));
-
         }
 
         public void OnCancelClicked(object sender, EventArgs e)

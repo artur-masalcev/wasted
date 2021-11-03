@@ -16,10 +16,11 @@ namespace Wasted.DummyAPI
         /// <summary>
         /// Sorts food places by the location to the user.
         /// </summary>
-        public static IEnumerable<FoodPlace> GetNearbyPlaces(List<FoodPlace> allFoodPlaces, Location userLocation, int offerCount, int maxRadiusInKilometers)
+        public static IEnumerable<FoodPlace> GetNearbyPlaces(List<FoodPlace> allFoodPlaces, Location userLocation,
+            int nearbyPlacesCount, int maxRadiusInKilometers)
         {
-            Func<Location, FoodPlace, double> GetDistance =
-                (location, place) => Location.CalculateDistance(location, place.PlaceLocation, DistanceUnits.Kilometers);
+            double GetDistance(Location location, FoodPlace place) =>
+                Location.CalculateDistance(location, place.PlaceLocation, DistanceUnits.Kilometers);
 
             return (
                    from place in allFoodPlaces
@@ -27,33 +28,33 @@ namespace Wasted.DummyAPI
                    where GetDistance(userLocation, place) <= maxRadiusInKilometers
                    select place
                    )
-                   .Take(offerCount);
+                   .Take(nearbyPlacesCount);
         }
 
         /// <summary>
         /// Sorts deals by the percentage of change in cost. Takes the first 'offerCount' of them.
         /// </summary>
-        public static IEnumerable<Deal> GetSpecialOffers(List<Deal> allDeals, int offerCount)
+        public static IEnumerable<Deal> GetSpecialOffers(List<Deal> allDeals, int specialOffersCount)
         {
             return (
                    from deal in allDeals
                    orderby deal.DealCosts.PriceChange()
                    select deal
                    )
-                   .Take(offerCount);
+                   .Take(specialOffersCount);
         }
 
         /// <summary>
         /// Sorts food places by the number of ratings.
         /// </summary>
-        public static IEnumerable<FoodPlace> GetPopularFoodPlaces(List<FoodPlace> allFoodPlaces, int offerCount)
+        public static IEnumerable<FoodPlace> GetPopularFoodPlaces(List<FoodPlace> allFoodPlaces, int popularPlacesCount)
         {
             return (
                    from place in allFoodPlaces
                    orderby -place.RatingCount
                    select place
                    )
-                   .Take(offerCount);
+                   .Take(popularPlacesCount);
         }
     }
 }

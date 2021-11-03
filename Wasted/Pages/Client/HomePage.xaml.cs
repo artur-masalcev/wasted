@@ -18,11 +18,6 @@ namespace Wasted
     public partial class HomePage : ContentPage
     {
         private DataService service;
-        
-        const int MaxRadiusInKilometers = 50;
-        const int MaxNearbyPlacesCount = 10;
-        const int MaxSpecialOffersCount = 10;
-        const int MaxPopularPlacesCount = 10;
 
         public HomePage()
         {
@@ -39,13 +34,13 @@ namespace Wasted
             base.OnAppearing();
 
             nearbyFoodPlacesCollectionView.ItemsSource =
-                DummyAPI.DataFilters.GetNearbyPlaces(service.AllFoodPlaces, service.UserLocation, MaxNearbyPlacesCount, MaxRadiusInKilometers);
+                DummyAPI.DataFilters.GetNearbyPlaces(service.AllFoodPlaces, service.UserLocation, nearbyPlacesCount:10, maxRadiusInKilometers:50);
 
             specialOffersCollectionView.ItemsSource =
-                DummyAPI.DataFilters.GetSpecialOffers(service.AllDeals, MaxSpecialOffersCount);
+                DummyAPI.DataFilters.GetSpecialOffers(service.AllDeals, specialOffersCount:10);
 
             popularFoodPlacesCollectionView.ItemsSource =
-                DummyAPI.DataFilters.GetPopularFoodPlaces(service.AllFoodPlaces, MaxPopularPlacesCount);
+                DummyAPI.DataFilters.GetPopularFoodPlaces(service.AllFoodPlaces, popularPlacesCount:10);
         }
 
         /// <summary>

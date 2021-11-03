@@ -28,10 +28,11 @@ namespace Wasted
 
         private async void LoginClicked(object sender, EventArgs e)
         {
-            string userName = Username.Text;
-            string userPassword = Password.Text;
+            string userName = UsernameEntry.Text ?? "";
+            string userPassword = PasswordEntry.Text ?? "";
             bool isClient = service.ClientUsers.ContainsKey(userName);
             bool isPlace = service.PlaceUsers.ContainsKey(userName);
+            
             if (isClient || isPlace)
             {
                 User user = isClient ? (User)service.ClientUsers[userName] : service.PlaceUsers[userName];
@@ -57,6 +58,9 @@ namespace Wasted
             }
         }
 
+        /// <summary>
+        /// Gets user's location
+        /// </summary>
         private async Task<Location> GetLocation()
         {
             Location location = null;

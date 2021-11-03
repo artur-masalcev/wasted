@@ -23,7 +23,7 @@ namespace Wasted.Pages.Place
             service = DependencyService.Get<DataService>();
             CurrentUser = (UserPlace)service.CurrentUser;
             BindingContext = this;
-            OwnedPlaces = CurrentUser.OwnedPlaceIDs.Select(id => service.AllFoodPlaces[id - 1]);
+            OwnedPlaces = CurrentUser.OwnedPlaceIDs.Select(id => service.AllFoodPlaces[id - 1]); // Selects appropriate food place based on index
             InitializeComponent();
         }
 

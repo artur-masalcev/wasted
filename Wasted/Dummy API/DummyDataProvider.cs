@@ -19,10 +19,10 @@ namespace Wasted.DummyDataAPI
     /// </summary>
     public class DummyDataProvider
     {
-        private DataService service;
+        private HttpClient Client { get; set; }
         
-        public static string IP = ConfigurationProperties.LocalIPAddress;
-        public static string linkStart = "http://" + IP + ":5001/";
+        public static string IP => ConfigurationProperties.LocalIPAddress;
+        public static string LinkStart => "http://" + IP + ":5001/";
 
         public static string FoodPlacesEnd => "foodplaces";
         public static string DealsEnd => "deals";
@@ -30,20 +30,29 @@ namespace Wasted.DummyDataAPI
         public static string PlaceUsersEnd => "placeusers";
         public DummyDataProvider()
         {
-            service = DependencyService.Get<DataService>();
-            service.Client = new HttpClient();
+            Client = new HttpClient();
         }
+        
+        /// <summary>
+        /// Gets data from API
+        /// </summary>
         public async Task<T> GetData<T>(string linkEnd)
         {
-            string dataJson = await service.Client.GetStringAsync(linkStart + linkEnd);
+            string dataJson = await Client.GetStringAsync(LinkStart + linkEnd);
             return JsonConvert.DeserializeObject<T>(dataJson); 
         }
 
+        /// <summary>
+        /// Writes data to API
+        /// </summary>
         public async Task WriteData<T>(T data, string linkEnd)
         {
-            await service.Client.PostAsync(linkStart + linkEnd + "/add", GetStringContent(data));
+            await Client.PostAsync(LinkStart + linkEnd + "/add", GetStringContent(data));
         }
 
+        /// <summary>
+        /// Converts object to json StringContent. Serializing content once is not enough
+        /// </summary>
         public StringContent GetStringContent(object obj)
         {
             string content = JsonConvert.SerializeObject(JsonConvert.SerializeObject(obj));

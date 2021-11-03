@@ -10,8 +10,7 @@ namespace Wasted.FoodPlaceRatingSystem
 
     public class Emojis
     {
-        static string[] emojis = new string[]
-        {
+        static string[] emojis = {
             "🤬", "🤢", "😡", "😐", "😋", "😍"
         };
 
@@ -21,8 +20,7 @@ namespace Wasted.FoodPlaceRatingSystem
 
     public class Comments
     {
-        static string[] comments = new string[]
-        {
+        static string[] comments = {
             "#@$?!", "Disgusting", "Ew", "Not bad", "Great", "Amazing"
         };
 
@@ -34,8 +32,6 @@ namespace Wasted.FoodPlaceRatingSystem
     {
         /// <summary>
         /// Converts rating numeric value to emoji. Rating should be between 1 and 5
-        /// If rating value is less than 1 it is interpreted as 1
-        /// If rating value is greater than 5 it is interpreted as 5
         /// </summary>
         /// <param name="rating">Value of rating</param>
         /// <returns>Emoji representation for provided 'rating'</returns>
@@ -46,8 +42,6 @@ namespace Wasted.FoodPlaceRatingSystem
 
         /// <summary>
         /// Converts rating numeric value to associative comment. Rating should be between 1 and 5
-        /// If rating value is less than 1 it is interpreted as 1
-        /// If rating value is greater than 5 it is interpreted as 5
         /// </summary>
         /// <param name="rating">Value of rating</param>
         /// <returns>Associative comment for provided 'rating'</returns>

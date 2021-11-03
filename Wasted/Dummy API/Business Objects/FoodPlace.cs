@@ -71,7 +71,7 @@ namespace Wasted.DummyAPI.BusinessObjects
             DealsIDs = dealsIDs == null ? new List<int>() : dealsIDs;
             PlaceType = placeType;
             if (placeType != null)
-                HashMaps.PlaceTypeDictionary.PutDefaultKey(placeType, this);
+                BusinessUtils.PlaceTypeDictionary.PutDefaultKey(placeType, this);
         }
     }
 }
