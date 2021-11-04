@@ -30,11 +30,11 @@
 			<StackLayout Spacing="20" VerticalOptions="CenterAndExpand" Margin="0, 0, 0, 80">
 				<StackLayout>
 					<Label Text="Username"/>
-					<Entry x:Name="Username"/>
+					<Entry x:Name="UsernameEntry"/>
 				</StackLayout>
 				<StackLayout>
 					<Label Text="Password"/>
-					<Entry x:Name="Password" IsPassword="True"/>
+					<Entry x:Name="PasswordEntry" IsPassword="True"/>
 				</StackLayout>
 			</StackLayout>
 			<!--#endregion-->
