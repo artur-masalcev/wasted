@@ -10,10 +10,6 @@ namespace Wasted.Pages.Login
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserAccountTypePage : ContentPage
     {
-        enum UserType { User, FoodPlace}
-
-        UserType SelectedUserType { get; set; }
-
         public DataService DataService { get; set; }
 
         public UserAccountTypePage()
@@ -21,7 +17,7 @@ namespace Wasted.Pages.Login
             InitializeComponent();
             DataService = DependencyService.Get<DataService>();
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true); // Put margin on iOS devices that have top notch
-            SelectedUserType = UserType.User;
+            DataService.CurrentUser = new UserClient();
         }
 
         private void ContinueClicked(object sender, EventArgs e)
