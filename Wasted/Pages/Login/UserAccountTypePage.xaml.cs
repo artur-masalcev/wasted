@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.Utils;
 using Xamarin.Forms;
