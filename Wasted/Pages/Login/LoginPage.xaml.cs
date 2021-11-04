@@ -85,5 +85,9 @@ namespace Wasted
         {
             Navigation.PushAsync(new UserAccountTypePage());
         }
+
+        void ContentPage_MeasureInvalidated(System.Object sender, System.EventArgs e)
+        {
+        }
     }
 }

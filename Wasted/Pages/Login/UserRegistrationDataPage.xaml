@@ -13,19 +13,9 @@
 			<Setter Property="FontAttributes" Value="Bold"/>
 			<Setter Property="TextColor" Value="White"/>
 		</Style>
-
-        <Style x:Key="ButtonStyle" TargetType="Button">
-			<Setter Property="CornerRadius" Value="10"/>
-			<Setter Property="BackgroundColor" Value="White"/>
-			<Setter Property="FontAttributes" Value="Bold"/>
-			<Setter Property="TextColor" Value="{StaticResource TextBlack}"/>
-		</Style>
-
-        <Style x:Key="CustomNavBarBackButton" TargetType="Button">
-            <Setter Property="BackgroundColor" Value="Transparent"/>
-            <Setter Property="TextColor" Value="White"/>
-            <Setter Property="FontAttributes" Value="Bold"/>
-            <Setter Property="FontSize" Value="Title"/>
+        <Style TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor" Value="{StaticResource AppEmerald}" />
+            <Setter Property="BarTextColor" Value="White" />
         </Style>
 		<!--#endregion-->
     </ContentPage.Resources>
@@ -66,7 +56,7 @@
 
             <!--#region Action buttons-->
             <Button Text="Next"
-                Style="{StaticResource ButtonStyle}"
+                Style="{StaticResource AuthPrimaryActionButton}"
                 Clicked="NextClicked"
                 Margin="50, 0, 50, 20"
                 />

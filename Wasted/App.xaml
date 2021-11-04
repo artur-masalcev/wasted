@@ -28,6 +28,7 @@
 
 		<Style TargetType="Entry">
 			<Setter Property="HeightRequest" Value="45"/>
+			<Setter Property="BackgroundColor" Value="White"/>
 		</Style>
 
 		<Style x:Key="RedLabel" TargetType="Label">
@@ -225,6 +226,26 @@
 			<Setter Property="Margin" Value="30" />
 		</Style>
 
+		<Style x:Key="AuthPrimaryActionButton" TargetType="Button">
+			<Setter Property="CornerRadius" Value="10"/>
+			<Setter Property="BackgroundColor" Value="White"/>
+			<Setter Property="FontAttributes" Value="Bold"/>
+			<Setter Property="TextColor" Value="{StaticResource TextBlack}"/>
+		</Style>
+
+		<Style x:Key="AuthSecondaryActionButton" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+
+        <Style x:Key="CustomNavBarBackButton" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Transparent"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="WidthRequest" Value="20"/>
+            <Setter Property="VerticalOptions" Value="Center"/>
+        </Style>
 		<!--#endregion-->
 
 		<!--#region BoxViews -->
