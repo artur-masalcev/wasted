@@ -8,15 +8,14 @@ namespace Wasted.Dummy_API.Business_Objects
     {
         public List<int> OwnedPlaceIDs { get; set; }
 
-        protected UserPlace(string username, string password, string name, string surname,
-            string city, string address, Dictionary<int, int> ratings, List<int> ownedPlaceIDs) :
+        public UserPlace(string username = null, string password = null, string name = null,
+            string surname = null, string city = null, string address = null, Dictionary<int, int> ratings = null,
+            List<int> ownedPlaceIDs = null) :
             base(username, password, name, surname, city, address, ratings)
         {
             OwnedPlaceIDs = ownedPlaceIDs ?? new List<int>();
         }
-        public UserPlace()
-        {
-        }
+
         public override void PushPage(ContentPage page)
         {
             PageManager.PushPlacePage(page);

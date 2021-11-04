@@ -26,22 +26,7 @@ namespace Wasted.Pages.Login
 
         private void ContinueClicked(object sender, EventArgs e)
         {
-            Console.WriteLine(SelectedUserType);
-            switch (SelectedUserType)
-            {
-                case UserType.User:
-                {
-                    DataService.CurrentUser = new UserClient();
-                    Navigation.PushAsync(new UserRegistrationDataPage());
-                    break;
-                }
-                case UserType.FoodPlace:
-                {
-                    DataService.CurrentUser = new UserPlace();
-                    Navigation.PushAsync(new UserRegistrationDataPage());
-                    break;
-                }
-            }
+            Navigation.PushAsync(new UserRegistrationDataPage());
         }
 
         private void BackClicked(object sender, EventArgs e)
@@ -55,11 +40,11 @@ namespace Wasted.Pages.Login
             RadioButton radioButton = sender as RadioButton;
             switch (radioButton.Value) {
                 case "User":
-                    SelectedUserType = UserType.User;
+                    DataService.CurrentUser = new UserClient();
                     break;
 
                 case "FoodPlace":
-                    SelectedUserType = UserType.FoodPlace;
+                    DataService.CurrentUser = new UserPlace();
                     break;
             }
         }
