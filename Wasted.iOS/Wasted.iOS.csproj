@@ -98,12 +98,6 @@
     <ImageAsset Include="Assets.xcassets\star_outline.imageset\star_outline-1.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\logo_white.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\logo_white.imageset\logo_white.png" />
-    <ImageAsset Include="Assets.xcassets\foodplace.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\foodplace.imageset\foodplace.png" />
-    <ImageAsset Include="Assets.xcassets\user.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\user.imageset\user.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
@@ -245,8 +239,5 @@
     <Folder Include="Assets.xcassets\item_quantity.imageset\" />
     <Folder Include="Assets.xcassets\star_outline.imageset\" />
     <Folder Include="Assets.xcassets\star_fill.imageset\" />
-    <Folder Include="Assets.xcassets\logo_white.imageset\" />
-    <Folder Include="Assets.xcassets\foodplace.imageset\" />
-    <Folder Include="Assets.xcassets\user.imageset\" />
   </ItemGroup>
 </Project>
