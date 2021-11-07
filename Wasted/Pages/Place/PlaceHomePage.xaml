@@ -21,10 +21,12 @@
                                 <Label Text="{Binding Title }" />
                                 <Label Text="{Binding City}" />
                                 <Label Text="{Binding DealsCount, StringFormat='{0} deals'}" />
+                                <Button x:Name="DeleteButton" Text="Delete" Command="{Binding Source={x:Reference YourPlacesCollectionView}}" CommandParameter="{Binding .}"></Button>
                             </StackLayout>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+
                 
             </CollectionView>
             
