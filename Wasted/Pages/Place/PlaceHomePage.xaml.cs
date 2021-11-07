@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,18 +19,25 @@ namespace Wasted.Pages.Place
     {
         private DataService service;
         public UserPlace CurrentUser { get; set; }
-        public IEnumerable<FoodPlace> OwnedPlaces { get; set; }
-        public ICommand DeleteCommand { get; }
-        public Button DeleteButton;
+        private IEnumerable<FoodPlace> ownedPlaces;
+        public IEnumerable<FoodPlace> OwnedPlaces
+        {
+            get { return ownedPlaces; }
+            set
+            {
+                ownedPlaces = value;
+                OnPropertyChanged();
+            }
+        }
+        public ICommand DeleteCommand { get; set; }
         public PlaceHomePage()
         {
             service = DependencyService.Get<DataService>();
             CurrentUser = (UserPlace)service.CurrentUser;
             BindingContext = this;
             OwnedPlaces = CurrentUser.OwnedPlaceIDs.Select(id => service.AllFoodPlaces[id - 1]); // Selects appropriate food place based on index
-            DeleteCommand = new Command(DeletePlace);
-            DeleteButton.BindingContext = DeleteCommand;
             InitializeComponent();
+            DeleteCommand = new Command(DeletePlace);
         }
 
         private void YourPlacesCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -48,9 +56,7 @@ namespace Wasted.Pages.Place
 
         private void DeletePlace(object obj)
         {
-            var foodPlace = obj as FoodPlace;
-            OwnedPlaces.ToList().Remove(foodPlace);
-            Console.WriteLine("removed");
+            OwnedPlaces = OwnedPlaces.Where(place => place != obj);
         }
     }
 }
