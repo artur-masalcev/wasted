@@ -56,7 +56,9 @@ namespace Wasted.Pages.Place
 
         private void DeletePlace(object obj)
         {
-            OwnedPlaces = OwnedPlaces.Where(place => place != obj);
+            FoodPlace selectedPlace = obj as FoodPlace;
+            CurrentUser.OwnedPlaceIDs = CurrentUser.OwnedPlaceIDs.Where(id => id != selectedPlace.ID).ToList();
+            OwnedPlaces = OwnedPlaces.Where(place => place != selectedPlace);
         }
     }
 }
