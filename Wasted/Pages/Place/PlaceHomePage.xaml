@@ -17,13 +17,19 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Title }" />
-                                <Label Text="{Binding City}" />
-                                <Label Text="{Binding DealsCount, StringFormat='{0} deals'}" />
-                                <Button Text="Delete" Command="{Binding Path=BindingContext.DeleteCommand,
-                                    Source={x:Reference YourPlacesCollectionView}}" CommandParameter="{Binding .}" />
-                            </StackLayout>
+                            <SwipeView>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Title }" />
+                                    <Label Text="{Binding City}" />
+                                    <Label Text="{Binding DealsCount, StringFormat='{0} deals'}" />
+                                </StackLayout>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Delete" BackgroundColor="Red" Command="{Binding Path=BindingContext.DeleteCommand,
+                                            Source={x:Reference YourPlacesCollectionView}}" CommandParameter="{Binding .}"/>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                            </SwipeView>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
