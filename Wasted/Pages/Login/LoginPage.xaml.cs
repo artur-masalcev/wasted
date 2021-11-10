@@ -26,17 +26,18 @@ namespace Wasted
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
         }
 
-        private async void LoginClicked(object sender, EventArgs e)
+        private async Task Login(string username, string password)
         {
-            string userName = UsernameEntry.Text ?? "";
-            string userPassword = PasswordEntry.Text ?? "";
-            bool isClient = service.ClientUsers.ContainsKey(userName);
-            bool isPlace = service.PlaceUsers.ContainsKey(userName);
+
+            if (String.IsNullOrEmpty(username) || String.IsNullOrEmpty(password)) throw new ArgumentNullException();
+
+            bool isClient = service.ClientUsers.ContainsKey(username);
+            bool isPlace = service.PlaceUsers.ContainsKey(username);
             
             if (isClient || isPlace)
             {
-                User user = isClient ? (User)service.ClientUsers[userName] : service.PlaceUsers[userName];
-                if (user.Password == userPassword)
+                User user = isClient ? (User)service.ClientUsers[password] : service.PlaceUsers[password];
+                if (user.Password == password)
                 {
                     Location userLocation = GetLocation().Result;
                     if (userLocation == null)
@@ -55,6 +56,20 @@ namespace Wasted
             else
             {
                 await DisplayAlert("", "Username does not exist. Try Again.", "OK");
+            }
+        }
+        
+        private async void LoginClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                string username = UsernameEntry.Text;
+                string password = PasswordEntry.Text;
+                await Login(username, password);
+            }
+            catch (ArgumentNullException)
+            {
+                DisplayAlert("", "Please fill all fields", "OK");
             }
         }
 

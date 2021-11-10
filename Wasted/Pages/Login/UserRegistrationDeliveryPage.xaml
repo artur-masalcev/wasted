@@ -37,22 +37,22 @@
             <StackLayout Spacing="20" VerticalOptions="CenterAndExpand">
                 <StackLayout>
                     <Label Text="Name" />
-                    <Entry x:Name="Name" />
+                    <Entry x:Name="NameEntry" />
                 </StackLayout>
 
                 <StackLayout>
                     <Label Text="Surname" />
-                    <Entry x:Name="Surname" />
+                    <Entry x:Name="SurnameEntry" />
                 </StackLayout>
 
                 <StackLayout>
                     <Label Text="City" />
-                    <Entry x:Name="City" />
+                    <Entry x:Name="CityEntry" />
                 </StackLayout>
 
                 <StackLayout>
                     <Label Text="Address" />
-                    <Entry x:Name="Address" />
+                    <Entry x:Name="AddressEntry" />
                 </StackLayout>
             </StackLayout>
             <!--#endregion-->

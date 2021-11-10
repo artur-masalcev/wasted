@@ -39,17 +39,17 @@
             <StackLayout VerticalOptions="CenterAndExpand" Spacing="20">
                 <StackLayout>
                     <Label Text="Username" />
-                    <Entry x:Name="Username" />
+                    <Entry x:Name="UsernameEntry" />
                 </StackLayout>
 
                 <StackLayout>
                     <Label Text="Password" />
-                    <Entry x:Name="Password" IsPassword="True"/>
+                    <Entry x:Name="PasswordEntry" IsPassword="True"/>
                 </StackLayout>
 
                 <StackLayout>
                     <Label Text="Repeat password" />
-                    <Entry x:Name="RepeatedPassword" IsPassword="True"/>
+                    <Entry x:Name="RepeatedPasswordEntry" IsPassword="True"/>
                 </StackLayout>
             </StackLayout>
             <!--#endregion-->
