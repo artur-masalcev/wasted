@@ -16,12 +16,12 @@ namespace Wasted
     public partial class App : Application
     {
         private DataService service;
-        private DummyDataProvider provider;
+        private DataProvider provider;
 
         public App()
         {
             service = DependencyService.Get<DataService>();
-            provider = new DummyDataProvider();
+            provider = new DataProvider();
             Task.Run(GetData).Wait();
             BusinessUtils.AddFoodPlacesToDeals();
 
@@ -32,10 +32,10 @@ namespace Wasted
 
         private void GetData()
         {
-            service.AllFoodPlaces = provider.GetData<List<FoodPlace>>(DummyDataProvider.FoodPlacesEnd).Result;
-            service.AllDeals = provider.GetData<List<Deal>>(DummyDataProvider.DealsEnd).Result;
-            service.ClientUsers = provider.GetData<Dictionary<string, UserClient>>(DummyDataProvider.ClientUsersEnd).Result;
-            service.PlaceUsers = provider.GetData<Dictionary<string, UserPlace>>(DummyDataProvider.PlaceUsersEnd).Result;
+            service.AllFoodPlaces = provider.GetData<List<FoodPlace>>(DataProvider.FoodPlacesEnd).Result;
+            service.AllDeals = provider.GetData<List<Deal>>(DataProvider.DealsEnd).Result;
+            service.ClientUsers = provider.GetData<Dictionary<string, UserClient>>(DataProvider.ClientUsersEnd).Result;
+            service.PlaceUsers = provider.GetData<Dictionary<string, UserPlace>>(DataProvider.PlaceUsersEnd).Result;
         }
 
         protected override void OnSleep()
@@ -45,10 +45,10 @@ namespace Wasted
 
         private void WriteData()
         {
-            provider.WriteData(service.AllFoodPlaces, DummyDataProvider.FoodPlacesEnd).Wait();
-            provider.WriteData(service.AllDeals, DummyDataProvider.DealsEnd).Wait();
-            provider.WriteData(service.ClientUsers, DummyDataProvider.ClientUsersEnd).Wait();
-            provider.WriteData(service.PlaceUsers, DummyDataProvider.PlaceUsersEnd).Wait();
+            provider.WriteData(service.AllFoodPlaces, DataProvider.FoodPlacesEnd).Wait();
+            provider.WriteData(service.AllDeals, DataProvider.DealsEnd).Wait();
+            provider.WriteData(service.ClientUsers, DataProvider.ClientUsersEnd).Wait();
+            provider.WriteData(service.PlaceUsers, DataProvider.PlaceUsersEnd).Wait();
         }
 
         protected override void OnResume()

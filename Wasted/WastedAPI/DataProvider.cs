@@ -17,7 +17,7 @@ namespace Wasted.DummyDataAPI
     /// <summary>
     /// Provides methods for receiving local dummy data needed for Wasted app
     /// </summary>
-    public class DummyDataProvider
+    public class DataProvider
     {
         private HttpClient Client { get; set; }
         
@@ -28,7 +28,7 @@ namespace Wasted.DummyDataAPI
         public static string DealsEnd => "deals";
         public static string ClientUsersEnd => "clientusers";
         public static string PlaceUsersEnd => "placeusers";
-        public DummyDataProvider()
+        public DataProvider()
         {
             Client = new HttpClient();
         }
