@@ -34,13 +34,13 @@ namespace Wasted
             base.OnAppearing();
 
             nearbyFoodPlacesCollectionView.ItemsSource =
-                DummyAPI.DataFilters.GetNearbyPlaces(service.AllFoodPlaces, service.UserLocation, nearbyPlacesCount:10, maxRadiusInKilometers:50);
+                DummyAPI.DataOrganizer.SortPlacesByUserLocation(service.AllFoodPlaces, service.UserLocation, nearbyPlacesCount:10, maxRadiusInKilometers:50);
 
             specialOffersCollectionView.ItemsSource =
-                DummyAPI.DataFilters.GetSpecialOffers(service.AllDeals, specialOffersCount:10);
+                DummyAPI.DataOrganizer.SortOffersByPriceChange(service.AllDeals, specialOffersCount:10);
 
             popularFoodPlacesCollectionView.ItemsSource =
-                DummyAPI.DataFilters.GetPopularFoodPlaces(service.AllFoodPlaces, popularPlacesCount:10);
+                DummyAPI.DataOrganizer.SortPlacesByRatingDescending(service.AllFoodPlaces, popularPlacesCount:10);
         }
 
         /// <summary>
