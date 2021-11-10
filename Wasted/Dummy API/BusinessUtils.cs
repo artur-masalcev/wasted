@@ -16,8 +16,8 @@ namespace Wasted.Dummy_API
         /// <summary>
         /// Dictionary from place type to places of that type
         /// </summary>
-        public static Dictionary<string, List<FoodPlace>> PlaceTypeDictionary { get; set; } = new Dictionary<string, List<FoodPlace>>();
-            
+        public static Dictionary<string, List<FoodPlace>> PlaceTypeDictionary { get; set; } 
+            = new Dictionary<string, List<FoodPlace>>();
 
         /// <summary>
         /// Adds food places from which deals came from by using ids
@@ -38,10 +38,10 @@ namespace Wasted.Dummy_API
         /// <summary>
         /// Sorts array by id
         /// </summary>
-        public static List<T> CountingSort<T>(IDInterface[] array)
+        public static List<T> CountingSort<T>(IIntegerIdentifiable[] array)
         {
             List<T> newArray = new List<T>(new T[array.Length]);
-            foreach (IDInterface elem in array)
+            foreach (IIntegerIdentifiable elem in array)
             {
                 newArray[elem.ID - 1] = (T)elem;
             }
