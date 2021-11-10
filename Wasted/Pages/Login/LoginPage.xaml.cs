@@ -26,7 +26,7 @@ namespace Wasted
             On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
         }
 
-        private async Task Login(string username, string password)
+        private async Task SubmitUserData(string username, string password)
         {
 
             if (String.IsNullOrEmpty(username) || String.IsNullOrEmpty(password)) throw new ArgumentNullException();
@@ -65,7 +65,7 @@ namespace Wasted
             {
                 string username = UsernameEntry.Text;
                 string password = PasswordEntry.Text;
-                await Login(username, password);
+                await SubmitUserData(username, password);
             }
             catch (ArgumentNullException)
             {

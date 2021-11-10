@@ -38,7 +38,6 @@ namespace Wasted.Pages.Login
             Navigation.PushAsync(new LoginPage());
         }
         
-        
         private void CreateClicked(object sender, EventArgs e)
         {
             try
