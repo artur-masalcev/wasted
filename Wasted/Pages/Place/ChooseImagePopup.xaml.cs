@@ -17,9 +17,9 @@ namespace Wasted.Pages.Place
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChooseImagePopup : PopupPage
     {
-        public ImageChooserInterface Chooser { get; set; }
+        public IImageChooser Chooser { get; set; }
         public PropertyInfo Property { get; set; }
-        public ChooseImagePopup(ImageChooserInterface obj, string property)
+        public ChooseImagePopup(IImageChooser obj, string property)
         {
             Chooser = obj;
             InitializeComponent();

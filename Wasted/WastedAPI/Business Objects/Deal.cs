@@ -8,7 +8,7 @@ using Wasted.Dummy_API.Business_Objects;
 
 namespace Wasted.DummyAPI.BusinessObjects
 {
-    public class Deal : ChangeablePropertyObject, IIntegerIdentifiable, ImageChooserInterface
+    public class Deal : ChangeablePropertyObject, IIntegerIdentifiable, IImageChooser
     {
         public int ID { get; set; }
         public string Title { get; set; }
