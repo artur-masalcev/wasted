@@ -71,9 +71,6 @@
     <None Remove="Newtonsoft.Json" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="FoodPlaceRatingSystem\" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Update="Pages\Deals\OrderPopup.xaml.cs">
       <DependentUpon>OrderPopup.xaml</DependentUpon>
     </Compile>
