@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Wasted.Pages.UserRegistrationDataPage"
+    BackgroundColor="{StaticResource AppEmerald}"
+    NavigationPage.HasNavigationBar="False"
+    >
+
+    <ContentPage.Resources>
+        <!--#region Default styles-->
+        <Style TargetType="Label">
+			<Setter Property="FontAttributes" Value="Bold"/>
+			<Setter Property="TextColor" Value="White"/>
+		</Style>
+        <Style TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor" Value="{StaticResource AppEmerald}" />
+            <Setter Property="BarTextColor" Value="White" />
+        </Style>
+		<!--#endregion-->
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Padding="15, 0, 15, 0">
+            <!--#region Custom navigation bar-->
+            <StackLayout Orientation="Horizontal">
+                <Button Text="‹"
+                        Style="{StaticResource CustomNavBarBackButton}"
+                        Clicked="BackClicked"
+                        />
+
+                <Label Text="Basic information"
+                       VerticalTextAlignment="Center"
+                       FontSize="Title"/>
+            </StackLayout>
+            <!--#endregion-->
+
+            <!--#region Form-->
+            <StackLayout VerticalOptions="CenterAndExpand" Spacing="20">
+                <StackLayout>
+                    <Label Text="Username" />
+                    <Entry x:Name="Username" />
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Password" />
+                    <Entry x:Name="Password" IsPassword="True"/>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Repeat password" />
+                    <Entry x:Name="RepeatedPassword" IsPassword="True"/>
+                </StackLayout>
+            </StackLayout>
+            <!--#endregion-->
+
+            <!--#region Action buttons-->
+            <Button Text="Next"
+                Style="{StaticResource AuthPrimaryActionButton}"
+                Clicked="NextClicked"
+                Margin="50, 0, 50, 20"
+                />
+            <!--#endregion-->
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

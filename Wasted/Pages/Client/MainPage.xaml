@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:wasted="clr-namespace:Wasted"
+            x:Class="Wasted.MainPage"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core" 
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            NavigationPage.HasNavigationBar="false">
+
+            <wasted:HomePage
+                 Title="Home"
+                 Icon="nav_bar_home.png"/>
+            <wasted:SearchPage
+                 Title="Search"
+                 Icon="nav_bar_search.png"/>
+</TabbedPage>
+

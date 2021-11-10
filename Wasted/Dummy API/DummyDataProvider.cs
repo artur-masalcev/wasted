@@ -2,8 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
+using System.Configuration;
+using System.Reflection;
+using Xamarin.Forms;
+using System.Text;
+using Wasted.Dummy_API.Business_Objects;
 
 namespace Wasted.DummyDataAPI
 {
@@ -12,88 +19,44 @@ namespace Wasted.DummyDataAPI
     /// </summary>
     public class DummyDataProvider
     {
-        /// <summary>
-        /// Path to food providers embeedded resource JSON file
-        /// </summary>
-        private const string FoodPlacesJSONPath = "Wasted.Dummy_API.Dummy_Data.FoodPlaces.json";
+        private HttpClient Client { get; set; }
+        
+        public static string IP => ConfigurationProperties.LocalIPAddress;
+        public static string LinkStart => "http://" + IP + ":5001/";
 
-        /// <summary>
-        /// Path to deals embeedded resource JSON file
-        /// </summary>
-        private const string DealsJSONPath = "Wasted.Dummy_API.Dummy_Data.Deals.json";
-
-        /// <summary>
-        /// Path to foodPlace ratings embeedded resource JSON file
-        /// </summary>
-        private const string RatingsJSONPath = "Wasted.Dummy_API.Dummy_Data.Ratings.json";
-
-        /// <summary>
-        /// Provides a list of all food providers in JSON format string
-        /// </summary>
-        /// <returns>string containing all food providers in JSON format</returns>
-        public static string GetFoodPlaces()
+        public static string FoodPlacesEnd => "foodplaces";
+        public static string DealsEnd => "deals";
+        public static string ClientUsersEnd => "clientusers";
+        public static string PlaceUsersEnd => "placeusers";
+        public DummyDataProvider()
         {
-            return EmbeddedDataReader.ReadString(FoodPlacesJSONPath);
+            Client = new HttpClient();
+        }
+        
+        /// <summary>
+        /// Gets data from API
+        /// </summary>
+        public async Task<T> GetData<T>(string linkEnd)
+        {
+            string dataJson = await Client.GetStringAsync(LinkStart + linkEnd);
+            return JsonConvert.DeserializeObject<T>(dataJson); 
         }
 
         /// <summary>
-        /// Provides a list of all deals in JSON format string
+        /// Writes data to API
         /// </summary>
-        /// <returns>string containing all deals in JSON format</returns>
-        public static string GetDeals()
+        public async Task WriteData<T>(T data, string linkEnd)
         {
-            return EmbeddedDataReader.ReadString(DealsJSONPath);
+            await Client.PostAsync(LinkStart + linkEnd + "/add", GetStringContent(data));
         }
 
         /// <summary>
-        /// Provides a list of all deals in JSON format string
+        /// Converts object to json StringContent. Serializing content once is not enough
         /// </summary>
-        /// <returns>string containing all deals in JSON format</returns>
-        public static string GetRatings()
+        public StringContent GetStringContent(object obj)
         {
-            return EmbeddedDataReader.ReadString(RatingsJSONPath);
-        }
-
-        /// <summary>
-        /// Provides a list of all food providers in List<FoodPlace> format
-        /// </summary>
-        /// <returns>list containing all food providers from JSON data</returns>
-        public static IEnumerable<FoodPlace> GetFoodPlacesList()
-        {
-            return JsonConvert.DeserializeObject<List<FoodPlace>>(GetFoodPlaces());
-        }
-
-        /// <summary>
-        /// Provides a list of all deals in List<FoodPlace> format
-        /// </summary>
-        /// <returns>list containing all deals from JSON data</returns>
-        public static IEnumerable<Deal> GetDealsList()
-        {
-            return JsonConvert.DeserializeObject<List<Deal>>(GetDeals());
-        }
-
-        /// <summary>
-        /// Provides a dictionary in <UserID, <FoodPlaceID, Rating>> format
-        /// </summary>
-        /// <returns>dictionary containing all ratings from user</returns>
-        public static Dictionary<int, Dictionary<int, int>> GetRatingsDictionary()
-        {
-            return JsonConvert.DeserializeObject<Dictionary<int, Dictionary<int, int>>>(GetRatings());
-        }
-
-        public static void WriteFoodPlacesList()
-        {
-            EmbeddedDataReader.WriteString(FoodPlacesJSONPath, JsonConvert.SerializeObject(App.AllFoodPlaces));
-        }
-
-        public static void WriteDealsList()
-        {
-            EmbeddedDataReader.WriteString(DealsJSONPath, JsonConvert.SerializeObject(App.AllDeals));
-        }
-
-        public static void WriteRatingsDictionary()
-        {
-            EmbeddedDataReader.WriteString(RatingsJSONPath, JsonConvert.SerializeObject(App.Ratings));
+            string content = JsonConvert.SerializeObject(JsonConvert.SerializeObject(obj));
+            return new StringContent(content, Encoding.UTF8, "application/json");
         }
     }
 }

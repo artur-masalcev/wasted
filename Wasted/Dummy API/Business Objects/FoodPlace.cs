@@ -8,18 +8,19 @@ using System.Runtime.CompilerServices;
 using Wasted.Dummy_API;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyDataAPI;
+using Wasted.Utils;
 using Xamarin.Essentials;
 
 namespace Wasted.DummyAPI.BusinessObjects
 {
-    public class FoodPlace : ChangeablePropertyObject
+    public class FoodPlace : ChangeablePropertyObject, IDInterface, ImageChooserInterface
     {
-        public int ID;
+        public int ID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
 
         public Location PlaceLocation { get; set; }
-  
+
         public string Street { get; set; }
         public string City { get; set; }
         public string WorkingHours { get; set; }
@@ -32,7 +33,7 @@ namespace Wasted.DummyAPI.BusinessObjects
         {
             get { return rating; }
             set
-            {                
+            {
                 rating = (value + rating * RatingCount) / (RatingCount + 1);
                 ++RatingCount;
                 OnPropertyChanged();
@@ -40,17 +41,21 @@ namespace Wasted.DummyAPI.BusinessObjects
         }
         public string LogoURL { get; set; }
         public string HeaderURL { get; set; }
-        public int[] DealsIDs { get; set; }
+        public List<int> DealsIDs { get; set; }
 
-        [JsonIgnore]
+
+        [JsonIgnore] //Prevents infinite recursion when serializing to json file
         public List<Deal> Deals = new List<Deal>();
 
-        public int DealsCount => DealsIDs.Length;
+        [JsonIgnore]
+        public int DealsCount => Deals.Count;
 
-        public int PlaceType { get; set; }
+        public string PlaceType { get; set; }
 
-        public FoodPlace(int id, string title, int placeType, string description, double longitude, double latitude, string street,
-            string city, string workingHours, double rating, int ratingCount, string logoURL, string headerURL, int[] dealIDs)
+        public FoodPlace(int id = 0, string title = null, string placeType = null, string description = null,
+            double longitude = 0, double latitude = 0, string street = null, string city = null,
+            string workingHours = null, double rating = 0, int ratingCount = 0, string logoURL = null,
+            string headerURL = null, List<int> dealsIDs = null)
         {
             ID = id;
             Title = title;
@@ -63,10 +68,10 @@ namespace Wasted.DummyAPI.BusinessObjects
             RatingCount = ratingCount;
             LogoURL = logoURL;
             HeaderURL = headerURL;
-            DealsIDs = dealIDs;
-
+            DealsIDs = dealsIDs == null ? new List<int>() : dealsIDs;
             PlaceType = placeType;
-            HashMaps.FoodPlaceTypeHashMap[PlaceType].Add(this);
+            if (placeType != null)
+                BusinessUtils.PlaceTypeDictionary.PutDefaultKey(placeType, this);
         }
     }
 }

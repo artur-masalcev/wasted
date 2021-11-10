@@ -14,10 +14,29 @@
 	    <Compile Remove="Images\**" />
 	    <EmbeddedResource Remove="Images\**" />
 	    <None Remove="Images\**" />
-	    <None Remove="Dummy API\Dummy Data\Ratings.json" />
 	    <None Remove="Xamarin.Rating" />
 	    <None Remove="Rg.Plugins.Popup" />
 	    <None Remove="FoodPlaceRatingSystem\" />
+	    <Compile Update="Pages\Client\FoodPlacePage.xaml.cs">
+	      <DependentUpon>FoodPlacePage.xaml</DependentUpon>
+	      <SubType>Code</SubType>
+	    </Compile>
+	    <Compile Update="Pages\Client\HomePage.xaml.cs">
+	      <DependentUpon>HomePage.xaml</DependentUpon>
+	      <SubType>Code</SubType>
+	    </Compile>
+	    <Compile Update="Pages\Client\MainPage.xaml.cs">
+	      <DependentUpon>MainPage.xaml</DependentUpon>
+	      <SubType>Code</SubType>
+	    </Compile>
+	    <Compile Update="Pages\Client\SearchPage.xaml.cs">
+	      <DependentUpon>SearchPage.xaml</DependentUpon>
+	      <SubType>Code</SubType>
+	    </Compile>
+	    <Compile Update="Pages\Place\NewPlace\NewPlacePage.xaml.cs">
+	      <DependentUpon>NewPlacePage.xaml</DependentUpon>
+	      <SubType>Code</SubType>
+	    </Compile>
     </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +48,7 @@
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.1.0.514" />
     <PackageReference Include="Sharpnado.MaterialFrame" Version="1.2.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
@@ -48,36 +68,36 @@
     <None Remove="Images\outline_search_black_24dp.png" />
     <None Remove="Utils\" />
     <None Remove="Dummy API\Business Objects\" />
-    <None Remove="Dummy API\Dummy Data\FoodPlaces.json" />
     <None Remove="Newtonsoft.Json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FoodPlaceRatingSystem\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Dummy API\Dummy Data\Deals.json" />
-    <EmbeddedResource Include="Dummy API\Dummy Data\FoodPlaces.json" />
-    <EmbeddedResource Include="Dummy API\Dummy Data\Ratings.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Pages\FoodPlacePage.xaml.cs">
-      <DependentUpon>FoodPlacePage.xaml</DependentUpon>
+    <Compile Update="Pages\Deals\OrderPopup.xaml.cs">
+      <DependentUpon>OrderPopup.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Pages\DealPage.xaml.cs">
+    <Compile Update="Pages\Deals\DealPage.xaml.cs">
       <DependentUpon>DealPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\Login\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Login\UserRegistrationDataPage.xaml.cs">
+      <DependentUpon>UserRegistrationDataPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Pages\FoodPlacePage.xaml">
+    <EmbeddedResource Update="Pages\Deals\OrderPopup.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\HomePage.xaml">
+    <EmbeddedResource Update="Pages\Deals\DealPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\DealPage.xaml">
+    <EmbeddedResource Update="Pages\Login\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\SearchPage.xaml">
+    <EmbeddedResource Update="Pages\Login\UserRegistrationDeliveryPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

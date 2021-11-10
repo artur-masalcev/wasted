@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
 
 namespace Wasted.FoodPlaceRatingSystem
@@ -10,33 +11,35 @@ namespace Wasted.FoodPlaceRatingSystem
     public class FoodPlaceRatingModifier
     {
         /// <summary>
-        /// Adds or changes user's rating for the food place
+        /// Allows user to rethink their rating choice.
         /// </summary>
-        /// <param name="UserID">Unique user ID. Required if user wishes to change his current rate, also prevents data duplicity</param>
-        /// <param name="FoodPlaceID">ID of the food place</param>
-        /// <param name="NewRating">Rating for the food place</param>
-        /// 
-
         private static void ResetRating(FoodPlace SelectedFoodPlace, int previousRating)
         {
             --SelectedFoodPlace.RatingCount;
-            double previousRestaurantRating = (SelectedFoodPlace.Rating * (double)(SelectedFoodPlace.RatingCount + 1) - previousRating) / SelectedFoodPlace.RatingCount;
+            double previousRestaurantRating = (SelectedFoodPlace.Rating * (SelectedFoodPlace.RatingCount + 1) - previousRating) / SelectedFoodPlace.RatingCount;
             double tempRating = previousRestaurantRating * (SelectedFoodPlace.RatingCount + 1) - SelectedFoodPlace.Rating * SelectedFoodPlace.RatingCount;
 
             SelectedFoodPlace.Rating = tempRating;
             --SelectedFoodPlace.RatingCount;
         }
 
-        public static void SetUserVote(int userID, FoodPlace selectedFoodPlace, int newRating)
+        /// <summary>
+        /// Adds or changes user's rating for the food place
+        /// </summary>
+        /// <param name="User">Unique user. Required if user wishes to change his current rate, also prevents data duplicity</param>
+        /// <param name="FoodPlace">Food place</param>
+        /// <param name="NewRating">Rating for the food place</param>
+        /// 
+
+        public static void SetUserVote(User user, FoodPlace selectedFoodPlace, int newRating)
         {
             int key = selectedFoodPlace.ID;
-            Dictionary<int, int> userRatings = App.Ratings[userID];
 
-            if (userRatings.ContainsKey(key))
-                ResetRating(selectedFoodPlace, userRatings[key]);
+            if (user.Ratings.ContainsKey(key))
+                ResetRating(selectedFoodPlace, user.Ratings[key]); //Rethinking rating choice
 
             selectedFoodPlace.Rating = newRating;
-            userRatings[key] = newRating;
+            user.Ratings[key] = newRating;
         }
     }
 }

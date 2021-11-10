@@ -1,39 +1,54 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Wasted.Dummy_API;
+using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.DummyDataAPI;
+using Wasted.Utils;
 using Xamarin.Forms;
 
 namespace Wasted
 {
     public partial class App : Application
     {
-        public static List<FoodPlace> AllFoodPlaces { get; set; } = new List<FoodPlace>(DummyDataProvider.GetFoodPlacesList());
-        public static List<Deal> AllDeals { get; set; } = new List<Deal>(DummyDataProvider.GetDealsList());
-
-        public static int UserID => 8080;
-
-        //                     UserID FoodPlaceID  Given rating
-        public static Dictionary<int, Dictionary<int, int>> Ratings { get; set; } = DummyDataProvider.GetRatingsDictionary();
+        private DataService service;
+        private DummyDataProvider provider;
 
         public App()
         {
+            service = DependencyService.Get<DataService>();
+            provider = new DummyDataProvider();
+            Task.Run(GetData).Wait();
+            BusinessUtils.AddFoodPlacesToDeals();
+
             InitializeComponent();
-            HashMaps.AddFoodPlacesToDeals(AllFoodPlaces, AllDeals);
-            MainPage = new NavigationPage(new MainPage());
+
+            MainPage = new NavigationPage(new LoginPage());
         }
 
-        protected override void OnStart()
+        private void GetData()
         {
+            service.AllFoodPlaces = provider.GetData<List<FoodPlace>>(DummyDataProvider.FoodPlacesEnd).Result;
+            service.AllDeals = provider.GetData<List<Deal>>(DummyDataProvider.DealsEnd).Result;
+            service.ClientUsers = provider.GetData<Dictionary<string, UserClient>>(DummyDataProvider.ClientUsersEnd).Result;
+            service.PlaceUsers = provider.GetData<Dictionary<string, UserPlace>>(DummyDataProvider.PlaceUsersEnd).Result;
         }
 
         protected override void OnSleep()
         {
-            DummyDataProvider.WriteFoodPlacesList();
-            DummyDataProvider.WriteDealsList();
-            DummyDataProvider.WriteRatingsDictionary();
+            Task.Run(WriteData).Wait();
+        }
+
+        private void WriteData()
+        {
+            provider.WriteData(service.AllFoodPlaces, DummyDataProvider.FoodPlacesEnd).Wait();
+            provider.WriteData(service.AllDeals, DummyDataProvider.DealsEnd).Wait();
+            provider.WriteData(service.ClientUsers, DummyDataProvider.ClientUsersEnd).Wait();
+            provider.WriteData(service.PlaceUsers, DummyDataProvider.PlaceUsersEnd).Wait();
         }
 
         protected override void OnResume()

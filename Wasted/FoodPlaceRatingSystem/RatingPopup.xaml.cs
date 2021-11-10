@@ -1,16 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
+using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.FoodPlaceRatingSystem;
+using Wasted.Utils;
+using Xamarin.Forms;
 
 namespace Wasted
 {
-    public partial class RatingPopup : Rg.Plugins.Popup.Pages.PopupPage
+    public partial class RatingPopup : PopupPage
     {
         public FoodPlace SelectedFoodPlace { get; set; }
+        public DataService DataService { get; set; }
+
+        public int RatingBarRating => ratingBar.SelectedStarValue;
+
         public int FoodPlaceID { get; }
-        public int Rating => ratingBar.SelectedStarValue;
   
         public String RatingEmoji { get; set; }
         public String RatingComment { get; set; }
@@ -24,20 +31,23 @@ namespace Wasted
             SelectedFoodPlace = foodPlace;
             InitializeComponent();
 
-            Dictionary<int, int> userRatings = App.Ratings[App.UserID];
-            if (userRatings.ContainsKey(foodPlace.ID))
+            DataService = DependencyService.Get<DataService>();
+            User user = DataService.CurrentUser;
+
+            if (user.Ratings.ContainsKey(foodPlace.ID)) 
             {
-                ratingBar.SelectedStarValue = userRatings[foodPlace.ID];
+                ratingBar.SelectedStarValue = user.Ratings[foodPlace.ID]; //Sets value to the user's previous rating
             }
             foodPlaceTitleLabel.BindingContext = SelectedFoodPlace;
             ratingEmoji.BindingContext = this;
             ratingComment.BindingContext = this;
         }
 
+
         private void OnConfirmClicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync(true); // Close the popup
-            FoodPlaceRatingModifier.SetUserVote(App.UserID, SelectedFoodPlace, Rating);
+            FoodPlaceRatingModifier.SetUserVote(DataService.CurrentUser, SelectedFoodPlace, RatingBarRating);
 
         }
 
@@ -56,8 +66,8 @@ namespace Wasted
         /// </summary>
         private void UpdateAssociationView()
         {
-            ratingEmoji.Text = RatingToAssociation.ConvertToEmoji(Rating);
-            ratingComment.Text = RatingToAssociation.ConvertToComment(Rating);
+            ratingEmoji.Text = RatingToAssociation.ConvertToEmoji(RatingBarRating);
+            ratingComment.Text = RatingToAssociation.ConvertToComment(RatingBarRating);
         }
     }
 }
