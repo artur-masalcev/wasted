@@ -21,14 +21,14 @@ namespace Wasted.Utils
         public List<FoodPlace> AllFoodPlaces
         {
             get { return allFoodPlaces; }
-            set { allFoodPlaces = BusinessUtils.CountingSort<FoodPlace>(value.ToArray()); }
+            set { allFoodPlaces = BusinessUtils.SortByID<FoodPlace>(value.ToArray()); }
         }
 
         private List<Deal> allDeals;
         public List<Deal> AllDeals
         {
             get { return allDeals;}
-            set { allDeals = BusinessUtils.CountingSort<Deal>(value.ToArray()); }
+            set { allDeals = BusinessUtils.SortByID<Deal>(value.ToArray()); }
         }
         //                username
         public Dictionary<string, UserClient> ClientUsers { get; set; }

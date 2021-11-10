@@ -38,7 +38,7 @@ namespace Wasted.Dummy_API
         /// <summary>
         /// Sorts array by id
         /// </summary>
-        public static List<T> CountingSort<T>(IIntegerIdentifiable[] array)
+        public static List<T> SortByID<T>(IIntegerIdentifiable[] array)
         {
             List<T> newArray = new List<T>(new T[array.Length]);
             foreach (IIntegerIdentifiable elem in array)
