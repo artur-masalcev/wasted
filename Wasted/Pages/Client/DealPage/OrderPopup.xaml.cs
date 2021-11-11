@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using Acr.UserDialogs;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Wasted.DummyAPI.BusinessObjects;
-using Wasted.FoodPlaceRatingSystem;
 using Xamarin.Forms;
 
 namespace Wasted.Pages.Deals
@@ -40,7 +39,7 @@ namespace Wasted.Pages.Deals
             
             bool selectedSomething = stepper.Value != 0;
             if (selectedSomething)
-                Acr.UserDialogs.UserDialogs.Instance.Toast("Order confirmed", new TimeSpan(3));
+                UserDialogs.Instance.Toast("Order confirmed", new TimeSpan(3));
         }
 
         public void OnCancelClicked(object sender, EventArgs e)

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;

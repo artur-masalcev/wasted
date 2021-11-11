@@ -1,7 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using Wasted.Utils;
 using Xamarin.Forms;
 

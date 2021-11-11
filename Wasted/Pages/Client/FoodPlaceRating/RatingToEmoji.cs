@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Wasted.FoodPlaceRatingSystem
 {
     //TODO: as several languages might be supported in future, all functions

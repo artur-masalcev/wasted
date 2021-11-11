@@ -1,23 +1,15 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Wasted.DummyAPI.BusinessObjects;
-using Wasted.Utils;
-using System.Configuration;
-using System.Reflection;
-using Xamarin.Forms;
+﻿using System.Net.Http;
 using System.Text;
-using Wasted.Dummy_API.Business_Objects;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Wasted.Properties;
 
 namespace Wasted.DummyDataAPI
 {
     /// <summary>
     /// Provides methods for receiving local dummy data needed for Wasted app
     /// </summary>
-    public class DummyDataProvider
+    public class DataProvider
     {
         private HttpClient Client { get; set; }
         
@@ -28,7 +20,7 @@ namespace Wasted.DummyDataAPI
         public static string DealsEnd => "deals";
         public static string ClientUsersEnd => "clientusers";
         public static string PlaceUsersEnd => "placeusers";
-        public DummyDataProvider()
+        public DataProvider()
         {
             Client = new HttpClient();
         }

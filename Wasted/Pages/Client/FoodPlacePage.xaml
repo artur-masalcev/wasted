@@ -2,8 +2,7 @@
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	xmlns:fRating="clr-namespace:Rating;assembly=Rating"
-             x:Class="Wasted.FoodPlacesPage">
+	x:Class="Wasted.FoodPlacesPage">
 	<ContentPage.Content>
 		<ScrollView x:Name="contentScrollView">
 			<AbsoluteLayout>

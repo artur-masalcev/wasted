@@ -1,7 +1,7 @@
 ﻿namespace Wasted.Dummy_API.Business_Objects
 {
-    public interface IDInterface
+    public interface IImageChooser
     {
-        int ID { get; set; }
+        
     }
 }

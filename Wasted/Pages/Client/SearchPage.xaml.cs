@@ -1,16 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using Wasted.DummyAPI.BusinessObjects;
-using Wasted.DummyDataAPI;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
-using System;
-using System.Collections.ObjectModel;
-using Wasted.Dummy_API;
 using System.Text.RegularExpressions;
-using Wasted.Dummy_API.Business_Objects;
+using Wasted.Dummy_API;
+using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
+using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
+using Xamarin.Forms.Xaml;
 
 namespace Wasted
 {
@@ -59,7 +57,7 @@ namespace Wasted
         {
             service = DependencyService.Get<DataService>();
             InitializeComponent();
-            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+            On<iOS>().SetUseSafeArea(true);
         }
 
         /// <summary>

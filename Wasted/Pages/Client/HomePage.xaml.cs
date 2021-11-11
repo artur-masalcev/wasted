@@ -1,15 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using Wasted.DummyAPI;
 using Wasted.DummyAPI.BusinessObjects;
-using Wasted.DummyDataAPI;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
-using System;
-using Xamarin.Essentials;
-using System.Threading.Tasks;
-using System.Threading;
 using Wasted.Utils;
+using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
+using Xamarin.Forms.Xaml;
 
 namespace Wasted
 {
@@ -23,7 +19,7 @@ namespace Wasted
         {
             service = DependencyService.Get<DataService>();
             InitializeComponent();
-            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+            On<iOS>().SetUseSafeArea(true);
         }
 
         /// <summary>
@@ -34,13 +30,13 @@ namespace Wasted
             base.OnAppearing();
 
             nearbyFoodPlacesCollectionView.ItemsSource =
-                DummyAPI.DataFilters.GetNearbyPlaces(service.AllFoodPlaces, service.UserLocation, nearbyPlacesCount:10, maxRadiusInKilometers:50);
+                DataOrganizer.SortPlacesByUserLocation(service.AllFoodPlaces, service.UserLocation, nearbyPlacesCount:10, maxRadiusInKilometers:50);
 
             specialOffersCollectionView.ItemsSource =
-                DummyAPI.DataFilters.GetSpecialOffers(service.AllDeals, specialOffersCount:10);
+                DataOrganizer.SortOffersByPriceChange(service.AllDeals, specialOffersCount:10);
 
             popularFoodPlacesCollectionView.ItemsSource =
-                DummyAPI.DataFilters.GetPopularFoodPlaces(service.AllFoodPlaces, popularPlacesCount:10);
+                DataOrganizer.SortPlacesByRatingDescending(service.AllFoodPlaces, popularPlacesCount:10);
         }
 
         /// <summary>
