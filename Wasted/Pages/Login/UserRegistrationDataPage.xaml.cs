@@ -1,6 +1,7 @@
 ﻿using System;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.Pages.Login;
+using Wasted.Utils.Exceptions;
 using Wasted.Utils;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
@@ -20,27 +21,45 @@ namespace Wasted.Pages
             On<iOS>().SetUseSafeArea(true); // Put margin on iOS devices that have top notch
         }
 
+        private void SubmitUserData(string username, string password)
+        {
+            if (String.IsNullOrEmpty(username) || String.IsNullOrEmpty(password)) throw new ArgumentNullException();
+
+            bool isClient = service.ClientUsers.ContainsKey(username);
+            bool isPlace = service.PlaceUsers.ContainsKey(username);
+            if (!isClient && !isPlace)
+            {
+                DataService dataService = DependencyService.Get<DataService>();
+                User user = dataService.CurrentUser;
+                user.Username = username;
+                user.Password = password;
+                Navigation.PushAsync(new UserRegistrationDeliveryPage());
+            }
+            else
+            {
+                throw new UserAlreadyExistsException();
+            }
+        }
+        
         private void NextClicked(object sender, EventArgs e)
         {
-            string userName = Username.Text ?? "";
-            string userPassword = Password.Text ?? "";
-            string repeatedPassword = RepeatedPassword.Text ?? "";
+            string username = UsernameEntry.Text ?? "";
+            string password = PasswordEntry.Text ?? "";
+            string repeatedPassword = RepeatedPasswordEntry.Text ?? "";
 
-            if (userPassword.Equals(repeatedPassword))
+            if (password.Equals(repeatedPassword))
             {
-                bool isClient = service.ClientUsers.ContainsKey(userName);
-                bool isPlace = service.PlaceUsers.ContainsKey(userName);
-                if (!isClient && !isPlace)
+                try
                 {
-                    DataService dataService = DependencyService.Get<DataService>();
-                    User user = dataService.CurrentUser;
-                    user.Username = userName;
-                    user.Password = userPassword;
-                    Navigation.PushAsync(new UserRegistrationDeliveryPage());
+                    SubmitUserData(username, password);
                 }
-                else
+                catch (ArgumentNullException)
                 {
-                    DisplayAlert("", "Username already exists. Try another username.", "OK");
+                    DisplayAlert("", "Please fill all fields", "OK");
+                }
+                catch (UserAlreadyExistsException)
+                {
+                    DisplayAlert("", "User with this username already exists", "OK");
                 }
             }
             else

@@ -22,17 +22,18 @@ namespace Wasted
             On<iOS>().SetUseSafeArea(true);
         }
 
-        private async void LoginClicked(object sender, EventArgs e)
+        private async Task SubmitUserData(string username, string password)
         {
-            string userName = UsernameEntry.Text ?? "";
-            string userPassword = PasswordEntry.Text ?? "";
-            bool isClient = service.ClientUsers.ContainsKey(userName);
-            bool isPlace = service.PlaceUsers.ContainsKey(userName);
+
+            if (String.IsNullOrEmpty(username) || String.IsNullOrEmpty(password)) throw new ArgumentNullException();
+
+            bool isClient = service.ClientUsers.ContainsKey(username);
+            bool isPlace = service.PlaceUsers.ContainsKey(username);
             
             if (isClient || isPlace)
             {
-                User user = isClient ? (User)service.ClientUsers[userName] : service.PlaceUsers[userName];
-                if (user.Password == userPassword)
+                User user = isClient ? (User)service.ClientUsers[username] : service.PlaceUsers[username];
+                if (user.Password == password)
                 {
                     Location userLocation = GetLocation().Result;
                     if (userLocation == null)
@@ -51,6 +52,20 @@ namespace Wasted
             else
             {
                 await DisplayAlert("", "Username does not exist. Try Again.", "OK");
+            }
+        }
+        
+        private async void LoginClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                string username = UsernameEntry.Text;
+                string password = PasswordEntry.Text;
+                await SubmitUserData(username, password);
+            }
+            catch (ArgumentNullException)
+            {
+                await DisplayAlert("", "Please fill all fields", "OK");
             }
         }
 
@@ -80,10 +95,6 @@ namespace Wasted
         private void SignUpClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new UserAccountTypePage());
-        }
-
-        void ContentPage_MeasureInvalidated(Object sender, EventArgs e)
-        {
         }
     }
 }
