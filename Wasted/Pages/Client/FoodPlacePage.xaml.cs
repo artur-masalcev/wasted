@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Rg.Plugins.Popup.Services;
-using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
-using Wasted.DummyDataAPI;
 using Wasted.Utils;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
@@ -24,7 +20,7 @@ namespace Wasted
             SelectedFoodPlace = selectedFoodPlace;
 
             InitializeComponent();
-            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+            On<iOS>().SetUseSafeArea(true);
 
             InitializeViews();
         }

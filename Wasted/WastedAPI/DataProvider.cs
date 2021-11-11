@@ -1,12 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Http;
-using System.Threading.Tasks;
-using Wasted.Properties;
+﻿using System.Net.Http;
 using System.Text;
-using Wasted.Dummy_API.Business_Objects;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Wasted.Properties;
 
 namespace Wasted.DummyDataAPI
 {

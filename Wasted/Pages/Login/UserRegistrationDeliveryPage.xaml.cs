@@ -2,6 +2,7 @@
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.Utils;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
@@ -13,7 +14,7 @@ namespace Wasted.Pages.Login
         public UserRegistrationDeliveryPage()
         {
             InitializeComponent();
-            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true); // Put margin on iOS devices that have top notch
+            On<iOS>().SetUseSafeArea(true); // Put margin on iOS devices that have top notch
         }
 
         private void CreateClicked(object sender, EventArgs e)

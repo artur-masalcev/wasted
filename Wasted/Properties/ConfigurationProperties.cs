@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Wasted.Properties
+﻿namespace Wasted.Properties
 {
     public static class ConfigurationProperties
     {
