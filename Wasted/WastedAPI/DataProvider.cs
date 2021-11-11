@@ -11,6 +11,7 @@ using System.Reflection;
 using Xamarin.Forms;
 using System.Text;
 using Wasted.Dummy_API.Business_Objects;
+using Wasted.Properties;
 
 namespace Wasted.DummyDataAPI
 {

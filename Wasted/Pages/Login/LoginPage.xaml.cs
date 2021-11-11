@@ -36,7 +36,7 @@ namespace Wasted
             
             if (isClient || isPlace)
             {
-                User user = isClient ? (User)service.ClientUsers[password] : service.PlaceUsers[password];
+                User user = isClient ? (User)service.ClientUsers[username] : service.PlaceUsers[username];
                 if (user.Password == password)
                 {
                     Location userLocation = GetLocation().Result;
@@ -69,7 +69,7 @@ namespace Wasted
             }
             catch (ArgumentNullException)
             {
-                DisplayAlert("", "Please fill all fields", "OK");
+                await DisplayAlert("", "Please fill all fields", "OK");
             }
         }
 
@@ -99,10 +99,6 @@ namespace Wasted
         private void SignUpClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new UserAccountTypePage());
-        }
-
-        void ContentPage_MeasureInvalidated(System.Object sender, System.EventArgs e)
-        {
         }
     }
 }
