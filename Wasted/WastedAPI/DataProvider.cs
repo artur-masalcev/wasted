@@ -4,11 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Wasted.DummyAPI.BusinessObjects;
-using Wasted.Utils;
-using System.Configuration;
-using System.Reflection;
-using Xamarin.Forms;
+using Wasted.Properties;
 using System.Text;
 using Wasted.Dummy_API.Business_Objects;
 
