@@ -1,8 +1,10 @@
-﻿using Rg.Plugins.Popup.Services;
-using System;
+﻿using System;
+using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Pages.Deals;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
@@ -18,7 +20,7 @@ namespace Wasted
            
             InitializeComponent();
 
-            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+            On<iOS>().SetUseSafeArea(true);
 
             BindingContext = SelectedDeal;
 
@@ -35,7 +37,7 @@ namespace Wasted
             }
             else
             {
-                Acr.UserDialogs.UserDialogs.Instance.Toast("No orders left!", new TimeSpan(3));
+                UserDialogs.Instance.Toast("No orders left!", new TimeSpan(3));
             }
         }
         

@@ -1,13 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Wasted.DummyAPI.BusinessObjects;
-using Wasted.DummyDataAPI;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
-using System;
 using Xamarin.Essentials;
-using System.Threading.Tasks;
 
 namespace Wasted.DummyAPI
 {

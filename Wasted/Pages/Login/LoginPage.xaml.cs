@@ -1,15 +1,11 @@
-﻿using Rg.Plugins.Popup.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
 using Wasted.Dummy_API.Business_Objects;
-using Wasted.Pages;
 using Wasted.Pages.Login;
 using Wasted.Utils;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
@@ -23,7 +19,7 @@ namespace Wasted
         {
             service = DependencyService.Get<DataService>();
             InitializeComponent();
-            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+            On<iOS>().SetUseSafeArea(true);
         }
 
         private async Task SubmitUserData(string username, string password)

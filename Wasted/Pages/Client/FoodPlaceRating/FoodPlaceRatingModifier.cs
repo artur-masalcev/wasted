@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Wasted.Dummy_API.Business_Objects;
+﻿using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
 
 namespace Wasted.FoodPlaceRatingSystem

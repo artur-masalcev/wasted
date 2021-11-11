@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using Rg.Plugins.Popup.Pages;
-using Rg.Plugins.Popup.Services;
-using Wasted.Utils;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.Pages.Login;
 using Wasted.Utils.Exceptions;
+using Wasted.Utils;
+using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
+using Xamarin.Forms.Xaml;
 
 namespace Wasted.Pages
 {
@@ -24,7 +18,7 @@ namespace Wasted.Pages
         {
             service = DependencyService.Get<DataService>();
             InitializeComponent();
-            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true); // Put margin on iOS devices that have top notch
+            On<iOS>().SetUseSafeArea(true); // Put margin on iOS devices that have top notch
         }
 
         private void SubmitUserData(string username, string password)

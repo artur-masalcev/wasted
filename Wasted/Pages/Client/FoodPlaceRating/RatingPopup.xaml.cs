@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Wasted.Dummy_API.Business_Objects;

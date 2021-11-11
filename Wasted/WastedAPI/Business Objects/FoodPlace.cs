@@ -1,13 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using Wasted.Dummy_API;
 using Wasted.Dummy_API.Business_Objects;
-using Wasted.DummyDataAPI;
 using Wasted.Utils;
 using Xamarin.Essentials;
 

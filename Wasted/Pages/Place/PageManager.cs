@@ -1,5 +1,4 @@
-﻿using Rg.Plugins.Popup.Extensions;
-using Wasted.Pages.Place;
+﻿using Wasted.Pages.Place;
 using Xamarin.Forms;
 
 namespace Wasted.Dummy_API.Business_Objects
