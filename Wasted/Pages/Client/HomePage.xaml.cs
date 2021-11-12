@@ -2,6 +2,7 @@
 using Wasted.DummyAPI;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
+using Wasted.WastedAPI;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
@@ -32,8 +33,12 @@ namespace Wasted
             nearbyFoodPlacesCollectionView.ItemsSource =
                 DataOrganizer.SortPlacesByUserLocation(service.AllFoodPlaces, service.UserLocation, nearbyPlacesCount:10, maxRadiusInKilometers:50);
 
-            specialOffersCollectionView.ItemsSource =
-                DataOrganizer.SortOffersByPriceChange(service.AllDeals, specialOffersCount:10);
+            var specialOffers
+                = DataOrganizer.FilterDeals(
+                    DataOrganizer.SortOffersByPriceChange(service.AllDeals, specialOffersCount: 10),
+                    DefaultFilters.DealInStock
+                ); 
+            specialOffersCollectionView.ItemsSource = specialOffers;
 
             popularFoodPlacesCollectionView.ItemsSource =
                 DataOrganizer.SortPlacesByRatingDescending(service.AllFoodPlaces, popularPlacesCount:10);

@@ -52,7 +52,7 @@ namespace Wasted.DummyAPI
                    .Take(popularPlacesCount);
         }
 
-        public static IEnumerable<Deal> FilterDeals(List<Deal> deals, Func<Deal, bool> filterCriteria)
+        public static IEnumerable<Deal> FilterDeals(IEnumerable<Deal> deals, Func<Deal, bool> filterCriteria)
         {
             return (
                 from deal in deals
