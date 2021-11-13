@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Wasted.DummyAPI.BusinessObjects;
 using Xamarin.Essentials;
@@ -49,6 +50,21 @@ namespace Wasted.DummyAPI
                    select place
                    )
                    .Take(popularPlacesCount);
+        }
+
+        /// <summary>
+        /// Filters some collection of deals according to 'filterCriteria'
+        /// </summary>
+        /// <param name="deals">Enumerable collection of deals</param>
+        /// <param name="filterCriteria">Function that decides whether or not each deal should present in the filtered collection</param>
+        /// <returns>Collection of deals that is filtered according to given 'filterCriteria'</returns>
+        public static IEnumerable<Deal> FilterDeals(IEnumerable<Deal> deals, Func<Deal, bool> filterCriteria)
+        {
+            return (
+                from deal in deals
+                where filterCriteria(deal)
+                select deal
+            );
         }
     }
 }

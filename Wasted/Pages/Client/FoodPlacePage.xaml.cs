@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using Rg.Plugins.Popup.Services;
+using Wasted.DummyAPI;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
+using Wasted.WastedAPI;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
@@ -31,7 +33,8 @@ namespace Wasted
         public void InitializeViews()
         {
             contentScrollView.BindingContext = SelectedFoodPlace;
-            dealsCollectionView.ItemsSource = SelectedFoodPlace.Deals;
+            dealsCollectionView.ItemsSource = DataOrganizer.FilterDeals(SelectedFoodPlace.Deals,
+                DefaultFilters.DealInStock);
 
             const int dealHeight = 220; //Dirty fix to prevent too much scroll area
             dealsCollectionView.HeightRequest = dealHeight * ((SelectedFoodPlace.Deals.Count  + 1) / 2); //Two items in one row
