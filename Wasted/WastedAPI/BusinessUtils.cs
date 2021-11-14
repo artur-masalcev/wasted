@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
@@ -22,25 +23,20 @@ namespace Wasted.Dummy_API
             DataService service = DependencyService.Get<DataService>();
             foreach (FoodPlace foodPlace in service.AllFoodPlaces)
             {
-                foreach (int dealID in foodPlace.DealsIDs)
+                var query = foodPlace.DealsIDs.
+                    GroupJoin(
+                        service.AllDeals,
+                        id => id,
+                        deal => deal.ID,
+                        (id, deal) => deal.First()
+                    );
+
+                foreach (Deal deal in query)
                 {
-                    foodPlace.Deals.Add(service.AllDeals[dealID - 1]);
-                    service.AllDeals[dealID - 1].FoodPlaces.Add(foodPlace);
+                    foodPlace.Deals.Add(deal);
+                    deal.FoodPlaces.Add(foodPlace);
                 }
             }
-        }
-
-        /// <summary>
-        /// Sorts array by id
-        /// </summary>
-        public static List<T> SortByID<T>(IIntegerIdentifiable[] array)
-        {
-            List<T> newArray = new List<T>(new T[array.Length]);
-            foreach (IIntegerIdentifiable elem in array)
-            {
-                newArray[elem.ID - 1] = (T)elem;
-            }
-            return newArray;
         }
     }
 

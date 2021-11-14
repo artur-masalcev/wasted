@@ -33,7 +33,9 @@ namespace Wasted.Pages.Place
             service = DependencyService.Get<DataService>();
             CurrentUser = (UserPlace)service.CurrentUser;
             BindingContext = this;
-            OwnedPlaces = CurrentUser.OwnedPlaceIDs.Select(id => service.AllFoodPlaces[id - 1]); // Selects appropriate food place based on index
+            OwnedPlaces = CurrentUser.OwnedPlaceIDs.Select(id =>
+                service.AllFoodPlaces.Find(place => place.ID == id)
+            );
             InitializeComponent();
             DeleteCommand = new Command(DeletePlace);
         }
