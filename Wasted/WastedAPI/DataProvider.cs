@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text;
+using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Properties;
 using Wasted.Utils;
@@ -25,6 +26,7 @@ namespace Wasted.DummyDataAPI
         public static string PlaceUsersEnd => "placeusers";
 
         private static HttpClient Client = new HttpClient();
+        private delegate T DefaultObject<T>();
 
         /// <summary>
         /// Gets data from API
@@ -38,9 +40,13 @@ namespace Wasted.DummyDataAPI
         /// <summary>
         /// Writes data to API
         /// </summary>
-        public static async Task WriteData<T>(T data, string linkEnd)
+        private static void WriteData<T>(T data, DefaultObject<T> defaultObject, string linkEnd)
         {
-            await Client.PostAsync(LinkStart + linkEnd + "/add", GetStringContent(data));
+            Task.Run(async () =>
+            {
+                T dummyVal = data == null ? defaultObject.Invoke() : data;
+                return await Client.PostAsync(LinkStart + linkEnd + "/add", GetStringContent(dummyVal));
+            });
         }
 
         /// <summary>
@@ -52,24 +58,40 @@ namespace Wasted.DummyDataAPI
             return new StringContent(content, Encoding.UTF8, "application/json");
         }
 
-        public static void WriteAllDeals(List<Deal> AllDeals = null)
+        public static void WriteAllDeals(List<Deal> allDeals = null)
         {
-            Task.Run(() => WriteData(AllDeals ?? DependencyService.Get<DataService>().AllDeals, DealsEnd));
+            WriteData(allDeals, delegate
+            {
+                DataService service = DependencyService.Get<DataService>();
+                return service.AllDeals;
+            }, DealsEnd);
         }
         
-        public static void WriteAllPlaces(List<FoodPlace> AllFoodPlaces = null)
+        public static void WriteAllPlaces(List<FoodPlace> allFoodPlaces = null)
         {
-            Task.Run(() => WriteData(AllFoodPlaces ?? DependencyService.Get<DataService>().AllFoodPlaces, FoodPlacesEnd));
+            WriteData(allFoodPlaces, delegate
+            {
+                DataService service = DependencyService.Get<DataService>();
+                return service.AllFoodPlaces;
+            }, FoodPlacesEnd);
         }
 
-        public static void WriteAllUserPlaces()
+        public static void WriteAllUserPlaces(Dictionary<string, UserPlace> placeUsers = null)
         {
-            Task.Run(() => WriteData(DependencyService.Get<DataService>().PlaceUsers, PlaceUsersEnd));
+            WriteData(placeUsers, delegate
+            {
+                DataService service = DependencyService.Get<DataService>();
+                return service.PlaceUsers;
+            }, PlaceUsersEnd);
         }
 
-        public static void WriteAllUserClients()
+        public static void WriteAllUserClients(Dictionary<string, UserClient> clientUsers = null)
         {
-            Task.Run(() => WriteData(DependencyService.Get<DataService>().ClientUsers, ClientUsersEnd));
+            WriteData(clientUsers, delegate
+            {
+                DataService service = DependencyService.Get<DataService>();
+                return service.ClientUsers;
+            }, PlaceUsersEnd);
         }
     }
 }
