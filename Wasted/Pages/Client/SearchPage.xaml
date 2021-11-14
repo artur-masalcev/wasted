@@ -4,134 +4,133 @@
              x:Class="Wasted.SearchPage">
 
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
+        <RefreshView x:Name="refreshView"  RefreshColor="DarkSeaGreen" Refreshing="RefreshView_Refreshing">
+            <ScrollView>
+                <StackLayout>
 
 
                     <!--#region Search Bar-->
 
                     <StackLayout>
                         <Frame Style="{StaticResource RoundedCardView}"
-                           Padding="5"
-                           HeightRequest="40">
+                               Padding="5"
+                               HeightRequest="40">
                             <StackLayout Orientation="Horizontal">
                                 <Image Source="nav_bar_search.png"
-                                   Style="{StaticResource IconImage}"/>
+                                       Style="{StaticResource IconImage}"/>
 
                                 <Entry x:Name="searchBar" Style="{StaticResource Entry}"
-                                TextChanged="SearchBar_OnTextChanged"
-                                Placeholder="Try Manami" />
+                                    TextChanged="SearchBar_OnTextChanged"
+                                    Placeholder="Try Manami" />
                             </StackLayout>
                         </Frame>
                     </StackLayout>
 
-                <!--#endregion-->
+                    <!--#endregion-->
 
-                <AbsoluteLayout>
-                    <!--#region All places-->
+                    <AbsoluteLayout>
+                        <!--#region All places-->
 
-                    <StackLayout x:Name="restaurantLayout"
-                                 IsVisible="false">
+                        <StackLayout x:Name="restaurantLayout"
+                                     IsVisible="false">
 
-                        <StackLayout Orientation="Horizontal">
-                            <Label x:Name="sectionTitle" Style="{StaticResource SectionTitle}"
-                                   Text="{Binding SectionTitleText}"
-                                   HorizontalOptions="StartAndExpand"/>
+                            <StackLayout Orientation="Horizontal">
+                                <Label x:Name="sectionTitle" Style="{StaticResource SectionTitle}"
+                                       Text="{Binding SectionTitleText}"
+                                       HorizontalOptions="StartAndExpand"/>
 
-                            <Frame x:Name="allPlaceButton"
-                                   Style="{StaticResource RoundedCardView}"
-                                   HeightRequest="25"
-                                   WidthRequest="30"
-                                   IsVisible="false">
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="AllPlaceButtonClicked" />
-                                </Frame.GestureRecognizers>
+                                <Frame x:Name="allPlaceButton"
+                                       Style="{StaticResource RoundedCardView}"
+                                       HeightRequest="25"
+                                       WidthRequest="30"
+                                       IsVisible="false">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="AllPlaceButtonClicked" />
+                                    </Frame.GestureRecognizers>
 
-                                <Label HorizontalOptions="Center"
-                                       VerticalOptions="Center">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="x " FontSize="15" TextColor="Red"/>
-                                            <Span Text="{Binding AllPlaceButtonText}" />
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                                
-                            </Frame>
+                                    <Label HorizontalOptions="Center"
+                                           VerticalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="x " FontSize="15" TextColor="Red"/>
+                                                <Span Text="{Binding AllPlaceButtonText}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                </Frame>
+                            </StackLayout>
+
+                            <CollectionView x:Name="allPlacesCollectionView" 
+                                SelectionChanged="PlacesCollectionViewListSelectionChanged"
+                                SelectionMode="Single">
+
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Vertical" Span="2" />
+                                </CollectionView.ItemsLayout>
+
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout>
+                                            <Frame Style="{StaticResource RoundedCardView}">
+                                                <StackLayout>
+
+                                                    <!--#region Card content-->
+
+                                                    <StackLayout>
+                                                        <Image Style="{StaticResource CardPlaceImage}" Source="{Binding LogoURL}" />
+
+                                                        <StackLayout Style="{StaticResource CardContent}">
+                                                            <Label Text="{Binding Title}" Style="{StaticResource SearchCardTitle}" />
+                                                        </StackLayout>
+                                                    </StackLayout>
+
+                                                    <!--#endregion-->
+
+                                                </StackLayout>
+                                            </Frame>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+
+
+                            </CollectionView>
                         </StackLayout>
 
-                        <CollectionView x:Name="allPlacesCollectionView" 
-                            SelectionChanged="PlacesCollectionViewListSelectionChanged"
-                            SelectionMode="Single">
+                        <!--#endregion-->
 
-                            <CollectionView.ItemsLayout>
-                                <GridItemsLayout Orientation="Vertical" Span="2" />
-                            </CollectionView.ItemsLayout>
+                        <!--#region Restaurant types-->
+
+                        <CollectionView x:Name="restaurantTypeCollectionView"
+                            SelectionChanged="TypesCollectionViewListSelectionChanged"
+                            SelectionMode="Single">
 
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout>
-                                        <Frame Style="{StaticResource RoundedCardView}">
-                                            <StackLayout>
 
-                                                <!--#region Card content-->
-
-                                                <StackLayout>
-                                                    <Image Style="{StaticResource CardPlaceImage}" Source="{Binding LogoURL}" />
-
-                                                    <StackLayout Style="{StaticResource CardContent}">
-                                                        <Label Text="{Binding Title}" Style="{StaticResource SearchCardTitle}" />
-                                                    </StackLayout>
-                                                </StackLayout>
-
-                                                <!--#endregion-->
-
-                                            </StackLayout>
+                                        <Frame Style="{StaticResource RoundedCardView}"
+                                               HeightRequest="30"
+                                               Padding="5"
+                                               BackgroundColor="{StaticResource LightBlue}">
+                                            <Label
+                                                   Text="{Binding}" VerticalOptions="Center" />
                                         </Frame>
+
                                     </StackLayout>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
-
-
                         </CollectionView>
-                    </StackLayout>
-                    
-                    <!--#endregion-->
 
-                    <!--#region Restaurant types-->
 
-                    <CollectionView x:Name="restaurantTypeCollectionView"
-                        SelectionChanged="TypesCollectionViewListSelectionChanged"
-                        SelectionMode="Single">
 
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout>
+                        <!--#endregion-->
 
-                                    <Frame Style="{StaticResource RoundedCardView}"
-                                           HeightRequest="30"
-                                           Padding="5"
-                                           BackgroundColor="{StaticResource LightBlue}">
-                                        <Label
-                                               Text="{Binding}" VerticalOptions="Center" />
-                                    </Frame>
+                    </AbsoluteLayout>
 
-                                </StackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
+                </StackLayout>
+            </ScrollView>
+        </RefreshView>
 
-                    
-
-                    <!--#endregion-->
-                    
-                </AbsoluteLayout>
-
-            </StackLayout>
-        </ScrollView>
-            
-    
-            
-       
     </ContentPage.Content>
 </ContentPage>

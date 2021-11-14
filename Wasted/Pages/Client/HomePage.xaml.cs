@@ -67,5 +67,14 @@ namespace Wasted
                 Navigation.PushAsync(new ItemsPage(selectedDeal));
             });
         }
+
+        /// <summary>
+        /// Refreshes the page on scroll down.
+        /// </summary>
+        private void RefreshView_Refreshing(object sender, System.EventArgs e)
+        {
+            OnAppearing();
+            refreshView.IsRefreshing = false;
+        }
     }
 }

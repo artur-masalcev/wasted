@@ -4,47 +4,49 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wasted.HomePage">
 	<ContentPage.Content>
-		<ScrollView>
-			<StackLayout>
+        <RefreshView x:Name="refreshView"  RefreshColor="DarkSeaGreen" Refreshing="RefreshView_Refreshing">
+            <ScrollView>
+                <StackLayout>
 
-				<!--#region Nearby food places-->
-				<Label Text="Food places near you" Style="{StaticResource SectionTitle}" />
-				<CollectionView x:Name="nearbyFoodPlacesCollectionView" Style="{StaticResource HorizontalCollectionView}"
-				                SelectionChanged="FoodPlacesCollectionViewListSelectionChanged"
-				                ItemTemplate="{StaticResource FoodPlacesCollectionViewTemplate}">
+                    <!--#region Nearby food places-->
+                    <Label Text="Food places near you" Style="{StaticResource SectionTitle}" />
+                    <CollectionView x:Name="nearbyFoodPlacesCollectionView" Style="{StaticResource HorizontalCollectionView}"
+									SelectionChanged="FoodPlacesCollectionViewListSelectionChanged"
+									ItemTemplate="{StaticResource FoodPlacesCollectionViewTemplate}">
 
-					<CollectionView.ItemsLayout>
-						<LinearItemsLayout Orientation="Horizontal" />
-					</CollectionView.ItemsLayout>
-				</CollectionView>
-				<!--#endregion-->
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" />
+                        </CollectionView.ItemsLayout>
+                    </CollectionView>
+                    <!--#endregion-->
 
-				<!--#region Special offers-->
-				<Label Text="Special offers" Style="{StaticResource SectionTitle}" />
-				<CollectionView x:Name="specialOffersCollectionView" Style="{StaticResource HorizontalCollectionView}"
-				                SelectionChanged="DealsCollectionViewListSelectionChanged"
-				                SelectionMode="Single"
-				                ItemTemplate="{StaticResource DealsCollectionViewTemplate}">
+                    <!--#region Special offers-->
+                    <Label Text="Special offers" Style="{StaticResource SectionTitle}" />
+                    <CollectionView x:Name="specialOffersCollectionView" Style="{StaticResource HorizontalCollectionView}"
+									SelectionChanged="DealsCollectionViewListSelectionChanged"
+									SelectionMode="Single"
+									ItemTemplate="{StaticResource DealsCollectionViewTemplate}">
 
-					<CollectionView.ItemsLayout>
-						<LinearItemsLayout Orientation="Horizontal" />
-					</CollectionView.ItemsLayout>
-				</CollectionView>
-				<!--#endregion-->
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" />
+                        </CollectionView.ItemsLayout>
+                    </CollectionView>
+                    <!--#endregion-->
 
-				<!--#region Popular food places-->
-				<Label Text="Popular food places" Style="{StaticResource SectionTitle}" />
-				<CollectionView x:Name="popularFoodPlacesCollectionView" Style="{StaticResource HorizontalCollectionView}"
-				                SelectionChanged="FoodPlacesCollectionViewListSelectionChanged"
-				                ItemTemplate="{StaticResource FoodPlacesCollectionViewTemplate}">
+                    <!--#region Popular food places-->
+                    <Label Text="Popular food places" Style="{StaticResource SectionTitle}" />
+                    <CollectionView x:Name="popularFoodPlacesCollectionView" Style="{StaticResource HorizontalCollectionView}"
+									SelectionChanged="FoodPlacesCollectionViewListSelectionChanged"
+									ItemTemplate="{StaticResource FoodPlacesCollectionViewTemplate}">
 
-					<CollectionView.ItemsLayout>
-						<LinearItemsLayout Orientation="Horizontal" />
-					</CollectionView.ItemsLayout>
-				</CollectionView>
-				<!--#endregion-->
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" />
+                        </CollectionView.ItemsLayout>
+                    </CollectionView>
+                    <!--#endregion-->
 
-			</StackLayout>
-		</ScrollView>
-	</ContentPage.Content>
+                </StackLayout>
+            </ScrollView>
+        </RefreshView>
+    </ContentPage.Content>
 </ContentPage>
