@@ -1,8 +1,7 @@
-﻿using System.Net.Http;
-using System.Text;
-using Wasted.Dummy_API.Business_Objects;
+﻿using Newtonsoft.Json;
+using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
+using System.Text;
 using Wasted.Properties;
 
 namespace Wasted.DummyDataAPI
@@ -10,10 +9,8 @@ namespace Wasted.DummyDataAPI
     /// <summary>
     /// Provides methods for receiving local dummy data needed for Wasted app
     /// </summary>
-    public class DataProvider
+    public static class DataProvider
     {
-        private HttpClient Client { get; set; }
-        
         public static string IP => ConfigurationProperties.LocalIPAddress;
         public static string LinkStart => "http://" + IP + ":5001/";
 
@@ -21,15 +18,13 @@ namespace Wasted.DummyDataAPI
         public static string DealsEnd => "deals";
         public static string ClientUsersEnd => "clientusers";
         public static string PlaceUsersEnd => "placeusers";
-        public DataProvider()
-        {
-            Client = new HttpClient();
-        }
-        
+
+        private static HttpClient Client = new HttpClient();
+
         /// <summary>
         /// Gets data from API
         /// </summary>
-        public async Task<T> GetData<T>(string linkEnd)
+        public static async Task<T> GetData<T>(string linkEnd)
         {
             string dataJson = await Client.GetStringAsync(LinkStart + linkEnd);
             return JsonConvert.DeserializeObject<T>(dataJson); 
@@ -38,7 +33,7 @@ namespace Wasted.DummyDataAPI
         /// <summary>
         /// Writes data to API
         /// </summary>
-        public async Task WriteData<T>(T data, string linkEnd)
+        public static async Task WriteData<T>(T data, string linkEnd)
         {
             await Client.PostAsync(LinkStart + linkEnd + "/add", GetStringContent(data));
         }
@@ -46,7 +41,7 @@ namespace Wasted.DummyDataAPI
         /// <summary>
         /// Converts object to json StringContent. Serializing content once is not enough
         /// </summary>
-        public StringContent GetStringContent(object obj)
+        public static StringContent GetStringContent(object obj)
         {
             string content = JsonConvert.SerializeObject(JsonConvert.SerializeObject(obj));
             return new StringContent(content, Encoding.UTF8, "application/json");

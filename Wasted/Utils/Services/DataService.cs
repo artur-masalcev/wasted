@@ -1,7 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 using Wasted.Dummy_API;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
+using Wasted.DummyDataAPI;
 using Wasted.Utils;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -13,23 +19,30 @@ namespace Wasted.Utils
     {
 
         public User CurrentUser { get; set; }
-        private List<FoodPlace> allFoodPlaces;
-        public List<FoodPlace> AllFoodPlaces
-        {
-            get { return allFoodPlaces; }
-            set { allFoodPlaces = BusinessUtils.SortByID<FoodPlace>(value.ToArray()); }
-        }
+        public Lazy<Task<List<FoodPlace>>> LazyAllFoodPlaces = new Lazy<Task<List<FoodPlace>>>( () => Task.Run(async () =>
+            await DataProvider.GetData<List<FoodPlace>>(DataProvider.FoodPlacesEnd))
+        );
+        public List<FoodPlace> AllFoodPlaces => BusinessUtils.SortByID<FoodPlace>(LazyAllFoodPlaces.Value.Result.ToArray());
+        
+        public Lazy<Task<List<Deal>>> LazyAllDeals = new Lazy<Task<List<Deal>>>(() => Task.Run(async () => 
+            await DataProvider.GetData<List<Deal>>(DataProvider.DealsEnd))     
+        );
 
-        private List<Deal> allDeals;
-        public List<Deal> AllDeals
-        {
-            get { return allDeals;}
-            set { allDeals = BusinessUtils.SortByID<Deal>(value.ToArray()); }
-        }
+        public List<Deal> AllDeals => BusinessUtils.SortByID<Deal>(LazyAllDeals.Value.Result.ToArray());
+
+        public Lazy<Task<Dictionary<string, UserClient>>> LazyClientUsers = new Lazy<Task<Dictionary<string, UserClient>>>(
+            () => Task.Run(async () => 
+                await DataProvider.GetData<Dictionary<string, UserClient>>(DataProvider.ClientUsersEnd))
+        );
         //                username
-        public Dictionary<string, UserClient> ClientUsers { get; set; }
+        public Dictionary<string, UserClient> ClientUsers => LazyClientUsers.Value.Result;
+
+        public Lazy<Task<Dictionary<string, UserPlace>>> LazyPlaceUsers = new Lazy<Task<Dictionary<string, UserPlace>>>(
+            () => Task.Run(async () =>
+                await DataProvider.GetData<Dictionary<string, UserPlace>>(DataProvider.PlaceUsersEnd))
+        );
         //                username
-        public Dictionary<string, UserPlace> PlaceUsers { get; set; }
+        public Dictionary<string, UserPlace> PlaceUsers => LazyPlaceUsers.Value.Result;
         
         public Location UserLocation { get; set; }
     }
