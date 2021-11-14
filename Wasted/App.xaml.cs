@@ -21,24 +21,5 @@ namespace Wasted
 
             MainPage = new NavigationPage(new LoginPage());
         }
-
-        protected override void OnSleep()
-        {
-            Task.Run(WriteData).Wait();
-        }
-
-        private void WriteData()
-        {
-            Task.WhenAll(
-                DataProvider.WriteData(service.AllFoodPlaces, DataProvider.FoodPlacesEnd),
-                DataProvider.WriteData(service.AllDeals, DataProvider.DealsEnd),
-                DataProvider.WriteData(service.ClientUsers, DataProvider.ClientUsersEnd),
-                DataProvider.WriteData(service.PlaceUsers, DataProvider.PlaceUsersEnd)
-            );
-        }
-
-        protected override void OnResume()
-        {
-        }
     }
 }

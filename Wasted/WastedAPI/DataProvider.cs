@@ -1,8 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text;
+using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Properties;
+using Wasted.Utils;
+using Xamarin.Forms;
 
 namespace Wasted.DummyDataAPI
 {
@@ -45,6 +50,26 @@ namespace Wasted.DummyDataAPI
         {
             string content = JsonConvert.SerializeObject(JsonConvert.SerializeObject(obj));
             return new StringContent(content, Encoding.UTF8, "application/json");
+        }
+
+        public static void WriteAllDeals(List<Deal> AllDeals = null)
+        {
+            Task.Run(() => WriteData(AllDeals ?? DependencyService.Get<DataService>().AllDeals, DealsEnd));
+        }
+        
+        public static void WriteAllPlaces(List<FoodPlace> AllFoodPlaces = null)
+        {
+            Task.Run(() => WriteData(AllFoodPlaces ?? DependencyService.Get<DataService>().AllFoodPlaces, FoodPlacesEnd));
+        }
+
+        public static void WriteAllUserPlaces()
+        {
+            Task.Run(() => WriteData(DependencyService.Get<DataService>().PlaceUsers, PlaceUsersEnd));
+        }
+
+        public static void WriteAllUserClients()
+        {
+            Task.Run(() => WriteData(DependencyService.Get<DataService>().ClientUsers, ClientUsersEnd));
         }
     }
 }

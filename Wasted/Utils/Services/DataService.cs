@@ -22,13 +22,13 @@ namespace Wasted.Utils
         public Lazy<Task<List<FoodPlace>>> LazyAllFoodPlaces = new Lazy<Task<List<FoodPlace>>>( () => Task.Run(async () =>
             await DataProvider.GetData<List<FoodPlace>>(DataProvider.FoodPlacesEnd))
         );
-        public List<FoodPlace> AllFoodPlaces => BusinessUtils.SortByID<FoodPlace>(LazyAllFoodPlaces.Value.Result.ToArray());
+        public List<FoodPlace> AllFoodPlaces => LazyAllFoodPlaces.Value.Result;
         
         public Lazy<Task<List<Deal>>> LazyAllDeals = new Lazy<Task<List<Deal>>>(() => Task.Run(async () => 
             await DataProvider.GetData<List<Deal>>(DataProvider.DealsEnd))     
         );
 
-        public List<Deal> AllDeals => BusinessUtils.SortByID<Deal>(LazyAllDeals.Value.Result.ToArray());
+        public List<Deal> AllDeals => LazyAllDeals.Value.Result;
 
         public Lazy<Task<Dictionary<string, UserClient>>> LazyClientUsers = new Lazy<Task<Dictionary<string, UserClient>>>(
             () => Task.Run(async () => 

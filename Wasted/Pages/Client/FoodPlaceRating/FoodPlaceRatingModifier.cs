@@ -1,5 +1,6 @@
 ﻿using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
+using Wasted.DummyDataAPI;
 
 namespace Wasted.FoodPlaceRatingSystem
 {
@@ -38,6 +39,7 @@ namespace Wasted.FoodPlaceRatingSystem
 
             selectedFoodPlace.Rating = newRating;
             user.Ratings[key] = newRating;
+            DataProvider.WriteAllUserClients();
         }
     }
 }

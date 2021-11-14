@@ -19,10 +19,10 @@ namespace Wasted.Pages.Login
 
         private void SubmitUserData(string userName, string userSurname, string userCity, string userAddress)
         {
-            if (String.IsNullOrEmpty(userName) ||
-                String.IsNullOrEmpty(userSurname) ||
-                String.IsNullOrEmpty(userCity) ||
-                String.IsNullOrEmpty(userAddress))
+            if (string.IsNullOrEmpty(userName) ||
+                string.IsNullOrEmpty(userSurname) ||
+                string.IsNullOrEmpty(userCity) ||
+                string.IsNullOrEmpty(userAddress))
             {
                 throw new ArgumentNullException();
             }

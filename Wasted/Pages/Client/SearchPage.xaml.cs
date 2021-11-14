@@ -86,7 +86,7 @@ namespace Wasted
         /// <summary>
         /// Swaps place type window to places window and otherwise
         /// </summary>
-        private void ShowFoodPlaces(bool show = true)
+        private void ShowFoodPlaces(bool show)
         {
             restaurantLayout.IsVisible = show;
             restaurantTypeCollectionView.IsVisible = !show;
@@ -100,7 +100,7 @@ namespace Wasted
             if (restaurantTypeCollectionView.SelectedItem == null) //Called from allPlaceButton.
                 return;
 
-            ShowFoodPlaces();
+            ShowFoodPlaces(true);
 
             string type = (string)e.CurrentSelection.FirstOrDefault();
             AvailablePlaces = BusinessUtils.PlaceTypeDictionary[type];
@@ -148,7 +148,7 @@ namespace Wasted
                 }
                 else
                 {
-                    ShowFoodPlaces();
+                    ShowFoodPlaces(true);
                     allPlacesCollectionView.ItemsSource = filteredPlaces;
                 }
             }

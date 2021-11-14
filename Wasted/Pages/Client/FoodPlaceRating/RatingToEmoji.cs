@@ -29,7 +29,7 @@ namespace Wasted.FoodPlaceRatingSystem
             index >= 0 && index < comments.Length ? comments[index] : throw new ArgumentOutOfRangeException();
     }
 
-    public class RatingToAssociation
+    public static class RatingToAssociation
     {
         /// <summary>
         /// Converts rating numeric value to emoji. Rating should be between 1 and 5

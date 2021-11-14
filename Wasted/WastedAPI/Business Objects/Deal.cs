@@ -1,7 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Wasted.Dummy_API.Business_Objects;
+using Wasted.DummyDataAPI;
+using Wasted.Utils;
+using Xamarin.Forms;
 
 namespace Wasted.DummyAPI.BusinessObjects
 {
@@ -19,6 +23,7 @@ namespace Wasted.DummyAPI.BusinessObjects
             set
             {
                 quantity = value;
+                DataProvider.WriteAllDeals();
                 OnPropertyChanged();
             }
         }

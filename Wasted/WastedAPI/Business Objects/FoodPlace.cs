@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Wasted.Dummy_API;
 using Wasted.Dummy_API.Business_Objects;
+using Wasted.DummyDataAPI;
 using Wasted.Utils;
 using Xamarin.Essentials;
 
@@ -30,6 +31,7 @@ namespace Wasted.DummyAPI.BusinessObjects
             {
                 rating = (value + rating * RatingCount) / (RatingCount + 1);
                 ++RatingCount;
+                DataProvider.WriteAllPlaces();
                 OnPropertyChanged();
             }
         }
