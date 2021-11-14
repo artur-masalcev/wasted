@@ -8,7 +8,7 @@ using Xamarin.Essentials;
 
 namespace Wasted.DummyAPI.BusinessObjects
 {
-    public class FoodPlace : ChangeablePropertyObject, IIntegerIdentifiable, IImageChooser
+    public class FoodPlace : ChangeablePropertyObject, IImageChooser
     {
         public int ID { get; set; }
         public string Title { get; set; }

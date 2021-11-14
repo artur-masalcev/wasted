@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace Wasted.DummyAPI.BusinessObjects
 {
-    public class Deal : ChangeablePropertyObject, IIntegerIdentifiable, IImageChooser
+    public class Deal : ChangeablePropertyObject, IImageChooser
     {
         public int ID { get; set; }
         public string Title { get; set; }

@@ -76,7 +76,7 @@ namespace Wasted
         /// </summary>
         private void PlacesCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectionChanger.ListSelectionChanged(sender, e, () =>
+            SelectionChanger.ListSelectionChanged(sender, () =>
             {
                 FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
                 Navigation.PushAsync(new FoodPlacesPage(selectedPlace));

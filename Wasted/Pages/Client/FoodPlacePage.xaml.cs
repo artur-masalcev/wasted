@@ -45,7 +45,7 @@ namespace Wasted
         /// </summary>
         void DealsCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectionChanger.ListSelectionChanged(sender, e, () =>
+            SelectionChanger.ListSelectionChanged(sender, () =>
             {
                 Deal selectedDeal = e.CurrentSelection.FirstOrDefault() as Deal;
                 Navigation.PushAsync(new ItemsPage(selectedDeal));

@@ -42,7 +42,7 @@ namespace Wasted.Pages.Place
 
         private void YourPlacesCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectionChanger.ListSelectionChanged(sender, e, () =>
+            SelectionChanger.ListSelectionChanged(sender, () =>
             {
                 FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
                 Navigation.PushAsync(new NewDealPage(selectedPlace));
