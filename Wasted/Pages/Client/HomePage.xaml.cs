@@ -49,7 +49,7 @@ namespace Wasted
         /// </summary>
         private void FoodPlacesCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectionChanger.ListSelectionChanged(sender, e, () =>
+            SelectionChanger.ListSelectionChanged(sender, () =>
             {
                 FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
                 Navigation.PushAsync(new FoodPlacesPage(selectedPlace));
@@ -61,7 +61,7 @@ namespace Wasted
         /// </summary>
         private void DealsCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectionChanger.ListSelectionChanged(sender, e, () =>
+            SelectionChanger.ListSelectionChanged(sender, () =>
             {
                 Deal selectedDeal = e.CurrentSelection.FirstOrDefault() as Deal;
                 Navigation.PushAsync(new ItemsPage(selectedDeal));

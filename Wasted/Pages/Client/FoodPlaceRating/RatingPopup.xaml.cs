@@ -15,9 +15,7 @@ namespace Wasted
         public DataService DataService { get; set; }
 
         public int RatingBarRating => ratingBar.SelectedStarValue;
-
-        public int FoodPlaceID { get; }
-  
+        
         public String RatingEmoji { get; set; }
         public String RatingComment { get; set; }
 
@@ -47,7 +45,6 @@ namespace Wasted
         {
             PopupNavigation.Instance.PopAsync(true); // Close the popup
             FoodPlaceRatingModifier.SetUserVote(DataService.CurrentUser, SelectedFoodPlace, RatingBarRating);
-
         }
 
         private void OnCancelClicked(object sender, EventArgs e)

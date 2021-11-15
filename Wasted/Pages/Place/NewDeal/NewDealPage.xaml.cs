@@ -27,7 +27,7 @@ namespace Wasted.Pages.Place.NewDeal
                 ((Entry) sender).Text = e.OldTextValue;
         }
 
-        public double ParseDouble(string text)
+        public static double ParseDouble(string text)
         {
             return string.IsNullOrEmpty(text) ? 0 : double.Parse(text);
         }

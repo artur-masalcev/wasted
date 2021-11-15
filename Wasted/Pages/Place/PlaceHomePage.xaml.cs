@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Input;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
+using Wasted.DummyDataAPI;
 using Wasted.Pages.Place.NewDeal;
 using Wasted.Utils;
 using Xamarin.Forms;
@@ -34,7 +35,9 @@ namespace Wasted.Pages.Place
             service = DependencyService.Get<DataService>();
             CurrentUser = (UserPlace)service.CurrentUser;
             BindingContext = this;
-            OwnedPlaces = CurrentUser.OwnedPlaceIDs.Select(id => service.AllFoodPlaces[id - 1]); // Selects appropriate food place based on index
+            OwnedPlaces = CurrentUser.OwnedPlaceIDs.Select(id =>
+                service.AllFoodPlaces.Find(place => place.ID == id)
+            );
             InitializeComponent();
             DeleteCommand = new Command(DeletePlace);
             
@@ -43,7 +46,7 @@ namespace Wasted.Pages.Place
 
         private void YourPlacesCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectionChanger.ListSelectionChanged(sender, e, () =>
+            SelectionChanger.ListSelectionChanged(sender, () =>
             {
                 FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
                 Navigation.PushAsync(new NewDealPage(selectedPlace));

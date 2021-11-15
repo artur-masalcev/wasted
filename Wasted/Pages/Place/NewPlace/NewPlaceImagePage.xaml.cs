@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Rg.Plugins.Popup.Services;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
+using Wasted.DummyDataAPI;
 using Wasted.Utils;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
@@ -35,9 +38,14 @@ namespace Wasted.Pages.Place.NewPlace
         private void DoneButtonClicked(object sender, EventArgs e)
         {
             DataService service = DependencyService.Get<DataService>();
-            CurrentPlace.ID = service.AllFoodPlaces.Count + 1;
-            service.AllFoodPlaces.Add(CurrentPlace);
+            CurrentPlace.ID = service.AllFoodPlaces.Count == 0 ? 1 : service.AllFoodPlaces.Last().ID + 1;
+
+            List<FoodPlace> currentFoodPlaces = service.AllFoodPlaces;
+            currentFoodPlaces.Add(CurrentPlace);
+            DataProvider.WriteAllPlaces(currentFoodPlaces);
+
             ((UserPlace)service.CurrentUser).OwnedPlaceIDs.Add(CurrentPlace.ID);
+            DataProvider.WriteAllUserPlaces();
             
             ((UserPlace)service.CurrentUser).PushPage(this);
         }
