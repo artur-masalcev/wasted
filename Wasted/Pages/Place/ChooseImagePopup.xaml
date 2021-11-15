@@ -10,7 +10,6 @@
                 <!--#region Header -->
                 <Button Style="{StaticResource CancelButton}" Clicked="OnCancelClicked"/>
                 <Label Text="Choose image" 
-                       FontSize="Header"
                        HorizontalOptions="CenterAndExpand"
                        FontAttributes="Bold"/>
                 <!--#endregion -->
