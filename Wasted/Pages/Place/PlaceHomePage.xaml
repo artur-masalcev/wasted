@@ -4,11 +4,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wasted.Pages.Place.PlaceHomePage">
     <ContentPage.Content>
-        <StackLayout x:Name="Layout">
-            <Label Text="Your places" />
+        <StackLayout Padding="7">
+            <!--#region Page header-->
+            <Label Text="Your places"
+                   Style="{StaticResource PageTitle}"/>
+            <!--#endregion-->
             
-            <!--#region Your places-->
-            
+            <!--#region Places listView-->
             <CollectionView x:Name="YourPlacesCollectionView"
                             SelectionChanged="YourPlacesCollectionViewSelectionChanged"
                             SelectionMode="Single"
@@ -16,28 +18,59 @@
                             ItemsSource="{Binding OwnedPlaces}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame>
-                            <SwipeView>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Title }" />
-                                    <Label Text="{Binding City}" />
-                                    <Label Text="{Binding DealsCount, StringFormat='{0} deals'}" />
+                        <SwipeView>
+                        <Frame HasShadow="false"
+                               CornerRadius="0">
+                            <StackLayout Orientation="Horizontal" Background="White">
+                                    <StackLayout>
+                                        <Label Text="{Binding Title }"
+                                               FontAttributes="Bold"/>
+                                        <Label Text="{Binding City}" />
+                                    </StackLayout>
+                                    <Label Text="{Binding DealsCount, StringFormat='{0} deals'}"
+                                           HorizontalOptions="EndAndExpand"
+                                           VerticalOptions="Center"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="›"
+                                           VerticalOptions="Center"
+                                           FontSize="20"/>
                                 </StackLayout>
-                                <SwipeView.RightItems>
-                                    <SwipeItems>
-                                        <SwipeItem Text="Delete" BackgroundColor="Red" Command="{Binding Path=BindingContext.DeleteCommand,
-                                            Source={x:Reference YourPlacesCollectionView}}" CommandParameter="{Binding .}"/>
-                                    </SwipeItems>
-                                </SwipeView.RightItems>
-                            </SwipeView>
                         </Frame>
+                        <SwipeView.RightItems>
+                            <SwipeItem Text="Delete" BackgroundColor="Red" Command="{Binding Path=BindingContext.DeleteCommand,
+                                        Source={x:Reference YourPlacesCollectionView}}" CommandParameter="{Binding .}"/>
+                        </SwipeView.RightItems>
+                        </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-
-                
             </CollectionView>
+            <!--#endregion-->
             
-            <Button Text="+" Clicked="AddNewPlaceButtonClicked"/>
+            <!--#region Custom floating action button-->
+            <Grid HorizontalOptions="End"
+                  WidthRequest="100"
+                  HeightRequest="100">
+               
+                <!-- Because of bug that doesn't allow shapes to see static resources 
+                AppEmerald Color is put in raw hex in Fill attribute-->
+                <Ellipse Fill="#8dd5af" 
+                         StrokeThickness="0"
+                         WidthRequest="65"
+                         HeightRequest="65"
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center"
+                />
+                <Button Text="+"
+                        FontSize="35"
+                        WidthRequest="65"
+                        HeightRequest="65"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        TextColor="White"
+                        Clicked="AddNewPlaceButtonClicked"/>
+            </Grid>
+            <!--#endregion-->
+            
             
         </StackLayout>
     </ContentPage.Content>

@@ -4,6 +4,8 @@ using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace Wasted.Pages.Place.NewDeal
@@ -21,6 +23,8 @@ namespace Wasted.Pages.Place.NewDeal
             Validator = new EntryLengthValidator(maxEntryLength: 100);
             BindingContext = Validator;
             InitializeComponent();
+            
+            On<iOS>().SetUseSafeArea(true);
         }
 
         private void DescriptionEntryTextChanged(object sender, TextChangedEventArgs e)
@@ -51,6 +55,12 @@ namespace Wasted.Pages.Place.NewDeal
             SelectedPlace.DealsIDs.Add(CurrentDeal.ID);
 
             ((UserPlace)service.CurrentUser).PushPage(this);
+        }
+        
+        private void BackClicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync(true);
+            base.OnBackButtonPressed();
         }
     }
 }

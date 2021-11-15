@@ -3,6 +3,8 @@ using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Pages.Place.NewPlace;
 using Wasted.Utils;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace Wasted.Pages.Place
@@ -18,6 +20,8 @@ namespace Wasted.Pages.Place
             Validator = new EntryLengthValidator(maxEntryLength: 30);
             BindingContext = Validator;
             CityPicker.ItemsSource = new[] {"Vilnius"};
+            
+            On<iOS>().SetUseSafeArea(true);
         }
         private void DescriptionEntryTextChanged(object sender, TextChangedEventArgs e)
         {
@@ -31,6 +35,11 @@ namespace Wasted.Pages.Place
                 description:DescriptionEntry.Text
             );
             Navigation.PushAsync(new NewPlaceImagePage(CurrentFoodPlace));
+        }
+        private void BackClicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync(true);
+            base.OnBackButtonPressed();
         }
     }
 }

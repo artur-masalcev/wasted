@@ -4,12 +4,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="http://rotorgames.com"
              x:Class="Wasted.Pages.Place.ChooseImagePopup">
-    <ContentPage.Content>
-        <StackLayout BackgroundColor="White">
-            <Label Text="Choose image" />
-            <Label Text="URL" />
-            <Entry x:Name="URLEntry" />
-            <Button Text="Choose" Clicked="ImageButtonClicked"/>
-        </StackLayout>
-    </ContentPage.Content>
+    <StackLayout VerticalOptions="Center">
+        <Frame CornerRadius="20" BackgroundColor="White" Margin="8, 0, 8, 0">
+            <StackLayout>
+                <!--#region Header -->
+                <Button Style="{StaticResource CancelButton}" Clicked="OnCancelClicked"/>
+                <Label Text="Choose image" 
+                       FontSize="Header"
+                       HorizontalOptions="CenterAndExpand"
+                       FontAttributes="Bold"/>
+                <!--#endregion -->
+                
+                <!--#region Form -->
+                <StackLayout BackgroundColor="White">
+                    <StackLayout Margin="0, 10">
+                        <Label Text="URL" />
+                        <Entry x:Name="URLEntry" />
+                    </StackLayout>
+                </StackLayout>
+                <!--#endregion -->
+                
+                <!--#region Action Button -->
+                <Button Text="Choose" Clicked="ImageButtonClicked"
+                                      Style="{StaticResource FormActionButton}"/>
+                <!--#endregion -->
+            </StackLayout>
+        </Frame>
+    </StackLayout>
 </pages:PopupPage>
