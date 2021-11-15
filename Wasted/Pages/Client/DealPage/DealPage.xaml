@@ -4,80 +4,82 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wasted.ItemsPage">
     <ContentPage.Content>
-        <ScrollView>
-            <AbsoluteLayout>
-                <StackLayout Spacing="0">
-                    <Grid RowSpacing="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="200" />
-                            <RowDefinition Height="75" />
-                            <RowDefinition Height="25" />
-                        </Grid.RowDefinitions>
+        <RefreshView x:Name="refreshView"  RefreshColor="DimGray" Refreshing="RefreshView_Refreshing">
+            <ScrollView>
+                <AbsoluteLayout>
+                    <StackLayout Spacing="0">
+                        <Grid RowSpacing="0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="200" />
+                                <RowDefinition Height="75" />
+                                <RowDefinition Height="25" />
+                            </Grid.RowDefinitions>
 
-                        <!--#region Header image-->
-                        <Image Source="{Binding ImageURL}"
-                           Grid.RowSpan="3"
-                           Grid.Row="0"
-						   Aspect="AspectFill" />
-                        <!--#endregion-->
+                            <!--#region Header image-->
+                            <Image Source="{Binding ImageURL}"
+                               Grid.RowSpan="3"
+                               Grid.Row="0"
+						       Aspect="AspectFill" />
+                            <!--#endregion-->
 
-                        <!--#region Price label-->
-                        <StackLayout
-                        Grid.Row="1">
-                            <Frame Style="{StaticResource RoundedCardView}" HasShadow="False" BorderColor="Transparent"
-                           CornerRadius="10"
-						   WidthRequest="110"
-                           HorizontalOptions="End"
-                           Background="#272626">
-                                <StackLayout>
-                                    <Label Text="{Binding DealCosts.PreviousCost, StringFormat='{0:F2}€'}"
-									    Style="{StaticResource DealCostLabel}"
-									    TextDecorations="Strikethrough" FontAttributes="None"/>
-                                    <Label Text="{Binding DealCosts.CurrentCost, StringFormat='{0:F2}€'}"
-									    Style="{StaticResource DealCostLabel}" FontAttributes="Bold"/>
+                            <!--#region Price label-->
+                            <StackLayout
+                            Grid.Row="1">
+                                <Frame Style="{StaticResource RoundedCardView}" HasShadow="False" BorderColor="Transparent"
+                               CornerRadius="10"
+						       WidthRequest="110"
+                               HorizontalOptions="End"
+                               Background="#272626">
+                                    <StackLayout>
+                                        <Label Text="{Binding DealCosts.PreviousCost, StringFormat='{0:F2}€'}"
+									        Style="{StaticResource DealCostLabel}"
+									        TextDecorations="Strikethrough" FontAttributes="None"/>
+                                        <Label Text="{Binding DealCosts.CurrentCost, StringFormat='{0:F2}€'}"
+									        Style="{StaticResource DealCostLabel}" FontAttributes="Bold"/>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                            <!--#endregion-->
+                        </Grid>
+
+                        <!--#region Deal description-->
+                        <StackLayout>
+                            <StackLayout>
+                                <Label Text="{Binding Title}" Style="{StaticResource SectionTitle}" FontSize="Title"/>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="item_location.png" Style="{StaticResource IconImage}" Opacity="0.5"/>
+                                    <Label Text="{Binding FoodPlaceTitle}" VerticalOptions="Center" TextColor="{StaticResource TextGrey}"/>
                                 </StackLayout>
-                            </Frame>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="item_due.png" Style="{StaticResource IconImage}" Opacity="0.5"/>
+                                    <Label Text="{Binding Due, StringFormat='Due {0}'}" TextColor="{StaticResource TextGrey}"/>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="item_quantity.png" Style="{StaticResource IconImage}" Opacity="0.5"/>
+                                    <Label Text="{Binding Quantity, StringFormat='Quantity: {0}'}" TextColor="{StaticResource TextGrey}"/>
+                                </StackLayout>
+                            </StackLayout>
+                            <BoxView Style="{StaticResource Separator}"/>
+                            <StackLayout>
+                                <Label Text="Description" Style="{StaticResource CardTitle}"/>
+                                <Label x:Name="description"
+                                Text="{Binding Description}"/>
+                            </StackLayout>
+                            <BoxView Style="{StaticResource Separator}"/>
                         </StackLayout>
                         <!--#endregion-->
-                    </Grid>
 
-                    <!--#region Deal description-->
-                    <StackLayout>
-                        <StackLayout>
-                            <Label Text="{Binding Title}" Style="{StaticResource SectionTitle}" FontSize="Title"/>
-                            <StackLayout Orientation="Horizontal">
-                                <Image Source="item_location.png" Style="{StaticResource IconImage}" Opacity="0.5"/>
-                                <Label Text="{Binding FoodPlaceTitle}" VerticalOptions="Center" TextColor="{StaticResource TextGrey}"/>
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Image Source="item_due.png" Style="{StaticResource IconImage}" Opacity="0.5"/>
-                                <Label Text="{Binding Due, StringFormat='Due {0}'}" TextColor="{StaticResource TextGrey}"/>
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Image Source="item_quantity.png" Style="{StaticResource IconImage}" Opacity="0.5"/>
-                                <Label Text="{Binding Quantity, StringFormat='Quantity: {0}'}" TextColor="{StaticResource TextGrey}"/>
-                            </StackLayout>
-                        </StackLayout>
-                        <BoxView Style="{StaticResource Separator}"/>
-                        <StackLayout>
-                            <Label Text="Description" Style="{StaticResource CardTitle}"/>
-                            <Label x:Name="description"
-                            Text="{Binding Description}"/>
-                        </StackLayout>
-                        <BoxView Style="{StaticResource Separator}"/>
+                        <!--#region Action button-->
+                        <Button Text="Order" Style="{StaticResource OrderButton}"
+                            VerticalOptions="EndAndExpand"
+                            FontAttributes="Bold"
+                            Clicked="OnOrderClicked"/>
+                        <!--#endregion-->
+
                     </StackLayout>
-                    <!--#endregion-->
 
-                    <!--#region Action button-->
-                    <Button Text="Order" Style="{StaticResource OrderButton}"
-                        VerticalOptions="EndAndExpand"
-                        FontAttributes="Bold"
-                        Clicked="OnOrderClicked"/>
-                    <!--#endregion-->
-
-                </StackLayout>
-
-            </AbsoluteLayout>
-        </ScrollView>
+                </AbsoluteLayout>
+            </ScrollView>
+        </RefreshView>
     </ContentPage.Content>
 </ContentPage>

@@ -157,5 +157,14 @@ namespace Wasted
                 Console.WriteLine("Null reference exception");
             }
         }
+
+        /// <summary>
+        /// Refreshes the page on scroll down.
+        /// </summary>
+        private void RefreshView_Refreshing(object sender, EventArgs e)
+        {
+            OnAppearing();
+            refreshView.IsRefreshing = false;
+        }
     }
 }

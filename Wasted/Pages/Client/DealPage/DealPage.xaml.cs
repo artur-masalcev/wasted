@@ -7,6 +7,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
+using Wasted.Utils;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Wasted
 {
@@ -14,6 +17,7 @@ namespace Wasted
     public partial class ItemsPage : ContentPage
     {
         public Deal SelectedDeal { get; set; }
+        private DataService service;
         public ItemsPage(Deal selectedDeal)
         {
             SelectedDeal = selectedDeal;
@@ -24,6 +28,7 @@ namespace Wasted
 
             BindingContext = SelectedDeal;
 
+            service = DependencyService.Get<DataService>();
         }
 
         /// <summary>
@@ -41,5 +46,14 @@ namespace Wasted
             }
         }
         
+        /// <summary>
+        /// Refreshes the page on scroll down.
+        /// </summary>
+        private void RefreshView_Refreshing(object sender, EventArgs e)
+        {
+            SelectedDeal = service.AllDeals.Find(deal => deal.ID == SelectedDeal.ID);
+            BindingContext = SelectedDeal;
+            refreshView.IsRefreshing = false;
+        }
     }
 }
