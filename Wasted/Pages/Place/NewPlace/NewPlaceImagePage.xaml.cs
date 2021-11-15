@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Rg.Plugins.Popup.Services;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
@@ -33,7 +34,7 @@ namespace Wasted.Pages.Place.NewPlace
         private void DoneButtonClicked(object sender, EventArgs e)
         {
             DataService service = DependencyService.Get<DataService>();
-            CurrentPlace.ID = service.AllFoodPlaces.Count + 1;
+            CurrentPlace.ID = service.AllFoodPlaces.Count == 0 ? 1 : service.AllFoodPlaces.Last().ID + 1;
 
             List<FoodPlace> currentFoodPlaces = service.AllFoodPlaces;
             currentFoodPlaces.Add(CurrentPlace);

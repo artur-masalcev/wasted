@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Rg.Plugins.Popup.Services;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
@@ -37,7 +38,7 @@ namespace Wasted.Pages.Place.NewDeal
 
         private void FillDealValues(DataService service)
         {
-            CurrentDeal.ID = service.AllDeals.Count + 1;
+            CurrentDeal.ID = service.AllDeals.Count == 0 ? 1 : service.AllDeals.Last().ID + 1;
             CurrentDeal.Due = DueDatePicker.Date.ToString("yyyy-MM-dd");
             CurrentDeal.Description = DescriptionEntry.Text;
             CurrentDeal.FoodPlaces.Add(SelectedPlace);
