@@ -4,7 +4,7 @@
              x:Class="Wasted.SearchPage">
 
     <ContentPage.Content>
-        <RefreshView x:Name="refreshView"  RefreshColor="DarkSeaGreen" Refreshing="RefreshView_Refreshing">
+        <RefreshView x:Name="refreshView"  RefreshColor="DimGray" Refreshing="RefreshView_Refreshing">
             <ScrollView>
                 <StackLayout>
 
