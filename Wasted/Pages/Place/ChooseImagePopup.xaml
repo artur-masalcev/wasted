@@ -15,8 +15,8 @@
                 <!--#endregion -->
                 
                 <!--#region Form -->
-                <StackLayout BackgroundColor="White">
-                    <StackLayout Margin="0, 10">
+                <StackLayout Margin="0, 10, 0, 20">
+                    <StackLayout>
                         <Label Text="URL" />
                         <Entry x:Name="URLEntry" />
                     </StackLayout>
