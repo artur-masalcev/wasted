@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Rg.Plugins.Popup.Services;
 using Wasted.DummyAPI;
@@ -16,6 +17,7 @@ namespace Wasted
     public partial class FoodPlacesPage : ContentPage
     {
         public FoodPlace SelectedFoodPlace { get; set; }
+        private DataService service;
 
         public FoodPlacesPage(FoodPlace selectedFoodPlace)
         {
@@ -25,6 +27,8 @@ namespace Wasted
             On<iOS>().SetUseSafeArea(true);
 
             InitializeViews();
+
+            service = DependencyService.Get<DataService>();
         }
 
         /// <summary>
@@ -58,6 +62,17 @@ namespace Wasted
         private void OnRateButtonClicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PushAsync(new RatingPopup(SelectedFoodPlace));
+        }
+
+        /// <summary>
+        /// Refreshes the page on scroll down.
+        /// </summary>
+        private void RefreshView_Refreshing(object sender, EventArgs e)
+        {
+            SelectedFoodPlace = service.AllFoodPlaces.Find(place => place.ID == SelectedFoodPlace.ID);
+            BindingContext = SelectedFoodPlace;
+            InitializeViews();
+            refreshView.IsRefreshing = false;
         }
     }  
 }
