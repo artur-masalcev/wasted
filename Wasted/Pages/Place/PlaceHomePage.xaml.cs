@@ -58,6 +58,7 @@ namespace Wasted.Pages.Place
         {
             FoodPlace selectedPlace = obj as FoodPlace;
             CurrentUser.OwnedPlaceIDs = CurrentUser.OwnedPlaceIDs.Where(id => id != selectedPlace.ID).ToList();
+            DataProvider.WriteAllUserPlaces();
             OwnedPlaces = OwnedPlaces.Where(place => place != selectedPlace);
         }
     }
