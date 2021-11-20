@@ -34,7 +34,7 @@ namespace Wasted
         /// <summary>
         /// Sets binding for xaml file.
         /// </summary>
-        public void InitializeViews()
+        private void InitializeViews()
         {
             contentScrollView.BindingContext = SelectedFoodPlace;
             dealsCollectionView.ItemsSource = DataOrganizer.FilterDeals(SelectedFoodPlace.Deals,

@@ -19,25 +19,25 @@ namespace Wasted.Utils
     {
 
         public User CurrentUser { get; set; }
-        public Lazy<Task<List<FoodPlace>>> LazyAllFoodPlaces = new Lazy<Task<List<FoodPlace>>>( () => Task.Run(async () =>
+        private Lazy<Task<List<FoodPlace>>> LazyAllFoodPlaces = new Lazy<Task<List<FoodPlace>>>( () => Task.Run(async () =>
             await DataProvider.GetData<List<FoodPlace>>(DataProvider.FoodPlacesEnd))
         );
         public List<FoodPlace> AllFoodPlaces => LazyAllFoodPlaces.Value.Result;
         
-        public Lazy<Task<List<Deal>>> LazyAllDeals = new Lazy<Task<List<Deal>>>(() => Task.Run(async () => 
+        private Lazy<Task<List<Deal>>> LazyAllDeals = new Lazy<Task<List<Deal>>>(() => Task.Run(async () => 
             await DataProvider.GetData<List<Deal>>(DataProvider.DealsEnd))     
         );
 
         public List<Deal> AllDeals => LazyAllDeals.Value.Result;
 
-        public Lazy<Task<Dictionary<string, UserClient>>> LazyClientUsers = new Lazy<Task<Dictionary<string, UserClient>>>(
+        private Lazy<Task<Dictionary<string, UserClient>>> LazyClientUsers = new Lazy<Task<Dictionary<string, UserClient>>>(
             () => Task.Run(async () => 
                 await DataProvider.GetData<Dictionary<string, UserClient>>(DataProvider.ClientUsersEnd))
         );
         //                username
         public Dictionary<string, UserClient> ClientUsers => LazyClientUsers.Value.Result;
 
-        public Lazy<Task<Dictionary<string, UserPlace>>> LazyPlaceUsers = new Lazy<Task<Dictionary<string, UserPlace>>>(
+        private Lazy<Task<Dictionary<string, UserPlace>>> LazyPlaceUsers = new Lazy<Task<Dictionary<string, UserPlace>>>(
             () => Task.Run(async () =>
                 await DataProvider.GetData<Dictionary<string, UserPlace>>(DataProvider.PlaceUsersEnd))
         );
