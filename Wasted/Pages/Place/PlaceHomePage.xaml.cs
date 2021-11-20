@@ -64,6 +64,9 @@ namespace Wasted.Pages.Place
             CurrentUser.OwnedPlaceIDs = CurrentUser.OwnedPlaceIDs.Where(id => id != selectedPlace.ID).ToList();
             DataProvider.WriteAllUserPlaces();
             OwnedPlaces = OwnedPlaces.Where(place => place != selectedPlace);
+
+            List<FoodPlace> allFoodPlaces = service.AllFoodPlaces.Where(place => place.ID != selectedPlace.ID).ToList();
+            DataProvider.WriteAllPlaces(allFoodPlaces);
         }
     }
 }
