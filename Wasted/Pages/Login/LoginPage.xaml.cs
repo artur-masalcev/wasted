@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.Pages.Login;
 using Wasted.Utils;
+using Wasted.Utils.Exceptions;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
@@ -24,9 +25,7 @@ namespace Wasted
 
         private async Task SubmitUserData(string username, string password)
         {
-
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-                throw new ArgumentNullException();
+            ExceptionChecker.CheckValidParams(username, password);
 
             bool isClient = service.ClientUsers.ContainsKey(username);
             bool isPlace = service.PlaceUsers.ContainsKey(username);

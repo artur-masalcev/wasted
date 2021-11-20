@@ -1,6 +1,7 @@
 ﻿using System;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.Utils;
+using Wasted.Utils.Exceptions;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
@@ -19,13 +20,7 @@ namespace Wasted.Pages.Login
 
         private void SubmitUserData(string userName, string userSurname, string userCity, string userAddress)
         {
-            if (string.IsNullOrEmpty(userName) ||
-                string.IsNullOrEmpty(userSurname) ||
-                string.IsNullOrEmpty(userCity) ||
-                string.IsNullOrEmpty(userAddress))
-            {
-                throw new ArgumentNullException();
-            }
+            ExceptionChecker.CheckValidParams(userName, userSurname, userCity, userAddress);
             
             DataService dataService = DependencyService.Get<DataService>();
             User currentUser = dataService.CurrentUser;

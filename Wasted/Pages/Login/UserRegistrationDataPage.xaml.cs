@@ -23,8 +23,7 @@ namespace Wasted.Pages
 
         private void SubmitUserData(string username, string password)
         {
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-                throw new ArgumentNullException();
+            ExceptionChecker.CheckValidParams(username, password);
 
             bool isClient = service.ClientUsers.ContainsKey(username);
             bool isPlace = service.PlaceUsers.ContainsKey(username);
