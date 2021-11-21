@@ -4,7 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	x:Class="Wasted.FoodPlacesPage">
 	<ContentPage.Content>
-        <RefreshView x:Name="refreshView"  RefreshColor="DimGray" Refreshing="RefreshView_Refreshing">
+        <RefreshView x:Name="RefreshView"  RefreshColor="DimGray" Refreshing="RefreshView_Refreshing">
             <ScrollView x:Name="contentScrollView">
                 <AbsoluteLayout>
                     <StackLayout>

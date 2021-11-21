@@ -72,7 +72,7 @@ namespace Wasted
             SelectedFoodPlace = service.AllFoodPlaces.Find(place => place.ID == SelectedFoodPlace.ID);
             BindingContext = SelectedFoodPlace;
             InitializeViews();
-            refreshView.IsRefreshing = false;
+            RefreshView.IsRefreshing = false;
         }
     }  
 }

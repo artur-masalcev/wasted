@@ -74,7 +74,7 @@ namespace Wasted
         private void RefreshView_Refreshing(object sender, System.EventArgs e)
         {
             OnAppearing();
-            refreshView.IsRefreshing = false;
+            RefreshView.IsRefreshing = false;
         }
     }
 }

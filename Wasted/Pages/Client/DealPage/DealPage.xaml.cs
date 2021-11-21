@@ -53,7 +53,7 @@ namespace Wasted
         {
             SelectedDeal = service.AllDeals.Find(deal => deal.ID == SelectedDeal.ID);
             BindingContext = SelectedDeal;
-            refreshView.IsRefreshing = false;
+            RefreshView.IsRefreshing = false;
         }
     }
 }
