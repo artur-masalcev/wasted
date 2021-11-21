@@ -11,7 +11,7 @@ namespace Wasted.Utils.Exceptions
             {
                 function();
             }
-            catch (ArgumentException)
+            catch (ArgumentNullException)
             {
                 page.DisplayAlert("", "Please fill all fields", "OK");
             }
