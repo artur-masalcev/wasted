@@ -11,5 +11,9 @@
             <place:PlaceHomePage
                 Title="Home"
                 Icon="nav_bar_home.png"/>
+            
+            <place:SettingsPage
+                Title="Settiings"
+                Icon="nav_bar_settings.png"/>
 
 </TabbedPage>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wasted.Pages.Place.SettingsPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Settings"
+                   Padding="7,7,7,0"
+                   FontAttributes="Bold"
+                   FontSize="Title"/>
+            
+                <TableView Intent="Settings"
+                           BackgroundColor="White">
+                    <TableRoot>
+                        <TableSection Title="Account">
+                            <TextCell Text="Change email address"/>
+                            <TextCell Text="Change password"/>
+                        </TableSection>
+                    
+                        <TableSection>
+                            <TextCell Text="Log out"
+                                      TextColor="Crimson"/>
+                        </TableSection>
+                    </TableRoot>
+                </TableView>
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
