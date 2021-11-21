@@ -6,6 +6,7 @@ using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.DummyDataAPI;
 using Wasted.Utils;
+using Wasted.Utils.Exceptions;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
@@ -35,19 +36,30 @@ namespace Wasted.Pages.Place.NewPlace
             PopupNavigation.Instance.PushAsync(new ChooseImagePopup(CurrentPlace, "LogoURL"));
         }
 
-        private void DoneButtonClicked(object sender, EventArgs e)
+        private void AddPlaceToPlaces()
         {
+            ExceptionChecker.CheckValidParams(CurrentPlace.HeaderURL, CurrentPlace.LogoURL);
             DataService service = DependencyService.Get<DataService>();
+            UserPlace currentUser = (UserPlace)service.CurrentUser;
+
             CurrentPlace.ID = service.AllFoodPlaces.Count == 0 ? 1 : service.AllFoodPlaces.Last().ID + 1;
 
             List<FoodPlace> currentFoodPlaces = service.AllFoodPlaces;
             currentFoodPlaces.Add(CurrentPlace);
             DataProvider.WriteAllPlaces(currentFoodPlaces);
 
-            ((UserPlace)service.CurrentUser).OwnedPlaceIDs.Add(CurrentPlace.ID);
+            currentUser.OwnedPlaceIDs.Add(CurrentPlace.ID);
             DataProvider.WriteAllUserPlaces();
             
-            ((UserPlace)service.CurrentUser).PushPage(this);
+            currentUser.PushPage(this);
+        }
+
+        private void DoneButtonClicked(object sender, EventArgs e)
+        {
+            ExceptionHandler.WrapFunctionCall(
+                AddPlaceToPlaces,
+                this
+            );
         }
         
         private void BackClicked(object sender, EventArgs e)

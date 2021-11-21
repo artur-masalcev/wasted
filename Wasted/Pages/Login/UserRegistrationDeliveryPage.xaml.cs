@@ -36,14 +36,10 @@ namespace Wasted.Pages.Login
         
         private void CreateClicked(object sender, EventArgs e)
         {
-            try
-            {
-                SubmitUserData(NameEntry.Text, SurnameEntry.Text, CityEntry.Text, AddressEntry.Text);
-            }
-            catch (ArgumentNullException)
-            {
-                DisplayAlert("", "Please fill all fields", "OK");
-            }
+            ExceptionHandler.WrapFunctionCall(
+                () => SubmitUserData(NameEntry.Text, SurnameEntry.Text, CityEntry.Text, AddressEntry.Text),
+                this
+            );
         }
 
         private void BackClicked(object sender, EventArgs e)

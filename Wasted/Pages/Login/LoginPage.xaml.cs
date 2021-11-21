@@ -23,7 +23,7 @@ namespace Wasted
             On<iOS>().SetUseSafeArea(true);
         }
 
-        private async Task SubmitUserData(string username, string password)
+        private void SubmitUserData(string username, string password)
         {
             ExceptionChecker.CheckValidParams(username, password);
 
@@ -46,27 +46,21 @@ namespace Wasted
                 }
                 else
                 {
-                    await DisplayAlert("", "Username or password is incorrect. Try Again.", "OK");
+                    DisplayAlert("", "Username or password is incorrect. Try Again.", "OK");
                 }
             }
             else
             {
-                await DisplayAlert("", "Username does not exist. Try Again.", "OK");
+                DisplayAlert("", "Username does not exist. Try Again.", "OK");
             }
         }
         
-        private async void LoginClicked(object sender, EventArgs e)
+        private void LoginClicked(object sender, EventArgs e)
         {
-            try
-            {
-                string username = UsernameEntry.Text;
-                string password = PasswordEntry.Text;
-                await SubmitUserData(username, password);
-            }
-            catch (ArgumentNullException)
-            {
-                await DisplayAlert("", "Please fill all fields", "OK");
-            }
+            ExceptionHandler.WrapFunctionCall(
+                () => SubmitUserData(UsernameEntry.Text, PasswordEntry.Text),
+                this
+            );
         }
 
         /// <summary>

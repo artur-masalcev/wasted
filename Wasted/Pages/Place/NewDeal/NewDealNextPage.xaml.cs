@@ -6,6 +6,7 @@ using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.DummyDataAPI;
 using Wasted.Utils;
+using Wasted.Utils.Exceptions;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
@@ -40,11 +41,12 @@ namespace Wasted.Pages.Place.NewDeal
             PopupNavigation.Instance.PushAsync(new ChooseImagePopup(CurrentDeal, "ImageURL"));
         }
 
-        private void FillDealValues(DataService service)
+        private void FillDealValues(DataService service, string dealExpirationDate, string dealDescription)
         {
+            ExceptionChecker.CheckValidParams(dealDescription, CurrentDeal.ImageURL);
             CurrentDeal.ID = service.AllDeals.Count == 0 ? 1 : service.AllDeals.Last().ID + 1;
-            CurrentDeal.Due = DueDatePicker.Date.ToString("yyyy-MM-dd");
-            CurrentDeal.Description = DescriptionEntry.Text;
+            CurrentDeal.Due = dealExpirationDate;
+            CurrentDeal.Description = dealDescription;
             CurrentDeal.FoodPlaces.Add(SelectedPlace);
 
             List<Deal> currentDeals = service.AllDeals;
@@ -52,16 +54,24 @@ namespace Wasted.Pages.Place.NewDeal
             DataProvider.WriteAllDeals(currentDeals);
         }
 
-        private void DoneButtonClicked(object sender, EventArgs e)
+        private void AddDealToDeals(DataService service, string dealExpirationDate, string dealDescription)
         {
-            DataService service = DependencyService.Get<DataService>();
-            FillDealValues(service);
-            
+            FillDealValues(service, dealExpirationDate, dealDescription);
             SelectedPlace.Deals.Add(CurrentDeal);
             SelectedPlace.DealsIDs.Add(CurrentDeal.ID);
             DataProvider.WriteAllPlaces();
 
             ((UserPlace)service.CurrentUser).PushPage(this);
+        }
+
+        private void DoneButtonClicked(object sender, EventArgs e)
+        {
+            DataService service = DependencyService.Get<DataService>();
+            string dealExpirationDate = DueDatePicker.Date.ToString("yyyy-MM-dd");
+            ExceptionHandler.WrapFunctionCall(
+                    () => AddDealToDeals(service, dealExpirationDate, DescriptionEntry.Text),
+                    this
+                );
         }
         
         private void BackClicked(object sender, EventArgs e)

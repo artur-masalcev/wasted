@@ -2,6 +2,7 @@
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Pages.Place.NewPlace;
 using Wasted.Utils;
+using Wasted.Utils.Exceptions;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
@@ -27,14 +28,23 @@ namespace Wasted.Pages.Place
         {
             Validator.EntryTextChanged(sender, e);
         }
-        private void NextButtonClicked(object sender, EventArgs e)
+
+        private void GoToNextPage(string titleText, string selectedCity, string descriptionEntryText)
         {
+            ExceptionChecker.CheckValidParams(titleText, selectedCity, descriptionEntryText);
             CurrentFoodPlace = new FoodPlace(
-                title:TitleEntry.Text,
-                city:(string)CityPicker.SelectedItem,
-                description:DescriptionEntry.Text
+                title:titleText,
+                city:selectedCity,
+                description:descriptionEntryText
             );
             Navigation.PushAsync(new NewPlaceImagePage(CurrentFoodPlace));
+        }
+        private void NextButtonClicked(object sender, EventArgs e)
+        {
+            ExceptionHandler.WrapFunctionCall(
+                () => GoToNextPage(TitleEntry.Text, (string)CityPicker.SelectedItem, DescriptionEntry.Text),
+                this
+            );
         }
         private void BackClicked(object sender, EventArgs e)
         {

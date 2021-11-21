@@ -1,5 +1,6 @@
 ﻿using System;
 using Wasted.DummyAPI.BusinessObjects;
+using Wasted.Utils.Exceptions;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
@@ -27,18 +28,22 @@ namespace Wasted.Pages.Place.NewDeal
                 ((Entry) sender).Text = e.OldTextValue;
         }
 
-        public static double ParseDouble(string text)
+        private void GoToNextPage(string titleText, string currentCostText, string previousCostText)
         {
-            return string.IsNullOrEmpty(text) ? 0 : double.Parse(text);
+            ExceptionChecker.CheckValidParams(titleText, currentCostText, previousCostText);
+            Deal currentDeal = new Deal(
+                title:titleText,
+                currentCost:double.Parse(currentCostText),
+                previousCost:double.Parse(previousCostText)
+            );
+            Navigation.PushAsync(new NewDealNextPage(currentDeal, SelectedPlace));
         }
         private void NextButtonClicked(object sender, EventArgs e)
         {
-            Deal currentDeal = new Deal(
-                title:TitleEntry.Text,
-                currentCost:ParseDouble(CurrentCostEntry.Text),
-                previousCost:ParseDouble(RegularCostEntry.Text)
+            ExceptionHandler.WrapFunctionCall(
+                () => GoToNextPage(TitleEntry.Text, CurrentCostEntry.Text, RegularCostEntry.Text),
+                this
             );
-            Navigation.PushAsync(new NewDealNextPage(currentDeal, SelectedPlace));
         }
         
         private void BackClicked(object sender, EventArgs e)
