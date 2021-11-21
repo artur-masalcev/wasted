@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Wasted.CartPage">
+	<ContentPage.Content>
+        <RefreshView x:Name="RefreshView"  RefreshColor="DimGray" Refreshing="RefreshView_Refreshing">
+	        <StackLayout>
+		        <Label Text="Your cart:"></Label>
+		        <CollectionView x:Name="OrderedDealsCollectionView"
+		                        SelectionMode="Single"
+		                        ItemsLayout="VerticalList">
+		        <CollectionView.ItemTemplate>
+				        <DataTemplate>
+					        <Frame>
+								<StackLayout Orientation="Horizontal">
+									<Label Text="{Binding Quantity, StringFormat='quantity = {0}' }" />
+									<Label Text="{Binding Status}" />
+								</StackLayout>
+					        </Frame>
+				        </DataTemplate>
+			        </CollectionView.ItemTemplate>
+		        </CollectionView>
+	        </StackLayout>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

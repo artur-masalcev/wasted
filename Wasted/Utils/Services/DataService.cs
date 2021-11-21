@@ -3,6 +3,7 @@ using Wasted.Dummy_API;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
+using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -26,6 +27,9 @@ namespace Wasted.Utils
             get { return allDeals;}
             set { allDeals = BusinessUtils.SortByID<Deal>(value.ToArray()); }
         }
+
+        public List<OrderedDeal> OrderedDeals { get; set; }
+        
         //                username
         public Dictionary<string, UserClient> ClientUsers { get; set; }
         //                username

@@ -39,7 +39,10 @@ namespace Wasted.Pages.Deals
             
             bool selectedSomething = stepper.Value != 0;
             if (selectedSomething)
-                UserDialogs.Instance.Toast("Order confirmed", new TimeSpan(3));
+            {
+                Navigation.PushAsync(new CartPage(SelectedDeal, (int) stepper.Value));
+            }
+                
         }
 
         public void OnCancelClicked(object sender, EventArgs e)
