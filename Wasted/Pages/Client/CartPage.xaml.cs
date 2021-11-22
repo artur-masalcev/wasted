@@ -20,8 +20,6 @@ namespace Wasted
 
             InitializeComponent();
 
-            BindingContext = orderedDeal;
-
             service = DependencyService.Get<DataService>();
         }
 

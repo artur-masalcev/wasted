@@ -4,9 +4,9 @@ namespace Wasted.WastedAPI.Business_Objects
 {
     public class OrderedDeal
     {
-        private Deal SelectedDeal { get; set; }
-        private int Quantity { get; set; }
-        private string Status { get; set; }
+        public Deal SelectedDeal { get; set; }
+        public int Quantity { get; set; }
+        public string Status { get; set; }
         
         public OrderedDeal(Deal deal, int quantity, string status)
         {
