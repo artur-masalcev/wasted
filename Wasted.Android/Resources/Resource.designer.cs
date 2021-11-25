@@ -23987,8 +23987,8 @@ namespace Wasted.Droid
 			// aapt resource value: 0x7F070157
 			public const int mtrl_tabs_default_indicator = 2131165527;
 			
-			// aapt resource value: 0x7F07015A
-			public const int navigation_empty_icon = 2131165530;
+			// aapt resource value: 0x7F07015B
+			public const int navigation_empty_icon = 2131165531;
 			
 			// aapt resource value: 0x7F070158
 			public const int nav_bar_home = 2131165528;
@@ -23996,65 +23996,68 @@ namespace Wasted.Droid
 			// aapt resource value: 0x7F070159
 			public const int nav_bar_search = 2131165529;
 			
-			// aapt resource value: 0x7F07015B
-			public const int notification_action_background = 2131165531;
+			// aapt resource value: 0x7F07015A
+			public const int nav_bar_settings = 2131165530;
 			
 			// aapt resource value: 0x7F07015C
-			public const int notification_bg = 2131165532;
+			public const int notification_action_background = 2131165532;
 			
 			// aapt resource value: 0x7F07015D
-			public const int notification_bg_low = 2131165533;
+			public const int notification_bg = 2131165533;
 			
 			// aapt resource value: 0x7F07015E
-			public const int notification_bg_low_normal = 2131165534;
+			public const int notification_bg_low = 2131165534;
 			
 			// aapt resource value: 0x7F07015F
-			public const int notification_bg_low_pressed = 2131165535;
+			public const int notification_bg_low_normal = 2131165535;
 			
 			// aapt resource value: 0x7F070160
-			public const int notification_bg_normal = 2131165536;
+			public const int notification_bg_low_pressed = 2131165536;
 			
 			// aapt resource value: 0x7F070161
-			public const int notification_bg_normal_pressed = 2131165537;
+			public const int notification_bg_normal = 2131165537;
 			
 			// aapt resource value: 0x7F070162
-			public const int notification_icon_background = 2131165538;
+			public const int notification_bg_normal_pressed = 2131165538;
 			
 			// aapt resource value: 0x7F070163
-			public const int notification_template_icon_bg = 2131165539;
+			public const int notification_icon_background = 2131165539;
 			
 			// aapt resource value: 0x7F070164
-			public const int notification_template_icon_low_bg = 2131165540;
+			public const int notification_template_icon_bg = 2131165540;
 			
 			// aapt resource value: 0x7F070165
-			public const int notification_tile_bg = 2131165541;
+			public const int notification_template_icon_low_bg = 2131165541;
 			
 			// aapt resource value: 0x7F070166
-			public const int notify_panel_notification_icon_bg = 2131165542;
+			public const int notification_tile_bg = 2131165542;
 			
 			// aapt resource value: 0x7F070167
-			public const int roundedbg = 2131165543;
+			public const int notify_panel_notification_icon_bg = 2131165543;
 			
 			// aapt resource value: 0x7F070168
-			public const int roundedbgdark = 2131165544;
+			public const int roundedbg = 2131165544;
 			
 			// aapt resource value: 0x7F070169
-			public const int star_fill = 2131165545;
+			public const int roundedbgdark = 2131165545;
 			
 			// aapt resource value: 0x7F07016A
-			public const int star_outline = 2131165546;
+			public const int star_fill = 2131165546;
 			
 			// aapt resource value: 0x7F07016B
-			public const int test_custom_background = 2131165547;
+			public const int star_outline = 2131165547;
 			
 			// aapt resource value: 0x7F07016C
-			public const int tooltip_frame_dark = 2131165548;
+			public const int test_custom_background = 2131165548;
 			
 			// aapt resource value: 0x7F07016D
-			public const int tooltip_frame_light = 2131165549;
+			public const int tooltip_frame_dark = 2131165549;
 			
 			// aapt resource value: 0x7F07016E
-			public const int user = 2131165550;
+			public const int tooltip_frame_light = 2131165550;
+			
+			// aapt resource value: 0x7F07016F
+			public const int user = 2131165551;
 			
 			static Drawable()
 			{
@@ -25779,6 +25782,9 @@ namespace Wasted.Droid
 			
 			// aapt resource value: 0x7F0C0004
 			public const int nav_bar_search = 2131492868;
+			
+			// aapt resource value: 0x7F0C0005
+			public const int nav_bar_settings = 2131492869;
 			
 			static Mipmap()
 			{

@@ -4,8 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Wasted.Pages.UserRegistrationDataPage"
     BackgroundColor="{StaticResource AppEmerald}"
-    NavigationPage.HasNavigationBar="False"
-    >
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <!--#region Default styles-->
@@ -24,11 +23,9 @@
         <StackLayout Padding="15, 0, 15, 0">
             <!--#region Custom navigation bar-->
             <StackLayout Orientation="Horizontal">
-                <Button Text="‹"
-                        Style="{StaticResource CustomNavBarBackButton}"
-                        Clicked="BackClicked"
-                        />
-
+                <Button Style="{StaticResource CustomNavBarBackButton}"
+                        Clicked="BackClicked"/>
+                
                 <Label Text="Basic information"
                        VerticalTextAlignment="Center"
                        FontSize="Title"/>
