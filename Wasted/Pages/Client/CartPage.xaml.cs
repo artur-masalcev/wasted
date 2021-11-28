@@ -14,9 +14,9 @@ namespace Wasted
         public OrderedDeal orderedDeal { get; set; }
         private DataService service;
 
-        public CartPage(Deal selectedDeal, int quantity)
+        public CartPage(Deal selectedDeal, int quantity, double cost)
         {
-            orderedDeal = new OrderedDeal(selectedDeal, quantity, "preparing");
+            orderedDeal = new OrderedDeal(selectedDeal, quantity, "preparing", cost);
 
             InitializeComponent();
 
@@ -26,11 +26,25 @@ namespace Wasted
             {
                 service.OrderedDeals = new List<OrderedDeal>();
             }
+
             service.OrderedDeals.Add(orderedDeal);
+
+            Total.Text = "Total " + setTotal() + " eur.";
+        }
+
+        public CartPage()
+        {
+            InitializeComponent();
+
+            service = DependencyService.Get<DataService>();
+            
+            OrderedDealsCollectionView.ItemsSource = service.OrderedDeals;
+            
+            Total.Text = "Total " + setTotal() + " eur.";
         }
 
         /// <summary>
-        /// Sets 
+        /// Sets OrderedDealsCollectionView with OrderedDeals
         /// </summary>
         protected override void OnAppearing()
         {
@@ -42,6 +56,23 @@ namespace Wasted
         {
             OnAppearing();
             RefreshView.IsRefreshing = false;
+        }
+
+        private double setTotal()
+        {
+            var allOrderedDeals = service.OrderedDeals;
+            double total = 0;
+            foreach (OrderedDeal deal in allOrderedDeals)
+            {
+                total += deal.Cost;
+            }
+
+            return total;
+        }
+
+        private void ClickedPurchase(object sender, EventArgs e)
+        {
+            
         }
     }
 }

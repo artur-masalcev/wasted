@@ -40,7 +40,7 @@ namespace Wasted.Pages.Deals
             bool selectedSomething = stepper.Value != 0;
             if (selectedSomething)
             {
-                Navigation.PushAsync(new CartPage(SelectedDeal, (int) stepper.Value));
+                Navigation.PushAsync(new CartPage(SelectedDeal, (int) stepper.Value, stepper.Value * SelectedDeal.DealCosts.CurrentCost));
             }
                 
         }

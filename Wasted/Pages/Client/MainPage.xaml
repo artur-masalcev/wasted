@@ -13,5 +13,8 @@
             <wasted:SearchPage
                  Title="Search"
                  Icon="nav_bar_search.png"/>
+            <wasted:CartPage
+                Title="Cart"
+                Icon="nav_bar_cart.png"/>
 </TabbedPage>
 
