@@ -29,6 +29,7 @@ namespace Wasted.Utils
         }
 
         public List<CartDeal> CartDeals { get; set; } = new List<CartDeal>();
+        public List<OrderedDeal> OrderedDeals { get; set; } = new List<OrderedDeal>();
         
         //                username
         public Dictionary<string, UserClient> ClientUsers { get; set; }

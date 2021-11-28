@@ -16,7 +16,7 @@ namespace Wasted
 
         public CartPage(Deal selectedDeal, int quantity, double cost)
         {
-            cartDeal = new CartDeal(selectedDeal, quantity, "preparing", cost);
+            cartDeal = new CartDeal(selectedDeal, quantity, cost);
 
             InitializeComponent();
 
@@ -70,7 +70,7 @@ namespace Wasted
 
         private void ClickedPurchase(object sender, EventArgs e)
         {
-            
+            Navigation.PushAsync(new OrderStatusPage(service));
         }
     }
 }

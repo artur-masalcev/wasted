@@ -16,5 +16,8 @@
             <wasted:CartPage
                 Title="Cart"
                 Icon="nav_bar_cart.png"/>
+            <wasted:OrderStatusPage
+                 Title="Order Status"
+                 Icon="nav_bar_cart.png"/>
 </TabbedPage>
 
