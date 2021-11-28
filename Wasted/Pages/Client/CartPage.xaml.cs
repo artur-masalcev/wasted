@@ -11,18 +11,18 @@ namespace Wasted
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CartPage : ContentPage
     {
-        public CartDeal orderedDeal { get; set; }
+        public CartDeal cartDeal { get; set; }
         private DataService service;
 
         public CartPage(Deal selectedDeal, int quantity, double cost)
         {
-            orderedDeal = new CartDeal(selectedDeal, quantity, "preparing", cost);
+            cartDeal = new CartDeal(selectedDeal, quantity, "preparing", cost);
 
             InitializeComponent();
 
             service = DependencyService.Get<DataService>();
 
-            service.CartDeals.Add(orderedDeal);
+            service.CartDeals.Add(cartDeal);
 
             Total.Text = "Total " + setTotal() + " eur.";
         }
@@ -39,7 +39,7 @@ namespace Wasted
         }
 
         /// <summary>
-        /// Sets OrderedDealsCollectionView with OrderedDeals
+        /// Sets CartDealsCollectionView with CartDeals
         /// </summary>
         protected override void OnAppearing()
         {
@@ -53,11 +53,14 @@ namespace Wasted
             RefreshView.IsRefreshing = false;
         }
 
+        /// <summary>
+        /// Counts the total cost of all deals
+        /// </summary>
         private double setTotal()
         {
-            var allOrderedDeals = service.CartDeals;
+            var allCartDeals = service.CartDeals;
             double total = 0;
-            foreach (CartDeal deal in allOrderedDeals)
+            foreach (CartDeal deal in allCartDeals)
             {
                 total += deal.Cost;
             }
