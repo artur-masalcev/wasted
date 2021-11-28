@@ -21,19 +21,20 @@ namespace Wasted
             InitializeComponent();
 
             service = DependencyService.Get<DataService>();
-        }
-
-        /// <summary>
-        /// Puts food places from json file to collectionView.
-        /// </summary>
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
+            
             if (service.OrderedDeals == null)
             {
                 service.OrderedDeals = new List<OrderedDeal>();
             }
             service.OrderedDeals.Add(orderedDeal);
+        }
+
+        /// <summary>
+        /// Sets 
+        /// </summary>
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
             OrderedDealsCollectionView.ItemsSource = service.OrderedDeals;
         }
 
