@@ -11,23 +11,18 @@ namespace Wasted
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CartPage : ContentPage
     {
-        public OrderedDeal orderedDeal { get; set; }
+        public CartDeal orderedDeal { get; set; }
         private DataService service;
 
         public CartPage(Deal selectedDeal, int quantity, double cost)
         {
-            orderedDeal = new OrderedDeal(selectedDeal, quantity, "preparing", cost);
+            orderedDeal = new CartDeal(selectedDeal, quantity, "preparing", cost);
 
             InitializeComponent();
 
             service = DependencyService.Get<DataService>();
-            
-            if (service.OrderedDeals == null)
-            {
-                service.OrderedDeals = new List<OrderedDeal>();
-            }
 
-            service.OrderedDeals.Add(orderedDeal);
+            service.CartDeals.Add(orderedDeal);
 
             Total.Text = "Total " + setTotal() + " eur.";
         }
@@ -38,7 +33,7 @@ namespace Wasted
 
             service = DependencyService.Get<DataService>();
             
-            OrderedDealsCollectionView.ItemsSource = service.OrderedDeals;
+            CartDealsCollectionView.ItemsSource = service.CartDeals;
             
             Total.Text = "Total " + setTotal() + " eur.";
         }
@@ -49,7 +44,7 @@ namespace Wasted
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            OrderedDealsCollectionView.ItemsSource = service.OrderedDeals;
+            CartDealsCollectionView.ItemsSource = service.CartDeals;
         }
 
         private void RefreshView_Refreshing(object sender, EventArgs e)
@@ -60,9 +55,9 @@ namespace Wasted
 
         private double setTotal()
         {
-            var allOrderedDeals = service.OrderedDeals;
+            var allOrderedDeals = service.CartDeals;
             double total = 0;
-            foreach (OrderedDeal deal in allOrderedDeals)
+            foreach (CartDeal deal in allOrderedDeals)
             {
                 total += deal.Cost;
             }

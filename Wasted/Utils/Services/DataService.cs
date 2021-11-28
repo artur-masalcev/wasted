@@ -28,7 +28,7 @@ namespace Wasted.Utils
             set { allDeals = BusinessUtils.SortByID<Deal>(value.ToArray()); }
         }
 
-        public List<OrderedDeal> OrderedDeals { get; set; }
+        public List<CartDeal> CartDeals { get; set; } = new List<CartDeal>();
         
         //                username
         public Dictionary<string, UserClient> ClientUsers { get; set; }

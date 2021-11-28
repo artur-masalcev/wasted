@@ -7,7 +7,7 @@
         <RefreshView x:Name="RefreshView"  RefreshColor="DimGray" Refreshing="RefreshView_Refreshing">
 	        <StackLayout>
 		        <Label Text="Your cart:"></Label>
-		        <CollectionView x:Name="OrderedDealsCollectionView"
+		        <CollectionView x:Name="CartDealsCollectionView"
 		                        SelectionMode="Single"
 		                        ItemsLayout="VerticalList">
 		        <CollectionView.ItemTemplate>
