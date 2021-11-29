@@ -70,7 +70,7 @@ namespace Wasted
 
         private void ClickedPurchase(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new OrderStatusPage(service));
+            Navigation.PushAsync(new OrderStatusPage());
         }
     }
 }

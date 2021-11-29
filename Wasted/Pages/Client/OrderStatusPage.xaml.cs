@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wasted.Dummy_API.Business_Objects;
+using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
 using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
@@ -14,30 +15,10 @@ namespace Wasted
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderStatusPage : ContentPage
     {
-        private DataService Service;
-        public OrderStatusPage(DataService service)
-        {
-            InitializeComponent();
-
-            Service = service;
-
-            foreach (CartDeal cartDeal in service.CartDeals)
-            {
-                service.OrderedDeals.Add(new OrderedDeal(cartDeal, "preparing"));
-            }
-
-            service.CartDeals = new List<CartDeal>();
-            
-            OrderedDealsCollectionView.ItemsSource = service.OrderedDeals;
-        }
-
+        public DataService Service { get; set; }
         public OrderStatusPage()
         {
-            InitializeComponent();
-            
             Service = DependencyService.Get<DataService>();
-            
-            OrderedDealsCollectionView.ItemsSource = Service.OrderedDeals;
         }
         
         /// <summary>
@@ -45,7 +26,13 @@ namespace Wasted
         /// </summary>
         protected override void OnAppearing()
         {
+            InitializeComponent();
             base.OnAppearing();
+            foreach (CartDeal cartDeal in Service.CartDeals)
+            {
+                Service.OrderedDeals.Add(new OrderedDeal(cartDeal, "preparing"));
+            }
+            Service.CartDeals = new List<CartDeal>();
             OrderedDealsCollectionView.ItemsSource = Service.OrderedDeals;
         }
 
