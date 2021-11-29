@@ -10,7 +10,7 @@
 		        <CollectionView x:Name="CartDealsCollectionView"
 		                        SelectionMode="Single"
 		                        ItemsLayout="VerticalList">
-		        <CollectionView.ItemTemplate>
+					<CollectionView.ItemTemplate>
 				        <DataTemplate>
 					        <Frame>
 								<StackLayout Orientation="Horizontal">

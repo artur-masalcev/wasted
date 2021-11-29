@@ -4,9 +4,9 @@ namespace Wasted.Dummy_API.Business_Objects
 {
     public class OrderedDeal
     {
-        public CartDeal PurchasedDeal;
+        public CartDeal PurchasedDeal { get; set; }
 
-        public string Status;
+        public string Status { get; set; }
 
         public string Title => PurchasedDeal.Title;
 
