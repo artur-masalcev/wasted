@@ -44,12 +44,12 @@ namespace Wasted.Pages.Place
             On<iOS>().SetUseSafeArea(true);
         }
 
-        private void YourPlacesCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void PlacesCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectionChanger.ListSelectionChanged(sender, () =>
             {
                 FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
-                Navigation.PushAsync(new NewDealPage(selectedPlace));
+                Navigation.PushAsync(new DealsNavigationPage(selectedPlace));
             });
         }
 

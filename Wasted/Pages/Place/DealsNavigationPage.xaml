@@ -1,49 +1,48 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Wasted.Pages.Place.PlaceHomePage"
-             BackgroundColor="White">
+             x:Class="Wasted.Pages.Place.DealsNavigationPage"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
-            <!--#region Page header-->
-            <Label Text="Your places"
-                   Style="{StaticResource PageTitle}"
-                   Padding="7"/>
+            <!--#region Custom navigation bar-->
+            <StackLayout Orientation="Horizontal">
+                <Button Text="‹"
+                        Style="{StaticResource CustomNavBarBackButton}"
+                        TextColor="{StaticResource TextBlack}"
+                        Clicked="BackClicked"
+                />
+
+                <Label Text="{Binding FoodPlaceTitle}"
+                       VerticalTextAlignment="Center"
+                       Style="{StaticResource PageTitle}"/>
+            </StackLayout>
             <!--#endregion-->
             
-            <!--#region Places listView-->
+            <!--#region Deals listView-->
             <ScrollView>
-            <CollectionView x:Name="PlacesCollectionView"
-                            SelectionChanged="PlacesCollectionViewSelectionChanged"
+            <CollectionView x:Name="DealsCollectionView"
+                            SelectionChanged="DealsCollectionViewSelectionChanged"
                             SelectionMode="Single"
                             ItemsLayout="VerticalList"
-                            ItemsSource="{Binding OwnedPlaces}">
+                            ItemsSource="{Binding Deals}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <SwipeView>
                         <Frame HasShadow="false"
                                CornerRadius="0">
                             <StackLayout Orientation="Horizontal" Background="White">
                                     <StackLayout>
                                         <Label Text="{Binding Title }"
                                                FontAttributes="Bold"/>
-                                        <Label Text="{Binding City}" />
+                                        <Label Text="{Binding Quantity, StringFormat='Quantity: {0}'}" />
                                     </StackLayout>
-                                    <Label Text="{Binding DealsCount, StringFormat='{0} deals'}"
-                                           HorizontalOptions="EndAndExpand"
-                                           VerticalOptions="Center"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="›"
-                                           VerticalOptions="Center"
-                                           FontSize="20"/>
+                                <Label Text="›"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="EndAndExpand"
+                                       FontSize="20"/>
                                 </StackLayout>
                         </Frame>
-                        <SwipeView.RightItems>
-                            <SwipeItem Text="Delete" BackgroundColor="Tomato" Command="{Binding Path=BindingContext.DeleteCommand,
-                                        Source={x:Reference PlacesCollectionView}}" CommandParameter="{Binding .}"/>
-                        </SwipeView.RightItems>
-                        </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
@@ -73,7 +72,7 @@
                         VerticalOptions="Center"
                         TextColor="White"
                         BackgroundColor="Transparent"
-                        Clicked="AddNewPlaceButtonClicked"/>
+                        Clicked="AddNewDealClicked"/>
             </Grid>
             <!--#endregion-->
         </StackLayout>
