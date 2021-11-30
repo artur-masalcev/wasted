@@ -18,9 +18,7 @@
 		<Color x:Key="TextGrey">#757171</Color>
 		<!--#endregion-->
 
-		<!--#retgion Implicit styles -->
-
-		<!--#region Labels -->
+		<!--#region Default styles -->
 		<Style TargetType="Label">
 			<Setter Property="TextColor" Value="{StaticResource TextBlack}" />
 			<Setter Property="Margin" Value="5, 0" />
@@ -30,7 +28,19 @@
 			<Setter Property="HeightRequest" Value="45"/>
 			<Setter Property="BackgroundColor" Value="White"/>
 		</Style>
+		
+		<Style TargetType="DatePicker">
+			<Setter Property="HeightRequest" Value="45"/>
+		</Style>
+		
+		<Style TargetType="Button">
+			<Setter Property="BackgroundColor" Value="Transparent"/>
+		</Style>
+		<!--#endregion-->
+		
+		<!--#region Implicit styles -->
 
+		<!--#region Labels -->
 		<Style x:Key="RedLabel" TargetType="Label">
 			<Setter Property="TextColor" Value="#FF0000" />
 		</Style>

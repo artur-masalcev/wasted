@@ -5,7 +5,7 @@
              x:Class="Wasted.Pages.Place.DealsNavigationPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="7">
             <!--#region Custom navigation bar-->
             <StackLayout Orientation="Horizontal">
                 <Button Text="‹"
