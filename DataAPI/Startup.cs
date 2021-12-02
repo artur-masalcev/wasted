@@ -18,13 +18,14 @@ namespace DataAPI
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
-            services.AddScoped<StoreRepository>();
-            services.AddScoped<BookRepository>();
-            services.AddDbContext<BookContext>(o => o.UseSqlite("Data source=books.db"));
+            services.AddScoped<DealsRepository>(); //TODO: rename to singular
+            services.AddScoped<PlacesRepository>();
+            services.AddScoped<ClientUsersRepository>();
+            services.AddScoped<PlaceUsersRepository>();
+            services.AddDbContext<AppContext>(o => o.UseSqlite("Data source=database.db"));
             services.AddControllers();
         }
 
