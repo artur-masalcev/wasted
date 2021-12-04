@@ -1,3 +1,4 @@
+using DataAPI.Controllers;
 using DataAPI.Models;
 using DataAPI.Repositories;
 using Microsoft.AspNetCore.Builder;
@@ -25,6 +26,7 @@ namespace DataAPI
             services.AddScoped<PlacesRepository>();
             services.AddScoped<ClientUsersRepository>();
             services.AddScoped<PlaceUsersRepository>();
+            services.AddScoped<RatingsRepository>();
             services.AddDbContext<AppContext>(o => o.UseSqlite("Data source=database.db"));
             services.AddControllers();
         }

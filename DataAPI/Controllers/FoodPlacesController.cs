@@ -24,21 +24,16 @@ namespace DataAPI.Controllers
         }
         
         [HttpGet]
-        public IEnumerable<FoodPlaceDTO> GetBooks()
+        public IEnumerable<FoodPlaceDTO> GetFoodPlaces()
         {
             return _placesRepository.Get().Select(_mapper.Map<FoodPlaceDTO>);
         }
 
         [HttpPost]
-        public ActionResult<FoodPlace> PostBooks([FromBody] FoodPlace book)
+        public ActionResult<FoodPlace> PostFoodPlaces([FromBody] FoodPlace book)
         {
             var newBook = _placesRepository.Create(book);
-            return CreatedAtAction(nameof(GetBooks), new {id = newBook.Id}, newBook);
+            return CreatedAtAction(nameof(GetFoodPlaces), new {id = newBook.Id}, newBook);
         }
-
-        // public override string GetPathToData()
-        // {
-        //     return DummyDataProvider.FoodPlacesJSONPath;
-        // }
     }
 }

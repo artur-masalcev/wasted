@@ -11,6 +11,7 @@ namespace DataAPI.DTO
             CreateMap<Deal, DealDTO>();
             CreateMap<PlaceUser, PlaceUserDTO>();
             CreateMap<ClientUser, ClientUserDTO>();
+            CreateMap<Rating, RatingDTO>();
         }
     }
 }
