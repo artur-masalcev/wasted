@@ -4,6 +4,8 @@ using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace Wasted.Pages.Place.NewPlace
@@ -16,6 +18,8 @@ namespace Wasted.Pages.Place.NewPlace
         {
             CurrentPlace = place;
             InitializeComponent();
+            
+            On<iOS>().SetUseSafeArea(true);
         }
 
         private void HeaderButtonClicked(object sender, EventArgs e)
@@ -36,6 +40,12 @@ namespace Wasted.Pages.Place.NewPlace
             ((UserPlace)service.CurrentUser).OwnedPlaceIDs.Add(CurrentPlace.ID);
             
             ((UserPlace)service.CurrentUser).PushPage(this);
+        }
+        
+        private void BackClicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync(true);
+            base.OnBackButtonPressed();
         }
     }
 }

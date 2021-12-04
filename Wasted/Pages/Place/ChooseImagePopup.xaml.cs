@@ -29,5 +29,10 @@ namespace Wasted.Pages.Place
             Property?.SetValue(Chooser, URLEntry.Text);
             PopupNavigation.Instance.PopAsync();
         }
+        
+        private void OnCancelClicked(object sender, EventArgs e)
+        {
+            PopupNavigation.Instance.PopAsync(true); // Close the popup
+        }
     }
 }

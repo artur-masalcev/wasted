@@ -7,6 +7,8 @@ using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Pages.Place.NewDeal;
 using Wasted.Utils;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace Wasted.Pages.Place
@@ -35,6 +37,8 @@ namespace Wasted.Pages.Place
             OwnedPlaces = CurrentUser.OwnedPlaceIDs.Select(id => service.AllFoodPlaces[id - 1]); // Selects appropriate food place based on index
             InitializeComponent();
             DeleteCommand = new Command(DeletePlace);
+            
+            On<iOS>().SetUseSafeArea(true);
         }
 
         private void YourPlacesCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)

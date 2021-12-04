@@ -1,7 +1,10 @@
 ﻿using System;
 using Wasted.DummyAPI.BusinessObjects;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
+using Entry = Xamarin.Forms.Entry;
 
 namespace Wasted.Pages.Place.NewDeal
 {
@@ -13,6 +16,8 @@ namespace Wasted.Pages.Place.NewDeal
         {
             SelectedPlace = selectedPlace;
             InitializeComponent();
+            
+            On<iOS>().SetUseSafeArea(true);
         }
 
         private void NumberEntryTextChanged(object sender, TextChangedEventArgs e)
@@ -34,6 +39,12 @@ namespace Wasted.Pages.Place.NewDeal
                 previousCost:ParseDouble(RegularCostEntry.Text)
             );
             Navigation.PushAsync(new NewDealNextPage(currentDeal, SelectedPlace));
+        }
+        
+        private void BackClicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync(true);
+            base.OnBackButtonPressed();
         }
     }
 }
