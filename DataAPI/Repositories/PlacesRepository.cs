@@ -8,15 +8,15 @@ namespace DataAPI.Repositories
 {
     public class PlacesRepository
     {
-        private readonly AppContext _context;
-        public PlacesRepository(AppContext context)
+        private readonly AppDbContext _dbContext;
+        public PlacesRepository(AppDbContext dbContext)
         {
-            _context = context;
+            _dbContext = dbContext;
         }
 
         public IEnumerable<FoodPlace> Get()
         {
-            return _context.FoodPlaces
+            return _dbContext.FoodPlaces
                 .Include(p => p.Deals)
                 .Include(p => p.Ratings)
                 .ToList();
@@ -24,8 +24,8 @@ namespace DataAPI.Repositories
 
         public FoodPlace Create(FoodPlace foodPlace)
         {
-            _context.FoodPlaces.Add(foodPlace);
-            _context.SaveChangesAsync();
+            _dbContext.FoodPlaces.Add(foodPlace);
+            _dbContext.SaveChangesAsync();
             return foodPlace;
         }
     }

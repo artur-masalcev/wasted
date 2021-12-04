@@ -13,9 +13,9 @@ namespace Wasted.DummyAPI.BusinessObjects
     {
         public int ID { get; set; }
         public string Title { get; set; }
-
-        public Costs DealCosts { get; set; }
-
+        public double PreviousCost { get; set; }
+        public double CurrentCost { get; set; }
+        
         public int quantity = 0;
         public int Quantity
         {
@@ -32,25 +32,19 @@ namespace Wasted.DummyAPI.BusinessObjects
 
         public string Description { get; set; }
 
-        [JsonIgnore]
-        public List<FoodPlace> FoodPlaces { get; set; } = new List<FoodPlace>();
+        public string FoodPlaceTitle { get; set; } //TODO: change to title
 
-        /// <summary>
-        /// Food place which has the item. Can be any from FoodPlaces list
-        /// </summary>
-        [JsonIgnore]
-        public string FoodPlaceTitle => FoodPlaces.First().Title;
-
-        public Deal(int id = 0, string title = null, string description = null, double currentCost = 0,
-            double previousCost = 0, int quantity = 0, string due = null, string imageURL = null)
+        public Deal(int quantity = default, int id = default, string title = null, double previousCost = default, double currentCost = default, string due = null, string imageUrl = null, string description = null, string foodPlaceTitle = null)
         {
+            this.quantity = quantity;
             ID = id;
             Title = title;
-            Description = description;
-            DealCosts = new Costs(previousCost, currentCost);
-            Quantity = quantity;
+            PreviousCost = previousCost;
+            CurrentCost = currentCost;
             Due = due;
-            ImageURL = imageURL;
+            ImageURL = imageUrl;
+            Description = description;
+            FoodPlaceTitle = foodPlaceTitle;
         }
     }
 }

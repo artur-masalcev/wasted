@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using DataAPI.DTO;
 using Wasted.Dummy_API;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
@@ -30,19 +31,18 @@ namespace Wasted.Utils
 
         public List<Deal> AllDeals => LazyAllDeals.Value.Result;
 
-        private Lazy<Task<Dictionary<string, UserClient>>> LazyClientUsers = new Lazy<Task<Dictionary<string, UserClient>>>(
+        private Lazy<Task<List<ClientUser>>> LazyClientUsers = new Lazy<Task<List<ClientUser>>>(
             () => Task.Run(async () => 
-                await DataProvider.GetData<Dictionary<string, UserClient>>(DataProvider.ClientUsersEnd))
+                await DataProvider.GetData<List<ClientUser>>(DataProvider.ClientUsersEnd))
         );
-        //                username
-        public Dictionary<string, UserClient> ClientUsers => LazyClientUsers.Value.Result;
+        public List<ClientUser> ClientUsers => LazyClientUsers.Value.Result;
 
-        private Lazy<Task<Dictionary<string, UserPlace>>> LazyPlaceUsers = new Lazy<Task<Dictionary<string, UserPlace>>>(
+        private Lazy<Task<List<UserPlace>>> LazyPlaceUsers = new Lazy<Task<List<UserPlace>>>(
             () => Task.Run(async () =>
-                await DataProvider.GetData<Dictionary<string, UserPlace>>(DataProvider.PlaceUsersEnd))
+                await DataProvider.GetData<List<UserPlace>>(DataProvider.PlaceUsersEnd))
         );
         //                username
-        public Dictionary<string, UserPlace> PlaceUsers => LazyPlaceUsers.Value.Result;
+        public List<UserPlace> PlaceUsers => LazyPlaceUsers.Value.Result;
         
         public Location UserLocation { get; set; }
     }

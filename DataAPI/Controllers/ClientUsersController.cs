@@ -1,10 +1,12 @@
 ﻿
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using AutoMapper;
 using DataAPI.DTO;
 using DataAPI.Models;
 using DataAPI.Repositories;
+using DataAPI.Utils;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DataAPI.Controllers
@@ -31,6 +33,12 @@ namespace DataAPI.Controllers
         [HttpPost]
         public ActionResult<ClientUser> PostClientUsers([FromBody] ClientUser clientUser)
         {
+            List<ClientUser> clientUsers = JsonSerializer.Deserialize<List<ClientUser>>(DummyDataProvider.GetText("Dummy Data Copies/ClientUsersCopy.json"));
+            foreach (var clientUsero in clientUsers)
+            {
+                var newDeal = _clientUsersRepository.Create(clientUsero);
+            }
+            return null;
             var newClientUser = _clientUsersRepository.Create(clientUser);
             return CreatedAtAction(nameof(GetClientUsers), new {id = newClientUser.Id}, newClientUser);
         }

@@ -30,18 +30,16 @@ namespace Wasted
         {
             base.OnAppearing();
 
-            nearbyFoodPlacesCollectionView.ItemsSource =
-                DataOrganizer.SortPlacesByUserLocation(service.AllFoodPlaces, service.UserLocation, nearbyPlacesCount:10, maxRadiusInKilometers:50);
-
-            var specialOffers
-                = DataOrganizer.FilterDeals(
+             // nearbyFoodPlacesCollectionView.ItemsSource =
+             //     DataOrganizer.SortPlacesByUserLocation(service.AllFoodPlaces, service.UserLocation, nearbyPlacesCount:10, maxRadiusInKilometers:50);
+            
+            specialOffersCollectionView.ItemsSource = DataOrganizer.FilterDeals(
                     DataOrganizer.SortOffersByPriceChange(service.AllDeals, specialOffersCount: 10),
                     DefaultFilters.DealInStock
                 ); 
-            specialOffersCollectionView.ItemsSource = specialOffers;
 
-            popularFoodPlacesCollectionView.ItemsSource =
-                DataOrganizer.SortPlacesByRatingDescending(service.AllFoodPlaces, popularPlacesCount:10);
+             // popularFoodPlacesCollectionView.ItemsSource =
+             //     DataOrganizer.SortPlacesByRatingDescending(service.AllFoodPlaces, popularPlacesCount:10);
         }
 
         /// <summary>
@@ -61,11 +59,11 @@ namespace Wasted
         /// </summary>
         private void DealsCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectionChanger.ListSelectionChanged(sender, () =>
-            {
-                Deal selectedDeal = e.CurrentSelection.FirstOrDefault() as Deal;
-                Navigation.PushAsync(new ItemsPage(selectedDeal));
-            });
+            // SelectionChanger.ListSelectionChanged(sender, () =>
+            // {
+            //     Deal selectedDeal = e.CurrentSelection.FirstOrDefault() as Deal;
+            //     Navigation.PushAsync(new ItemsPage(selectedDeal));
+            // });
         }
 
         /// <summary>

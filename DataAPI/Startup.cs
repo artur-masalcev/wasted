@@ -1,6 +1,9 @@
+using System.Collections.Generic;
+using System.Text.Json;
 using DataAPI.Controllers;
 using DataAPI.Models;
 using DataAPI.Repositories;
+using DataAPI.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -27,7 +30,7 @@ namespace DataAPI
             services.AddScoped<ClientUsersRepository>();
             services.AddScoped<PlaceUsersRepository>();
             services.AddScoped<RatingsRepository>();
-            services.AddDbContext<AppContext>(o => o.UseSqlite("Data source=database.db"));
+            services.AddDbContext<AppDbContext>(o => o.UseSqlite("Data source=database.db"));
             services.AddControllers();
         }
 

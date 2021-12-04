@@ -7,24 +7,24 @@ namespace DataAPI.Repositories
 {
     public class ClientUsersRepository
     {
-        private readonly AppContext _context;
+        private readonly AppDbContext _dbContext;
 
-        public ClientUsersRepository(AppContext context)
+        public ClientUsersRepository(AppDbContext dbContext)
         {
-            _context = context;
+            _dbContext = dbContext;
         }
         
         public IEnumerable<ClientUser> Get()
         {
-            return _context.ClientUsers
+            return _dbContext.ClientUsers
                 .Include(c => c.Ratings)
                 .ToList();
         }
 
         public ClientUser Create(ClientUser clientUser)
         {
-            _context.ClientUsers.Add(clientUser);
-            _context.SaveChangesAsync();
+            _dbContext.ClientUsers.Add(clientUser);
+            _dbContext.SaveChangesAsync();
             return clientUser;
         }
     }

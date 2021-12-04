@@ -14,12 +14,12 @@ namespace Wasted.FoodPlaceRatingSystem
         /// </summary>
         private static void ResetRating(FoodPlace SelectedFoodPlace, int previousRating)
         {
-            --SelectedFoodPlace.RatingCount;
-            double previousRestaurantRating = (SelectedFoodPlace.Rating * (SelectedFoodPlace.RatingCount + 1) - previousRating) / SelectedFoodPlace.RatingCount;
-            double tempRating = previousRestaurantRating * (SelectedFoodPlace.RatingCount + 1) - SelectedFoodPlace.Rating * SelectedFoodPlace.RatingCount;
-
-            SelectedFoodPlace.Rating = tempRating;
-            --SelectedFoodPlace.RatingCount;
+            // --SelectedFoodPlace.RatingCount;
+            // double previousRestaurantRating = (SelectedFoodPlace.Rating * (SelectedFoodPlace.RatingCount + 1) - previousRating) / SelectedFoodPlace.RatingCount;
+            // double tempRating = previousRestaurantRating * (SelectedFoodPlace.RatingCount + 1) - SelectedFoodPlace.Rating * SelectedFoodPlace.RatingCount;
+            //
+            // SelectedFoodPlace.Rating = tempRating;
+            // --SelectedFoodPlace.RatingCount;
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Wasted.FoodPlaceRatingSystem
             if (user.Ratings.ContainsKey(key))
                 ResetRating(selectedFoodPlace, user.Ratings[key]); //Rethinking rating choice
 
-            selectedFoodPlace.Rating = newRating;
+            //selectedFoodPlace.Rating = newRating;
             user.Ratings[key] = newRating;
             DataProvider.WriteAllUserClients();
         }

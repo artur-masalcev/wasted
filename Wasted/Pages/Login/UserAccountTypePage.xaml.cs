@@ -18,7 +18,7 @@ namespace Wasted.Pages.Login
             InitializeComponent();
             DataService = DependencyService.Get<DataService>();
             On<iOS>().SetUseSafeArea(true); // Put margin on iOS devices that have top notch
-            DataService.CurrentUser = new UserClient();
+            DataService.CurrentUser = new ClientUser();
         }
 
         private void ContinueClicked(object sender, EventArgs e)
@@ -37,7 +37,7 @@ namespace Wasted.Pages.Login
             RadioButton radioButton = sender as RadioButton;
             switch (radioButton.Value) {
                 case "User":
-                    DataService.CurrentUser = new UserClient();
+                    DataService.CurrentUser = new ClientUser();
                     break;
 
                 case "FoodPlace":

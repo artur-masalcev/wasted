@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using DataAPI.Models;
 
 namespace DataAPI.DTO
 {
-    public class ClientUserDTO : AbstractUser
+    public class ClientUserDTO
     {
         public List<RatingDTO> Ratings { get; set; }
     }

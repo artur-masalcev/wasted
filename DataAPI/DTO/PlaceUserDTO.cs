@@ -1,7 +1,9 @@
-﻿namespace DataAPI.DTO
+﻿using System.Collections.Generic;
+
+namespace DataAPI.DTO
 {
     public class PlaceUserDTO
     {
-        public string Name { get; set; }
+        public List<FoodPlaceDTO> Places;
     }
 }

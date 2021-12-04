@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace Wasted.Dummy_API.Business_Objects
 {
-    public class UserClient : User
+    public class ClientUser : User
     {
         public override void PushPage(ContentPage page)
         {
@@ -13,8 +13,8 @@ namespace Wasted.Dummy_API.Business_Objects
 
         public override void CreateUser(DataService service)
         {
-            service.ClientUsers[Username] = this;
-            DataProvider.WriteAllUserClients();
+            // service.ClientUsers[Username] = this;
+            // DataProvider.WriteAllUserClients();
         }
     }
 }

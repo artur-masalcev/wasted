@@ -24,8 +24,8 @@ namespace Wasted.Dummy_API.Business_Objects
 
         public override void CreateUser(DataService service)
         {
-            service.PlaceUsers[Username] = this;
-            DataProvider.WriteAllUserPlaces();
+            // service.PlaceUsers[Username] = this;
+            // DataProvider.WriteAllUserPlaces();
         }
     }
 }

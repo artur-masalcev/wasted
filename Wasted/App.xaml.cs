@@ -7,9 +7,7 @@ namespace Wasted
     {
         public App()
         {
-            BusinessUtils.AddFoodPlacesToDeals();
             InitializeComponent();
-
             MainPage = new NavigationPage(new LoginPage());
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using DataAPI.DTO;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.Pages.Login;
 using Wasted.Utils;
@@ -27,27 +28,29 @@ namespace Wasted
         {
             ExceptionChecker.CheckValidParams(username, password);
 
-            bool isClient = service.ClientUsers.ContainsKey(username);
-            bool isPlace = service.PlaceUsers.ContainsKey(username);
+            //bool isClient = service.ClientUsers.ContainsKey(username);
+            //bool isPlace = service.PlaceUsers.ContainsKey(username);
             
-            if (isClient || isPlace)
+            if (true/*isClient || isPlace*/)
             {
-                User user = isClient ? (User)service.ClientUsers[username] : service.PlaceUsers[username];
-                if (user.Password == password)
-                {
-                    Location userLocation = GetLocation().Result;
-                    if (userLocation == null)
-                        return;
-                    
-                    DataService dataService = DependencyService.Get<DataService>();
-                    dataService.CurrentUser = user; //Sets user for whole app
-                    dataService.UserLocation = userLocation;
-                    user.PushPage(this); //Creates appropriate page
-                }
-                else
-                {
-                    DisplayAlert("", "Username or password is incorrect. Try Again.", "OK");
-                }
+                //User user = isClient ? (User)service.ClientUsers[username] : service.PlaceUsers[username];
+                //ClientUserDTO user = service.ClientUsers[0];
+                // if (user.Password == password)
+                // {
+                //     Location userLocation = GetLocation().Result;
+                //     if (userLocation == null)
+                //         return;
+                //     
+                DataService dataService = DependencyService.Get<DataService>();
+                //dataService.CurrentUser = user; //Sets user for whole app
+                //dataService.UserLocation = userLocation;
+                Navigation.PushAsync(new MainPage());
+                //user.PushPage(this); //Creates appropriate page
+                // }
+                // else
+                // {
+                //     DisplayAlert("", "Username or password is incorrect. Try Again.", "OK");
+                // }
             }
             else
             {

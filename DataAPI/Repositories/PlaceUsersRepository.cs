@@ -6,24 +6,24 @@ namespace DataAPI.Repositories
 {
     public class PlaceUsersRepository
     {
-        private readonly AppContext _context;
+        private readonly AppDbContext _dbContext;
 
-        public PlaceUsersRepository(AppContext context)
+        public PlaceUsersRepository(AppDbContext dbContext)
         {
-            _context = context;
+            _dbContext = dbContext;
         }
         
         public IEnumerable<PlaceUser> Get()
         {
-            return _context.PlaceUsers
+            return _dbContext.PlaceUsers
                 //.Include(p => p.Deals)
                 .ToList();
         }
 
         public PlaceUser Create(PlaceUser placeUser)
         {
-            _context.PlaceUsers.Add(placeUser);
-            _context.SaveChangesAsync();
+            _dbContext.PlaceUsers.Add(placeUser);
+            _dbContext.SaveChangesAsync();
             return placeUser;
         }
     }

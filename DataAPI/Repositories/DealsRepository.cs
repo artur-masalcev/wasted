@@ -7,23 +7,23 @@ namespace DataAPI.Repositories
 {
     public class DealsRepository
     {
-        private readonly AppContext _context;
-        public DealsRepository(AppContext context)
+        private readonly AppDbContext _dbContext;
+        public DealsRepository(AppDbContext dbContext)
         {
-            _context = context;
+            _dbContext = dbContext;
         }
         
         public IEnumerable<Deal> Get()
         {
-            return  _context.Deals
+            return  _dbContext.Deals
                 .Include(d => d.FoodPlace)
                 .ToList();
         }
         
         public Deal Create(Deal deal)   
         {
-            _context.Deals.Add(deal);
-            _context.SaveChangesAsync();
+            _dbContext.Deals.Add(deal);
+            _dbContext.SaveChangesAsync();
             return deal;
         }
     }

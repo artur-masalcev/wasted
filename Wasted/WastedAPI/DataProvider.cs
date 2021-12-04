@@ -60,38 +60,38 @@ namespace Wasted.DummyDataAPI
 
         public static void WriteAllDeals(List<Deal> allDeals = null)
         {
-            WriteData(allDeals, delegate
-            {
-                DataService service = DependencyService.Get<DataService>();
-                return service.AllDeals;
-            }, DealsEnd);
+            // WriteData(allDeals, delegate
+            // {
+            //     DataService service = DependencyService.Get<DataService>();
+            //     return service.AllDeals;
+            // }, DealsEnd);
         }
         
         public static void WriteAllPlaces(List<FoodPlace> allFoodPlaces = null)
         {
-            WriteData(allFoodPlaces, delegate
-            {
-                DataService service = DependencyService.Get<DataService>();
-                return service.AllFoodPlaces;
-            }, FoodPlacesEnd);
+            // WriteData(allFoodPlaces, delegate
+            // {
+            //     DataService service = DependencyService.Get<DataService>();
+            //     return service.AllFoodPlaces;
+            // }, FoodPlacesEnd);
         }
 
         public static void WriteAllUserPlaces(Dictionary<string, UserPlace> placeUsers = null)
         {
-            WriteData(placeUsers, delegate
-            {
-                DataService service = DependencyService.Get<DataService>();
-                return service.PlaceUsers;
-            }, PlaceUsersEnd);
+            // WriteData(placeUsers, delegate
+            // {
+            //     DataService service = DependencyService.Get<DataService>();
+            //     return service.PlaceUsers;
+            // }, PlaceUsersEnd);
         }
 
-        public static void WriteAllUserClients(Dictionary<string, UserClient> clientUsers = null)
+        public static void WriteAllUserClients(ClientUser clientUsers = null)
         {
-            WriteData(clientUsers, delegate
-            {
-                DataService service = DependencyService.Get<DataService>();
-                return service.ClientUsers;
-            }, PlaceUsersEnd);
+            // WriteData(clientUsers, delegate
+            // {
+            //     DataService service = DependencyService.Get<DataService>();
+            //     return service.ClientUsers;
+            // }, PlaceUsersEnd);
         }
     }
 }

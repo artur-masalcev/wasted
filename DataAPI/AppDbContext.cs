@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAPI.Models
 {
-    public class AppContext : DbContext
+    public class AppDbContext : DbContext
     {
 
         public DbSet<Deal> Deals { get; set; }
@@ -12,7 +12,7 @@ namespace DataAPI.Models
         public DbSet<PlaceUser> PlaceUsers { get; set; }
         public DbSet<Rating> Ratings { get; set; }
 
-        public AppContext(DbContextOptions<AppContext> options) : base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
     }

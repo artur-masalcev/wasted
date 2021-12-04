@@ -33,7 +33,7 @@ namespace Wasted.DummyAPI
         {
             return (
                    from deal in allDeals
-                   orderby deal.DealCosts.PriceChange()
+                   orderby deal.CurrentCost / deal.PreviousCost
                    select deal
                    )
                    .Take(specialOffersCount);

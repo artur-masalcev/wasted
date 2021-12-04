@@ -1,16 +1,10 @@
-﻿{
-  "a": {
-    "username": "a",
-    "password": "b",
-    "name": "Bronius",
-    "surname": "Bronauskas",
-    "city": "Vilnius",
-    "address": "Peklynų g. 3",
-    "ratings": {
-      "1": 3,
-      "2": 5,
-      "4": 3,
-      "5": 4
-    }
+﻿[  
+  {
+    "Username": "a",
+    "Password": "b",
+    "Name": "Bronius",
+    "Surname": "Bronauskas",
+    "City": "Vilnius",
+    "Address": "Peklynų g. 3"
   }
-}
+]

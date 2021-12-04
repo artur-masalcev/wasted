@@ -25,9 +25,9 @@ namespace Wasted.Pages
         {
             ExceptionChecker.CheckValidParams(username, password);
 
-            bool isClient = service.ClientUsers.ContainsKey(username);
-            bool isPlace = service.PlaceUsers.ContainsKey(username);
-            if (!isClient && !isPlace)
+            //bool isClient = service.ClientUsers.ContainsKey(username);
+            //bool isPlace = service.PlaceUsers.ContainsKey(username);
+            if (true/*!isClient && !isPlace*/)
             {
                 DataService dataService = DependencyService.Get<DataService>();
                 User user = dataService.CurrentUser;

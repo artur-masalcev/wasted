@@ -6,6 +6,8 @@ using DataAPI.Models;
 using DataAPI.Repositories;
 using DataAPI.Utils;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using System.Text.Json;
 
 namespace DataAPI.Controllers
 {
@@ -29,9 +31,9 @@ namespace DataAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Deal> PostDeals([FromBody] Deal book)
+        public ActionResult<Deal> PostDeals([FromBody] Deal deal)
         {
-            var newDeal = _dealsRepository.Create(book);
+            var newDeal = _dealsRepository.Create(deal);
             return CreatedAtAction(nameof(GetDeals), new {id = newDeal.Id}, newDeal);
         }
     }

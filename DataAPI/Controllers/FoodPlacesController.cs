@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
 using DataAPI.DTO;
 using DataAPI.Models;
 using DataAPI.Repositories;
+using DataAPI.Utils;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DataAPI.Controllers
@@ -30,10 +32,10 @@ namespace DataAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<FoodPlace> PostFoodPlaces([FromBody] FoodPlace book)
+        public ActionResult<FoodPlace> PostFoodPlaces([FromBody] FoodPlace foodPlace)
         {
-            var newBook = _placesRepository.Create(book);
-            return CreatedAtAction(nameof(GetFoodPlaces), new {id = newBook.Id}, newBook);
+            var newFoodPlace = _placesRepository.Create(foodPlace);
+            return CreatedAtAction(nameof(GetFoodPlaces), new {id = newFoodPlace.Id}, newFoodPlace);
         }
     }
 }

@@ -14,30 +14,6 @@ namespace Wasted.Dummy_API
         /// </summary>
         public static Dictionary<string, List<FoodPlace>> PlaceTypeDictionary { get; set; } 
             = new Dictionary<string, List<FoodPlace>>();
-
-        /// <summary>
-        /// Adds food places from which deals came from by using ids
-        /// </summary>
-        public static void AddFoodPlacesToDeals()
-        {
-            DataService service = DependencyService.Get<DataService>();
-            foreach (FoodPlace foodPlace in service.AllFoodPlaces)
-            {
-                var query = foodPlace.DealsIDs.
-                    GroupJoin(
-                        service.AllDeals,
-                        id => id,
-                        deal => deal.ID,
-                        (id, deal) => deal.First()
-                    );
-
-                foreach (Deal deal in query)
-                {
-                    foodPlace.Deals.Add(deal);
-                    deal.FoodPlaces.Add(foodPlace);
-                }
-            }
-        }
     }
 
 }

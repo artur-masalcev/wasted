@@ -6,24 +6,24 @@ namespace DataAPI.Repositories
 {
     public class RatingsRepository
     {
-        private readonly AppContext _context;
+        private readonly AppDbContext _dbContext;
 
-        public RatingsRepository(AppContext context)
+        public RatingsRepository(AppDbContext dbContext)
         {
-            _context = context;
+            _dbContext = dbContext;
         }
         
         public IEnumerable<Rating> Get()
         {
-            return _context.Ratings
+            return _dbContext.Ratings
                 //.Include(p => p.Deals)
                 .ToList();
         }
 
         public Rating Create(Rating rating)
         {
-            _context.Ratings.Add(rating);
-            _context.SaveChangesAsync();
+            _dbContext.Ratings.Add(rating);
+            _dbContext.SaveChangesAsync();
             return rating;
         }
     }
