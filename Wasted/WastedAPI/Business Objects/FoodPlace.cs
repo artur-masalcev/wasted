@@ -2,10 +2,7 @@
 using System.Linq;
 using DataAPI.DTO;
 using Newtonsoft.Json;
-using Wasted.Dummy_API;
 using Wasted.Dummy_API.Business_Objects;
-using Wasted.DummyDataAPI;
-using Wasted.Utils;
 using Xamarin.Essentials;
 
 namespace Wasted.DummyAPI.BusinessObjects

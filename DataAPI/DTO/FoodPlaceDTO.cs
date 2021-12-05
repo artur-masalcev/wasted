@@ -11,11 +11,12 @@ namespace DataAPI.DTO
         public double Latitude { get; set; }
         public string LogoURL { get; set; }
         public string HeaderURL { get; set; }
-        public string PlaceTypeValue { get; set; }
         public string Street { get; set; } //Never used
         public string City { get; set; } //Never used
         public string WorkingHours { get; set; } //Never used
         
+        public string PlaceTypeValue { get; set; }
+
         public List<RatingDTO> Ratings { get; set; }
         public List<DealDTO> Deals { get; set; }
     }

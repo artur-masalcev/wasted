@@ -41,7 +41,7 @@ namespace Wasted.Pages.Login
                     break;
 
                 case "FoodPlace":
-                    DataService.CurrentUser = new UserPlace();
+                    DataService.CurrentUser = new PlaceUser();
                     break;
             }
         }

@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace DataAPI.Models
 {
@@ -13,8 +12,6 @@ namespace DataAPI.Models
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<FoodPlaceType> FoodPlaceTypes { get; set; }
 
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
-        {
-        }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) {}
     }
 }

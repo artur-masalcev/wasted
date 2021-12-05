@@ -1,7 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
-using DataAPI.DTO;
 using DataAPI.Models;
 using DataAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -13,12 +10,9 @@ namespace DataAPI.Controllers
     public class RatingsController : ControllerBase
     {
         private readonly RatingsRepository _ratingsRepository;
-        private readonly IMapper _mapper;
-
-        public RatingsController(RatingsRepository ratingsRepository, IMapper mapper)
+        public RatingsController(RatingsRepository ratingsRepository)
         {
             _ratingsRepository = ratingsRepository;
-            _mapper = mapper;
         }
         
         [HttpGet]

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Wasted.DummyAPI;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
@@ -69,7 +70,7 @@ namespace Wasted
         /// <summary>
         /// Refreshes the page on scroll down.
         /// </summary>
-        private void RefreshView_Refreshing(object sender, System.EventArgs e)
+        private void RefreshView_Refreshing(object sender, EventArgs e)
         {
             OnAppearing();
             refreshView.IsRefreshing = false;

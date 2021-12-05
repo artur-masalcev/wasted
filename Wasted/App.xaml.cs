@@ -1,5 +1,4 @@
-﻿using Wasted.Dummy_API;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace Wasted
 {

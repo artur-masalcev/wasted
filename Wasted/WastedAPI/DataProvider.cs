@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Text;
+using System.Threading.Tasks;
 using DataAPI.DTO;
+using Newtonsoft.Json;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Properties;
-using Wasted.Utils;
-using Xamarin.Forms;
 
 namespace Wasted.DummyDataAPI
 {
@@ -85,7 +82,7 @@ namespace Wasted.DummyDataAPI
         public static void DeleteFoodPlace(FoodPlace foodPlace) => DeleteBusinessObject(foodPlace.Id, FoodPlacesEnd);
 
         public static void CreateClientUser(ClientUser clientUser) => CreateBusinessObject(clientUser, ClientUsersEnd);
-        public static void CreatePlaceUser(UserPlace placeUser) => CreateBusinessObject(placeUser, PlaceUsersEnd);
+        public static void CreatePlaceUser(PlaceUser placeUser) => CreateBusinessObject(placeUser, PlaceUsersEnd);
 
         public static void CreateRating(RatingDTO rating) => CreateBusinessObject(rating, RatingsEnd);
         public static void UpdateRating(RatingDTO rating) => UpdateBusinessObject(rating, RatingsEnd);

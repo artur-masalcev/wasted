@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using Wasted.DummyDataAPI;
-using Wasted.Pages.Place;
+﻿using Wasted.Pages.Place;
 using Xamarin.Forms;
 
 namespace Wasted.Dummy_API.Business_Objects

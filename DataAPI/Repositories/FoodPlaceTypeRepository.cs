@@ -15,7 +15,10 @@ namespace DataAPI.Repositories
         public IEnumerable<FoodPlaceType> Get()
         {
             return _dbContext.FoodPlaceTypes
-                .Include(type => type.FoodPlaces);
+                .Include(type => type.FoodPlaces)
+                .ThenInclude(place => place.Ratings)
+                .Include(type => type.FoodPlaces)
+                .ThenInclude(place => place.Deals);
         }
 
         public FoodPlaceType Create(FoodPlaceType foodPlaceType)

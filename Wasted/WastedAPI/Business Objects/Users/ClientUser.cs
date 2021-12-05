@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using DataAPI.DTO;
 using Wasted.DummyDataAPI;
-using Wasted.Utils;
 using Xamarin.Forms;
 
 namespace Wasted.Dummy_API.Business_Objects

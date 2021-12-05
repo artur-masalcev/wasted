@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Rg.Plugins.Popup.Services;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
@@ -41,12 +38,12 @@ namespace Wasted.Pages.Place.NewPlace
         {
             ExceptionChecker.CheckValidParams(CurrentPlace.HeaderURL, CurrentPlace.LogoURL);
             DataService service = DependencyService.Get<DataService>();
-            UserPlace currentUser = (UserPlace)service.CurrentUser;
-            CurrentPlace.PlaceUserId = currentUser.Id;
+            PlaceUser currentPlaceUser = (PlaceUser)service.CurrentUser;
+            CurrentPlace.PlaceUserId = currentPlaceUser.Id;
             CurrentPlace.FoodPlaceTypeId = 1; //TODO: let select
             DataProvider.CreateFoodPlace(CurrentPlace);
-            currentUser.OwnedPlaces.Add(CurrentPlace);
-            currentUser.PushPage(this);
+            currentPlaceUser.OwnedPlaces.Add(CurrentPlace);
+            currentPlaceUser.PushPage(this);
         }
 
         private void DoneButtonClicked(object sender, EventArgs e)

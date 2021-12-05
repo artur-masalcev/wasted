@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Rg.Plugins.Popup.Services;
 using Wasted.DummyAPI;

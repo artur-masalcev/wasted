@@ -4,10 +4,7 @@ using AutoMapper;
 using DataAPI.DTO;
 using DataAPI.Models;
 using DataAPI.Repositories;
-using DataAPI.Utils;
 using Microsoft.AspNetCore.Mvc;
-using System.IO;
-using System.Text.Json;
 
 namespace DataAPI.Controllers
 {

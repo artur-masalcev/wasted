@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Wasted.Dummy_API;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
 using Xamarin.Forms;

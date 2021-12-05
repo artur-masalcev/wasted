@@ -3,13 +3,11 @@ using Acr.UserDialogs;
 using Rg.Plugins.Popup.Services;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Pages.Deals;
+using Wasted.Utils;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
-using Wasted.Utils;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Wasted
 {

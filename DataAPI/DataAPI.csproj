@@ -14,8 +14,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Dummy Data Copies\DealsCopy.json" />
     <EmbeddedResource Include="Dummy Data Copies\FoodPlacesCopy.json" />
-    <EmbeddedResource Include="Dummy Data\Deals.json" />
-    <EmbeddedResource Include="Dummy Data\FoodPlaces.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +31,13 @@
     <Reference Include="Xamarin.Essentials">
       <HintPath>..\..\Program Files (x86)\Microsoft\Xamarin\NuGet\xamarin.essentials\1.6.1\lib\monoandroid10.0\Xamarin.Essentials.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Dummy Data\ClientUsers.json" />
+    <_ContentIncludedByDefault Remove="Dummy Data\Deals.json" />
+    <_ContentIncludedByDefault Remove="Dummy Data\FoodPlaces.json" />
+    <_ContentIncludedByDefault Remove="Dummy Data\PlaceUsers.json" />
   </ItemGroup>
 
 

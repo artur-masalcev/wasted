@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Wasted.Utils;
+﻿using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace Wasted.Dummy_API.Business_Objects

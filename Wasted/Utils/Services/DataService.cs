@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using DataAPI.DTO;
-using Wasted.Dummy_API;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.DummyDataAPI;
@@ -33,8 +28,8 @@ namespace Wasted.Utils
         public List<ClientUser> ClientUsers => Task.Run(async () =>
             await DataProvider.GetData<List<ClientUser>>(DataProvider.ClientUsersEnd)).Result;
         
-        public List<UserPlace> PlaceUsers => Task.Run(async () =>
-            await DataProvider.GetData<List<UserPlace>>(DataProvider.PlaceUsersEnd)).Result;
+        public List<PlaceUser> PlaceUsers => Task.Run(async () =>
+            await DataProvider.GetData<List<PlaceUser>>(DataProvider.PlaceUsersEnd)).Result;
 
         public Location UserLocation { get; set; }
 
@@ -43,9 +38,9 @@ namespace Wasted.Utils
             return Task.Run(async () => await DataProvider.GetData<ClientUser>(DataProvider.ClientUserEnd(username, password))).Result;
         }
 
-        public UserPlace GetPlaceUser(string username, string password) //TODO: fix name mismatches
+        public PlaceUser GetPlaceUser(string username, string password) //TODO: fix name mismatches
         {
-            return Task.Run(async () => await DataProvider.GetData<UserPlace>(DataProvider.PlaceUserEnd(username, password))).Result;
+            return Task.Run(async () => await DataProvider.GetData<PlaceUser>(DataProvider.PlaceUserEnd(username, password))).Result;
         }
 
         public List<FoodPlaceType> GetFoodPlaceTypes => Task.Run(async () =>

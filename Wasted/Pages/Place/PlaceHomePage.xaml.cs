@@ -18,7 +18,7 @@ namespace Wasted.Pages.Place
     public partial class PlaceHomePage : ContentPage
     {
         private DataService service;
-        public UserPlace CurrentUser { get; set; }
+        public PlaceUser CurrentPlaceUser { get; set; }
         private IEnumerable<FoodPlace> ownedPlaces;
         public IEnumerable<FoodPlace> OwnedPlaces
         {
@@ -35,8 +35,8 @@ namespace Wasted.Pages.Place
             service = DependencyService.Get<DataService>();
             InitializeComponent();
             DeleteCommand = new Command(DeletePlace);
-            CurrentUser = (UserPlace)service.CurrentUser;
-            OwnedPlaces = CurrentUser.OwnedPlaces;
+            CurrentPlaceUser = (PlaceUser)service.CurrentUser;
+            OwnedPlaces = CurrentPlaceUser.OwnedPlaces;
             BindingContext = this;
             On<iOS>().SetUseSafeArea(true);
         }
