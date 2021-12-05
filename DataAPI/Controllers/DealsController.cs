@@ -30,8 +30,8 @@ namespace DataAPI.Controllers
             return _dealsRepository.Get().Select(_mapper.Map<DealDTO>);
         }
 
-        [HttpPost]
-        public ActionResult<Deal> PostDeals([FromBody] Deal deal)
+        [HttpPost("add")]
+        public ActionResult<Deal> PostDeal([FromBody] Deal deal)
         {
             var newDeal = _dealsRepository.Create(deal);
             return CreatedAtAction(nameof(GetDeals), new {id = newDeal.Id}, newDeal);

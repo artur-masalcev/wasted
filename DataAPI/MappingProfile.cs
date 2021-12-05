@@ -7,11 +7,12 @@ namespace DataAPI.DTO
     {
         public MappingProfile()
         {
-            CreateMap<FoodPlace, FoodPlaceDTO>();
+            CreateMap<FoodPlace, FoodPlaceDTO>().ReverseMap();
             CreateMap<Deal, DealDTO>();
             CreateMap<PlaceUser, PlaceUserDTO>();
             CreateMap<ClientUser, ClientUserDTO>();
             CreateMap<Rating, RatingDTO>();
+            CreateMap<FoodPlaceType, FoodPlaceTypeDTO>();
         }
     }
 }

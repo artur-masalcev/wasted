@@ -32,14 +32,14 @@ namespace Wasted.FoodPlaceRatingSystem
 
         public static void SetUserVote(User user, FoodPlace selectedFoodPlace, int newRating)
         {
-            int key = selectedFoodPlace.ID;
-
-            if (user.Ratings.ContainsKey(key))
-                ResetRating(selectedFoodPlace, user.Ratings[key]); //Rethinking rating choice
-
-            //selectedFoodPlace.Rating = newRating;
-            user.Ratings[key] = newRating;
-            DataProvider.WriteAllUserClients();
+            // int key = selectedFoodPlace.ID;
+            //
+            // if (user.Ratings.ContainsKey(key))
+            //     ResetRating(selectedFoodPlace, user.Ratings[key]); //Rethinking rating choice
+            //
+            // //selectedFoodPlace.Rating = newRating;
+            // user.Ratings[key] = newRating;
+            // DataProvider.WriteAllUserClients();
         }
     }
 }

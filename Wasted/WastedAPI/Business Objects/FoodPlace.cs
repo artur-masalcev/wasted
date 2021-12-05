@@ -12,50 +12,36 @@ namespace Wasted.DummyAPI.BusinessObjects
 {
     public class FoodPlace : ChangeablePropertyObject, IImageChooser
     {
-        public int ID { get; set; }
-        public string Name { get; set; } //TODO: rename to title
+        public int Id { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
         public Location PlaceLocation { get; set; }
         public string Street { get; set; }
         public string City { get; set; }
         public string WorkingHours { get; set; }
         public int RatingCount { get; set; }
-
+        [JsonIgnore]
         public List<RatingDTO> Ratings { get; set; }
+        [JsonIgnore]
         public double Rating => Ratings.Average(rating => rating.Value);
-        
         public string LogoURL { get; set; }
         public string HeaderURL { get; set; }
-        public List<DealDTO> Deals { get; set; }
+        [JsonIgnore]
+        public List<Deal> Deals { get; set; }
+        [JsonIgnore]
         public int DealsCount => Deals.Count;
-        public string PlaceType { get; set; }
+        public string Type { get; set; }
+        public int FoodPlaceTypeId { get; set; }
+        public int PlaceUserId { get; set; }
 
-        // public FoodPlace(int id = 0, string title = null, string placeType = null, string description = null,
-        //     double longitude = 0, double latitude = 0, string street = null, string city = null,
-        //     string workingHours = null, double rating = 0, int ratingCount = 0, string logoURL = null,
-        //     string headerURL = null, List<int> dealsIDs = null)
-        // {
-        //     ID = id;
-        //     Title = title;
-        //     Description = description;
-        //     PlaceLocation = new Location(longitude, latitude);
-        //     Street = street;
-        //     City = city;
-        //     WorkingHours = workingHours;
-        //     RatingCount = ratingCount;
-        //     LogoURL = logoURL;
-        //     HeaderURL = headerURL;
-        //     PlaceType = placeType;
-        //     if (placeType != null)
-        //         BusinessUtils.PlaceTypeDictionary.PutDefaultKey(placeType, this);
-        // }
-
-        public FoodPlace(int id = default, string name = null, string description = null, Location placeLocation = null, string street = null, string city = null, string workingHours = null, int ratingCount = default, List<RatingDTO> ratings = null, string logoUrl = null, string headerUrl = null, List<DealDTO> deals = null, string placeType = null)
+        public FoodPlace(int id = default, string title = null, string description = null, long longitude = default, long latitude = default,
+            string street = null, string city = null, string workingHours = null, int ratingCount = default, List<RatingDTO> ratings = null,
+            string logoUrl = null, string headerUrl = null, List<Deal> deals = null, string placeTypeValue = null)
         {
-            ID = id;
-            Name = name;
+            Id = id;
+            Title = title;
             Description = description;
-            PlaceLocation = placeLocation;
+            PlaceLocation = new Location(longitude, latitude);
             Street = street;
             City = city;
             WorkingHours = workingHours;
@@ -63,8 +49,8 @@ namespace Wasted.DummyAPI.BusinessObjects
             Ratings = ratings;
             LogoURL = logoUrl;
             HeaderURL = headerUrl;
-            Deals = deals;
-            PlaceType = placeType;
+            Deals = deals ?? new List<Deal>();
+            Type = placeTypeValue;
         }
     }
 }

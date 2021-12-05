@@ -27,34 +27,18 @@ namespace Wasted
         private void SubmitUserData(string username, string password)
         {
             ExceptionChecker.CheckValidParams(username, password);
-
-            //bool isClient = service.ClientUsers.ContainsKey(username);
-            //bool isPlace = service.PlaceUsers.ContainsKey(username);
-            
-            if (true/*isClient || isPlace*/)
+            User user = service.GetPlaceUser(username, password) ??
+                        (User) service.GetClientUser(username, password);
+            if (user != null)
             {
-                //User user = isClient ? (User)service.ClientUsers[username] : service.PlaceUsers[username];
-                //ClientUserDTO user = service.ClientUsers[0];
-                // if (user.Password == password)
-                // {
-                //     Location userLocation = GetLocation().Result;
-                //     if (userLocation == null)
-                //         return;
-                //     
-                DataService dataService = DependencyService.Get<DataService>();
-                //dataService.CurrentUser = user; //Sets user for whole app
-                //dataService.UserLocation = userLocation;
-                Navigation.PushAsync(new MainPage());
-                //user.PushPage(this); //Creates appropriate page
-                // }
-                // else
-                // {
-                //     DisplayAlert("", "Username or password is incorrect. Try Again.", "OK");
-                // }
+                Location userLocation = GetLocation().Result;
+                service.CurrentUser = user; //Sets user for whole app
+                service.UserLocation = userLocation;
+                user.PushPage(this); //Creates appropriate page
             }
             else
             {
-                DisplayAlert("", "Username does not exist. Try Again.", "OK");
+                DisplayAlert("", "Username or password is incorrect. Try Again.", "OK");
             }
         }
         

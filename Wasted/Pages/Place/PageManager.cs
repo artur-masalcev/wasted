@@ -1,4 +1,5 @@
-﻿using Wasted.DummyDataAPI;
+﻿using System.Threading.Tasks;
+using Wasted.DummyDataAPI;
 using Wasted.Pages.Place;
 using Xamarin.Forms;
 

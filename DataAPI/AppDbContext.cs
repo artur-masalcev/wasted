@@ -11,6 +11,7 @@ namespace DataAPI.Models
         public DbSet<ClientUser> ClientUsers { get; set; }
         public DbSet<PlaceUser> PlaceUsers { get; set; }
         public DbSet<Rating> Ratings { get; set; }
+        public DbSet<FoodPlaceType> FoodPlaceTypes { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {

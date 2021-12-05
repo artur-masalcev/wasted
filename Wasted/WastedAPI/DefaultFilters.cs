@@ -15,7 +15,7 @@ namespace Wasted.WastedAPI
         /// <returns>Returns true if quantity of given 'deal' is more than zero. Returns false otherwise</returns>
         public static bool DealInStock(Deal deal)
         {
-            return true; //deal.quantity > 0;
+            return deal.quantity > 0;
         }
     }
 }

@@ -31,7 +31,7 @@ namespace DataAPI.Controllers
             return _placesRepository.Get().Select(_mapper.Map<FoodPlaceDTO>);
         }
 
-        [HttpPost]
+        [HttpPost("add")]
         public ActionResult<FoodPlace> PostFoodPlaces([FromBody] FoodPlace foodPlace)
         {
             var newFoodPlace = _placesRepository.Create(foodPlace);

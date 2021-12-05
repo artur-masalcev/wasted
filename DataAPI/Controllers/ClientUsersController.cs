@@ -29,16 +29,19 @@ namespace DataAPI.Controllers
         {
             return _clientUsersRepository.Get().Select(_mapper.Map<ClientUserDTO>);
         }
+        
+        [HttpGet("{username}/{password}")]
+        public ClientUserDTO GetClientUser(string username, string password)
+        {
+            return _clientUsersRepository
+                .Get()
+                .Select(_mapper.Map<ClientUserDTO>)
+                .FirstOrDefault(user => user.Username == username && user.Password == password);
+        }
 
         [HttpPost]
         public ActionResult<ClientUser> PostClientUsers([FromBody] ClientUser clientUser)
         {
-            List<ClientUser> clientUsers = JsonSerializer.Deserialize<List<ClientUser>>(DummyDataProvider.GetText("Dummy Data Copies/ClientUsersCopy.json"));
-            foreach (var clientUsero in clientUsers)
-            {
-                var newDeal = _clientUsersRepository.Create(clientUsero);
-            }
-            return null;
             var newClientUser = _clientUsersRepository.Create(clientUser);
             return CreatedAtAction(nameof(GetClientUsers), new {id = newClientUser.Id}, newClientUser);
         }

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using DataAPI.Models;
 
 namespace DataAPI.DTO
 {
-    public class PlaceUserDTO : AbstractUser
+    public class FoodPlaceTypeDTO
     {
+        public string Value { get; set; }
         public List<FoodPlaceDTO> FoodPlaces { get; set; }
     }
 }

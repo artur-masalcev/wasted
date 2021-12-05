@@ -2,7 +2,7 @@
   {
     "Id": 1,
     "Title": "McDonald's",
-    "PlaceType": "Restaurant",
+    "FoodPlaceTypeId": 1,
     "Description": "Fast food restaurant\nMost offers between 21:00-22:00",
     "Longitude": 54.700382,
     "Latitude": 25.256319,
@@ -15,7 +15,7 @@
   {
     "Id": 2,
     "Title": "Sushi Express",
-    "PlaceType": "Restaurant",
+    "FoodPlaceTypeId": 1,
     "Description": "Sushi restaurant\nMost offers between 20:00-21:00",
     "Longitude": 54.687779,
     "Latitude": 25.279760,
@@ -28,7 +28,7 @@
   {
     "Id": 3,
     "Title": "Maxima",
-    "PlaceType": "Supermarket",
+    "FoodPlaceTypeId": 2,
     "Description": "Grocery store\nMost offers between 19:00-20:00",
     "Longitude": 54.710029,
     "Latitude": 25.188552,
@@ -43,7 +43,7 @@
   {
     "Id": 4,
     "Title": "Manami",
-    "PlaceType": "Restaurant",
+    "FoodPlaceTypeId": 1,
     "Description": "Asian restaurant\nMost offers between 21:00-22:00",
     "Longitude": 54.686360,
     "Latitude": 25.279604,
@@ -56,7 +56,7 @@
   {
     "Id": 5,
     "Title": "KFC",
-    "PlaceType": "Restaurant",
+    "FoodPlaceTypeId": 1,
     "Description": "American fast food restaurant\nMost offers between 20:30-21:30",
     "Longitude": 54.68737456936855,
     "Latitude": 25.283247827082384,
@@ -69,7 +69,7 @@
   {
     "Id": 6,
     "Title": "Charlie Pizza",
-    "PlaceType": "Restaurant",
+    "FoodPlaceTypeId": 1,
     "Description": "Pizzas and light snacks\nMost offers between 21:00-22:00",
     "Longitude": 54.687779,
     "Latitude": 25.279760,

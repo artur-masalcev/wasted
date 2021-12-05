@@ -36,12 +36,12 @@ namespace Wasted
         /// </summary>
         private void InitializeViews()
         {
-            // contentScrollView.BindingContext = SelectedFoodPlace;
-            // // dealsCollectionView.ItemsSource = DataOrganizer.FilterDeals(SelectedFoodPlace.Deals,
-            // //     DefaultFilters.DealInStock);
-            //
-            // const int dealHeight = 220;
-            // dealsCollectionView.HeightRequest = dealHeight * ((SelectedFoodPlace.Deals.Count  + 1) / 2); //Two items in one row
+            contentScrollView.BindingContext = SelectedFoodPlace;
+            dealsCollectionView.ItemsSource = DataOrganizer.FilterDeals(SelectedFoodPlace.Deals,
+                DefaultFilters.DealInStock);
+            
+            const int dealHeight = 220;
+            dealsCollectionView.HeightRequest = dealHeight * ((SelectedFoodPlace.Deals.Count  + 1) / 2); //Two items in one row
         }
 
         /// <summary>
@@ -49,11 +49,11 @@ namespace Wasted
         /// </summary>
         void DealsCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // SelectionChanger.ListSelectionChanged(sender, () =>
-            // {
-            //     Deal selectedDeal = e.CurrentSelection.FirstOrDefault() as Deal;
-            //     Navigation.PushAsync(new ItemsPage(selectedDeal));
-            // });
+            SelectionChanger.ListSelectionChanged(sender, () =>
+            {
+                Deal selectedDeal = e.CurrentSelection.FirstOrDefault() as Deal;
+                Navigation.PushAsync(new ItemsPage(selectedDeal));
+            });
         }
 
         /// <summary>

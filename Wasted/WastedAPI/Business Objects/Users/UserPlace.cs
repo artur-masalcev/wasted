@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Wasted.DummyAPI.BusinessObjects;
 using Wasted.DummyDataAPI;
 using Wasted.Utils;
 using Xamarin.Forms;
@@ -7,14 +9,14 @@ namespace Wasted.Dummy_API.Business_Objects
 {
     public class UserPlace : User
     {
-        public List<int> OwnedPlaceIDs { get; set; }
+        public List<FoodPlace> OwnedPlaces { get; set; }
 
         public UserPlace(string username = null, string password = null, string name = null,
-            string surname = null, string city = null, string address = null, Dictionary<int, int> ratings = null,
-            List<int> ownedPlaceIDs = null) :
-            base(username, password, name, surname, city, address, ratings)
+            string surname = null, string city = null, string address = null,
+            List<FoodPlace> foodPlaces = null, int id = default) :
+            base(username, password, name, surname, city, address, id)
         {
-            OwnedPlaceIDs = ownedPlaceIDs ?? new List<int>();
+            OwnedPlaces = foodPlaces ?? new List<FoodPlace>();
         }
 
         public override void PushPage(ContentPage page)

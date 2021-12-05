@@ -23,7 +23,7 @@ namespace Wasted.DummyAPI.BusinessObjects
             set
             {
                 quantity = value;
-                DataProvider.WriteAllDeals();
+                //DataProvider.WriteAllDeals();
                 OnPropertyChanged();
             }
         }
@@ -32,9 +32,10 @@ namespace Wasted.DummyAPI.BusinessObjects
 
         public string Description { get; set; }
 
-        public string FoodPlaceTitle { get; set; } //TODO: change to title
+        public string FoodPlaceTitle { get; set; }
+        public int FoodPlaceId { get; set; }
 
-        public Deal(int quantity = default, int id = default, string title = null, double previousCost = default, double currentCost = default, string due = null, string imageUrl = null, string description = null, string foodPlaceTitle = null)
+        public Deal(int quantity = default, int id = default, string title = null, double previousCost = default, double currentCost = default, string due = null, string imageUrl = null, string description = null, string foodPlaceTitle = null, int foodPlaceId = default)
         {
             this.quantity = quantity;
             ID = id;
@@ -45,6 +46,7 @@ namespace Wasted.DummyAPI.BusinessObjects
             ImageURL = imageUrl;
             Description = description;
             FoodPlaceTitle = foodPlaceTitle;
+            FoodPlaceId = foodPlaceId;
         }
     }
 }

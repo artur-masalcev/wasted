@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text;
+using DataAPI.DTO;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Properties;
@@ -24,6 +25,17 @@ namespace Wasted.DummyDataAPI
         public static string DealsEnd => "deals";
         public static string ClientUsersEnd => "clientusers";
         public static string PlaceUsersEnd => "placeusers";
+        public static string PlaceTypeEnd => "foodplacetypes";
+
+        public static string ClientUserEnd(string name, string password)
+        {
+            return String.Join("/", ClientUsersEnd, name, password);
+        }
+        
+        public static string PlaceUserEnd(string name, string password)
+        {
+            return String.Join("/", PlaceUsersEnd, name, password);
+        }
 
         private static HttpClient Client = new HttpClient();
         private delegate T DefaultObject<T>();
@@ -40,13 +52,10 @@ namespace Wasted.DummyDataAPI
         /// <summary>
         /// Writes data to API
         /// </summary>
-        private static void WriteData<T>(T data, DefaultObject<T> defaultObject, string linkEnd)
+        private static void WriteData<T>(T data, string linkEnd)
         {
             Task.Run(async () =>
-            {
-                T dummyVal = data == null ? defaultObject.Invoke() : data;
-                return await Client.PostAsync(LinkStart + linkEnd + "/add", GetStringContent(dummyVal));
-            });
+                await Client.PostAsync(LinkStart + linkEnd + "/add", GetStringContent(data))).Wait();
         }
 
         /// <summary>
@@ -54,17 +63,18 @@ namespace Wasted.DummyDataAPI
         /// </summary>
         public static StringContent GetStringContent(object obj)
         {
-            string content = JsonConvert.SerializeObject(JsonConvert.SerializeObject(obj));
+            string content = JsonConvert.SerializeObject(obj);
             return new StringContent(content, Encoding.UTF8, "application/json");
         }
 
-        public static void WriteAllDeals(List<Deal> allDeals = null)
+        public static void CreateDeal(Deal deal)
         {
-            // WriteData(allDeals, delegate
-            // {
-            //     DataService service = DependencyService.Get<DataService>();
-            //     return service.AllDeals;
-            // }, DealsEnd);
+            WriteData(deal, DealsEnd);
+        }
+
+        public static void CreateFoodPlace(FoodPlace foodPlace)
+        {
+            WriteData(foodPlace, FoodPlacesEnd);
         }
         
         public static void WriteAllPlaces(List<FoodPlace> allFoodPlaces = null)

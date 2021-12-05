@@ -28,6 +28,15 @@ namespace DataAPI.Controllers
         {
             return _placeUsersRepository.Get().Select(_mapper.Map<PlaceUserDTO>);
         }
+        
+        [HttpGet("{username}/{password}")]
+        public PlaceUserDTO GetPlaceUser(string username, string password)
+        {
+            return _placeUsersRepository
+                .Get()
+                .Select(_mapper.Map<PlaceUserDTO>)
+                .FirstOrDefault(user => user.Username == username && user.Password == password);
+        }
 
         [HttpPost]
         public ActionResult<PlaceUser> PostPlaceUsers([FromBody] PlaceUser placeUser)

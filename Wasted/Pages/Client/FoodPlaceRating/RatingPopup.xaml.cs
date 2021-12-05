@@ -25,19 +25,19 @@ namespace Wasted
         /// <param name="foodPlace">Food place to be rated</param>
         public RatingPopup(FoodPlace foodPlace)
         {
-            SelectedFoodPlace = foodPlace;
-            InitializeComponent();
-
-            DataService = DependencyService.Get<DataService>();
-            User user = DataService.CurrentUser;
-
-            if (user.Ratings.ContainsKey(foodPlace.ID)) 
-            {
-                ratingBar.SelectedStarValue = user.Ratings[foodPlace.ID]; //Sets value to the user's previous rating
-            }
-            foodPlaceTitleLabel.BindingContext = SelectedFoodPlace;
-            ratingEmoji.BindingContext = this;
-            ratingComment.BindingContext = this;
+            // SelectedFoodPlace = foodPlace;
+            // InitializeComponent();
+            //
+            // DataService = DependencyService.Get<DataService>();
+            // User user = DataService.CurrentUser;
+            //
+            // if (user.Ratings.ContainsKey(foodPlace.ID)) 
+            // {
+            //     ratingBar.SelectedStarValue = user.Ratings[foodPlace.ID]; //Sets value to the user's previous rating
+            // }
+            // foodPlaceTitleLabel.BindingContext = SelectedFoodPlace;
+            // ratingEmoji.BindingContext = this;
+            // ratingComment.BindingContext = this;
         }
 
 

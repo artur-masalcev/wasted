@@ -30,6 +30,7 @@ namespace DataAPI
             services.AddScoped<ClientUsersRepository>();
             services.AddScoped<PlaceUsersRepository>();
             services.AddScoped<RatingsRepository>();
+            services.AddScoped<FoodPlaceTypeRepository>();
             services.AddDbContext<AppDbContext>(o => o.UseSqlite("Data source=database.db"));
             services.AddControllers();
         }

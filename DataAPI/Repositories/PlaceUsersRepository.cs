@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using DataAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAPI.Repositories
 {
@@ -16,7 +17,8 @@ namespace DataAPI.Repositories
         public IEnumerable<PlaceUser> Get()
         {
             return _dbContext.PlaceUsers
-                //.Include(p => p.Deals)
+                .Include(p => p.FoodPlaces)
+                .ThenInclude(f => f.Deals)
                 .ToList();
         }
 

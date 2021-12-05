@@ -4,57 +4,57 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wasted.Pages.Place.NewDeal.NewDealNextPage"
              NavigationPage.HasNavigationBar="False">
-    <!-- <ContentPage.Content> -->
-    <!--     <StackLayout Padding="7"> -->
-    <!--         ~1~#region Custom navigation bar@1@ -->
-    <!--         <StackLayout Orientation="Horizontal"> -->
-    <!--             <Button Text="‹" -->
-    <!--                     Style="{StaticResource CustomNavBarBackButton}" -->
-    <!--                     TextColor="{StaticResource TextBlack}" -->
-    <!--                     Clicked="BackClicked" -->
-    <!--             /> -->
-    <!-- -->
-    <!--             <Label Text="Add new deal" -->
-    <!--                    VerticalTextAlignment="Center" -->
-    <!--                    Style="{StaticResource PageTitle}"/> -->
-    <!--         </StackLayout> -->
-    <!--         ~1~#endregion@1@ -->
-    <!--          -->
-    <!--         ~1~#region Form @1@ -->
-    <!--         <StackLayout Spacing="20" VerticalOptions="CenterAndExpand" Margin="0, 0, 0, 80"> -->
-    <!--             <StackLayout> -->
-    <!--                 <Label Text="{Binding MaxEntryLength, StringFormat='Description (fewer than {0} words)'}" /> -->
-    <!--                 <Entry x:Name="DescriptionEntry" TextChanged="DescriptionEntryTextChanged"/> -->
-    <!--                 <Label> -->
-    <!--                     <Label.FormattedText> -->
-    <!--                         <FormattedString> -->
-    <!--                             <Span Text="{Binding EntryLength}" /> -->
-    <!--                             <Span Text="/" /> -->
-    <!--                             <Span Text="{Binding MaxEntryLength}" /> -->
-    <!--                         </FormattedString> -->
-    <!--                  -->
-    <!--                     </Label.FormattedText> -->
-    <!--                 </Label> -->
-    <!--             </StackLayout> -->
-    <!--              -->
-    <!--             <StackLayout> -->
-    <!--                 <Label Text="Due" /> -->
-    <!--                 <DatePicker x:Name="DueDatePicker" Format="yyyy-MM-dd"/> -->
-    <!--             </StackLayout> -->
-    <!--              -->
-    <!--             <StackLayout> -->
-    <!--                 <Label Text="Image" /> -->
-    <!--                 <Button Text="Choose" Clicked="ImageButtonClicked"/> -->
-    <!--             </StackLayout> -->
-    <!--         </StackLayout> -->
-    <!--         ~1~#endregion @1@ -->
-    <!--          -->
-    <!--         ~1~#region Action Button @1@ -->
-    <!--         <Button Text="Done" Clicked="DoneButtonClicked" -->
-    <!--                 Style="{StaticResource FormActionButton}" -->
-    <!--                 VerticalOptions="EndAndExpand" -->
-    <!--                 BackgroundColor="{StaticResource AppEmerald}"/> -->
-    <!--         ~1~#endregion @1@ -->
-    <!--     </StackLayout> -->
-    <!-- </ContentPage.Content> -->
+    <ContentPage.Content>
+        <StackLayout Padding="7">
+            <!--#region Custom navigation bar-->
+            <StackLayout Orientation="Horizontal">
+                <Button Text="‹"
+                        Style="{StaticResource CustomNavBarBackButton}"
+                        TextColor="{StaticResource TextBlack}"
+                        Clicked="BackClicked"
+                />
+    
+                <Label Text="Add new deal"
+                       VerticalTextAlignment="Center"
+                       Style="{StaticResource PageTitle}"/>
+            </StackLayout>
+            <!--#endregion-->
+    
+            <!--#region Form -->
+            <StackLayout Spacing="20" VerticalOptions="CenterAndExpand" Margin="0, 0, 0, 80">
+                <StackLayout>
+                    <Label Text="{Binding MaxEntryLength, StringFormat='Description (fewer than {0} words)'}" />
+                    <Entry x:Name="DescriptionEntry" TextChanged="DescriptionEntryTextChanged"/>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding EntryLength}" />
+                                <Span Text="/" />
+                                <Span Text="{Binding MaxEntryLength}" />
+                            </FormattedString>
+    
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+    
+                <StackLayout>
+                    <Label Text="Due" />
+                    <DatePicker x:Name="DueDatePicker" Format="yyyy-MM-dd"/>
+                </StackLayout>
+    
+                <StackLayout>
+                    <Label Text="Image" />
+                    <Button Text="Choose" Clicked="ImageButtonClicked"/>
+                </StackLayout>
+            </StackLayout>
+            <!--#endregion -->
+    
+            <!--#region Action Button -->
+            <Button Text="Done" Clicked="DoneButtonClicked"
+                    Style="{StaticResource FormActionButton}"
+                    VerticalOptions="EndAndExpand"
+                    BackgroundColor="{StaticResource AppEmerald}"/>
+            <!--#endregion -->
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
