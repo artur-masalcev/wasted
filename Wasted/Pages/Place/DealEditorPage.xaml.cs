@@ -17,12 +17,18 @@ using Entry = Xamarin.Forms.Entry;
 namespace Wasted.Pages.Place
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DealPage : ContentPage
+    public partial class DealEditorPage : ContentPage
     {
         public Deal SelectedDeal { get; set; }
         public EntryLengthValidator Validator { get; set; }
         
-        public DealPage(Deal selectedDeal)
+        private string NewTitle => TitleEntry.Text;
+        private string NewCurrentCost => CurrentCostEntry.Text;
+        private string NewRegularCost => RegularCostEntry.Text;
+        private string NewDueDate => DueDatePicker.Date.ToString("yyyy-MM-dd");
+        private string NewDescription => DescriptionEntry.Text;
+
+        public DealEditorPage(Deal selectedDeal)
         {
             InitializeComponent();
             On<iOS>().SetUseSafeArea(true);
@@ -30,6 +36,16 @@ namespace Wasted.Pages.Place
             Validator = new EntryLengthValidator(maxEntryLength: 100);
             SelectedDeal = selectedDeal;
             BindingContext = this;
+        }
+
+        /// <summary>
+        /// Checks whether all user fields are not empty
+        /// </summary>
+        /// <returns>'false' if any of fields is empty. 'true' if all fields are not empty</returns>
+        private bool IsDataValid()
+        {
+            return !StringUtils.AnyNullOrEmpty(NewTitle, NewCurrentCost, 
+                NewRegularCost, NewDueDate, NewDescription, SelectedDeal.ImageURL);
         }
         
         private void BackClicked(object sender, EventArgs e)
@@ -61,28 +77,25 @@ namespace Wasted.Pages.Place
             Validator.EntryTextChanged(sender, e);
         }
         
+        /// <summary>
+        /// Publishes updated deal data to the server.
+        /// Also checks whether the data is valid, if it is not - alert is displayed
+        /// </summary>
         private void SaveChangesClicked(object sender, EventArgs e)
         {
-            var newTitle = TitleEntry.Text;
-            var newCurrentCost = CurrentCostEntry.Text;
-            var newRegularCost = RegularCostEntry.Text;
-            var newDueDate = DueDatePicker.Date.ToString("yyyy-MM-dd");
-            var newDescription = DescriptionEntry.Text;
-
-            if (StringUtils.AnyNullOrEmpty(newTitle, 
-                newCurrentCost, newRegularCost, newDueDate, newDescription, SelectedDeal.ImageURL))
+            if (!IsDataValid())
             {
                 DisplayAlert("", "Please fill all fields", "OK");
                 return;
             }
 
-            SelectedDeal.Title = newTitle;
-            SelectedDeal.DealCosts = new Costs(Convert.ToDouble(newRegularCost), 
-                                                Convert.ToDouble(newCurrentCost));
-            SelectedDeal.Due = newDueDate;
-            SelectedDeal.Description = newDescription;
+            SelectedDeal.Title = NewTitle;
+            SelectedDeal.DealCosts = new Costs(Convert.ToDouble(NewRegularCost), 
+                                                Convert.ToDouble(NewCurrentCost));
+            SelectedDeal.Due = NewDueDate;
+            SelectedDeal.Description = NewDescription;
 
-            //IMPLEMENT ME: Post new deal state to server
+            //IMPLEMENT ME: Post new deal state (as 'SelectedDeal') to server
         }
 
         private void ShowPreviewClicked(object sender, EventArgs e)

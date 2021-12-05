@@ -2,7 +2,7 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Wasted.Pages.Place.DealPage"
+             x:Class="Wasted.Pages.Place.DealEditorPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView>
@@ -14,10 +14,6 @@
                         TextColor="{StaticResource TextBlack}"
                         Clicked="BackClicked"
                 />
-
-                <Label Text="{Binding SelectedDeal.Title}"
-                       VerticalTextAlignment="Center"
-                       Style="{StaticResource PageTitle}"/>
             </StackLayout>
             <!--#endregion-->
             
@@ -67,7 +63,9 @@
                 <StackLayout>
                     <StackLayout>
                         <Label Text="{Binding Validator.MaxEntryLength, StringFormat='Description (fewer than {0} words)'}" />
-                        <Entry x:Name="DescriptionEntry" TextChanged="DescriptionEntryTextChanged"/>
+                        <Entry x:Name="DescriptionEntry" 
+                               TextChanged="DescriptionEntryTextChanged"
+                               Text = "{Binding SelectedDeal.Description}"/>
                         <Label>
                             <Label.FormattedText>
                                 <FormattedString>

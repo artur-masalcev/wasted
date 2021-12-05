@@ -49,7 +49,7 @@ namespace Wasted.Pages.Place
             SelectionChanger.ListSelectionChanged(sender, () =>
             {
                 FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
-                Navigation.PushAsync(new DealsNavigationPage(selectedPlace));
+                Navigation.PushAsync(new FoodPlacePage(selectedPlace));
             });
         }
 

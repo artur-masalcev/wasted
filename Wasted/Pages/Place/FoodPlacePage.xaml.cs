@@ -15,14 +15,14 @@ using Xamarin.Forms.Xaml;
 namespace Wasted.Pages.Place
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DealsNavigationPage : ContentPage
+    public partial class FoodPlacePage : ContentPage
     {
         private readonly FoodPlace SelectedPlace;
         public string FoodPlaceTitle => SelectedPlace.Title;
 
         public List<Deal> Deals => SelectedPlace.Deals;
 
-        public DealsNavigationPage(FoodPlace selectedPlace)
+        public FoodPlacePage(FoodPlace selectedPlace)
         {
             InitializeComponent();
 
@@ -35,7 +35,7 @@ namespace Wasted.Pages.Place
         private void DealsCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Deal selectedDeal = e.CurrentSelection.First() as Deal;
-            Navigation.PushAsync(new DealPage(selectedDeal));
+            Navigation.PushAsync(new DealEditorPage(selectedDeal));
         }
         
         private void BackClicked(object sender, EventArgs e)
@@ -47,6 +47,11 @@ namespace Wasted.Pages.Place
         private void AddNewDealClicked(object sender, EventArgs e)
         { 
             Navigation.PushAsync(new NewDealPage(SelectedPlace));
+        }
+
+        private void EditPlaceClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new PlaceEditorPage(SelectedPlace));
         }
     }
 }

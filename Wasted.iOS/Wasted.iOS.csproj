@@ -65,6 +65,8 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <ImageAsset Include="Assets.xcassets\edit.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\edit.imageset\edit.png" />
     <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
