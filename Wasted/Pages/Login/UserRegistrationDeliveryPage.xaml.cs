@@ -30,7 +30,7 @@ namespace Wasted.Pages.Login
             currentUser.City = userCity;
             currentUser.Address = userAddress;
             
-            currentUser.CreateUser(dataService);
+            currentUser.CreateUser();
             Navigation.PushAsync(new LoginPage());
         }
         

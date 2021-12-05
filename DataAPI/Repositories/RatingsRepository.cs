@@ -16,7 +16,6 @@ namespace DataAPI.Repositories
         public IEnumerable<Rating> Get()
         {
             return _dbContext.Ratings
-                //.Include(p => p.Deals)
                 .ToList();
         }
 
@@ -25,6 +24,13 @@ namespace DataAPI.Repositories
             _dbContext.Ratings.Add(rating);
             _dbContext.SaveChangesAsync();
             return rating;
+        }
+
+        public void Update(Rating rating)
+        {
+            Rating oldRating = _dbContext.Ratings.Find(rating.Id);
+            oldRating.Value = rating.Value;
+            _dbContext.SaveChangesAsync();
         }
     }
 }

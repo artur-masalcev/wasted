@@ -26,5 +26,12 @@ namespace DataAPI.Repositories
             _dbContext.SaveChangesAsync();
             return deal;
         }
+
+        public void Update(Deal deal)
+        {
+            Deal oldDeal = _dbContext.Deals.Find(deal.Id);
+            oldDeal.Quantity = deal.Quantity;
+            _dbContext.SaveChangesAsync();
+        }
     }
 }

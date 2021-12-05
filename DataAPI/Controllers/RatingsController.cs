@@ -21,16 +21,24 @@ namespace DataAPI.Controllers
             _mapper = mapper;
         }
         
+        [HttpGet]
         public IEnumerable<Rating> GetRatings()
         {
             return _ratingsRepository.Get();
         }
         
         [HttpPost]
-        public ActionResult<Rating> PostRatings([FromBody] Rating book)
+        public ActionResult<Rating> PostRating([FromBody] Rating rating)
         {
-            var newBook = _ratingsRepository.Create(book);
-            return CreatedAtAction(nameof(GetRatings), new {id = newBook.Id}, newBook);
+            var newRating = _ratingsRepository.Create(rating);
+            return CreatedAtAction(nameof(GetRatings), new {id = newRating.Id}, newRating);
+        }
+
+        [HttpPut]
+        public ActionResult<Rating> UpdateRating([FromBody] Rating rating)
+        {
+            _ratingsRepository.Update(rating);
+            return rating;
         }
     }
 }

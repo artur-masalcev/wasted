@@ -46,7 +46,7 @@ namespace Wasted.DummyAPI
         {
             return (
                    from place in allFoodPlaces
-                   orderby -place.RatingCount
+                   orderby -place.Ratings.Count
                    select place
                    )
                    .Take(popularPlacesCount);

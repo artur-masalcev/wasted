@@ -11,12 +11,12 @@ namespace Wasted.DummyAPI.BusinessObjects
 {
     public class Deal : ChangeablePropertyObject, IImageChooser
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
         public double PreviousCost { get; set; }
         public double CurrentCost { get; set; }
         
-        public int quantity = 0;
+        private int quantity = 0;
         public int Quantity
         {
             get { return quantity; }
@@ -38,7 +38,7 @@ namespace Wasted.DummyAPI.BusinessObjects
         public Deal(int quantity = default, int id = default, string title = null, double previousCost = default, double currentCost = default, string due = null, string imageUrl = null, string description = null, string foodPlaceTitle = null, int foodPlaceId = default)
         {
             this.quantity = quantity;
-            ID = id;
+            Id = id;
             Title = title;
             PreviousCost = previousCost;
             CurrentCost = currentCost;

@@ -24,10 +24,9 @@ namespace Wasted.Dummy_API.Business_Objects
             PageManager.PushPlacePage(page);
         }
 
-        public override void CreateUser(DataService service)
+        public override void CreateUser()
         {
-            // service.PlaceUsers[Username] = this;
-            // DataProvider.WriteAllUserPlaces();
+            DataProvider.CreatePlaceUser(this);
         }
     }
 }

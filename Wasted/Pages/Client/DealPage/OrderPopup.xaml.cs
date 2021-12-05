@@ -3,6 +3,7 @@ using Acr.UserDialogs;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Wasted.DummyAPI.BusinessObjects;
+using Wasted.DummyDataAPI;
 using Xamarin.Forms;
 
 namespace Wasted.Pages.Deals
@@ -36,6 +37,7 @@ namespace Wasted.Pages.Deals
         {
             PopupNavigation.Instance.PopAsync(true); // Close the popup
             SelectedDeal.Quantity -= (int) stepper.Value;
+            DataProvider.UpdateDeal(SelectedDeal);
             
             bool selectedSomething = stepper.Value != 0;
             if (selectedSomething)

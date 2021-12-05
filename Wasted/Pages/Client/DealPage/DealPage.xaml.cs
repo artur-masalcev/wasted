@@ -51,7 +51,7 @@ namespace Wasted
         /// </summary>
         private void RefreshView_Refreshing(object sender, EventArgs e)
         {
-            SelectedDeal = service.AllDeals.Find(deal => deal.ID == SelectedDeal.ID);
+            SelectedDeal = service.AllDeals.Find(deal => deal.Id == SelectedDeal.Id);
             BindingContext = SelectedDeal;
             refreshView.IsRefreshing = false;
         }

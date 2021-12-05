@@ -27,6 +27,8 @@ namespace Wasted.DummyDataAPI
         public static string PlaceUsersEnd => "placeusers";
         public static string PlaceTypeEnd => "foodplacetypes";
 
+        public static string RatingsEnd => "ratings";
+
         public static string ClientUserEnd(string name, string password)
         {
             return String.Join("/", ClientUsersEnd, name, password);
@@ -48,60 +50,44 @@ namespace Wasted.DummyDataAPI
             string dataJson = await Client.GetStringAsync(LinkStart + linkEnd);
             return JsonConvert.DeserializeObject<T>(dataJson); 
         }
-
-        /// <summary>
-        /// Writes data to API
-        /// </summary>
-        private static void WriteData<T>(T data, string linkEnd)
+        
+        private static void CreateBusinessObject<T>(T data, string linkEnd)
         {
             Task.Run(async () =>
-                await Client.PostAsync(LinkStart + linkEnd + "/add", GetStringContent(data))).Wait();
+                await Client.PostAsync(LinkStart + linkEnd, GetStringContent(data))).Wait();
+        }
+
+        private static void UpdateBusinessObject<T>(T data, string linkEnd)
+        {
+            Task.Run(async () =>
+                await Client.PutAsync(LinkStart + linkEnd, GetStringContent(data))).Wait();
+        }
+        
+        private static void DeleteBusinessObject(int id, string linkEnd)
+        {
+            Task.Run(async () =>
+                await Client.DeleteAsync(LinkStart + linkEnd + "/" + id)).Wait();
         }
 
         /// <summary>
         /// Converts object to json StringContent. Serializing content once is not enough
         /// </summary>
-        public static StringContent GetStringContent(object obj)
+        private static StringContent GetStringContent(object obj)
         {
             string content = JsonConvert.SerializeObject(obj);
             return new StringContent(content, Encoding.UTF8, "application/json");
         }
 
-        public static void CreateDeal(Deal deal)
-        {
-            WriteData(deal, DealsEnd);
-        }
-
-        public static void CreateFoodPlace(FoodPlace foodPlace)
-        {
-            WriteData(foodPlace, FoodPlacesEnd);
-        }
+        public static void CreateDeal(Deal deal) => CreateBusinessObject(deal, DealsEnd);
+        public static void UpdateDeal(Deal deal) => UpdateBusinessObject(deal, DealsEnd);
         
-        public static void WriteAllPlaces(List<FoodPlace> allFoodPlaces = null)
-        {
-            // WriteData(allFoodPlaces, delegate
-            // {
-            //     DataService service = DependencyService.Get<DataService>();
-            //     return service.AllFoodPlaces;
-            // }, FoodPlacesEnd);
-        }
+        public static void CreateFoodPlace(FoodPlace foodPlace) => CreateBusinessObject(foodPlace, FoodPlacesEnd);
+        public static void DeleteFoodPlace(FoodPlace foodPlace) => DeleteBusinessObject(foodPlace.Id, FoodPlacesEnd);
 
-        public static void WriteAllUserPlaces(Dictionary<string, UserPlace> placeUsers = null)
-        {
-            // WriteData(placeUsers, delegate
-            // {
-            //     DataService service = DependencyService.Get<DataService>();
-            //     return service.PlaceUsers;
-            // }, PlaceUsersEnd);
-        }
+        public static void CreateClientUser(ClientUser clientUser) => CreateBusinessObject(clientUser, ClientUsersEnd);
+        public static void CreatePlaceUser(UserPlace placeUser) => CreateBusinessObject(placeUser, PlaceUsersEnd);
 
-        public static void WriteAllUserClients(ClientUser clientUsers = null)
-        {
-            // WriteData(clientUsers, delegate
-            // {
-            //     DataService service = DependencyService.Get<DataService>();
-            //     return service.ClientUsers;
-            // }, PlaceUsersEnd);
-        }
+        public static void CreateRating(RatingDTO rating) => CreateBusinessObject(rating, RatingsEnd);
+        public static void UpdateRating(RatingDTO rating) => UpdateBusinessObject(rating, RatingsEnd);
     }
 }

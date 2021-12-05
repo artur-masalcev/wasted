@@ -29,6 +29,6 @@ namespace Wasted.Dummy_API.Business_Objects
             Id = id;
         }
         public abstract void PushPage(ContentPage page);
-        public abstract void CreateUser(DataService service);
+        public abstract void CreateUser();
     }
 }

@@ -40,7 +40,7 @@ namespace DataAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ClientUser> PostClientUsers([FromBody] ClientUser clientUser)
+        public ActionResult<ClientUser> PostClientUser([FromBody] ClientUser clientUser)
         {
             var newClientUser = _clientUsersRepository.Create(clientUser);
             return CreatedAtAction(nameof(GetClientUsers), new {id = newClientUser.Id}, newClientUser);

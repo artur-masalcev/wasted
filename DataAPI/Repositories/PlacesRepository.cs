@@ -30,5 +30,13 @@ namespace DataAPI.Repositories
             _dbContext.SaveChangesAsync();
             return foodPlace;
         }
+
+        public void Delete(int foodPlaceId)
+        {
+            FoodPlace placeToDelete = _dbContext.FoodPlaces.Find(foodPlaceId);
+            _dbContext.FoodPlaces.Remove(placeToDelete);
+            _dbContext.SaveChangesAsync();
+        }
+        
     }
 }

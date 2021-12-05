@@ -31,11 +31,18 @@ namespace DataAPI.Controllers
             return _placesRepository.Get().Select(_mapper.Map<FoodPlaceDTO>);
         }
 
-        [HttpPost("add")]
-        public ActionResult<FoodPlace> PostFoodPlaces([FromBody] FoodPlace foodPlace)
+        [HttpPost]
+        public ActionResult<FoodPlace> PostFoodPlace([FromBody] FoodPlace foodPlace)
         {
             var newFoodPlace = _placesRepository.Create(foodPlace);
             return CreatedAtAction(nameof(GetFoodPlaces), new {id = newFoodPlace.Id}, newFoodPlace);
+        }
+
+        [HttpDelete("{id:int}")]
+        public ActionResult DeleteFoodPlace(int id)
+        {
+            _placesRepository.Delete(id);
+            return NoContent();
         }
     }
 }

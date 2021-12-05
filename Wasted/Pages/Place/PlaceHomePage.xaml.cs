@@ -35,17 +35,12 @@ namespace Wasted.Pages.Place
             service = DependencyService.Get<DataService>();
             InitializeComponent();
             DeleteCommand = new Command(DeletePlace);
-            
-            On<iOS>().SetUseSafeArea(true);
-        }
-        
-        protected override void OnAppearing()
-        {
             CurrentUser = (UserPlace)service.CurrentUser;
             OwnedPlaces = CurrentUser.OwnedPlaces;
             BindingContext = this;
+            On<iOS>().SetUseSafeArea(true);
         }
-        
+
         private void YourPlacesCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectionChanger.ListSelectionChanged(sender, () =>
@@ -62,13 +57,9 @@ namespace Wasted.Pages.Place
 
         private void DeletePlace(object obj)
         {
-            // FoodPlace selectedPlace = obj as FoodPlace;
-            // CurrentUser.OwnedPlaceIDs = CurrentUser.OwnedPlaceIDs.Where(id => id != selectedPlace.ID).ToList();
-            // DataProvider.WriteAllUserPlaces();
-            // OwnedPlaces = OwnedPlaces.Where(place => place != selectedPlace);
-            //
-            // List<FoodPlace> allFoodPlaces = service.AllFoodPlaces.Where(place => place.ID != selectedPlace.ID).ToList();
-            // DataProvider.WriteAllPlaces(allFoodPlaces);
+            FoodPlace selectedPlace = obj as FoodPlace;
+            DataProvider.DeleteFoodPlace(selectedPlace);
+            OwnedPlaces = OwnedPlaces.Where(place => place != selectedPlace);
         }
     }
 }

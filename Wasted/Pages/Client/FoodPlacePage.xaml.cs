@@ -69,10 +69,10 @@ namespace Wasted
         /// </summary>
         private void RefreshView_Refreshing(object sender, EventArgs e)
         {
-            // SelectedFoodPlace = service.AllFoodPlaces.Find(place => place.ID == SelectedFoodPlace.ID);
-            // BindingContext = SelectedFoodPlace;
-            // InitializeViews();
-            // refreshView.IsRefreshing = false;
+            SelectedFoodPlace = service.AllFoodPlaces.Find(place => place.Id == SelectedFoodPlace.Id);
+            BindingContext = SelectedFoodPlace;
+            InitializeViews();
+            refreshView.IsRefreshing = false;
         }
     }  
 }
