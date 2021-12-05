@@ -6,6 +6,7 @@
 	<ContentPage.Content>
         <RefreshView x:Name="RefreshView"  RefreshColor="DimGray" Refreshing="RefreshView_Refreshing">
 	        <StackLayout>
+		        <Button Clicked="Button_OnClicked" />
 		        <Label Text="Your cart:"></Label>
 		        <CollectionView x:Name="CartDealsCollectionView"
 		                        SelectionMode="Single"

@@ -13,12 +13,15 @@ namespace Wasted
     public partial class CartPage : ContentPage
     {
         private DataService service;
-        private bool init;
+        public List<CartDeal> CartDeals { get; set; }
         
 
         public CartPage()
         {
+            InitializeComponent();
             service = DependencyService.Get<DataService>();
+            CartDeals = service.CartDeals;
+            CartDealsCollectionView.ItemsSource = CartDeals;
         }
 
         /// <summary>
@@ -26,15 +29,10 @@ namespace Wasted
         /// </summary>
         protected override void OnAppearing()
         {
-            if (!init)
-            {
-                InitializeComponent();
-                init = true;
-            }
-
             base.OnAppearing();
-            service = DependencyService.Get<DataService>();
-            CartDealsCollectionView.ItemsSource = service.CartDeals;
+            //CartDeals = service.CartDeals;
+            CartDealsCollectionView.ItemsSource = null;
+            CartDealsCollectionView.ItemsSource = CartDeals;
             Total.Text = "Total " + setTotal() + " eur.";
         }
 
@@ -62,6 +60,12 @@ namespace Wasted
         private void ClickedPurchase(object sender, EventArgs e)
         {
             UserDialogs.Instance.Toast("Purchased successfully", new TimeSpan(3));
+        }
+
+        private void Button_OnClicked(object sender, EventArgs e)
+        {
+            service.CartDeals.Add(new CartDeal(new Deal(title:"asf"), 1, 1));
+            OnPropertyChanged("CartDeals");
         }
     }
 }
