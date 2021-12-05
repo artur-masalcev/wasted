@@ -2,11 +2,24 @@
 
 namespace Wasted.Dummy_API.Business_Objects
 {
-    public class OrderedDeal
+    public class OrderedDeal : ChangeablePropertyObject
     {
         public CartDeal PurchasedDeal { get; set; }
 
-        public string Status { get; set; }
+        private string status;
+
+        public string Status
+        {
+            get
+            {
+                return status;
+            }
+            set
+            {
+                status = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string Title => PurchasedDeal.Title;
 

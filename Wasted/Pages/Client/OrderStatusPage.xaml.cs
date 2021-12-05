@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.Utils;
 using Wasted.WastedAPI.Business_Objects;
@@ -14,30 +11,15 @@ namespace Wasted
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderStatusPage : ContentPage
     {
-        private DataService Service;
-        public OrderStatusPage(DataService service)
-        {
-            InitializeComponent();
-
-            Service = service;
-
-            foreach (CartDeal cartDeal in service.CartDeals)
-            {
-                service.OrderedDeals.Add(new OrderedDeal(cartDeal, "preparing"));
-            }
-
-            service.CartDeals = new List<CartDeal>();
-            
-            OrderedDealsCollectionView.ItemsSource = service.OrderedDeals;
-        }
+        private DataService service;
 
         public OrderStatusPage()
         {
+            service = DependencyService.Get<DataService>();
+
             InitializeComponent();
-            
-            Service = DependencyService.Get<DataService>();
-            
-            OrderedDealsCollectionView.ItemsSource = Service.OrderedDeals;
+
+            OrderedDealsCollectionView.ItemsSource = service.OrderedDeals;
         }
         
         /// <summary>
@@ -46,7 +28,14 @@ namespace Wasted
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            OrderedDealsCollectionView.ItemsSource = Service.OrderedDeals;
+            
+            foreach (CartDeal cartDeal in service.CartDeals)
+            {
+                service.OrderedDeals.Add(new OrderedDeal(cartDeal, "preparing"));
+            }
+            service.CartDeals = new List<CartDeal>();
+            
+            OrderedDealsCollectionView.ItemsSource = service.OrderedDeals;
         }
 
         private void RefreshView_Refreshing(object sender, EventArgs e)

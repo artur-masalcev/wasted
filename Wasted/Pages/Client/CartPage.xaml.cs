@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Acr.UserDialogs;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
 using Wasted.WastedAPI.Business_Objects;
@@ -11,31 +12,13 @@ namespace Wasted
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CartPage : ContentPage
     {
-        public CartDeal cartDeal { get; set; }
         private DataService service;
-
-        public CartPage(Deal selectedDeal, int quantity, double cost)
-        {
-            cartDeal = new CartDeal(selectedDeal, quantity, cost);
-
-            InitializeComponent();
-
-            service = DependencyService.Get<DataService>();
-
-            service.CartDeals.Add(cartDeal);
-
-            Total.Text = "Total " + setTotal() + " eur.";
-        }
+        private bool init;
+        
 
         public CartPage()
         {
-            InitializeComponent();
-
             service = DependencyService.Get<DataService>();
-            
-            CartDealsCollectionView.ItemsSource = service.CartDeals;
-            
-            Total.Text = "Total " + setTotal() + " eur.";
         }
 
         /// <summary>
@@ -43,8 +26,16 @@ namespace Wasted
         /// </summary>
         protected override void OnAppearing()
         {
+            if (!init)
+            {
+                InitializeComponent();
+                init = true;
+            }
+
             base.OnAppearing();
+            service = DependencyService.Get<DataService>();
             CartDealsCollectionView.ItemsSource = service.CartDeals;
+            Total.Text = "Total " + setTotal() + " eur.";
         }
 
         private void RefreshView_Refreshing(object sender, EventArgs e)
@@ -70,7 +61,7 @@ namespace Wasted
 
         private void ClickedPurchase(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new OrderStatusPage(service));
+            UserDialogs.Instance.Toast("Purchased successfully", new TimeSpan(3));
         }
     }
 }

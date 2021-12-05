@@ -3,6 +3,8 @@ using Acr.UserDialogs;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Wasted.DummyAPI.BusinessObjects;
+using Wasted.Utils;
+using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 
 namespace Wasted.Pages.Deals
@@ -10,6 +12,7 @@ namespace Wasted.Pages.Deals
     public partial class OrderPopup : PopupPage
     {
         public Deal SelectedDeal { get; set; }
+        private DataService service;
         public int StepperDealQuantity => SelectedDeal.Quantity == 0 ? 1 : SelectedDeal.Quantity;
 
         private int selectedCount = 0;
@@ -27,6 +30,7 @@ namespace Wasted.Pages.Deals
             SelectedDeal = deal;
             InitializeComponent();
             BindingContext = this;
+            service = DependencyService.Get<DataService>();
         }
 
         /// <summary>
@@ -40,7 +44,9 @@ namespace Wasted.Pages.Deals
             bool selectedSomething = stepper.Value != 0;
             if (selectedSomething)
             {
-                Navigation.PushAsync(new CartPage(SelectedDeal, (int) stepper.Value, stepper.Value * SelectedDeal.DealCosts.CurrentCost));
+                CartDeal cartDeal = new CartDeal(SelectedDeal, (int) stepper.Value, stepper.Value * SelectedDeal.DealCosts.CurrentCost);
+                service.CartDeals.Add(cartDeal);
+                UserDialogs.Instance.Toast("Added to cart", new TimeSpan(3));
             }
                 
         }

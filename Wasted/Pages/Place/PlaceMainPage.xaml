@@ -11,5 +11,7 @@
             <place:PlaceHomePage
                 Title="Home"
                 Icon="nav_bar_home.png"/>
+            <place:OrdersPage
+                Title="Orders"/>
 
 </TabbedPage>
