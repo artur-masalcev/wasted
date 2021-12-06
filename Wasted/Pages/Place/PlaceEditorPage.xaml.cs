@@ -31,7 +31,7 @@ namespace Wasted.Pages.Place
             On<iOS>().SetUseSafeArea(true);
             
             SelectedPlace = selectedPlace;
-            Validator = new EntryLengthValidator(maxEntryLength: 30);
+            Validator = new EntryLengthValidator(maxEntryLength: 50);
 
             BindingContext = this;
         }

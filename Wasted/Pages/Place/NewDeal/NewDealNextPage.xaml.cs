@@ -31,11 +31,6 @@ namespace Wasted.Pages.Place.NewDeal
             On<iOS>().SetUseSafeArea(true);
         }
 
-        private void DescriptionEntryTextChanged(object sender, TextChangedEventArgs e)
-        {
-            Validator.EntryTextChanged(sender, e);
-        }
-
         private void ImageButtonClicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PushAsync(new ChooseImagePopup(CurrentDeal, "ImageURL"));

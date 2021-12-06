@@ -18,7 +18,7 @@ namespace Wasted.Pages.Place
         public NewPlacePage()
         {
             InitializeComponent();
-            Validator = new EntryLengthValidator(maxEntryLength: 30);
+            Validator = new EntryLengthValidator(maxEntryLength: 50);
             BindingContext = Validator;
             CityPicker.ItemsSource = new[] {"Vilnius"};
             

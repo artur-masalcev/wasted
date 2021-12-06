@@ -33,7 +33,7 @@ namespace Wasted.Pages.Place
             InitializeComponent();
             On<iOS>().SetUseSafeArea(true);
             
-            Validator = new EntryLengthValidator(maxEntryLength: 100);
+            Validator = new EntryLengthValidator(maxEntryLength: 50);
             SelectedDeal = selectedDeal;
             BindingContext = this;
         }
@@ -87,11 +87,6 @@ namespace Wasted.Pages.Place
             PopupNavigation.Instance.PushAsync(new ChooseImagePopup(SelectedDeal, "ImageURL"));
         }
 
-        private void DescriptionEntryTextChanged(object sender, TextChangedEventArgs e)
-        {
-            Validator.EntryTextChanged(sender, e);
-        }
-        
         /// <summary>
         /// Publishes updated deal data to the server.
         /// Also checks whether the data is valid, if it is not - alert is displayed

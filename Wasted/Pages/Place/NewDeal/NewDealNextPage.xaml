@@ -23,18 +23,8 @@
             <!--#region Form -->
             <StackLayout Spacing="20" VerticalOptions="CenterAndExpand" Margin="0, 0, 0, 80">
                 <StackLayout>
-                    <Label Text="{Binding MaxEntryLength, StringFormat='Description (fewer than {0} words)'}" />
-                    <Entry x:Name="DescriptionEntry" TextChanged="DescriptionEntryTextChanged"/>
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="{Binding EntryLength}" />
-                                <Span Text="/" />
-                                <Span Text="{Binding MaxEntryLength}" />
-                            </FormattedString>
-                    
-                        </Label.FormattedText>
-                    </Label>
+                    <Label Text="Description" />
+                    <Entry x:Name="DescriptionEntry"/>
                 </StackLayout>
                 
                 <StackLayout>

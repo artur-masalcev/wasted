@@ -1,4 +1,5 @@
-﻿using Wasted.Dummy_API.Business_Objects;
+﻿using System;
+using Wasted.Dummy_API.Business_Objects;
 using Xamarin.Forms;
 
 namespace Wasted.Utils
@@ -23,9 +24,10 @@ namespace Wasted.Utils
         
         public void EntryTextChanged(object sender, TextChangedEventArgs e)
         {
+            Console.WriteLine(e.NewTextValue);
             if (!string.IsNullOrEmpty(e.NewTextValue) && e.NewTextValue.Length > MaxEntryLength)
             {
-                ((Entry)sender).Text = e.OldTextValue;
+                ((Entry)sender).Text = e.OldTextValue ?? "";
             }
             else
             {

@@ -29,6 +29,7 @@
                         <Label Text="{Binding Validator.MaxEntryLength, StringFormat='Short description (fewer than {0} words)'}" />
                         <Entry x:Name="DescriptionEntry" 
                                TextChanged="DescriptionEntryTextChanged"
+                               Text="{Binding SelectedPlace.Description}"
                                />
                         <Label>
                             <Label.FormattedText>
