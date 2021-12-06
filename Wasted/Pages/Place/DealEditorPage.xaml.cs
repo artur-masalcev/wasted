@@ -47,6 +47,21 @@ namespace Wasted.Pages.Place
             return !StringUtils.AnyNullOrEmpty(NewTitle, NewCurrentCost, 
                 NewRegularCost, NewDueDate, NewDescription, SelectedDeal.ImageURL);
         }
+
+        /// <summary>
+        /// Updates all the fields of 'SelectedDeal' accordingly to user input
+        /// </summary>
+        /// <notice>
+        /// This function does not check if the user input is valid, use 'IsDataValid()' for data validation
+        /// </notice>
+        private void UpdateSelectedDealObject()
+        {
+            SelectedDeal.Title = NewTitle;
+            SelectedDeal.DealCosts = new Costs(Convert.ToDouble(NewRegularCost), 
+                Convert.ToDouble(NewCurrentCost));
+            SelectedDeal.Due = NewDueDate;
+            SelectedDeal.Description = NewDescription;
+        }
         
         private void BackClicked(object sender, EventArgs e)
         {
@@ -89,22 +104,27 @@ namespace Wasted.Pages.Place
                 return;
             }
 
-            SelectedDeal.Title = NewTitle;
-            SelectedDeal.DealCosts = new Costs(Convert.ToDouble(NewRegularCost), 
-                                                Convert.ToDouble(NewCurrentCost));
-            SelectedDeal.Due = NewDueDate;
-            SelectedDeal.Description = NewDescription;
+            UpdateSelectedDealObject();
 
             //IMPLEMENT ME: Post new deal state (as 'SelectedDeal') to server
         }
 
         private void ShowPreviewClicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (!IsDataValid())
+            {
+                DisplayAlert("", "Please fill all fields", "OK");
+                return;
+            }
+            
+            UpdateSelectedDealObject();
+            
+            Navigation.PushAsync(new DealPreviewPage(SelectedDeal));
         }
 
         private void DeleteOfferClicked(object sender, EventArgs e)
         {
+            // IMPLEMENT ME
             throw new NotImplementedException();
         }
     }

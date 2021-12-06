@@ -44,6 +44,18 @@ namespace Wasted.Pages.Place
         { 
             return !StringUtils.AnyNullOrEmpty(NewPlaceTitle, NewDescription, NewHeaderURL, NewLogoURL);
         }
+
+        /// <summary>
+        /// Updates all the fields of 'SelectedPlace' accordingly to user input
+        /// </summary>
+        /// <notice>
+        /// This function does not check if the user input is valid, use 'IsDataValid()' for data validation
+        /// </notice>
+        private void UpdateSelectedPlaceObject()
+        {
+            SelectedPlace.Title = NewPlaceTitle;
+            SelectedPlace.Description = NewDescription;
+        }
         
         private void BackClicked(object sender, EventArgs e)
         {
@@ -62,20 +74,28 @@ namespace Wasted.Pages.Place
                 DisplayAlert("", "Please fill all fields", "OK");
                 return;
             }
-
-            SelectedPlace.Title = NewPlaceTitle;
-            SelectedPlace.Description = NewDescription;
+            
+            UpdateSelectedPlaceObject();
 
             //IMPLEMENT ME: Post new place state (as 'SelectedPlace') to server
         }
 
         private void ShowPreviewClicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (!IsDataValid())
+            {
+                DisplayAlert("", "Please fill all fields", "OK");
+                return;
+            }
+            
+            UpdateSelectedPlaceObject();
+            
+            Navigation.PushAsync(new FoodPlacePreviewPage(SelectedPlace));
         }
 
         private void DeletePlaceClicked(object sender, EventArgs e)
         {
+            // IMPLEMENT ME
             throw new NotImplementedException();
         }
 

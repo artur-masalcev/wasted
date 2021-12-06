@@ -64,8 +64,7 @@
                     <StackLayout>
                         <Label Text="{Binding Validator.MaxEntryLength, StringFormat='Description (fewer than {0} words)'}" />
                         <Entry x:Name="DescriptionEntry" 
-                               TextChanged="DescriptionEntryTextChanged"
-                               Text = "{Binding SelectedDeal.Description}"/>
+                               TextChanged="DescriptionEntryTextChanged"/>
                         <Label>
                             <Label.FormattedText>
                                 <FormattedString>
