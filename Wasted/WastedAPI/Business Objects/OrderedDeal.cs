@@ -20,13 +20,16 @@ namespace Wasted.Dummy_API.Business_Objects
                 OnPropertyChanged();
             }
         }
+        
+        public int Quantity { get; set; }
 
         public string Title => PurchasedDeal.Title;
 
-        public OrderedDeal(CartDeal purchasedDeal, string status)
+        public OrderedDeal(CartDeal purchasedDeal, string status, int quantity)
         {
             PurchasedDeal = purchasedDeal;
             Status = status;
+            Quantity = quantity;
         }
     }
 }

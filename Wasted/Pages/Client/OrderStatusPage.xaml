@@ -15,6 +15,7 @@
                             <Frame>
                                 <StackLayout Orientation="Horizontal">
                                     <Label Text="{Binding Title}" />
+                                    <Label Text="{Binding Quantity, StringFormat='x{0}' }" />
                                     <Label Text="{Binding Status}" />
                                 </StackLayout>
                             </Frame>
