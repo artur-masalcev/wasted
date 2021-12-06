@@ -46,6 +46,9 @@ namespace Wasted.Pages.Deals
             {
                 CartDeal cartDeal = new CartDeal(SelectedDeal, (int) stepper.Value, stepper.Value * SelectedDeal.DealCosts.CurrentCost);
                 service.CartDeals.Add(cartDeal);
+                // Navigates to the third tabbed page and closes the Deal Page
+                MessagingCenter.Send<object, int>(this,"click",(int) NavigationPages.CART_PAGE);
+                Application.Current.MainPage.Navigation.PopAsync();
                 UserDialogs.Instance.Toast("Added to cart", new TimeSpan(3));
             }
                 

@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 
 namespace Wasted
 {
@@ -11,6 +12,10 @@ namespace Wasted
         {
             InitializeComponent();
             SelectedTabColor = Color.Black;
+            MessagingCenter.Subscribe<Object, int>(this, "click", ((arg, idx) => {
+                // idx the index of pages in tabbed that you want to navigate
+                CurrentPage = this.Children[idx];
+            }));
         }
 
     }

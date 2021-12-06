@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Acr.UserDialogs;
 using Wasted.Dummy_API.Business_Objects;
-using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
 using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
@@ -70,6 +69,7 @@ namespace Wasted
                 CartDeals = service.CartDeals;
                 OnAppearing();
                 
+                MessagingCenter.Send<object, int>(this,"click",(int) NavigationPages.ORDER_STATUS_PAGE);
                 UserDialogs.Instance.Toast("Purchased successfully", new TimeSpan(3));
             }
             else

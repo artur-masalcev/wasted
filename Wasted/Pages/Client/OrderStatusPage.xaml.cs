@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using Wasted.Dummy_API.Business_Objects;
 using Wasted.Utils;
-using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
