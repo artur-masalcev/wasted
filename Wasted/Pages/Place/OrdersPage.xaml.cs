@@ -68,7 +68,10 @@ namespace Wasted.Pages.Place
             SelectionChanger.ListSelectionChanged(sender, e, () =>
             {
                 OrderedDeal order = e.CurrentSelection.FirstOrDefault() as OrderedDeal;
-                order.Status = "Ready to pick up";
+                if (order.Status.Equals("Preparing"))
+                {
+                    order.Status = "Ready to pick up";
+                }
             });
         }
     }

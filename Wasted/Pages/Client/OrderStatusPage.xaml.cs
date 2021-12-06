@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using Wasted.Dummy_API.Business_Objects;
 using Wasted.Utils;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -31,6 +33,18 @@ namespace Wasted
         {
             OnAppearing();
             RefreshView.IsRefreshing = false;
+        }
+
+        private void OrderedDealsCollectionView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SelectionChanger.ListSelectionChanged(sender, e, () =>
+            {
+                OrderedDeal order = e.CurrentSelection.FirstOrDefault() as OrderedDeal;
+                if (order.Status.Equals("Ready to pick up"))
+                {
+                    order.Status = "Received";
+                }
+            });
         }
     }
 }

@@ -9,7 +9,8 @@
                 <Label Text="Purchase status:"></Label>
                 <CollectionView x:Name="OrderedDealsCollectionView"
                                 SelectionMode="Single"
-                                ItemsLayout="VerticalList">
+                                ItemsLayout="VerticalList"
+                                SelectionChanged="OrderedDealsCollectionView_OnSelectionChanged">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Frame>

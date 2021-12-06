@@ -62,7 +62,7 @@ namespace Wasted
             {
                 foreach (CartDeal cartDeal in service.CartDeals)
                 {
-                    service.OrderedDeals.Add(new OrderedDeal(cartDeal, "preparing", cartDeal.Quantity));
+                    service.OrderedDeals.Add(new OrderedDeal(cartDeal, "Preparing", cartDeal.Quantity));
                 }
             
                 service.CartDeals = new List<CartDeal>();
