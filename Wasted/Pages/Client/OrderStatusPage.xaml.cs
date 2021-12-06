@@ -16,9 +16,7 @@ namespace Wasted
         public OrderStatusPage()
         {
             service = DependencyService.Get<DataService>();
-
             InitializeComponent();
-
             OrderedDealsCollectionView.ItemsSource = service.OrderedDeals;
         }
         
@@ -28,13 +26,7 @@ namespace Wasted
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            
-            foreach (CartDeal cartDeal in service.CartDeals)
-            {
-                service.OrderedDeals.Add(new OrderedDeal(cartDeal, "preparing"));
-            }
-            service.CartDeals = new List<CartDeal>();
-            
+            OrderedDealsCollectionView.ItemsSource = null;
             OrderedDealsCollectionView.ItemsSource = service.OrderedDeals;
         }
 
