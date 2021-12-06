@@ -6,24 +6,29 @@
 	<ContentPage.Content>
         <RefreshView x:Name="RefreshView"  RefreshColor="DimGray" Refreshing="RefreshView_Refreshing">
 	        <StackLayout>
-		        <Label Text="Your cart:"></Label>
+		        <Label Text="Your cart:" Style="{StaticResource SectionTitle}"></Label>
 		        <CollectionView x:Name="CartDealsCollectionView"
 		                        SelectionMode="Single"
 		                        ItemsLayout="VerticalList">
 					<CollectionView.ItemTemplate>
 				        <DataTemplate>
 					        <Frame>
-								<StackLayout Orientation="Horizontal">
-									<Label Text="{Binding Title}" />
-									<Label Text="{Binding Quantity, StringFormat='x{0}' }" />
-									<Label Text="{Binding Cost, StringFormat='{0} eur.'}" />
-								</StackLayout>
+						        <Grid>
+							        <Grid.ColumnDefinitions>
+								        <ColumnDefinition Width="40"></ColumnDefinition>
+								        <ColumnDefinition Width="*"></ColumnDefinition>
+								        <ColumnDefinition Width="*"></ColumnDefinition>
+							        </Grid.ColumnDefinitions>
+							        <Label Grid.Column="0" Text="{Binding Quantity, StringFormat='{0} x' }"/>
+							        <Label Grid.Column="1" Text="{Binding Title}" Margin="20,0, 0, 0"/>
+							        <Label Grid.Column="2" Text="{Binding Cost, StringFormat='{0} €'}" HorizontalTextAlignment="End"/>
+						        </Grid>
 					        </Frame>
 				        </DataTemplate>
 			        </CollectionView.ItemTemplate>
 		        </CollectionView>
-		        <Label x:Name="Total" />
-		        <Button Text="Purchase" Clicked="ClickedPurchase"/>
+		        <Label x:Name="Total" Style="{StaticResource SectionTitle}"/>
+		        <Button Text="Purchase" Style="{StaticResource PurchaseButton}" Clicked="ClickedPurchase"/>
 	        </StackLayout>
         </RefreshView>
     </ContentPage.Content>

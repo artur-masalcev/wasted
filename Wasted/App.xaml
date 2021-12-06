@@ -225,6 +225,14 @@
 			<Setter Property="TextColor" Value="White" />
 			<Setter Property="Margin" Value="30" />
 		</Style>
+		
+		<Style x:Key="PurchaseButton" TargetType="Button">
+			<Setter Property="CornerRadius" Value="20" />
+			<Setter Property="VerticalOptions" Value="EndAndExpand" />
+			<Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
+			<Setter Property="TextColor" Value="White" />
+			<Setter Property="Margin" Value="30" />
+		</Style>
 
 		<Style x:Key="AuthPrimaryActionButton" TargetType="Button">
 			<Setter Property="CornerRadius" Value="10"/>
