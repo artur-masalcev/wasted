@@ -38,9 +38,12 @@ namespace Wasted.Pages.Place
             {
                 foreach (FoodPlace place in OwnedPlaces)
                 {
-                    if (place.Title.Equals(order.Title))
+                    foreach (Deal deal in place.Deals)
                     {
-                        return true;
+                        if (deal.Title.Equals(order.Title))
+                        {
+                            return true;
+                        }
                     }
                 }
 
@@ -54,7 +57,22 @@ namespace Wasted.Pages.Place
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            OrdersCollectionView.ItemsSource = service.OrderedDeals;
+            OrdersCollectionView.ItemsSource = null;
+            OrdersCollectionView.ItemsSource = service.OrderedDeals.Where(order =>
+            {
+                foreach (FoodPlace place in OwnedPlaces)
+                {
+                    foreach (Deal deal in place.Deals)
+                    {
+                        if (deal.Title.Equals(order.Title))
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
+            });
         }
 
         private void RefreshView_Refreshing(object sender, EventArgs e)
