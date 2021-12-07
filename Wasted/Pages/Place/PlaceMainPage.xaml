@@ -12,6 +12,7 @@
                 Title="Home"
                 Icon="nav_bar_home.png"/>
             <place:OrdersPage
-                Title="Orders"/>
+                Title="Orders"
+                Icon="nav_bar_order.png"/>
 
 </TabbedPage>

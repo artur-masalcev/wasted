@@ -5,14 +5,15 @@
              x:Class="Wasted.Pages.Place.NewPlace.NewPlaceImagePage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Add new place" />
+            <Label Text="Add new place" Style="{StaticResource SectionTitle}"/>
+            
             <Label Text="Header image" />
-            
             <Button Text="Choose" Clicked="HeaderButtonClicked" />
-            <Label Text="Logo image" />
             
+            <Label Text="Logo image" />
             <Button Text="Choose" Clicked="LogoButtonClicked" />
-            <Button Text="Done" Clicked="DoneButtonClicked" />
+            
+            <Button Text="Done" Style="{StaticResource PurchaseButton}" Clicked="DoneButtonClicked" VerticalOptions="EndAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

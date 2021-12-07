@@ -2,19 +2,20 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:wasted="clr-namespace:Wasted;assembly=Wasted"
              x:Class="Wasted.Pages.Place.NewPlacePage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Add new place" />
+            <Label Text="Add new place" Style="{StaticResource SectionTitle}"/>
             
             <Label Text="Title" />
-            <Entry x:Name="TitleEntry"/>
+            <wasted:RoundedEntry x:Name="TitleEntry"/>
             
             <Label Text="City" />
             <Picker x:Name="CityPicker" />
             
             <Label Text="{Binding MaxEntryLength, StringFormat='Description (fewer than {0} words)'}" />
-            <Entry x:Name="DescriptionEntry" TextChanged="DescriptionEntryTextChanged"/>
+            <wasted:RoundedEntry x:Name="DescriptionEntry" TextChanged="DescriptionEntryTextChanged"/>
             <Label>
                 <Label.FormattedText>
                     <FormattedString>
@@ -26,7 +27,7 @@
                 </Label.FormattedText>
             </Label>
             
-            <Button Text="Next" Clicked="NextButtonClicked"/>
+            <Button Text="Next" Style="{StaticResource PurchaseButton}" Clicked="NextButtonClicked" VerticalOptions="EndAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

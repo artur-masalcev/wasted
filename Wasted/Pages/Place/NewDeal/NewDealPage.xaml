@@ -2,21 +2,22 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:wasted="clr-namespace:Wasted;assembly=Wasted"
              x:Class="Wasted.Pages.Place.NewDeal.NewDealPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Add new deal" />
+            <Label Text="Add new deal" Style="{StaticResource SectionTitle}"/>
             
-            <Label Text="Title" />
-            <Entry x:Name="TitleEntry" />
+            <Label Text="Title"/>
+            <wasted:RoundedEntry x:Name="TitleEntry" />
             
-            <Label Text="Current cost" />
-            <Entry x:Name="CurrentCostEntry" TextChanged="NumberEntryTextChanged"/>
+            <Label Text="Current cost"/>
+            <wasted:RoundedEntry x:Name="CurrentCostEntry" TextChanged="NumberEntryTextChanged"/>
             
-            <Label Text="Regular cost" />
-            <Entry x:Name="RegularCostEntry" TextChanged="NumberEntryTextChanged"/>
+            <Label Text="Regular cost"/>
+            <wasted:RoundedEntry x:Name="RegularCostEntry" TextChanged="NumberEntryTextChanged"/>
             
-            <Button Text="Next" Clicked="NextButtonClicked"/>
+            <Button Text="Next" Style="{StaticResource PurchaseButton}" Clicked="NextButtonClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

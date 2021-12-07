@@ -5,7 +5,7 @@
              x:Class="Wasted.Pages.Place.PlaceHomePage">
     <ContentPage.Content>
         <StackLayout x:Name="Layout">
-            <Label Text="Your places" />
+            <Label Text="Your places" Style="{StaticResource SectionTitle}"/>
             
             <!--#region Your places-->
             
@@ -18,11 +18,16 @@
                     <DataTemplate>
                         <Frame>
                             <SwipeView>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Title }" />
-                                    <Label Text="{Binding City}" />
-                                    <Label Text="{Binding DealsCount, StringFormat='{0} deals'}" />
-                                </StackLayout>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Text="{Binding Title }" />
+                                    <Label Grid.Column="1" Text="{Binding City}" />
+                                    <Label Grid.Column="2" Text="{Binding DealsCount, StringFormat='{0} deals'}" HorizontalTextAlignment="End"/>
+                                </Grid>
                                 <SwipeView.RightItems>
                                     <SwipeItems>
                                         <SwipeItem Text="Delete" BackgroundColor="Red" Command="{Binding Path=BindingContext.DeleteCommand,
@@ -37,7 +42,7 @@
                 
             </CollectionView>
             
-            <Button Text="+" Clicked="AddNewPlaceButtonClicked"/>
+            <Button Text="+" Style="{StaticResource PurchaseButton}" Clicked="AddNewPlaceButtonClicked"/>
             
         </StackLayout>
     </ContentPage.Content>
