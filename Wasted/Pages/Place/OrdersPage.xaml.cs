@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Rg.Plugins.Popup.Services;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
@@ -88,7 +89,7 @@ namespace Wasted.Pages.Place
                 OrderedDeal order = e.CurrentSelection.FirstOrDefault() as OrderedDeal;
                 if (order.Status.Equals("Preparing"))
                 {
-                    order.Status = "Ready to pick up";
+                    PopupNavigation.Instance.PushAsync(new OrderStatusPlacePopup(order));
                 }
             });
         }

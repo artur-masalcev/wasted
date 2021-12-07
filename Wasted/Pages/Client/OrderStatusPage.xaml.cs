@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+using Rg.Plugins.Popup.Services;
 using Wasted.Dummy_API.Business_Objects;
+using Wasted.Pages.Client;
 using Wasted.Utils;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -42,7 +44,7 @@ namespace Wasted
                 OrderedDeal order = e.CurrentSelection.FirstOrDefault() as OrderedDeal;
                 if (order.Status.Equals("Ready to pick up"))
                 {
-                    order.Status = "Received";
+                    PopupNavigation.Instance.PushAsync(new OrderStatusClientPopup(order));
                 }
             });
         }
