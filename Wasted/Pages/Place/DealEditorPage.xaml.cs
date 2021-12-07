@@ -45,7 +45,7 @@ namespace Wasted.Pages.Place
         private bool IsDataValid()
         {
             return !StringUtils.AnyNullOrEmpty(NewTitle, NewCurrentCost, 
-                NewRegularCost, NewDueDate, NewDescription, SelectedDeal.ImageURL);
+                NewRegularCost, NewDueDate, SelectedDeal.ImageURL);
         }
 
         /// <summary>
