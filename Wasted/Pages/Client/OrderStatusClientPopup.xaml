@@ -10,7 +10,7 @@
                  VerticalOptions="Center">
         <StackLayout BackgroundColor="White">
                 
-            <Label Text="{Binding Title, StringFormat='Deal {0} is received'}"/>
+            <Label Text="{Binding Message}"/>
             <Button Text="YES" Clicked="Button_OnClicked"/>
                 
         </StackLayout>

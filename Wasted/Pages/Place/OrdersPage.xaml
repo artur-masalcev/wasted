@@ -21,7 +21,7 @@
                                         <ColumnDefinition Width="*"></ColumnDefinition>
                                         <ColumnDefinition Width="*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <!--<Label Grid.Column="0" Text="{Binding Quantity, StringFormat='{0} x' }"/>-->
+                                    <Label Grid.Column="0" Text="{Binding Quantity, StringFormat='{0} x' }"/>
                                     <Label Grid.Column="1" Text="{Binding Title}" Margin="20,0, 0, 0"/>
                                     <Label Grid.Column="2" Text="{Binding Status}"/>
                                     <!--<Label Grid.Column="3" Text="{Binding Cost, StringFormat='{0} €'}" HorizontalTextAlignment="End"/>-->
