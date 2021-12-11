@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Rg.Plugins.Popup.Services;
 using Wasted.Utils;
+using Wasted.Utils.Services;
+using Wasted.WastedAPI;
 using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
@@ -95,8 +97,8 @@ namespace Wasted.Pages.Place
 
         private void DeletePlaceClicked(object sender, EventArgs e)
         {
-            // IMPLEMENT ME
-            throw new NotImplementedException();
+            DataProvider.DeleteFoodPlace(SelectedPlace);
+            DependencyService.Get<DataService>().CurrentUser.PushPage(this);
         }
 
         private void DescriptionEntryTextChanged(object sender, TextChangedEventArgs e)

@@ -21,7 +21,6 @@
                             ItemsSource="{Binding OwnedPlaces}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <SwipeView>
                         <Frame HasShadow="false"
                                CornerRadius="0">
                             <StackLayout Orientation="Horizontal" Background="White">
@@ -39,11 +38,6 @@
                                            FontSize="20"/>
                                 </StackLayout>
                         </Frame>
-                        <SwipeView.RightItems>
-                            <SwipeItem Text="Delete" BackgroundColor="Tomato" Command="{Binding Path=BindingContext.DeleteCommand,
-                                        Source={x:Reference PlacesCollectionView}}" CommandParameter="{Binding .}"/>
-                        </SwipeView.RightItems>
-                        </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

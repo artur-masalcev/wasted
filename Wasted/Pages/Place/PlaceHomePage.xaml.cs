@@ -28,7 +28,6 @@ namespace Wasted.Pages.Place
         {
             _service = DependencyService.Get<DataService>();
             InitializeComponent();
-            DeleteCommand = new Command(DeletePlace);
             _currentPlaceUser = (PlaceUser) _service.CurrentUser;
             BindingContext = this;
             On<iOS>().SetUseSafeArea(true);
@@ -40,22 +39,15 @@ namespace Wasted.Pages.Place
             {
                 FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
                 Navigation.PushAsync(new FoodPlacePage(selectedPlace));
+                _currentPlaceUser.OwnedPlaces = _currentPlaceUser.OwnedPlaces
+                    .Where(place => place != selectedPlace)
+                    .ToList();
             });
         }
 
         private void AddNewPlaceButtonClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new NewPlacePage());
-        }
-
-        private void DeletePlace(object obj)
-        {
-            FoodPlace selectedPlace = obj as FoodPlace;
-            DataProvider.DeleteFoodPlace(selectedPlace);
-            _currentPlaceUser.OwnedPlaces = _currentPlaceUser.OwnedPlaces
-                .Where(place => place != selectedPlace)
-                .ToList();
-            OnPropertyChanged("OwnedPlaces");
         }
     }
 }
