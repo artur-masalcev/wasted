@@ -1,27 +1,28 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage
-	xmlns="http://xamarin.com/schemas/2014/forms"
-	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	x:Class="Wasted.FoodPlacesPage">
-	<ContentPage.Content>
-        <RefreshView x:Name="RefreshView"  RefreshColor="DimGray" Refreshing="RefreshView_Refreshing">
-            <ScrollView x:Name="contentScrollView">
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Wasted.Pages.Client.FoodPlacesPage">
+    <ContentPage.Content>
+        <RefreshView x:Name="RefreshView" RefreshColor="DimGray" Refreshing="RefreshView_Refreshing">
+            <ScrollView x:Name="ContentScrollView">
                 <AbsoluteLayout>
                     <StackLayout>
                         <!--#region Header image-->
-                        <Image x:Name="headerImage"
-                           Source="{Binding HeaderURL}"
-                           Aspect="AspectFill"
-                           HeightRequest="180"
-                        />
+                        <Image x:Name="HeaderImage"
+                               Source="{Binding HeaderURL}"
+                               Aspect="AspectFill"
+                               HeightRequest="180" />
                         <!--#endregion-->
 
                         <!--#region Foodplace description-->
                         <StackLayout Style="{StaticResource CardContent}" Padding="5, 0, 5, 0">
                             <StackLayout Style="{StaticResource CardContent}" Orientation="Horizontal">
-                                <Label Text="{Binding Title}" Style="{StaticResource CardTitle}" FontSize="Title"/>
-                                <Label x:Name="rating" Style="{StaticResource CardTitle}" Padding="5, 0, 5, 0" VerticalOptions="Center"
-                            HorizontalOptions="EndAndExpand">
+                                <Label Text="{Binding Title}" Style="{StaticResource CardTitle}" FontSize="Title" />
+                                <Label x:Name="Rating" Style="{StaticResource CardTitle}" Padding="5, 0, 5, 0"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="EndAndExpand">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="☆ " TextColor="{StaticResource Yellow}" />
@@ -30,24 +31,25 @@
                                     </Label.FormattedText>
                                 </Label>
                             </StackLayout>
-                            <Label x:Name="descriptionLabel" Text="{Binding Description}" TextColor="{StaticResource TextGrey}"/>
+                            <Label x:Name="DescriptionLabel" Text="{Binding Description}"
+                                   TextColor="{StaticResource TextGrey}" />
                             <Button Style="{StaticResource RateButton}"
                                     Text="Rate"
                                     Clicked="OnRateButtonClicked"
-                                    HorizontalOptions="Fill"/>
+                                    HorizontalOptions="Fill" />
                         </StackLayout>
                         <!--#endregion-->
 
-                        <BoxView Style="{StaticResource Separator}"/>
+                        <BoxView Style="{StaticResource Separator}" />
 
                         <!--#region Foodplace deals-->
-                        <Label Text="Offers" Style="{StaticResource SectionTitle}"/>
-                        <CollectionView x:Name="dealsCollectionView"
-                        SelectionChanged="DealsCollectionViewListSelectionChanged"
-                        SelectionMode="Single"
-                        ItemTemplate="{StaticResource DealsCollectionViewTemplate}">
+                        <Label Text="Offers" Style="{StaticResource SectionTitle}" />
+                        <CollectionView x:Name="DealsCollectionView"
+                                        SelectionChanged="DealsCollectionViewListSelectionChanged"
+                                        SelectionMode="Single"
+                                        ItemTemplate="{StaticResource DealsCollectionViewTemplate}">
                             <CollectionView.ItemsLayout>
-                                <GridItemsLayout Orientation="Vertical" Span="2"/>
+                                <GridItemsLayout Orientation="Vertical" Span="2" />
                             </CollectionView.ItemsLayout>
                         </CollectionView>
                         <!--#endregion-->

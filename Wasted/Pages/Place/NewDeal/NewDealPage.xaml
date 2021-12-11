@@ -2,22 +2,47 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:wasted="clr-namespace:Wasted;assembly=Wasted"
-             x:Class="Wasted.Pages.Place.NewDeal.NewDealPage">
+             x:Class="Wasted.Pages.Place.NewDeal.NewDealPage"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Add new deal" Style="{StaticResource SectionTitle}"/>
-            
-            <Label Text="Title"/>
-            <wasted:RoundedEntry x:Name="TitleEntry" />
-            
-            <Label Text="Current cost"/>
-            <wasted:RoundedEntry x:Name="CurrentCostEntry" TextChanged="NumberEntryTextChanged"/>
-            
-            <Label Text="Regular cost"/>
-            <wasted:RoundedEntry x:Name="RegularCostEntry" TextChanged="NumberEntryTextChanged"/>
-            
-            <Button Text="Next" Style="{StaticResource PurchaseButton}" Clicked="NextButtonClicked"/>
+        <StackLayout Padding="7">
+            <!--#region Custom navigation bar-->
+            <StackLayout Orientation="Horizontal">
+                <Button Text="‹"
+                        Style="{StaticResource CustomNavBarBackButton}"
+                        TextColor="{StaticResource TextBlack}"
+                        Clicked="BackClicked" />
+
+                <Label Text="Add new deal"
+                       VerticalTextAlignment="Center"
+                       Style="{StaticResource PageTitle}" />
+            </StackLayout>
+            <!--#endregion-->
+
+            <!--#region Form -->
+            <StackLayout Spacing="20" VerticalOptions="CenterAndExpand" Margin="0, 0, 0, 80">
+                <StackLayout>
+                    <Label Text="Title" />
+                    <Entry x:Name="TitleEntry" />
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Current cost" />
+                    <Entry x:Name="CurrentCostEntry" TextChanged="NumberEntryTextChanged" />
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Regular cost" />
+                    <Entry x:Name="RegularCostEntry" TextChanged="NumberEntryTextChanged" />
+                </StackLayout>
+            </StackLayout>
+            <!--#endregion -->
+
+            <!--#region Action Button -->
+            <Button Text="Next" Clicked="NextButtonClicked"
+                    Style="{StaticResource FormActionButton}"
+                    VerticalOptions="EndAndExpand" />
+            <!--#endregion -->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

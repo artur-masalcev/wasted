@@ -1,23 +1,23 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Wasted.Pages.UserRegistrationDataPage"
+    x:Class="Wasted.Pages.Login.UserRegistrationDataPage"
     BackgroundColor="{StaticResource AppEmerald}"
-    NavigationPage.HasNavigationBar="False"
-    >
+    NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <!--#region Default styles-->
         <Style TargetType="Label">
-			<Setter Property="FontAttributes" Value="Bold"/>
-			<Setter Property="TextColor" Value="White"/>
-		</Style>
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="White" />
+        </Style>
         <Style TargetType="NavigationPage">
             <Setter Property="BarBackgroundColor" Value="{StaticResource AppEmerald}" />
             <Setter Property="BarTextColor" Value="White" />
         </Style>
-		<!--#endregion-->
+        <!--#endregion-->
     </ContentPage.Resources>
 
     <ContentPage.Content>
@@ -26,12 +26,11 @@
             <StackLayout Orientation="Horizontal">
                 <Button Text="‹"
                         Style="{StaticResource CustomNavBarBackButton}"
-                        Clicked="BackClicked"
-                        />
+                        Clicked="BackClicked" />
 
                 <Label Text="Basic information"
                        VerticalTextAlignment="Center"
-                       FontSize="Title"/>
+                       FontSize="Title" />
             </StackLayout>
             <!--#endregion-->
 
@@ -44,22 +43,21 @@
 
                 <StackLayout>
                     <Label Text="Password" />
-                    <Entry x:Name="PasswordEntry" IsPassword="True"/>
+                    <Entry x:Name="PasswordEntry" IsPassword="True" />
                 </StackLayout>
 
                 <StackLayout>
                     <Label Text="Repeat password" />
-                    <Entry x:Name="RepeatedPasswordEntry" IsPassword="True"/>
+                    <Entry x:Name="RepeatedPasswordEntry" IsPassword="True" />
                 </StackLayout>
             </StackLayout>
             <!--#endregion-->
 
             <!--#region Action buttons-->
             <Button Text="Next"
-                Style="{StaticResource AuthPrimaryActionButton}"
-                Clicked="NextClicked"
-                Margin="50, 0, 50, 20"
-                />
+                    Style="{StaticResource AuthPrimaryActionButton}"
+                    Clicked="NextClicked"
+                    Margin="50, 0, 50, 20" />
             <!--#endregion-->
         </StackLayout>
     </ContentPage.Content>

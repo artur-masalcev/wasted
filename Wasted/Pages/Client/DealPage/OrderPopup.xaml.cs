@@ -2,12 +2,13 @@
 using Acr.UserDialogs;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
-using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
+using Wasted.Utils.Services;
+using Wasted.WastedAPI;
 using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 
-namespace Wasted.Pages.Deals
+namespace Wasted.Pages.Client.DealPage
 {
     public partial class OrderPopup : PopupPage
     {
@@ -15,16 +16,18 @@ namespace Wasted.Pages.Deals
         private DataService service;
         public int StepperDealQuantity => SelectedDeal.Quantity == 0 ? 1 : SelectedDeal.Quantity;
 
-        private int selectedCount = 0;
+        private int _selectedCount = 0;
+
         public int SelectedCount
         {
-            get { return selectedCount; }
+            get => _selectedCount;
             set
             {
-                selectedCount = value;
+                _selectedCount = value;
                 OnPropertyChanged();
             }
         }
+
         public OrderPopup(Deal deal)
         {
             SelectedDeal = deal;
@@ -39,12 +42,13 @@ namespace Wasted.Pages.Deals
         public void OnConfirmClicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync(true); // Close the popup
-            SelectedDeal.Quantity -= (int) stepper.Value;
-            
-            bool selectedSomething = stepper.Value != 0;
+            SelectedDeal.Quantity -= (int) Stepper.Value;
+            DataProvider.UpdateDeal(SelectedDeal);
+
+            bool selectedSomething = Stepper.Value != 0;
             if (selectedSomething)
             {
-                CartDeal cartDeal = new CartDeal(SelectedDeal, (int) stepper.Value, stepper.Value * SelectedDeal.DealCosts.CurrentCost);
+                CartDeal cartDeal = new CartDeal(SelectedDeal, (int) Stepper.Value, Stepper.Value * SelectedDeal.CurrentCost);
                 service.CartDeals.Add(cartDeal);
                 // Navigates to the third tabbed page and closes the Deal Page
                 MessagingCenter.Send<object, int>(this,"click",(int) NavigationPages.CART_PAGE);
@@ -61,7 +65,7 @@ namespace Wasted.Pages.Deals
 
         private void StepperValueChanged(object sender, ValueChangedEventArgs e)
         {
-            SelectedCount = (int)stepper.Value;
+            SelectedCount = (int) Stepper.Value;
         }
     }
 }

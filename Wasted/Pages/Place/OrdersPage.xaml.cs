@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Rg.Plugins.Popup.Services;
 using Wasted.Dummy_API.Business_Objects;
-using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
+using Wasted.Utils.Services;
+using Wasted.WastedAPI.Business_Objects;
+using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Forms;
 using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
@@ -17,7 +19,7 @@ namespace Wasted.Pages.Place
     public partial class OrdersPage : ContentPage
     {
         private DataService service;
-        public UserPlace CurrentUser { get; set; }
+        public PlaceUser CurrentUser { get; set; }
         private IEnumerable<FoodPlace> ownedPlaces;
         public IEnumerable<FoodPlace> OwnedPlaces
         {
@@ -31,8 +33,8 @@ namespace Wasted.Pages.Place
         public OrdersPage()
         {
             service = DependencyService.Get<DataService>();
-            CurrentUser = (UserPlace)service.CurrentUser;
-            OwnedPlaces = CurrentUser.OwnedPlaceIDs.Select(id => service.AllFoodPlaces[id - 1]);
+            CurrentUser = (PlaceUser)service.CurrentUser;
+            //OwnedPlaces = CurrentUser.OwnedPlaceIDs.Select(id => service.AllFoodPlaces[id - 1]);
             InitializeComponent();
 
             OrdersCollectionView.ItemsSource = service.OrderedDeals.Where(order =>
@@ -84,7 +86,7 @@ namespace Wasted.Pages.Place
 
         private void OrdersCollectionView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectionChanger.ListSelectionChanged(sender, e, () =>
+            SelectionChanger.ListSelectionChanged(sender, () =>
             {
                 OrderedDeal order = e.CurrentSelection.FirstOrDefault() as OrderedDeal;
                 if (order.Status.Equals("Preparing"))

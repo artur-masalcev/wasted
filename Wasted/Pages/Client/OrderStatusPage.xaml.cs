@@ -4,6 +4,7 @@ using Rg.Plugins.Popup.Services;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.Pages.Client;
 using Wasted.Utils;
+using Wasted.Utils.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -39,7 +40,7 @@ namespace Wasted
 
         private void OrderedDealsCollectionView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectionChanger.ListSelectionChanged(sender, e, () =>
+            SelectionChanger.ListSelectionChanged(sender, () =>
             {
                 OrderedDeal order = e.CurrentSelection.FirstOrDefault() as OrderedDeal;
                 if (order.Status.Equals("Ready to pick up"))

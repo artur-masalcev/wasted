@@ -4,6 +4,7 @@ using System.Linq;
 using Acr.UserDialogs;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.Utils;
+using Wasted.Utils.Services;
 using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

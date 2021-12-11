@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
-using Wasted.Dummy_API.Business_Objects;
-using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Pages.Place.NewDeal;
+using Wasted.Pages.Place.NewPlace;
 using Wasted.Utils;
+using Wasted.Utils.Services;
+using Wasted.WastedAPI;
+using Wasted.WastedAPI.Business_Objects;
+using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace Wasted.Pages.Place
@@ -14,32 +19,24 @@ namespace Wasted.Pages.Place
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PlaceHomePage : ContentPage
     {
-        private DataService service;
-        public UserPlace CurrentUser { get; set; }
-        private IEnumerable<FoodPlace> ownedPlaces;
-        public IEnumerable<FoodPlace> OwnedPlaces
-        {
-            get { return ownedPlaces; }
-            set
-            {
-                ownedPlaces = value;
-                OnPropertyChanged();
-            }
-        }
+        private readonly DataService _service;
+        private readonly PlaceUser _currentPlaceUser;
+        public List<FoodPlace> OwnedPlaces => _currentPlaceUser.OwnedPlaces;
         public ICommand DeleteCommand { get; set; }
+
         public PlaceHomePage()
         {
-            service = DependencyService.Get<DataService>();
-            CurrentUser = (UserPlace)service.CurrentUser;
-            BindingContext = this;
-            OwnedPlaces = CurrentUser.OwnedPlaceIDs.Select(id => service.AllFoodPlaces[id - 1]); // Selects appropriate food place based on index
+            _service = DependencyService.Get<DataService>();
             InitializeComponent();
             DeleteCommand = new Command(DeletePlace);
+            _currentPlaceUser = (PlaceUser) _service.CurrentUser;
+            BindingContext = this;
+            On<iOS>().SetUseSafeArea(true);
         }
 
         private void YourPlacesCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectionChanger.ListSelectionChanged(sender, e, () =>
+            SelectionChanger.ListSelectionChanged(sender, () =>
             {
                 FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
                 Navigation.PushAsync(new NewDealPage(selectedPlace));
@@ -54,8 +51,11 @@ namespace Wasted.Pages.Place
         private void DeletePlace(object obj)
         {
             FoodPlace selectedPlace = obj as FoodPlace;
-            CurrentUser.OwnedPlaceIDs = CurrentUser.OwnedPlaceIDs.Where(id => id != selectedPlace.ID).ToList();
-            OwnedPlaces = OwnedPlaces.Where(place => place != selectedPlace);
+            DataProvider.DeleteFoodPlace(selectedPlace);
+            _currentPlaceUser.OwnedPlaces = _currentPlaceUser.OwnedPlaces
+                .Where(place => place != selectedPlace)
+                .ToList();
+            OnPropertyChanged("OwnedPlaces");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wasted.Pages.Login.UserRegistrationDeliveryPage"
@@ -8,14 +9,14 @@
     <ContentPage.Resources>
         <!--#region Default styles-->
         <Style TargetType="Label">
-			<Setter Property="FontAttributes" Value="Bold"/>
-			<Setter Property="TextColor" Value="White"/>
-		</Style>
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="White" />
+        </Style>
         <Style TargetType="NavigationPage">
             <Setter Property="BarBackgroundColor" Value="{StaticResource AppEmerald}" />
             <Setter Property="BarTextColor" Value="White" />
         </Style>
-		<!--#endregion-->
+        <!--#endregion-->
     </ContentPage.Resources>
 
     <ContentPage.Content>
@@ -24,12 +25,11 @@
             <StackLayout Orientation="Horizontal">
                 <Button Text="‹"
                         Style="{StaticResource CustomNavBarBackButton}"
-                        Clicked="BackClicked"
-                        />
+                        Clicked="BackClicked" />
 
                 <Label Text="Personal information"
                        VerticalTextAlignment="Center"
-                       FontSize="Title"/>
+                       FontSize="Title" />
             </StackLayout>
             <!--#endregion-->
 

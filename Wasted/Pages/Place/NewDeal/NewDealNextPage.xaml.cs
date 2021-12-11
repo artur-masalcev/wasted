@@ -1,9 +1,13 @@
 ﻿using System;
 using Rg.Plugins.Popup.Services;
-using Wasted.Dummy_API.Business_Objects;
-using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
+using Wasted.Utils.Exceptions;
+using Wasted.Utils.Services;
+using Wasted.WastedAPI;
+using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace Wasted.Pages.Place.NewDeal
@@ -13,14 +17,15 @@ namespace Wasted.Pages.Place.NewDeal
     {
         public EntryLengthValidator Validator { get; set; }
         public Deal CurrentDeal { get; set; }
-        public FoodPlace SelectedPlace { get; set; }
-        public NewDealNextPage(Deal currentDeal, FoodPlace selectedPlace)
+
+        public NewDealNextPage(Deal currentDeal)
         {
             CurrentDeal = currentDeal;
-            SelectedPlace = selectedPlace;
             Validator = new EntryLengthValidator(maxEntryLength: 100);
             BindingContext = Validator;
             InitializeComponent();
+
+            On<iOS>().SetUseSafeArea(true);
         }
 
         private void DescriptionEntryTextChanged(object sender, TextChangedEventArgs e)
@@ -33,24 +38,29 @@ namespace Wasted.Pages.Place.NewDeal
             PopupNavigation.Instance.PushAsync(new ChooseImagePopup(CurrentDeal, "ImageURL"));
         }
 
-        private void FillDealValues(DataService service)
+        private void FillDealValues(DataService service, string dealExpirationDate, string dealDescription)
         {
-            CurrentDeal.ID = service.AllDeals.Count + 1;
-            CurrentDeal.Due = DueDatePicker.Date.ToString("yyyy-MM-dd");
-            CurrentDeal.Description = DescriptionEntry.Text;
-            CurrentDeal.FoodPlaces.Add(SelectedPlace);
-            service.AllDeals.Add(CurrentDeal);
+            ExceptionChecker.CheckValidParams(dealDescription, CurrentDeal.ImageURL);
+            CurrentDeal.Due = dealExpirationDate;
+            CurrentDeal.Description = dealDescription;
+            DataProvider.CreateDeal(CurrentDeal);
+            service.CurrentUser.PushPage(this);
         }
 
         private void DoneButtonClicked(object sender, EventArgs e)
         {
             DataService service = DependencyService.Get<DataService>();
-            FillDealValues(service);
-            
-            SelectedPlace.Deals.Add(CurrentDeal);
-            SelectedPlace.DealsIDs.Add(CurrentDeal.ID);
+            string dealExpirationDate = DueDatePicker.Date.ToString("yyyy-MM-dd");
+            ExceptionHandler.WrapFunctionCall(
+                () => FillDealValues(service, dealExpirationDate, DescriptionEntry.Text),
+                this
+            );
+        }
 
-            ((UserPlace)service.CurrentUser).PushPage(this);
+        private void BackClicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync(true);
+            base.OnBackButtonPressed();
         }
     }
 }

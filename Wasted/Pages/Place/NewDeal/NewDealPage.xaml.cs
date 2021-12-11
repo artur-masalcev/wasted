@@ -1,7 +1,11 @@
 ﻿using System;
-using Wasted.DummyAPI.BusinessObjects;
+using Wasted.Utils.Exceptions;
+using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
+using Entry = Xamarin.Forms.Entry;
 
 namespace Wasted.Pages.Place.NewDeal
 {
@@ -9,31 +13,47 @@ namespace Wasted.Pages.Place.NewDeal
     public partial class NewDealPage : ContentPage
     {
         public FoodPlace SelectedPlace { get; set; }
+
         public NewDealPage(FoodPlace selectedPlace)
         {
             SelectedPlace = selectedPlace;
             InitializeComponent();
+
+            On<iOS>().SetUseSafeArea(true);
         }
 
         private void NumberEntryTextChanged(object sender, TextChangedEventArgs e)
         {
             if (!string.IsNullOrEmpty(e.NewTextValue) &&
-                (!double.TryParse(e.NewTextValue,out double number) || number < 0))
+                (!double.TryParse(e.NewTextValue, out double number) || number < 0))
                 ((Entry) sender).Text = e.OldTextValue;
         }
 
-        public double ParseDouble(string text)
+        private void GoToNextPage(string titleText, string currentCostText, string previousCostText)
         {
-            return string.IsNullOrEmpty(text) ? 0 : double.Parse(text);
+            ExceptionChecker.CheckValidParams(titleText, currentCostText, previousCostText);
+            Deal currentDeal = new Deal(
+                foodPlaceId: SelectedPlace.Id,
+                title: titleText,
+                currentCost: double.Parse(currentCostText),
+                previousCost: double.Parse(previousCostText)
+            );
+            SelectedPlace.Deals.Add(currentDeal);
+            Navigation.PushAsync(new NewDealNextPage(currentDeal));
         }
+
         private void NextButtonClicked(object sender, EventArgs e)
         {
-            Deal currentDeal = new Deal(
-                title:TitleEntry.Text,
-                currentCost:ParseDouble(CurrentCostEntry.Text),
-                previousCost:ParseDouble(RegularCostEntry.Text)
+            ExceptionHandler.WrapFunctionCall(
+                () => GoToNextPage(TitleEntry.Text, CurrentCostEntry.Text, RegularCostEntry.Text),
+                this
             );
-            Navigation.PushAsync(new NewDealNextPage(currentDeal, SelectedPlace));
+        }
+
+        private void BackClicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync(true);
+            base.OnBackButtonPressed();
         }
     }
 }

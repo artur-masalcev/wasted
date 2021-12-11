@@ -1,4 +1,5 @@
-﻿using Wasted.WastedAPI.Business_Objects;
+﻿using Wasted.Utils;
+using Wasted.WastedAPI.Business_Objects;
 
 namespace Wasted.Dummy_API.Business_Objects
 {

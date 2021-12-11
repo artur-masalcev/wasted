@@ -1,5 +1,4 @@
-﻿using Wasted.DummyAPI.BusinessObjects;
-
+﻿
 namespace Wasted.WastedAPI.Business_Objects
 {
     public class CartDeal

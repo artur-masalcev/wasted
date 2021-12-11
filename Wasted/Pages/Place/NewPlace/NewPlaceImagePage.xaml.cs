@@ -1,9 +1,14 @@
 ﻿using System;
 using Rg.Plugins.Popup.Services;
-using Wasted.Dummy_API.Business_Objects;
-using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
+using Wasted.Utils.Exceptions;
+using Wasted.Utils.Services;
+using Wasted.WastedAPI;
+using Wasted.WastedAPI.Business_Objects;
+using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace Wasted.Pages.Place.NewPlace
@@ -12,10 +17,13 @@ namespace Wasted.Pages.Place.NewPlace
     public partial class NewPlaceImagePage : ContentPage
     {
         public FoodPlace CurrentPlace { get; set; }
+
         public NewPlaceImagePage(FoodPlace place)
         {
             CurrentPlace = place;
             InitializeComponent();
+
+            On<iOS>().SetUseSafeArea(true);
         }
 
         private void HeaderButtonClicked(object sender, EventArgs e)
@@ -28,14 +36,30 @@ namespace Wasted.Pages.Place.NewPlace
             PopupNavigation.Instance.PushAsync(new ChooseImagePopup(CurrentPlace, "LogoURL"));
         }
 
+        private void AddPlaceToPlaces()
+        {
+            ExceptionChecker.CheckValidParams(CurrentPlace.HeaderURL, CurrentPlace.LogoURL);
+            DataService service = DependencyService.Get<DataService>();
+            PlaceUser currentPlaceUser = (PlaceUser) service.CurrentUser;
+            CurrentPlace.PlaceUserId = currentPlaceUser.Id;
+            CurrentPlace.FoodPlaceTypeId = 1; //TODO: let select
+            DataProvider.CreateFoodPlace(CurrentPlace);
+            service.UpdateUserInfo(); //Fetches the id of a new place
+            currentPlaceUser.PushPage(this);
+        }
+
         private void DoneButtonClicked(object sender, EventArgs e)
         {
-            DataService service = DependencyService.Get<DataService>();
-            CurrentPlace.ID = service.AllFoodPlaces.Count + 1;
-            service.AllFoodPlaces.Add(CurrentPlace);
-            ((UserPlace)service.CurrentUser).OwnedPlaceIDs.Add(CurrentPlace.ID);
-            
-            ((UserPlace)service.CurrentUser).PushPage(this);
+            ExceptionHandler.WrapFunctionCall(
+                AddPlaceToPlaces,
+                this
+            );
+        }
+
+        private void BackClicked(object sender, EventArgs e)
+        {
+            Navigation.PopAsync(true);
+            base.OnBackButtonPressed();
         }
     }
 }

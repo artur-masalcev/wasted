@@ -1,9 +1,9 @@
-﻿using Wasted.Pages.Place;
+﻿using Wasted.Pages.Client;
 using Xamarin.Forms;
 
-namespace Wasted.Dummy_API.Business_Objects
+namespace Wasted.Pages.Place
 {
-    public class PageManager
+    public static class PageManager
     {
         public static void PushClientPage(ContentPage page)
         {
