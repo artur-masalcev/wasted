@@ -2,60 +2,70 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Wasted.Dummy_API;
-using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
+using Wasted.Utils.Services;
+using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
-namespace Wasted
+namespace Wasted.Pages.Client
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchPage : ContentPage
     {
-        private DataService service;
         public List<FoodPlace> AvailablePlaces { get; set; }
 
-        public string[] PlaceTypeNames { get; set; } = BusinessUtils.PlaceTypeDictionary.Keys.ToArray();
+        public List<FoodPlace> AllPlaces { get; set; }
+        public List<FoodPlaceType> FoodPlaceTypes { get; set; }
+        public string[] PlaceTypeNames { get; set; }
 
-        private string currentPlaceType;
+        private string _currentPlaceType;
+
         public string CurrentPlaceType
         {
-            get { return currentPlaceType; }
+            get => _currentPlaceType;
             set
-            { 
-                currentPlaceType = value;
+            {
+                _currentPlaceType = value;
                 OnPropertyChanged();
             }
         }
 
-        private string sectionTitleText = "All places";
+        private string _sectionTitleText = "All places";
+
         public string SectionTitleText
         {
-            get { return sectionTitleText; }
+            get => _sectionTitleText;
             set
             {
-                sectionTitleText = value;
+                _sectionTitleText = value;
                 OnPropertyChanged();
             }
         }
 
-        private string allPlaceButtonText;
+        private string _allPlaceButtonText;
+
         public string AllPlaceButtonText
         {
-            get { return allPlaceButtonText; }
+            get => _allPlaceButtonText;
             set
             {
-                allPlaceButtonText = value;
+                _allPlaceButtonText = value;
                 OnPropertyChanged();
             }
         }
 
         public SearchPage()
         {
-            service = DependencyService.Get<DataService>();
+            DataService service = DependencyService.Get<DataService>();
+            FoodPlaceTypes = service.GetFoodPlaceTypes;
+            PlaceTypeNames = FoodPlaceTypes.Select(type => type.Type).ToArray();
+            AllPlaces = FoodPlaceTypes
+                .Aggregate(new List<FoodPlace>(), (acc, next) => acc.Concat(next.FoodPlaces).ToList())
+                .ToList();
+
             InitializeComponent();
             On<iOS>().SetUseSafeArea(true);
         }
@@ -66,9 +76,9 @@ namespace Wasted
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            AvailablePlaces = service.AllFoodPlaces;
-            restaurantLayout.BindingContext = this;
-            restaurantTypeCollectionView.ItemsSource = PlaceTypeNames;
+            AvailablePlaces = AllPlaces;
+            RestaurantLayout.BindingContext = this;
+            RestaurantTypeCollectionView.ItemsSource = PlaceTypeNames;
         }
 
         /// <summary>
@@ -88,8 +98,8 @@ namespace Wasted
         /// </summary>
         private void ShowFoodPlaces(bool show)
         {
-            restaurantLayout.IsVisible = show;
-            restaurantTypeCollectionView.IsVisible = !show;
+            RestaurantLayout.IsVisible = show;
+            RestaurantTypeCollectionView.IsVisible = !show;
         }
 
         /// <summary>
@@ -97,19 +107,18 @@ namespace Wasted
         /// </summary>
         private void TypesCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (restaurantTypeCollectionView.SelectedItem == null) //Called from allPlaceButton.
+            if (RestaurantTypeCollectionView.SelectedItem == null) //Called from allPlaceButton.
                 return;
 
             ShowFoodPlaces(true);
 
-            string type = (string)e.CurrentSelection.FirstOrDefault();
-            AvailablePlaces = BusinessUtils.PlaceTypeDictionary[type];
-            allPlacesCollectionView.ItemsSource = AvailablePlaces;
+            string type = (string) e.CurrentSelection.FirstOrDefault();
+            AvailablePlaces = FoodPlaceTypes.Find(t => t.Type == type).FoodPlaces;
+            AllPlacesCollectionView.ItemsSource = AvailablePlaces;
 
             SectionTitleText = type + "s";
-            allPlaceButton.IsVisible = true; //Return to all places from current place type
+            AllPlaceButton.IsVisible = true; //Return to all places from current place type
             AllPlaceButtonText = SectionTitleText;
-
         }
 
         /// <summary>
@@ -118,12 +127,12 @@ namespace Wasted
         private void AllPlaceButtonClicked(object sender, EventArgs e)
         {
             ShowFoodPlaces(false);
-            allPlaceButton.IsVisible = false;
-            AvailablePlaces = service.AllFoodPlaces;
-            allPlacesCollectionView.ItemsSource = AvailablePlaces;
+            AllPlaceButton.IsVisible = false;
+            AvailablePlaces = AllPlaces;
+            AllPlacesCollectionView.ItemsSource = AvailablePlaces;
 
             SectionTitleText = "All places";
-            restaurantTypeCollectionView.SelectedItem = null;
+            RestaurantTypeCollectionView.SelectedItem = null;
         }
 
         /// <summary>
@@ -139,17 +148,17 @@ namespace Wasted
                 var filteredPlaces = AvailablePlaces.Where(MaskFunction);
 
                 bool isValid = Regex.IsMatch(e.NewTextValue, restaurantNameRegex);
-                searchBar.TextColor = isValid ? Color.Default : Color.Red;
+                SearchBar.TextColor = isValid ? Color.Default : Color.Red;
 
                 if (string.IsNullOrWhiteSpace(e.NewTextValue))
                 {
                     ShowFoodPlaces(false);
-                    allPlacesCollectionView.ItemsSource = AvailablePlaces;
+                    AllPlacesCollectionView.ItemsSource = AvailablePlaces;
                 }
                 else
                 {
                     ShowFoodPlaces(true);
-                    allPlacesCollectionView.ItemsSource = filteredPlaces;
+                    AllPlacesCollectionView.ItemsSource = filteredPlaces;
                 }
             }
             catch (NullReferenceException)
@@ -164,7 +173,7 @@ namespace Wasted
         private void RefreshView_Refreshing(object sender, EventArgs e)
         {
             OnAppearing();
-            refreshView.IsRefreshing = false;
+            RefreshView.IsRefreshing = false;
         }
     }
 }

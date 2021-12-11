@@ -1,56 +1,49 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Wasted.Dummy_API.Business_Objects;
-using Wasted.DummyDataAPI;
-using Wasted.Utils;
-using Xamarin.Forms;
+﻿using Wasted.Utils;
+using Wasted.Utils.Interfaces;
 
-namespace Wasted.DummyAPI.BusinessObjects
+namespace Wasted.WastedAPI.Business_Objects
 {
     public class Deal : ChangeablePropertyObject, IImageChooser
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
+        public double PreviousCost { get; set; }
+        public double CurrentCost { get; set; }
 
-        public Costs DealCosts { get; set; }
+        private int _quantity = 0;
 
-        public int quantity = 0;
         public int Quantity
         {
-            get { return quantity; }
+            get => _quantity;
             set
             {
-                quantity = value;
-                DataProvider.WriteAllDeals();
+                _quantity = value;
                 OnPropertyChanged();
             }
         }
+
         public string Due { get; set; }
         public string ImageURL { get; set; }
 
         public string Description { get; set; }
 
-        [JsonIgnore]
-        public List<FoodPlace> FoodPlaces { get; set; } = new List<FoodPlace>();
+        public string FoodPlaceTitle { get; set; }
+        public int FoodPlaceId { get; set; }
 
-        /// <summary>
-        /// Food place which has the item. Can be any from FoodPlaces list
-        /// </summary>
-        [JsonIgnore]
-        public string FoodPlaceTitle => FoodPlaces.First().Title;
-
-        public Deal(int id = 0, string title = null, string description = null, double currentCost = 0,
-            double previousCost = 0, int quantity = 0, string due = null, string imageURL = null)
+        public Deal(int quantity = default, int id = default, string title = null, double previousCost = default,
+            double currentCost = default, string due = null, string imageUrl = null, string description = null,
+            string foodPlaceTitle = null, int foodPlaceId = default)
         {
-            ID = id;
+            _quantity = quantity;
+            Id = id;
             Title = title;
-            Description = description;
-            DealCosts = new Costs(previousCost, currentCost);
-            Quantity = quantity;
+            PreviousCost = previousCost;
+            CurrentCost = currentCost;
             Due = due;
-            ImageURL = imageURL;
+            ImageURL = imageUrl;
+            Description = description;
+            FoodPlaceTitle = foodPlaceTitle;
+            FoodPlaceId = foodPlaceId;
         }
     }
 }

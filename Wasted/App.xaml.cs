@@ -1,4 +1,4 @@
-﻿using Wasted.Dummy_API;
+﻿using Wasted.Pages.Login;
 using Xamarin.Forms;
 
 namespace Wasted
@@ -7,9 +7,7 @@ namespace Wasted
     {
         public App()
         {
-            BusinessUtils.AddFoodPlacesToDeals();
             InitializeComponent();
-
             MainPage = new NavigationPage(new LoginPage());
         }
     }

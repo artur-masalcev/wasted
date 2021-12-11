@@ -11,35 +11,34 @@
                 <Button Text="‹"
                         Style="{StaticResource CustomNavBarBackButton}"
                         TextColor="{StaticResource TextBlack}"
-                        Clicked="BackClicked"
-                />
+                        Clicked="BackClicked" />
 
                 <Label Text="Add new place"
                        VerticalTextAlignment="Center"
-                       Style="{StaticResource PageTitle}"/>
+                       Style="{StaticResource PageTitle}" />
             </StackLayout>
             <!--#endregion-->
-            
+
             <!--#region Form-->
             <StackLayout Spacing="20" VerticalOptions="CenterAndExpand" Margin="0, 0, 0, 80">
                 <StackLayout>
                     <Label Text="Header image" />
                     <Button Text="Choose" Clicked="HeaderButtonClicked" />
                 </StackLayout>
-                
+
                 <StackLayout>
                     <Label Text="Logo image" />
                     <Button Text="Choose" Clicked="LogoButtonClicked" />
                 </StackLayout>
             </StackLayout>
             <!--#endregion-->
-            
+
             <!--#region Action Button-->
-            <Button Text="Done" 
+            <Button Text="Done"
                     Clicked="DoneButtonClicked"
                     Style="{StaticResource FormActionButton}"
                     BackgroundColor="{StaticResource AppEmerald}"
-                    VerticalOptions="EndAndExpand"/>
+                    VerticalOptions="EndAndExpand" />
             <!--#endregion-->
         </StackLayout>
     </ContentPage.Content>

@@ -4,6 +4,5 @@ namespace Wasted.Utils.Exceptions
 {
     public class UserAlreadyExistsException : Exception
     {
-        
     }
 }

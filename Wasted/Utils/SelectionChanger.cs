@@ -7,10 +7,10 @@ namespace Wasted.Utils
     {
         public static void ListSelectionChanged(object sender, Action method)
         {
-            if (((CollectionView)sender).SelectedItem == null)
+            if (((CollectionView) sender).SelectedItem == null)
                 return;
             method();
-            ((CollectionView)sender).SelectedItem = null; //Prevents borders from appearing
+            ((CollectionView) sender).SelectedItem = null; //Prevents borders from appearing
         }
     }
 }

@@ -1,23 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Rg.Plugins.Popup.Services;
-using Wasted.DummyAPI;
-using Wasted.DummyAPI.BusinessObjects;
+using Wasted.Pages.Client.DealPage;
+using Wasted.Pages.Client.FoodPlaceRating;
 using Wasted.Utils;
+using Wasted.Utils.Services;
 using Wasted.WastedAPI;
+using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
-namespace Wasted
+namespace Wasted.Pages.Client
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FoodPlacesPage : ContentPage
     {
         public FoodPlace SelectedFoodPlace { get; set; }
-        private DataService service;
+        private readonly DataService _service;
 
         public FoodPlacesPage(FoodPlace selectedFoodPlace)
         {
@@ -28,7 +29,7 @@ namespace Wasted
 
             InitializeViews();
 
-            service = DependencyService.Get<DataService>();
+            _service = DependencyService.Get<DataService>();
         }
 
         /// <summary>
@@ -36,12 +37,13 @@ namespace Wasted
         /// </summary>
         private void InitializeViews()
         {
-            contentScrollView.BindingContext = SelectedFoodPlace;
-            dealsCollectionView.ItemsSource = DataOrganizer.FilterDeals(SelectedFoodPlace.Deals,
+            ContentScrollView.BindingContext = SelectedFoodPlace;
+            DealsCollectionView.ItemsSource = DataOrganizer.FilterDeals(SelectedFoodPlace.Deals,
                 DefaultFilters.DealInStock);
 
             const int dealHeight = 220;
-            dealsCollectionView.HeightRequest = dealHeight * ((SelectedFoodPlace.Deals.Count  + 1) / 2); //Two items in one row
+            DealsCollectionView.HeightRequest =
+                dealHeight * ((SelectedFoodPlace.Deals.Count + 1) / 2); //Two items in one row
         }
 
         /// <summary>
@@ -69,10 +71,10 @@ namespace Wasted
         /// </summary>
         private void RefreshView_Refreshing(object sender, EventArgs e)
         {
-            SelectedFoodPlace = service.AllFoodPlaces.Find(place => place.ID == SelectedFoodPlace.ID);
+            SelectedFoodPlace = _service.AllFoodPlaces.Find(place => place.Id == SelectedFoodPlace.Id);
             BindingContext = SelectedFoodPlace;
             InitializeViews();
-            refreshView.IsRefreshing = false;
+            RefreshView.IsRefreshing = false;
         }
-    }  
+    }
 }

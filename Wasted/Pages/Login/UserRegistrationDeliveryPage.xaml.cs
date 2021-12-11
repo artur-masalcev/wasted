@@ -1,7 +1,7 @@
 ﻿using System;
-using Wasted.Dummy_API.Business_Objects;
-using Wasted.Utils;
 using Wasted.Utils.Exceptions;
+using Wasted.Utils.Services;
+using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
@@ -21,7 +21,7 @@ namespace Wasted.Pages.Login
         private void SubmitUserData(string userName, string userSurname, string userCity, string userAddress)
         {
             ExceptionChecker.CheckValidParams(userName, userSurname, userCity, userAddress);
-            
+
             DataService dataService = DependencyService.Get<DataService>();
             User currentUser = dataService.CurrentUser;
 
@@ -29,11 +29,11 @@ namespace Wasted.Pages.Login
             currentUser.Surname = userSurname;
             currentUser.City = userCity;
             currentUser.Address = userAddress;
-            
-            currentUser.CreateUser(dataService);
+
+            currentUser.CreateUser();
             Navigation.PushAsync(new LoginPage());
         }
-        
+
         private void CreateClicked(object sender, EventArgs e)
         {
             ExceptionHandler.WrapFunctionCall(

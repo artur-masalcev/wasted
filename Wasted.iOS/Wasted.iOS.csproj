@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="RoundedEntryRendererIOS.cs" />
     <ImageAsset Include="Assets.xcassets\edit.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\edit.imageset\edit.png" />
     <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\Contents.json">
@@ -100,12 +101,24 @@
     <ImageAsset Include="Assets.xcassets\star_outline.imageset\star_outline-1.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\logo_white.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\logo_white.imageset\logo_white.png" />
-    <ImageAsset Include="Assets.xcassets\foodplace.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\foodplace.imageset\foodplace.png" />
-    <ImageAsset Include="Assets.xcassets\user.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\user.imageset\user.png" />
+    <ImageAsset Include="Assets.xcassets\logo_white.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\logo_white.imageset\logo_white.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\foodplace.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\foodplace.imageset\foodplace.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\user.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\user.imageset\user.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

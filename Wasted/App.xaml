@@ -41,9 +41,10 @@
 		<!--#region Implicit styles -->
 
 		<!--#region Labels -->
+        <!--#region Labels -->
 		<Style x:Key="RedLabel" TargetType="Label">
-			<Setter Property="TextColor" Value="#FF0000" />
-		</Style>
+            <Setter Property="TextColor" Value="#FF0000" />
+        </Style>
 
 		<Style x:Key="SectionTitle" TargetType="Label">
 			<Setter Property="Margin" Value="5" />

@@ -1,4 +1,4 @@
-using Wasted.DummyAPI.BusinessObjects;
+using Wasted.WastedAPI.Business_Objects;
 
 namespace Wasted.WastedAPI
 {
@@ -14,7 +14,7 @@ namespace Wasted.WastedAPI
         /// <returns>Returns true if quantity of given 'deal' is more than zero. Returns false otherwise</returns>
         public static bool DealInStock(Deal deal)
         {
-            return deal.quantity > 0;
+            return deal.Quantity > 0;
         }
     }
 }

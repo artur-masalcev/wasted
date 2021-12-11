@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Rg.Plugins.Popup.Services;
-using Wasted.Dummy_API.Business_Objects;
-using Wasted.DummyAPI.BusinessObjects;
-using Wasted.DummyDataAPI;
-using Wasted.Utils;
 using Wasted.Utils.Exceptions;
+using Wasted.Utils.Services;
+using Wasted.WastedAPI;
+using Wasted.WastedAPI.Business_Objects;
+using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
@@ -18,11 +16,12 @@ namespace Wasted.Pages.Place.NewPlace
     public partial class NewPlaceImagePage : ContentPage
     {
         public FoodPlace CurrentPlace { get; set; }
+
         public NewPlaceImagePage(FoodPlace place)
         {
             CurrentPlace = place;
             InitializeComponent();
-            
+
             On<iOS>().SetUseSafeArea(true);
         }
 
@@ -40,18 +39,12 @@ namespace Wasted.Pages.Place.NewPlace
         {
             ExceptionChecker.CheckValidParams(CurrentPlace.HeaderURL, CurrentPlace.LogoURL);
             DataService service = DependencyService.Get<DataService>();
-            UserPlace currentUser = (UserPlace)service.CurrentUser;
-
-            CurrentPlace.ID = service.AllFoodPlaces.Count == 0 ? 1 : service.AllFoodPlaces.Last().ID + 1;
-
-            List<FoodPlace> currentFoodPlaces = service.AllFoodPlaces;
-            currentFoodPlaces.Add(CurrentPlace);
-            DataProvider.WriteAllPlaces(currentFoodPlaces);
-
-            currentUser.OwnedPlaceIDs.Add(CurrentPlace.ID);
-            DataProvider.WriteAllUserPlaces();
-            
-            currentUser.PushPage(this);
+            PlaceUser currentPlaceUser = (PlaceUser) service.CurrentUser;
+            CurrentPlace.PlaceUserId = currentPlaceUser.Id;
+            CurrentPlace.FoodPlaceTypeId = 1; //TODO: let select
+            DataProvider.CreateFoodPlace(CurrentPlace);
+            service.UpdateUserInfo(); //Fetches the id of a new place
+            currentPlaceUser.PushPage(this);
         }
 
         private void DoneButtonClicked(object sender, EventArgs e)
@@ -61,7 +54,7 @@ namespace Wasted.Pages.Place.NewPlace
                 this
             );
         }
-        
+
         private void BackClicked(object sender, EventArgs e)
         {
             Navigation.PopAsync(true);

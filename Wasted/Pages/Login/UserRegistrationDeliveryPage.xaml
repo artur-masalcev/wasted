@@ -1,6 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:wasted="clr-namespace:Wasted;assembly=Wasted"
              x:Class="Wasted.Pages.Login.UserRegistrationDeliveryPage"
              BackgroundColor="{StaticResource AppEmerald}"
              NavigationPage.HasNavigationBar="False">
@@ -8,14 +10,14 @@
     <ContentPage.Resources>
         <!--#region Default styles-->
         <Style TargetType="Label">
-			<Setter Property="FontAttributes" Value="Bold"/>
-			<Setter Property="TextColor" Value="White"/>
-		</Style>
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="White" />
+        </Style>
         <Style TargetType="NavigationPage">
             <Setter Property="BarBackgroundColor" Value="{StaticResource AppEmerald}" />
             <Setter Property="BarTextColor" Value="White" />
         </Style>
-		<!--#endregion-->
+        <!--#endregion-->
     </ContentPage.Resources>
 
     <ContentPage.Content>
@@ -24,12 +26,11 @@
             <StackLayout Orientation="Horizontal">
                 <Button Text="‹"
                         Style="{StaticResource CustomNavBarBackButton}"
-                        Clicked="BackClicked"
-                        />
+                        Clicked="BackClicked" />
 
                 <Label Text="Personal information"
                        VerticalTextAlignment="Center"
-                       FontSize="Title"/>
+                       FontSize="Title" />
             </StackLayout>
             <!--#endregion-->
 
@@ -37,22 +38,22 @@
             <StackLayout Spacing="20" VerticalOptions="CenterAndExpand">
                 <StackLayout>
                     <Label Text="Name" />
-                    <Entry x:Name="NameEntry" />
+                    <wasted:RoundedEntry x:Name="NameEntry" />
                 </StackLayout>
 
                 <StackLayout>
                     <Label Text="Surname" />
-                    <Entry x:Name="SurnameEntry" />
+                    <wasted:RoundedEntry x:Name="SurnameEntry" />
                 </StackLayout>
 
                 <StackLayout>
                     <Label Text="City" />
-                    <Entry x:Name="CityEntry" />
+                    <wasted:RoundedEntry x:Name="CityEntry" />
                 </StackLayout>
 
                 <StackLayout>
                     <Label Text="Address" />
-                    <Entry x:Name="AddressEntry" />
+                    <wasted:RoundedEntry x:Name="AddressEntry" />
                 </StackLayout>
             </StackLayout>
             <!--#endregion-->

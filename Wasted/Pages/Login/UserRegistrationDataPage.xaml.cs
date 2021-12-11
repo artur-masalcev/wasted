@@ -1,22 +1,22 @@
 ﻿using System;
-using Wasted.Dummy_API.Business_Objects;
-using Wasted.Pages.Login;
 using Wasted.Utils.Exceptions;
-using Wasted.Utils;
+using Wasted.Utils.Services;
+using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
-namespace Wasted.Pages
+namespace Wasted.Pages.Login
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserRegistrationDataPage : ContentPage
     {
-        private DataService service;
+        private readonly DataService _service;
+
         public UserRegistrationDataPage()
         {
-            service = DependencyService.Get<DataService>();
+            _service = DependencyService.Get<DataService>();
             InitializeComponent();
             On<iOS>().SetUseSafeArea(true); // Put margin on iOS devices that have top notch
         }
@@ -25,9 +25,10 @@ namespace Wasted.Pages
         {
             ExceptionChecker.CheckValidParams(username, password);
 
-            bool isClient = service.ClientUsers.ContainsKey(username);
-            bool isPlace = service.PlaceUsers.ContainsKey(username);
-            if (!isClient && !isPlace)
+            bool existsUser = (_service.GetPlaceUser(username, password) ??
+                               (User) _service.GetClientUser(username, password)) != null;
+
+            if (!existsUser)
             {
                 DataService dataService = DependencyService.Get<DataService>();
                 User user = dataService.CurrentUser;
@@ -40,7 +41,7 @@ namespace Wasted.Pages
                 throw new UserAlreadyExistsException();
             }
         }
-        
+
         private void NextClicked(object sender, EventArgs e)
         {
             string password = PasswordEntry.Text ?? "";
