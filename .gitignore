@@ -3,7 +3,6 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-ConfigurationProperties.cs
 
 # User-specific files
 *.rsuser
@@ -363,3 +362,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+Wasted/Properties/ConfigurationProperties.cs

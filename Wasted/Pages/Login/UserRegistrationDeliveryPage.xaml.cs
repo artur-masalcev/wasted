@@ -1,6 +1,7 @@
 ﻿using System;
 using Wasted.Dummy_API.Business_Objects;
 using Wasted.Utils;
+using Wasted.Utils.Exceptions;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
@@ -19,13 +20,7 @@ namespace Wasted.Pages.Login
 
         private void SubmitUserData(string userName, string userSurname, string userCity, string userAddress)
         {
-            if (String.IsNullOrEmpty(userName) ||
-                String.IsNullOrEmpty(userSurname) ||
-                String.IsNullOrEmpty(userCity) ||
-                String.IsNullOrEmpty(userAddress))
-            {
-                throw new ArgumentNullException();
-            }
+            ExceptionChecker.CheckValidParams(userName, userSurname, userCity, userAddress);
             
             DataService dataService = DependencyService.Get<DataService>();
             User currentUser = dataService.CurrentUser;
@@ -41,14 +36,10 @@ namespace Wasted.Pages.Login
         
         private void CreateClicked(object sender, EventArgs e)
         {
-            try
-            {
-                SubmitUserData(NameEntry.Text, SurnameEntry.Text, CityEntry.Text, AddressEntry.Text);
-            }
-            catch (ArgumentNullException)
-            {
-                DisplayAlert("", "Please fill all fields", "OK");
-            }
+            ExceptionHandler.WrapFunctionCall(
+                () => SubmitUserData(NameEntry.Text, SurnameEntry.Text, CityEntry.Text, AddressEntry.Text),
+                this
+            );
         }
 
         private void BackClicked(object sender, EventArgs e)

@@ -34,13 +34,13 @@ namespace Wasted
         /// <summary>
         /// Sets binding for xaml file.
         /// </summary>
-        public void InitializeViews()
+        private void InitializeViews()
         {
             contentScrollView.BindingContext = SelectedFoodPlace;
             dealsCollectionView.ItemsSource = DataOrganizer.FilterDeals(SelectedFoodPlace.Deals,
                 DefaultFilters.DealInStock);
 
-            const int dealHeight = 220; //Dirty fix to prevent too much scroll area
+            const int dealHeight = 220;
             dealsCollectionView.HeightRequest = dealHeight * ((SelectedFoodPlace.Deals.Count  + 1) / 2); //Two items in one row
         }
 
@@ -49,7 +49,7 @@ namespace Wasted
         /// </summary>
         void DealsCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectionChanger.ListSelectionChanged(sender, e, () =>
+            SelectionChanger.ListSelectionChanged(sender, () =>
             {
                 Deal selectedDeal = e.CurrentSelection.FirstOrDefault() as Deal;
                 Navigation.PushAsync(new ItemsPage(selectedDeal));

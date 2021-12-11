@@ -17,7 +17,7 @@ namespace Wasted.Pages.Place
         {
             Chooser = obj;
             InitializeComponent();
-            Property = typeof(FoodPlace).GetProperty(property);
+            Property = obj.GetType().GetProperty(property);
             URLEntry.Text = (string)Property?.GetValue(Chooser, null);
         }
 

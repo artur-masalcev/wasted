@@ -2,12 +2,13 @@
 using Newtonsoft.Json;
 using Wasted.Dummy_API;
 using Wasted.Dummy_API.Business_Objects;
+using Wasted.DummyDataAPI;
 using Wasted.Utils;
 using Xamarin.Essentials;
 
 namespace Wasted.DummyAPI.BusinessObjects
 {
-    public class FoodPlace : ChangeablePropertyObject, IIntegerIdentifiable, IImageChooser
+    public class FoodPlace : ChangeablePropertyObject, IImageChooser
     {
         public int ID { get; set; }
         public string Title { get; set; }
@@ -30,6 +31,7 @@ namespace Wasted.DummyAPI.BusinessObjects
             {
                 rating = (value + rating * RatingCount) / (RatingCount + 1);
                 ++RatingCount;
+                DataProvider.WriteAllPlaces();
                 OnPropertyChanged();
             }
         }

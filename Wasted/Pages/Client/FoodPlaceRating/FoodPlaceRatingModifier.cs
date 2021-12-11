@@ -1,5 +1,6 @@
 ﻿using Wasted.Dummy_API.Business_Objects;
 using Wasted.DummyAPI.BusinessObjects;
+using Wasted.DummyDataAPI;
 
 namespace Wasted.FoodPlaceRatingSystem
 {
@@ -24,9 +25,9 @@ namespace Wasted.FoodPlaceRatingSystem
         /// <summary>
         /// Adds or changes user's rating for the food place
         /// </summary>
-        /// <param name="User">Unique user. Required if user wishes to change his current rate, also prevents data duplicity</param>
-        /// <param name="FoodPlace">Food place</param>
-        /// <param name="NewRating">Rating for the food place</param>
+        /// <param name="user">Unique user. Required if user wishes to change his current rate, also prevents data duplicity</param>
+        /// <param name="selectedFoodPlace">Food place</param>
+        /// <param name="newRating">Rating for the food place</param>
         /// 
 
         public static void SetUserVote(User user, FoodPlace selectedFoodPlace, int newRating)
@@ -38,6 +39,7 @@ namespace Wasted.FoodPlaceRatingSystem
 
             selectedFoodPlace.Rating = newRating;
             user.Ratings[key] = newRating;
+            DataProvider.WriteAllUserClients();
         }
     }
 }

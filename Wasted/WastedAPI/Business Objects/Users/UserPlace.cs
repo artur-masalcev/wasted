@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Wasted.DummyDataAPI;
 using Wasted.Utils;
 using Xamarin.Forms;
 
@@ -24,6 +25,7 @@ namespace Wasted.Dummy_API.Business_Objects
         public override void CreateUser(DataService service)
         {
             service.PlaceUsers[Username] = this;
+            DataProvider.WriteAllUserPlaces();
         }
     }
 }

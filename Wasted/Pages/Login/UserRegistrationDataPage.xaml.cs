@@ -23,7 +23,7 @@ namespace Wasted.Pages
 
         private void SubmitUserData(string username, string password)
         {
-            if (String.IsNullOrEmpty(username) || String.IsNullOrEmpty(password)) throw new ArgumentNullException();
+            ExceptionChecker.CheckValidParams(username, password);
 
             bool isClient = service.ClientUsers.ContainsKey(username);
             bool isPlace = service.PlaceUsers.ContainsKey(username);
@@ -43,28 +43,19 @@ namespace Wasted.Pages
         
         private void NextClicked(object sender, EventArgs e)
         {
-            string username = UsernameEntry.Text ?? "";
             string password = PasswordEntry.Text ?? "";
             string repeatedPassword = RepeatedPasswordEntry.Text ?? "";
 
             if (password.Equals(repeatedPassword))
             {
-                try
-                {
-                    SubmitUserData(username, password);
-                }
-                catch (ArgumentNullException)
-                {
-                    DisplayAlert("", "Please fill all fields", "OK");
-                }
-                catch (UserAlreadyExistsException)
-                {
-                    DisplayAlert("", "User with this username already exists", "OK");
-                }
+                ExceptionHandler.WrapFunctionCall(
+                    () => SubmitUserData(UsernameEntry.Text, password),
+                    this
+                );
             }
             else
             {
-                DisplayAlert("", "Passwords do not match.", "OK");
+                DisplayAlert("", "Passwords do not match", "OK");
             }
         }
 

@@ -3,9 +3,9 @@ using Xamarin.Forms;
 
 namespace Wasted.Utils
 {
-    public class SelectionChanger
+    public static class SelectionChanger
     {
-        public static void ListSelectionChanged(object sender, SelectionChangedEventArgs e, Action method)
+        public static void ListSelectionChanged(object sender, Action method)
         {
             if (((CollectionView)sender).SelectedItem == null)
                 return;
