@@ -25,7 +25,7 @@ namespace Wasted.Pages.Place
 
         private void Button_OnClicked(object sender, EventArgs e)
         {
-            SelectedDeal.Status = "Ready to pick up";
+            SelectedDeal.Status = OrderStatus.ReadyToPickUp;
             PopupNavigation.Instance.PopAsync();
         }
     }

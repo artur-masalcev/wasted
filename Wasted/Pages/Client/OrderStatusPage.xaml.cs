@@ -41,7 +41,7 @@ namespace Wasted.Pages.Client
             SelectionChanger.ListSelectionChanged(sender, () =>
             {
                 OrderDeal order = e.CurrentSelection.FirstOrDefault() as OrderDeal;
-                if (order.Status.Equals("Ready to pick up"))
+                if (order.Status.Equals(OrderStatus.ReadyToPickUp))
                 {
                     PopupNavigation.Instance.PushAsync(new OrderStatusClientPopup(order));
                 }

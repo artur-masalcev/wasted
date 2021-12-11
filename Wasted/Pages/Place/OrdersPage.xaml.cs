@@ -64,7 +64,7 @@ namespace Wasted.Pages.Place
             SelectionChanger.ListSelectionChanged(sender, () =>
             {
                 OrderDeal order = e.CurrentSelection.FirstOrDefault() as OrderDeal;
-                if (order.Status.Equals("Preparing"))
+                if (order.Status.Equals(OrderStatus.Preparing))
                 {
                     PopupNavigation.Instance.PushAsync(new OrderStatusPlacePopup(order));
                 }

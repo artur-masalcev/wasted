@@ -47,7 +47,7 @@ namespace Wasted.Pages.Client.DealPage
             bool selectedSomething = Stepper.Value != 0;
             if (selectedSomething)
             {
-                OrderDeal cartDeal = new OrderDeal(SelectedDeal, "Preparing",
+                OrderDeal cartDeal = new OrderDeal(SelectedDeal, OrderStatus.Preparing,
                     (int)Stepper.Value);
                 _service.CartDeals.Add(cartDeal);
                 UserDialogs.Instance.Toast("Added to cart", new TimeSpan(3));

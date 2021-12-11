@@ -24,7 +24,7 @@ namespace Wasted.Pages.Client
 
         private void Button_OnClicked(object sender, EventArgs e)
         {
-            SelectedDeal.Status = "Received";
+            SelectedDeal.Status = OrderStatus.Received;
             PopupNavigation.Instance.PopAsync(true);
         }
     }
