@@ -15,10 +15,10 @@
     <client:SearchPage
         Title="Search"
         Icon="nav_bar_search.png" />
-    <wasted:CartPage
+    <client:CartPage
         Title="Cart"
         Icon="nav_bar_cart.png" />
-    <wasted:OrderStatusPage
+    <client:OrderStatusPage
         Title="Order Status"
         Icon="nav_bar_order.png" />
 </TabbedPage>

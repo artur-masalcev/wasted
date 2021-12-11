@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Rg.Plugins.Popup.Services;
-using Wasted.Dummy_API.Business_Objects;
 using Wasted.Utils;
 using Wasted.Utils.Services;
 using Wasted.WastedAPI.Business_Objects;
@@ -18,9 +17,12 @@ namespace Wasted.Pages.Place
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrdersPage : ContentPage
     {
-        private DataService service;
+        private readonly PlaceUser _currentPlaceUser;
+        private readonly DataService _service;
         public PlaceUser CurrentUser { get; set; }
         private IEnumerable<FoodPlace> ownedPlaces;
+        private HashSet<int> ownedPlaceIds;
+
 
         public IEnumerable<FoodPlace> OwnedPlaces
         {
@@ -34,26 +36,14 @@ namespace Wasted.Pages.Place
 
         public OrdersPage()
         {
-            service = DependencyService.Get<DataService>();
-            CurrentUser = (PlaceUser) service.CurrentUser;
-            //OwnedPlaces = CurrentUser.OwnedPlaceIDs.Select(id => service.AllFoodPlaces[id - 1]);
+            _service = DependencyService.Get<DataService>();
+            CurrentUser = (PlaceUser) _service.CurrentUser;
+            OwnedPlaces = CurrentUser.OwnedPlaces;
+            ownedPlaceIds = new HashSet<int>(OwnedPlaces.Select(place => place.Id));
             InitializeComponent();
+            OrdersCollectionView.ItemsSource = _service.OrderedDeals.Where(order =>
+                ownedPlaceIds.Contains(order.PurchasedDeal.SelectedDeal.FoodPlaceId));
 
-            OrdersCollectionView.ItemsSource = service.OrderedDeals.Where(order =>
-            {
-                foreach (FoodPlace place in OwnedPlaces)
-                {
-                    foreach (Deal deal in place.Deals)
-                    {
-                        if (deal.Title.Equals(order.Title))
-                        {
-                            return true;
-                        }
-                    }
-                }
-
-                return false;
-            });
         }
 
         /// <summary>
@@ -63,21 +53,8 @@ namespace Wasted.Pages.Place
         {
             base.OnAppearing();
             OrdersCollectionView.ItemsSource = null;
-            OrdersCollectionView.ItemsSource = service.OrderedDeals.Where(order =>
-            {
-                foreach (FoodPlace place in OwnedPlaces)
-                {
-                    foreach (Deal deal in place.Deals)
-                    {
-                        if (deal.Title.Equals(order.Title))
-                        {
-                            return true;
-                        }
-                    }
-                }
-
-                return false;
-            });
+            OrdersCollectionView.ItemsSource = _service.OrderedDeals.Where(order =>
+                ownedPlaceIds.Contains(order.PurchasedDeal.SelectedDeal.FoodPlaceId));
         }
 
         private void RefreshView_Refreshing(object sender, EventArgs e)

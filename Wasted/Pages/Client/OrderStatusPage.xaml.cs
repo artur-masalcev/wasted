@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Linq;
 using Rg.Plugins.Popup.Services;
-using Wasted.Dummy_API.Business_Objects;
-using Wasted.Pages.Client;
 using Wasted.Utils;
 using Wasted.Utils.Services;
+using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Wasted
+namespace Wasted.Pages.Client
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderStatusPage : ContentPage
     {
-        private DataService service;
+        private readonly DataService service;
 
         public OrderStatusPage()
         {

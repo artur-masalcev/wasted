@@ -13,7 +13,7 @@ namespace Wasted.Pages.Client.DealPage
     public partial class OrderPopup : PopupPage
     {
         public Deal SelectedDeal { get; set; }
-        private DataService service;
+        private readonly DataService _service;
         public int StepperDealQuantity => SelectedDeal.Quantity == 0 ? 1 : SelectedDeal.Quantity;
 
         private int _selectedCount = 0;
@@ -33,7 +33,7 @@ namespace Wasted.Pages.Client.DealPage
             SelectedDeal = deal;
             InitializeComponent();
             BindingContext = this;
-            service = DependencyService.Get<DataService>();
+            _service = DependencyService.Get<DataService>();
         }
 
         /// <summary>
@@ -50,11 +50,9 @@ namespace Wasted.Pages.Client.DealPage
             {
                 CartDeal cartDeal = new CartDeal(SelectedDeal, (int) Stepper.Value,
                     Stepper.Value * SelectedDeal.CurrentCost);
-                service.CartDeals.Add(cartDeal);
-                // Navigates to the third tabbed page and closes the Deal Page
-                Navigation.PushAsync(new CartPage());
-                Application.Current.MainPage.Navigation.PopAsync();
+                _service.CartDeals.Add(cartDeal);
                 UserDialogs.Instance.Toast("Added to cart", new TimeSpan(3));
+                Navigation.PushAsync(new CartPage());
             }
         }
 

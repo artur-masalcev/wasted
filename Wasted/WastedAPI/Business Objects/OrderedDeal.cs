@@ -1,20 +1,19 @@
 ﻿using Wasted.Utils;
-using Wasted.WastedAPI.Business_Objects;
 
-namespace Wasted.Dummy_API.Business_Objects
+namespace Wasted.WastedAPI.Business_Objects
 {
     public class OrderedDeal : ChangeablePropertyObject
     {
         public CartDeal PurchasedDeal { get; set; }
 
-        private string status;
+        private string _status;
 
         public string Status
         {
-            get => status;
+            get => _status;
             set
             {
-                status = value;
+                _status = value;
                 OnPropertyChanged();
             }
         }
