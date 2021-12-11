@@ -1,6 +1,6 @@
 ﻿using System;
-using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils.Exceptions;
+using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
@@ -32,11 +32,13 @@ namespace Wasted.Pages.Place.NewDeal
         {
             ExceptionChecker.CheckValidParams(titleText, currentCostText, previousCostText);
             Deal currentDeal = new Deal(
+                foodPlaceId:SelectedPlace.Id,
                 title:titleText,
                 currentCost:double.Parse(currentCostText),
                 previousCost:double.Parse(previousCostText)
             );
-            Navigation.PushAsync(new NewDealNextPage(currentDeal, SelectedPlace));
+            SelectedPlace.Deals.Add(currentDeal);
+            Navigation.PushAsync(new NewDealNextPage(currentDeal));
         }
         private void NextButtonClicked(object sender, EventArgs e)
         {

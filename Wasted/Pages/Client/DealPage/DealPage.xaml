@@ -2,7 +2,7 @@
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Wasted.ItemsPage">
+             x:Class="Wasted.Pages.Client.DealPage.ItemsPage">
     <ContentPage.Content>
         <RefreshView x:Name="refreshView"  RefreshColor="DimGray" Refreshing="RefreshView_Refreshing">
             <ScrollView>
@@ -14,14 +14,14 @@
                                 <RowDefinition Height="75" />
                                 <RowDefinition Height="25" />
                             </Grid.RowDefinitions>
-
+        
                             <!--#region Header image-->
                             <Image Source="{Binding ImageURL}"
                                Grid.RowSpan="3"
                                Grid.Row="0"
 						       Aspect="AspectFill" />
                             <!--#endregion-->
-
+        
                             <!--#region Price label-->
                             <StackLayout
                             Grid.Row="1">
@@ -31,17 +31,17 @@
                                HorizontalOptions="End"
                                Background="#272626">
                                     <StackLayout>
-                                        <Label Text="{Binding DealCosts.PreviousCost, StringFormat='{0:F2}€'}"
+                                        <Label Text="{Binding PreviousCost, StringFormat='{0:F2}€'}"
 									        Style="{StaticResource DealCostLabel}"
 									        TextDecorations="Strikethrough" FontAttributes="None"/>
-                                        <Label Text="{Binding DealCosts.CurrentCost, StringFormat='{0:F2}€'}"
+                                        <Label Text="{Binding CurrentCost, StringFormat='{0:F2}€'}"
 									        Style="{StaticResource DealCostLabel}" FontAttributes="Bold"/>
                                     </StackLayout>
                                 </Frame>
                             </StackLayout>
                             <!--#endregion-->
                         </Grid>
-
+        
                         <!--#region Deal description-->
                         <StackLayout>
                             <StackLayout>
@@ -68,16 +68,16 @@
                             <BoxView Style="{StaticResource Separator}"/>
                         </StackLayout>
                         <!--#endregion-->
-
+        
                         <!--#region Action button-->
                         <Button Text="Order" Style="{StaticResource OrderButton}"
                             VerticalOptions="EndAndExpand"
                             FontAttributes="Bold"
                             Clicked="OnOrderClicked"/>
                         <!--#endregion-->
-
+        
                     </StackLayout>
-
+        
                 </AbsoluteLayout>
             </ScrollView>
         </RefreshView>

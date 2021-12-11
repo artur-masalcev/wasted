@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
-using Wasted.Dummy_API.Business_Objects;
-using Wasted.DummyAPI.BusinessObjects;
-using Wasted.DummyDataAPI;
 using Wasted.Pages.Place.NewDeal;
+using Wasted.Pages.Place.NewPlace;
 using Wasted.Utils;
+using Wasted.Utils.Services;
+using Wasted.WastedAPI;
+using Wasted.WastedAPI.Business_Objects;
+using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
@@ -18,29 +20,16 @@ namespace Wasted.Pages.Place
     public partial class PlaceHomePage : ContentPage
     {
         private DataService service;
-        public UserPlace CurrentUser { get; set; }
-        private IEnumerable<FoodPlace> ownedPlaces;
-        public IEnumerable<FoodPlace> OwnedPlaces
-        {
-            get { return ownedPlaces; }
-            set
-            {
-                ownedPlaces = value;
-                OnPropertyChanged();
-            }
-        }
+        private PlaceUser currentPlaceUser;
+        public List<FoodPlace> OwnedPlaces => currentPlaceUser.OwnedPlaces;
         public ICommand DeleteCommand { get; set; }
         public PlaceHomePage()
         {
             service = DependencyService.Get<DataService>();
-            CurrentUser = (UserPlace)service.CurrentUser;
-            BindingContext = this;
-            OwnedPlaces = CurrentUser.OwnedPlaceIDs.Select(id =>
-                service.AllFoodPlaces.Find(place => place.ID == id)
-            );
             InitializeComponent();
             DeleteCommand = new Command(DeletePlace);
-            
+            currentPlaceUser = (PlaceUser)service.CurrentUser;
+            BindingContext = this;
             On<iOS>().SetUseSafeArea(true);
         }
 
@@ -61,12 +50,11 @@ namespace Wasted.Pages.Place
         private void DeletePlace(object obj)
         {
             FoodPlace selectedPlace = obj as FoodPlace;
-            CurrentUser.OwnedPlaceIDs = CurrentUser.OwnedPlaceIDs.Where(id => id != selectedPlace.ID).ToList();
-            DataProvider.WriteAllUserPlaces();
-            OwnedPlaces = OwnedPlaces.Where(place => place != selectedPlace);
-
-            List<FoodPlace> allFoodPlaces = service.AllFoodPlaces.Where(place => place.ID != selectedPlace.ID).ToList();
-            DataProvider.WriteAllPlaces(allFoodPlaces);
+            DataProvider.DeleteFoodPlace(selectedPlace);
+            currentPlaceUser.OwnedPlaces = currentPlaceUser.OwnedPlaces
+                .Where(place => place != selectedPlace)
+                .ToList();
+            OnPropertyChanged("OwnedPlaces");
         }
     }
 }

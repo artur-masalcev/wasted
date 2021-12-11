@@ -1,6 +1,7 @@
 ﻿using System;
-using Wasted.Dummy_API.Business_Objects;
 using Wasted.Utils;
+using Wasted.Utils.Services;
+using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
@@ -18,7 +19,7 @@ namespace Wasted.Pages.Login
             InitializeComponent();
             DataService = DependencyService.Get<DataService>();
             On<iOS>().SetUseSafeArea(true); // Put margin on iOS devices that have top notch
-            DataService.CurrentUser = new UserClient();
+            DataService.CurrentUser = new ClientUser();
         }
 
         private void ContinueClicked(object sender, EventArgs e)
@@ -37,11 +38,11 @@ namespace Wasted.Pages.Login
             RadioButton radioButton = sender as RadioButton;
             switch (radioButton.Value) {
                 case "User":
-                    DataService.CurrentUser = new UserClient();
+                    DataService.CurrentUser = new ClientUser();
                     break;
 
                 case "FoodPlace":
-                    DataService.CurrentUser = new UserPlace();
+                    DataService.CurrentUser = new PlaceUser();
                     break;
             }
         }

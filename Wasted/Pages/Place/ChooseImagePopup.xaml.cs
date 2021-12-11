@@ -2,8 +2,7 @@
 using System.Reflection;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
-using Wasted.Dummy_API.Business_Objects;
-using Wasted.DummyAPI.BusinessObjects;
+using Wasted.Utils.Interfaces;
 using Xamarin.Forms.Xaml;
 
 namespace Wasted.Pages.Place

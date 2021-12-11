@@ -1,4 +1,4 @@
-﻿namespace Wasted.Dummy_API.Business_Objects
+﻿namespace Wasted.Utils.Interfaces
 {
     public interface IImageChooser
     {

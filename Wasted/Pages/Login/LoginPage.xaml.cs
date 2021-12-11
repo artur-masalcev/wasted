@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Wasted.Dummy_API.Business_Objects;
-using Wasted.Pages.Login;
-using Wasted.Utils;
 using Wasted.Utils.Exceptions;
+using Wasted.Utils.Services;
+using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
-namespace Wasted
+namespace Wasted.Pages.Login
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
@@ -23,35 +22,34 @@ namespace Wasted
             On<iOS>().SetUseSafeArea(true);
         }
 
+        private Tuple<User, Func<User>> GetUserDetails(string username, string password)
+        {
+            User user = service.GetPlaceUser(username, password);
+            if (user != null)
+                return new Tuple<User, Func<User>>(user, () => service.GetPlaceUser(username, password));
+            user = service.GetClientUser(username, password);
+            if (user != null)
+                return new Tuple<User, Func<User>>(user, () => service.GetClientUser(username, password));
+            return null;
+        }
+
         private void SubmitUserData(string username, string password)
         {
             ExceptionChecker.CheckValidParams(username, password);
-
-            bool isClient = service.ClientUsers.ContainsKey(username);
-            bool isPlace = service.PlaceUsers.ContainsKey(username);
-            
-            if (isClient || isPlace)
+            Tuple<User, Func<User>> userDetails = GetUserDetails(username, password);
+            User user = userDetails.Item1;
+            Func<User> userGettingFunction = userDetails.Item2;
+            if (user != null)
             {
-                User user = isClient ? (User)service.ClientUsers[username] : service.PlaceUsers[username];
-                if (user.Password == password)
-                {
-                    Location userLocation = GetLocation().Result;
-                    if (userLocation == null)
-                        return;
-                    
-                    DataService dataService = DependencyService.Get<DataService>();
-                    dataService.CurrentUser = user; //Sets user for whole app
-                    dataService.UserLocation = userLocation;
-                    user.PushPage(this); //Creates appropriate page
-                }
-                else
-                {
-                    DisplayAlert("", "Username or password is incorrect. Try Again.", "OK");
-                }
+                Location userLocation = GetLocation().Result;
+                service.CurrentUser = user; //Sets user for whole app
+                service.UserGettingFunction = userGettingFunction;
+                service.UserLocation = userLocation;
+                user.PushPage(this); //Creates appropriate page
             }
             else
             {
-                DisplayAlert("", "Username does not exist. Try Again.", "OK");
+                DisplayAlert("", "Username or password is incorrect. Try Again.", "OK");
             }
         }
         

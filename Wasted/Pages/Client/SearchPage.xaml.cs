@@ -2,23 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Wasted.Dummy_API;
-using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
+using Wasted.Utils.Services;
+using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
-namespace Wasted
+namespace Wasted.Pages.Client
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchPage : ContentPage
     {
-        private DataService service;
         public List<FoodPlace> AvailablePlaces { get; set; }
 
-        public string[] PlaceTypeNames { get; set; } = BusinessUtils.PlaceTypeDictionary.Keys.ToArray();
+        public List<FoodPlace> AllPlaces { get; set; }
+        public List<FoodPlaceType> FoodPlaceTypes { get; set; }
+        public string[] PlaceTypeNames { get; set; }
 
         private string currentPlaceType;
         public string CurrentPlaceType
@@ -55,7 +56,13 @@ namespace Wasted
 
         public SearchPage()
         {
-            service = DependencyService.Get<DataService>();
+            DataService service = DependencyService.Get<DataService>();
+            FoodPlaceTypes = service.GetFoodPlaceTypes;
+            PlaceTypeNames = FoodPlaceTypes.Select(type => type.Type).ToArray();
+            AllPlaces = FoodPlaceTypes
+                .Aggregate(new List<FoodPlace>(), (acc, next) => acc.Concat(next.FoodPlaces).ToList()) 
+                .ToList();
+            
             InitializeComponent();
             On<iOS>().SetUseSafeArea(true);
         }
@@ -66,7 +73,7 @@ namespace Wasted
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            AvailablePlaces = service.AllFoodPlaces;
+            AvailablePlaces = AllPlaces;
             restaurantLayout.BindingContext = this;
             restaurantTypeCollectionView.ItemsSource = PlaceTypeNames;
         }
@@ -103,7 +110,7 @@ namespace Wasted
             ShowFoodPlaces(true);
 
             string type = (string)e.CurrentSelection.FirstOrDefault();
-            AvailablePlaces = BusinessUtils.PlaceTypeDictionary[type];
+            AvailablePlaces = FoodPlaceTypes.Find(t => t.Type == type).FoodPlaces;
             allPlacesCollectionView.ItemsSource = AvailablePlaces;
 
             SectionTitleText = type + "s";
@@ -119,7 +126,7 @@ namespace Wasted
         {
             ShowFoodPlaces(false);
             allPlaceButton.IsVisible = false;
-            AvailablePlaces = service.AllFoodPlaces;
+            AvailablePlaces = AllPlaces;
             allPlacesCollectionView.ItemsSource = AvailablePlaces;
 
             SectionTitleText = "All places";

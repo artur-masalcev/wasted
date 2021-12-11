@@ -1,17 +1,14 @@
 ﻿using System;
 using Acr.UserDialogs;
 using Rg.Plugins.Popup.Services;
-using Wasted.DummyAPI.BusinessObjects;
-using Wasted.Pages.Deals;
+using Wasted.Utils.Services;
+using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
-using Wasted.Utils;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace Wasted
+namespace Wasted.Pages.Client.DealPage
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItemsPage : ContentPage
@@ -51,7 +48,7 @@ namespace Wasted
         /// </summary>
         private void RefreshView_Refreshing(object sender, EventArgs e)
         {
-            SelectedDeal = service.AllDeals.Find(deal => deal.ID == SelectedDeal.ID);
+            SelectedDeal = service.AllDeals.Find(deal => deal.Id == SelectedDeal.Id);
             BindingContext = SelectedDeal;
             refreshView.IsRefreshing = false;
         }

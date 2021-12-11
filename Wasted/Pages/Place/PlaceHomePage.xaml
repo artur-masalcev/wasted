@@ -11,7 +11,7 @@
                    Style="{StaticResource PageTitle}"
                    Padding="7"/>
             <!--#endregion-->
-            
+    
             <!--#region Places listView-->
             <CollectionView x:Name="YourPlacesCollectionView"
                             SelectionChanged="YourPlacesCollectionViewSelectionChanged"
@@ -47,16 +47,16 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
             <!--#endregion-->
-            
+    
             <!--#region Custom floating action button-->
             <Grid HorizontalOptions="End"
                   WidthRequest="100"
                   HeightRequest="100"
                   Padding="7">
-               
-                <!-- Because of bug that doesn't allow shapes to see static resources 
+    
+                <!-- Because of bug that doesn't allow shapes to see static resources
                 AppEmerald Color is put in raw hex in Fill attribute-->
-                <Ellipse Fill="#8dd5af" 
+                <Ellipse Fill="#8dd5af"
                          StrokeThickness="0"
                          WidthRequest="65"
                          HeightRequest="65"
@@ -74,8 +74,8 @@
                         Clicked="AddNewPlaceButtonClicked"/>
             </Grid>
             <!--#endregion-->
-            
-            
+    
+    
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

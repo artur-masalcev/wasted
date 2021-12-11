@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Wasted.FoodPlaceRatingSystem
+namespace Wasted.Pages.Client.FoodPlaceRating
 {
     //TODO: as several languages might be supported in future, all functions
     //should take some arrays of objects(probably strings) and return elements from them instead of predefined values

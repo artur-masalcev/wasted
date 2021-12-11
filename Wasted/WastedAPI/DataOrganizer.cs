@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Wasted.DummyAPI.BusinessObjects;
+using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Essentials;
 
-namespace Wasted.DummyAPI
+namespace Wasted.WastedAPI
 {
     public static class DataOrganizer
     {
@@ -33,7 +33,7 @@ namespace Wasted.DummyAPI
         {
             return (
                    from deal in allDeals
-                   orderby deal.DealCosts.PriceChange()
+                   orderby deal.CurrentCost / deal.PreviousCost
                    select deal
                    )
                    .Take(specialOffersCount);
@@ -46,7 +46,7 @@ namespace Wasted.DummyAPI
         {
             return (
                    from place in allFoodPlaces
-                   orderby -place.RatingCount
+                   orderby -place.Ratings.Count
                    select place
                    )
                    .Take(popularPlacesCount);

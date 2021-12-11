@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Wasted.Dummy_API.Business_Objects
+namespace Wasted.Utils
 {
     /// <summary>
     /// Class that allows to notify that binded property is changed to invoke changes in UI

@@ -319,8 +319,8 @@
 							<Label Text="{Binding Title}" Style="{StaticResource CardTitle}" HorizontalTextAlignment="Center" Padding="5, 0, 5, 0" />
 							<Label Text="{Binding FoodPlaceTitle}" Style="{StaticResource DealFoodPlaceLabel}" Padding="5, 0, 5, 0" />
 							<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-								<Label Text="{Binding DealCosts.PreviousCost, StringFormat='{0:F2}€'}" Style="{StaticResource PreviousCostLabel}" />
-								<Label Text="{Binding DealCosts.CurrentCost, StringFormat='{0:F2}€'}" Style="{StaticResource CurrentCostLabel}" />
+								<Label Text="{Binding PreviousCost, StringFormat='{0:F2}€'}" Style="{StaticResource PreviousCostLabel}" />
+								<Label Text="{Binding CurrentCost, StringFormat='{0:F2}€'}" Style="{StaticResource CurrentCostLabel}" />
 							</StackLayout>
 						</StackLayout>
 					</StackLayout>

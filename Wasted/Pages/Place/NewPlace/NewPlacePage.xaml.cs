@@ -1,14 +1,13 @@
 ﻿using System;
-using Wasted.DummyAPI.BusinessObjects;
-using Wasted.Pages.Place.NewPlace;
 using Wasted.Utils;
 using Wasted.Utils.Exceptions;
+using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
-namespace Wasted.Pages.Place
+namespace Wasted.Pages.Place.NewPlace
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewPlacePage : ContentPage

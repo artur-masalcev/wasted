@@ -1,8 +1,7 @@
-﻿using Wasted.DummyDataAPI;
-using Wasted.Pages.Place;
+﻿using Wasted.Pages.Client;
 using Xamarin.Forms;
 
-namespace Wasted.Dummy_API.Business_Objects
+namespace Wasted.Pages.Place
 {
     public static class PageManager
     {

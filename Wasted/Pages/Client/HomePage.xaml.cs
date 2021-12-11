@@ -1,14 +1,16 @@
-﻿using System.Linq;
-using Wasted.DummyAPI;
-using Wasted.DummyAPI.BusinessObjects;
+﻿using System;
+using System.Linq;
+using Wasted.Pages.Client.DealPage;
 using Wasted.Utils;
+using Wasted.Utils.Services;
 using Wasted.WastedAPI;
+using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
-namespace Wasted
+namespace Wasted.Pages.Client
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
 
@@ -30,18 +32,16 @@ namespace Wasted
         {
             base.OnAppearing();
 
-            nearbyFoodPlacesCollectionView.ItemsSource =
-                DataOrganizer.SortPlacesByUserLocation(service.AllFoodPlaces, service.UserLocation, nearbyPlacesCount:10, maxRadiusInKilometers:50);
-
-            var specialOffers
-                = DataOrganizer.FilterDeals(
+             nearbyFoodPlacesCollectionView.ItemsSource =
+                 DataOrganizer.SortPlacesByUserLocation(service.AllFoodPlaces, service.UserLocation, nearbyPlacesCount:10, maxRadiusInKilometers:50);
+            
+            specialOffersCollectionView.ItemsSource = DataOrganizer.FilterDeals(
                     DataOrganizer.SortOffersByPriceChange(service.AllDeals, specialOffersCount: 10),
                     DefaultFilters.DealInStock
                 ); 
-            specialOffersCollectionView.ItemsSource = specialOffers;
 
-            popularFoodPlacesCollectionView.ItemsSource =
-                DataOrganizer.SortPlacesByRatingDescending(service.AllFoodPlaces, popularPlacesCount:10);
+             popularFoodPlacesCollectionView.ItemsSource =
+                 DataOrganizer.SortPlacesByRatingDescending(service.AllFoodPlaces, popularPlacesCount:10);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Wasted
         /// <summary>
         /// Refreshes the page on scroll down.
         /// </summary>
-        private void RefreshView_Refreshing(object sender, System.EventArgs e)
+        private void RefreshView_Refreshing(object sender, EventArgs e)
         {
             OnAppearing();
             refreshView.IsRefreshing = false;

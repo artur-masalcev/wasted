@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
-using Wasted.Utils;
+﻿using Newtonsoft.Json;
 using Xamarin.Forms;
 
-namespace Wasted.Dummy_API.Business_Objects
+namespace Wasted.WastedAPI.Business_Objects.Users
 {
     public abstract class User
     {
@@ -13,22 +11,21 @@ namespace Wasted.Dummy_API.Business_Objects
         public string Surname { get; set; }
         public string City { get; set; }
         public string Address { get; set; }
-        public Dictionary<int, int> Ratings { get; set; }
-
+        public int Id { get; set; }
+        
         [JsonConstructor]
         protected User(string username = null, string password = null, string name = null,
-            string surname = null, string city = null, string address = null,
-            Dictionary<int, int> ratings = null)
+            string surname = null, string city = null, string address = null, int id = default)
         {
             Username = username;
             Password = password;
             Name = name;
             Surname = surname;
             City = city;
-            Address = address;           
-            Ratings = ratings ?? new Dictionary<int, int>();
+            Address = address;
+            Id = id;
         }
         public abstract void PushPage(ContentPage page);
-        public abstract void CreateUser(DataService service);
+        public abstract void CreateUser();
     }
 }
