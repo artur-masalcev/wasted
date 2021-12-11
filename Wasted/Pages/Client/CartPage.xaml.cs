@@ -5,6 +5,8 @@ using Acr.UserDialogs;
 using Wasted.Utils.Services;
 using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace Wasted.Pages.Client
@@ -21,6 +23,8 @@ namespace Wasted.Pages.Client
             service = DependencyService.Get<DataService>();
             CartDeals = service.CartDeals;
             CartDealsCollectionView.ItemsSource = CartDeals;
+            
+            On<iOS>().SetUseSafeArea(true);
         }
 
         /// <summary>

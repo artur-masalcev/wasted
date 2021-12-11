@@ -7,6 +7,8 @@ using Wasted.Utils.Services;
 using Wasted.WastedAPI.Business_Objects;
 using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace Wasted.Pages.Place
@@ -39,7 +41,8 @@ namespace Wasted.Pages.Place
             InitializeComponent();
             OrdersCollectionView.ItemsSource = _service.OrderedDeals.Where(order =>
                 ownedPlaceIds.Contains(order.PurchasedDeal.FoodPlaceId));
-
+            
+            On<iOS>().SetUseSafeArea(true);
         }
 
         /// <summary>

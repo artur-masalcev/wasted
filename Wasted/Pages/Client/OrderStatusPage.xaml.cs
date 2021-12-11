@@ -5,6 +5,8 @@ using Wasted.Utils;
 using Wasted.Utils.Services;
 using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace Wasted.Pages.Client
@@ -18,6 +20,8 @@ namespace Wasted.Pages.Client
         {
             _service = DependencyService.Get<DataService>();
             InitializeComponent();
+            
+            On<iOS>().SetUseSafeArea(true);
         }
 
         /// <summary>
