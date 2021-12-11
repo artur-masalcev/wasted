@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Rg.Plugins.Popup.Services;
-using Wasted.Dummy_API.Business_Objects;
-using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils;
 using Wasted.Utils.Exceptions;
+using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
@@ -57,8 +56,8 @@ namespace Wasted.Pages.Place
         private void UpdateSelectedDealObject()
         {
             SelectedDeal.Title = NewTitle;
-            SelectedDeal.DealCosts = new Costs(Convert.ToDouble(NewRegularCost), 
-                Convert.ToDouble(NewCurrentCost));
+            SelectedDeal.CurrentCost = Convert.ToDouble(NewCurrentCost);
+            SelectedDeal.PreviousCost = Convert.ToDouble(NewCurrentCost);
             SelectedDeal.Due = NewDueDate;
             SelectedDeal.Description = NewDescription;
         }
