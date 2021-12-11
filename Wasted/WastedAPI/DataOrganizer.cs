@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Wasted.DummyAPI.BusinessObjects;
+using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Essentials;
 
-namespace Wasted.DummyAPI
+namespace Wasted.WastedAPI
 {
     public static class DataOrganizer
     {

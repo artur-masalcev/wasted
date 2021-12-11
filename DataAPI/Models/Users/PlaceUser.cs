@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DataAPI.Models
+namespace DataAPI.Models.Users
 {
     public class PlaceUser : AbstractUser
     {

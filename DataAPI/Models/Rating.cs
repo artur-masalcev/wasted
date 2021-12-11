@@ -1,4 +1,6 @@
-﻿namespace DataAPI.Models
+﻿using DataAPI.Models.Users;
+
+namespace DataAPI.Models
 {
     public class Rating
     {

@@ -1,14 +1,13 @@
 ﻿using System;
-using Wasted.Dummy_API.Business_Objects;
-using Wasted.Pages.Login;
-using Wasted.Utils;
 using Wasted.Utils.Exceptions;
+using Wasted.Utils.Services;
+using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
-namespace Wasted.Pages
+namespace Wasted.Pages.Login
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserRegistrationDataPage : ContentPage

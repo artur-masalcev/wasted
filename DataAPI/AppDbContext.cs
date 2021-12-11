@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DataAPI.Models;
+using DataAPI.Models.Users;
+using Microsoft.EntityFrameworkCore;
 
-namespace DataAPI.Models
+namespace DataAPI
 {
     public class AppDbContext : DbContext
     {

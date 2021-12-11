@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Xamarin.Forms;
 
-namespace Wasted.Dummy_API.Business_Objects
+namespace Wasted.WastedAPI.Business_Objects.Users
 {
     public abstract class User
     {

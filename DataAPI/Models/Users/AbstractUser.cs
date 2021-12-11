@@ -1,4 +1,4 @@
-﻿namespace DataAPI.Models
+﻿namespace DataAPI.Models.Users
 {
     public class AbstractUser
     {

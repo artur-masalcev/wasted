@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Linq;
-using Wasted.DummyAPI;
-using Wasted.DummyAPI.BusinessObjects;
+using Wasted.Pages.Client.DealPage;
 using Wasted.Utils;
+using Wasted.Utils.Services;
 using Wasted.WastedAPI;
+using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
-namespace Wasted
+namespace Wasted.Pages.Client
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
 

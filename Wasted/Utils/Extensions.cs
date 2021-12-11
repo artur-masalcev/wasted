@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Wasted.DummyAPI.BusinessObjects;
+using Wasted.WastedAPI.Business_Objects;
 
 namespace Wasted.Utils
 {

@@ -3,14 +3,13 @@ using System.Linq;
 using DataAPI.DTO;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
-using Wasted.Dummy_API.Business_Objects;
-using Wasted.DummyAPI.BusinessObjects;
-using Wasted.DummyDataAPI;
-using Wasted.FoodPlaceRatingSystem;
-using Wasted.Utils;
+using Wasted.Utils.Services;
+using Wasted.WastedAPI;
+using Wasted.WastedAPI.Business_Objects;
+using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Forms;
 
-namespace Wasted
+namespace Wasted.Pages.Client.FoodPlaceRating
 {
     public partial class RatingPopup : PopupPage
     {

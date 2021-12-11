@@ -2,11 +2,11 @@
 using Acr.UserDialogs;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
-using Wasted.DummyAPI.BusinessObjects;
-using Wasted.DummyDataAPI;
+using Wasted.WastedAPI;
+using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 
-namespace Wasted.Pages.Deals
+namespace Wasted.Pages.Client.DealPage
 {
     public partial class OrderPopup : PopupPage
     {

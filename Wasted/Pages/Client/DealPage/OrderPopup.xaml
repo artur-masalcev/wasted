@@ -3,7 +3,7 @@
 	xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="Wasted.Pages.Deals.OrderPopup">
+    x:Class="Wasted.Pages.Client.DealPage.OrderPopup">
 
     <!--#region Order view-->
     <StackLayout Style="{StaticResource DealCardViewLayout}"

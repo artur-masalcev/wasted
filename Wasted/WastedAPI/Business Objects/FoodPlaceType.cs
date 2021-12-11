@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Wasted.DummyAPI.BusinessObjects
+namespace Wasted.WastedAPI.Business_Objects
 {
     public class FoodPlaceType
     {

@@ -2,10 +2,11 @@
 using System.Linq;
 using DataAPI.DTO;
 using Newtonsoft.Json;
-using Wasted.Dummy_API.Business_Objects;
+using Wasted.Utils;
+using Wasted.Utils.Interfaces;
 using Xamarin.Essentials;
 
-namespace Wasted.DummyAPI.BusinessObjects
+namespace Wasted.WastedAPI.Business_Objects
 {
     public class FoodPlace : ChangeablePropertyObject, IImageChooser
     {

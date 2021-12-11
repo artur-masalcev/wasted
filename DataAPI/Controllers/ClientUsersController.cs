@@ -4,6 +4,7 @@ using System.Linq;
 using AutoMapper;
 using DataAPI.DTO;
 using DataAPI.Models;
+using DataAPI.Models.Users;
 using DataAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
 

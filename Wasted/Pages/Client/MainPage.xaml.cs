@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace Wasted
+namespace Wasted.Pages.Client
 {
     /// <summary>
     /// Core page of the app, manages transitioning between other screens

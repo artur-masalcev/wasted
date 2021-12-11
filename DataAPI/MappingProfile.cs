@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using DataAPI.DTO;
 using DataAPI.Models;
+using DataAPI.Models.Users;
 
-namespace DataAPI.DTO
+namespace DataAPI
 {
     public class MappingProfile : Profile
     {

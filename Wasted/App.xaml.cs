@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Wasted.Pages.Login;
+using Xamarin.Forms;
 
 namespace Wasted
 {

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DataAPI.Models.Users;
 
 namespace DataAPI.Models
 {

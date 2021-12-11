@@ -1,6 +1,6 @@
 ﻿using System;
-using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Utils.Exceptions;
+using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;

@@ -12,11 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Dummy Data Copies\DealsCopy.json" />
-    <EmbeddedResource Include="Dummy Data Copies\FoodPlacesCopy.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.12" />
@@ -38,6 +33,10 @@
     <_ContentIncludedByDefault Remove="Dummy Data\Deals.json" />
     <_ContentIncludedByDefault Remove="Dummy Data\FoodPlaces.json" />
     <_ContentIncludedByDefault Remove="Dummy Data\PlaceUsers.json" />
+    <_ContentIncludedByDefault Remove="Dummy Data Copies\ClientUsersCopy.json" />
+    <_ContentIncludedByDefault Remove="Dummy Data Copies\DealsCopy.json" />
+    <_ContentIncludedByDefault Remove="Dummy Data Copies\FoodPlacesCopy.json" />
+    <_ContentIncludedByDefault Remove="Dummy Data Copies\PlaceUsersCopy.json" />
   </ItemGroup>
 
 

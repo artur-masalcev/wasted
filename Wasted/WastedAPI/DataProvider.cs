@@ -4,11 +4,11 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAPI.DTO;
 using Newtonsoft.Json;
-using Wasted.Dummy_API.Business_Objects;
-using Wasted.DummyAPI.BusinessObjects;
 using Wasted.Properties;
+using Wasted.WastedAPI.Business_Objects;
+using Wasted.WastedAPI.Business_Objects.Users;
 
-namespace Wasted.DummyDataAPI
+namespace Wasted.WastedAPI
 {
     /// <summary>
     /// Provides methods for receiving local dummy data needed for Wasted app

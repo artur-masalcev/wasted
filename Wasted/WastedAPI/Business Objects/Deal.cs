@@ -1,6 +1,7 @@
-﻿using Wasted.Dummy_API.Business_Objects;
+﻿using Wasted.Utils;
+using Wasted.Utils.Interfaces;
 
-namespace Wasted.DummyAPI.BusinessObjects
+namespace Wasted.WastedAPI.Business_Objects
 {
     public class Deal : ChangeablePropertyObject, IImageChooser
     {

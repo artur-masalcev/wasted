@@ -1,9 +1,10 @@
 ﻿using System;
 using Rg.Plugins.Popup.Services;
-using Wasted.DummyAPI.BusinessObjects;
-using Wasted.DummyDataAPI;
 using Wasted.Utils;
 using Wasted.Utils.Exceptions;
+using Wasted.Utils.Services;
+using Wasted.WastedAPI;
+using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;

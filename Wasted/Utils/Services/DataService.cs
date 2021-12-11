@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Wasted.Dummy_API.Business_Objects;
-using Wasted.DummyAPI.BusinessObjects;
-using Wasted.DummyDataAPI;
-using Wasted.Utils;
+using Wasted.Utils.Services;
+using Wasted.WastedAPI;
+using Wasted.WastedAPI.Business_Objects;
+using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
 [assembly:Dependency(typeof(DataService))]
-namespace Wasted.Utils
+namespace Wasted.Utils.Services
 {
     public class DataService
     {
