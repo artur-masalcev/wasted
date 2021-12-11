@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Rg.Plugins.Popup.Services;
 using Wasted.Utils;
 using Wasted.Utils.Exceptions;
+using Wasted.Utils.Services;
+using Wasted.WastedAPI;
 using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
@@ -100,7 +102,7 @@ namespace Wasted.Pages.Place
 
             UpdateSelectedDealObject();
 
-            //IMPLEMENT ME: Post new deal state (as 'SelectedDeal') to server
+            DataProvider.UpdateDeal(SelectedDeal);
         }
 
         private void ShowPreviewClicked(object sender, EventArgs e)
@@ -118,8 +120,8 @@ namespace Wasted.Pages.Place
 
         private void DeleteOfferClicked(object sender, EventArgs e)
         {
-            // IMPLEMENT ME
-            throw new NotImplementedException();
+           DataProvider.DeleteDeal(SelectedDeal);
+           Navigation.PopAsync();
         }
     }
 }

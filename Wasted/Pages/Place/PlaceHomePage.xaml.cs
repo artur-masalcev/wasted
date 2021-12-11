@@ -22,7 +22,6 @@ namespace Wasted.Pages.Place
         private readonly DataService _service;
         private readonly PlaceUser _currentPlaceUser;
         public List<FoodPlace> OwnedPlaces => _currentPlaceUser.OwnedPlaces;
-        public ICommand DeleteCommand { get; set; }
 
         public PlaceHomePage()
         {
@@ -39,9 +38,6 @@ namespace Wasted.Pages.Place
             {
                 FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
                 Navigation.PushAsync(new FoodPlacePage(selectedPlace));
-                _currentPlaceUser.OwnedPlaces = _currentPlaceUser.OwnedPlaces
-                    .Where(place => place != selectedPlace)
-                    .ToList();
             });
         }
 

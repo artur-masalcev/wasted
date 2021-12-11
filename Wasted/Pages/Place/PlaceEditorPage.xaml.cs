@@ -79,7 +79,7 @@ namespace Wasted.Pages.Place
             
             UpdateSelectedPlaceObject();
 
-            //IMPLEMENT ME: Post new place state (as 'SelectedPlace') to server
+            DataProvider.UpdateFoodPlace(SelectedPlace);
         }
 
         private void ShowPreviewClicked(object sender, EventArgs e)

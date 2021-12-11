@@ -28,14 +28,14 @@
                 <StackLayout>
                     <Label Text="Current cost (€)"/>
                     <Entry x:Name="CurrentCostEntry"
-                           Text="{Binding SelectedDeal.DealCosts.CurrentCost}"
+                           Text="{Binding SelectedDeal.CurrentCost}"
                            TextChanged="NumberEntryTextChanged"/>
                 </StackLayout>
                 
                 <StackLayout>
                     <Label Text="Regular cost (€)"/>
                     <Entry x:Name="RegularCostEntry"
-                           Text="{Binding SelectedDeal.DealCosts.PreviousCost}"
+                           Text="{Binding SelectedDeal.PreviousCost}"
                            TextChanged="NumberEntryTextChanged"/>
                 </StackLayout>
                 

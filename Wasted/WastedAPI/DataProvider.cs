@@ -77,8 +77,12 @@ namespace Wasted.WastedAPI
         public static void CreateDeal(Deal deal) => CreateBusinessObject(deal, DealsEnd);
         public static void UpdateDeal(Deal deal) => UpdateBusinessObject(deal, DealsEnd);
 
+        public static void DeleteDeal(Deal deal) => DeleteBusinessObject(deal.Id, DealsEnd);
+        
         public static void CreateFoodPlace(FoodPlace foodPlace) => CreateBusinessObject(foodPlace, FoodPlacesEnd);
         public static void DeleteFoodPlace(FoodPlace foodPlace) => DeleteBusinessObject(foodPlace.Id, FoodPlacesEnd);
+
+        public static void UpdateFoodPlace(FoodPlace foodPlace) => UpdateBusinessObject(foodPlace, FoodPlacesEnd);
 
         public static void CreateClientUser(ClientUser clientUser) => CreateBusinessObject(clientUser, ClientUsersEnd);
         public static void CreatePlaceUser(PlaceUser placeUser) => CreateBusinessObject(placeUser, PlaceUsersEnd);
