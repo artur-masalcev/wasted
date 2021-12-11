@@ -11,13 +11,13 @@ namespace Wasted.Pages.Place
     {
         public OrderedDeal SelectedDeal { get; set; }
 
-        public string Title => SelectedDeal.Title;
+        public string DealTitle => SelectedDeal.Title;
         public int Quantity => SelectedDeal.Quantity;
         
         public string Message{
 
             get {
-                return string.Format("Deal {0} (x{1}) is done preparing",  Title, Quantity);
+                return string.Format("Deal {0} (x{1}) is done preparing",  DealTitle, Quantity);
             }
         }
         

@@ -1,4 +1,5 @@
-﻿using Android.Graphics.Drawables;
+﻿using Android.Content;
+using Android.Graphics.Drawables;
 using Wasted;
 using Wasted.Droid;
 using Xamarin.Forms;
@@ -10,6 +11,8 @@ namespace Wasted.Droid
 {
     public class RoundedEntryRenderedAndroid : EntryRenderer
     {
+        public RoundedEntryRenderedAndroid(Context context) : base(context) {}
+        
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {
             base.OnElementChanged(e);

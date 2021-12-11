@@ -5,7 +5,7 @@
              x:Class="Wasted.Pages.Place.OrdersPage">
     <ContentPage.Content>
         <RefreshView x:Name="RefreshView"  RefreshColor="DimGray" Refreshing="RefreshView_Refreshing">
-            <StackLayout x:Name="Layout">
+            <StackLayout>
                 <Label Text="Your orders" />
                 <CollectionView x:Name="OrdersCollectionView"
                                 SelectionMode="Single"

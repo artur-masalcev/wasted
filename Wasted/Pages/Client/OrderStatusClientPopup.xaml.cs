@@ -10,13 +10,13 @@ namespace Wasted.Pages.Client
     public partial class OrderStatusClientPopup : PopupPage
     {
         public OrderedDeal SelectedDeal { get; set; }
-        public string Title => SelectedDeal.Title;
+        public string DealTitle => SelectedDeal.Title;
         public int Quantity => SelectedDeal.Quantity;
         
         public string Message{
 
             get {
-                return string.Format("Deal {0} (x{1}) is received",  Title, Quantity);
+                return string.Format("Deal {0} (x{1}) is received",  DealTitle, Quantity);
             }
         }
 

@@ -41,7 +41,7 @@ namespace Wasted.Pages.Client.DealPage
         /// </summary>
         public void OnConfirmClicked(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PopAsync(true); // Close the popup
+            PopupNavigation.Instance.PopAsync(); // Close the popup
             SelectedDeal.Quantity -= (int) Stepper.Value;
             DataProvider.UpdateDeal(SelectedDeal);
 
@@ -60,7 +60,7 @@ namespace Wasted.Pages.Client.DealPage
 
         public void OnCancelClicked(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PopAsync(true); // Close the popup
+            PopupNavigation.Instance.PopAsync(); // Close the popup
         }
 
         private void StepperValueChanged(object sender, ValueChangedEventArgs e)
