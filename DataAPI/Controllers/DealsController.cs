@@ -20,7 +20,7 @@ namespace DataAPI.Controllers
             _dealsRepository = dealsRepository;
             _mapper = mapper;
         }
-        
+
         [HttpGet]
         public IEnumerable<DealDTO> GetDeals()
         {
@@ -33,7 +33,7 @@ namespace DataAPI.Controllers
             var newDeal = _dealsRepository.Create(deal);
             return CreatedAtAction(nameof(GetDeals), new {id = newDeal.Id}, newDeal);
         }
-        
+
         [HttpPut]
         public ActionResult<Deal> UpdateDeal([FromBody] Deal deal)
         {

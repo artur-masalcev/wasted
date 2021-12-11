@@ -13,14 +13,13 @@ using Xamarin.Forms.Xaml;
 namespace Wasted.Pages.Client
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-
     public partial class HomePage : ContentPage
     {
-        private DataService service;
+        private readonly DataService _service;
 
         public HomePage()
         {
-            service = DependencyService.Get<DataService>();
+            _service = DependencyService.Get<DataService>();
             InitializeComponent();
             On<iOS>().SetUseSafeArea(true);
         }
@@ -32,16 +31,17 @@ namespace Wasted.Pages.Client
         {
             base.OnAppearing();
 
-             nearbyFoodPlacesCollectionView.ItemsSource =
-                 DataOrganizer.SortPlacesByUserLocation(service.AllFoodPlaces, service.UserLocation, nearbyPlacesCount:10, maxRadiusInKilometers:50);
-            
-            specialOffersCollectionView.ItemsSource = DataOrganizer.FilterDeals(
-                    DataOrganizer.SortOffersByPriceChange(service.AllDeals, specialOffersCount: 10),
-                    DefaultFilters.DealInStock
-                ); 
+            NearbyFoodPlacesCollectionView.ItemsSource =
+                DataOrganizer.SortPlacesByUserLocation(_service.AllFoodPlaces, _service.UserLocation,
+                    nearbyPlacesCount: 10, maxRadiusInKilometers: 50);
 
-             popularFoodPlacesCollectionView.ItemsSource =
-                 DataOrganizer.SortPlacesByRatingDescending(service.AllFoodPlaces, popularPlacesCount:10);
+            SpecialOffersCollectionView.ItemsSource = DataOrganizer.FilterDeals(
+                DataOrganizer.SortOffersByPriceChange(_service.AllDeals, specialOffersCount: 10),
+                DefaultFilters.DealInStock
+            );
+
+            PopularFoodPlacesCollectionView.ItemsSource =
+                DataOrganizer.SortPlacesByRatingDescending(_service.AllFoodPlaces, popularPlacesCount: 10);
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Wasted.Pages.Client
         private void RefreshView_Refreshing(object sender, EventArgs e)
         {
             OnAppearing();
-            refreshView.IsRefreshing = false;
+            RefreshView.IsRefreshing = false;
         }
     }
 }

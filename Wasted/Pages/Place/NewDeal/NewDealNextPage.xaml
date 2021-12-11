@@ -11,20 +11,19 @@
                 <Button Text="‹"
                         Style="{StaticResource CustomNavBarBackButton}"
                         TextColor="{StaticResource TextBlack}"
-                        Clicked="BackClicked"
-                />
-    
+                        Clicked="BackClicked" />
+
                 <Label Text="Add new deal"
                        VerticalTextAlignment="Center"
-                       Style="{StaticResource PageTitle}"/>
+                       Style="{StaticResource PageTitle}" />
             </StackLayout>
             <!--#endregion-->
-    
+
             <!--#region Form -->
             <StackLayout Spacing="20" VerticalOptions="CenterAndExpand" Margin="0, 0, 0, 80">
                 <StackLayout>
                     <Label Text="{Binding MaxEntryLength, StringFormat='Description (fewer than {0} words)'}" />
-                    <Entry x:Name="DescriptionEntry" TextChanged="DescriptionEntryTextChanged"/>
+                    <Entry x:Name="DescriptionEntry" TextChanged="DescriptionEntryTextChanged" />
                     <Label>
                         <Label.FormattedText>
                             <FormattedString>
@@ -32,28 +31,28 @@
                                 <Span Text="/" />
                                 <Span Text="{Binding MaxEntryLength}" />
                             </FormattedString>
-    
+
                         </Label.FormattedText>
                     </Label>
                 </StackLayout>
-    
+
                 <StackLayout>
                     <Label Text="Due" />
-                    <DatePicker x:Name="DueDatePicker" Format="yyyy-MM-dd"/>
+                    <DatePicker x:Name="DueDatePicker" Format="yyyy-MM-dd" />
                 </StackLayout>
-    
+
                 <StackLayout>
                     <Label Text="Image" />
-                    <Button Text="Choose" Clicked="ImageButtonClicked"/>
+                    <Button Text="Choose" Clicked="ImageButtonClicked" />
                 </StackLayout>
             </StackLayout>
             <!--#endregion -->
-    
+
             <!--#region Action Button -->
             <Button Text="Done" Clicked="DoneButtonClicked"
                     Style="{StaticResource FormActionButton}"
                     VerticalOptions="EndAndExpand"
-                    BackgroundColor="{StaticResource AppEmerald}"/>
+                    BackgroundColor="{StaticResource AppEmerald}" />
             <!--#endregion -->
         </StackLayout>
     </ContentPage.Content>

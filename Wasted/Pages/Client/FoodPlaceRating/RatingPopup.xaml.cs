@@ -17,11 +17,11 @@ namespace Wasted.Pages.Client.FoodPlaceRating
         public ClientUser User { get; set; }
         public DataService DataService { get; set; }
 
-        public int RatingBarRating => ratingBar.SelectedStarValue;
-        
+        public int RatingBarRating => RatingBar.SelectedStarValue;
+
         public String RatingEmoji { get; set; }
         public String RatingComment { get; set; }
-        private RatingDTO rating;
+        private RatingDTO _rating;
 
         /// <summary>
         /// Initialiser for RatingPopup class
@@ -31,37 +31,39 @@ namespace Wasted.Pages.Client.FoodPlaceRating
         {
             SelectedFoodPlace = foodPlace;
             InitializeComponent();
-            
+
             DataService = DependencyService.Get<DataService>();
-            User = (ClientUser)DataService.CurrentUser;
-            rating = User.Ratings.FirstOrDefault(r => r.FoodPlaceId == foodPlace.Id);
-            
-            if (rating != null) 
+            User = (ClientUser) DataService.CurrentUser;
+            _rating = User.Ratings.FirstOrDefault(r => r.FoodPlaceId == foodPlace.Id);
+
+            if (_rating != null)
             {
-                ratingBar.SelectedStarValue = (int)rating.Value; //Sets value to the user's previous rating
+                RatingBar.SelectedStarValue = (int) _rating.Value; //Sets value to the user's previous rating
             }
-            foodPlaceTitleLabel.BindingContext = SelectedFoodPlace;
-            ratingEmoji.BindingContext = this;
-            ratingComment.BindingContext = this;
+
+            FoodPlaceTitleLabel.BindingContext = SelectedFoodPlace;
+            RatingEmojiLabel.BindingContext = this;
+            RatingCommentLabel.BindingContext = this;
         }
 
         private void OnConfirmClicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync(); // Close the popup
-            if (rating != null)
+            if (_rating != null)
             {
-                RatingDTO placeRating = SelectedFoodPlace.Ratings.Find(r => r.Id == rating.Id);
+                RatingDTO placeRating = SelectedFoodPlace.Ratings.Find(r => r.Id == _rating.Id);
                 placeRating.Value = RatingBarRating;
-                rating.Value = RatingBarRating; //Sets value for place and user
-                DataProvider.UpdateRating(rating);
+                _rating.Value = RatingBarRating; //Sets value for place and user
+                DataProvider.UpdateRating(_rating);
             }
             else
             {
-                rating = new RatingDTO(User.Id, SelectedFoodPlace.Id, RatingBarRating);
-                SelectedFoodPlace.Ratings.Add(rating);
-                User.Ratings.Add(rating);
-                DataProvider.CreateRating(rating);
+                _rating = new RatingDTO(User.Id, SelectedFoodPlace.Id, RatingBarRating);
+                SelectedFoodPlace.Ratings.Add(_rating);
+                User.Ratings.Add(_rating);
+                DataProvider.CreateRating(_rating);
             }
+
             SelectedFoodPlace.RatingChanged();
         }
 
@@ -80,8 +82,8 @@ namespace Wasted.Pages.Client.FoodPlaceRating
         /// </summary>
         private void UpdateAssociationView()
         {
-            ratingEmoji.Text = RatingToAssociation.ConvertToEmoji(RatingBarRating);
-            ratingComment.Text = RatingToAssociation.ConvertToComment(RatingBarRating);
+            RatingEmojiLabel.Text = RatingToAssociation.ConvertToEmoji(RatingBarRating);
+            RatingCommentLabel.Text = RatingToAssociation.ConvertToComment(RatingBarRating);
         }
     }
 }

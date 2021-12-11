@@ -9,18 +9,19 @@ namespace Wasted.WastedAPI.Business_Objects
         public string Title { get; set; }
         public double PreviousCost { get; set; }
         public double CurrentCost { get; set; }
-        
-        private int quantity = 0;
+
+        private int _quantity = 0;
+
         public int Quantity
         {
-            get { return quantity; }
+            get => _quantity;
             set
             {
-                quantity = value;
-                //DataProvider.WriteAllDeals();
+                _quantity = value;
                 OnPropertyChanged();
             }
         }
+
         public string Due { get; set; }
         public string ImageURL { get; set; }
 
@@ -29,9 +30,11 @@ namespace Wasted.WastedAPI.Business_Objects
         public string FoodPlaceTitle { get; set; }
         public int FoodPlaceId { get; set; }
 
-        public Deal(int quantity = default, int id = default, string title = null, double previousCost = default, double currentCost = default, string due = null, string imageUrl = null, string description = null, string foodPlaceTitle = null, int foodPlaceId = default)
+        public Deal(int quantity = default, int id = default, string title = null, double previousCost = default,
+            double currentCost = default, string due = null, string imageUrl = null, string description = null,
+            string foodPlaceTitle = null, int foodPlaceId = default)
         {
-            this.quantity = quantity;
+            _quantity = quantity;
             Id = id;
             Title = title;
             PreviousCost = previousCost;

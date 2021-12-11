@@ -15,8 +15,8 @@ namespace Wasted.WastedAPI
     /// </summary>
     public static class DataProvider
     {
-        public static string IP => ConfigurationProperties.LocalIPAddress;
-        public static string LinkStart => "http://" + IP + ":5001/";
+        private static string Ip => ConfigurationProperties.LocalIpAddress;
+        private static string LinkStart => "http://" + Ip + ":5001/";
 
         public static string FoodPlacesEnd => "foodplaces";
         public static string DealsEnd => "deals";
@@ -30,14 +30,13 @@ namespace Wasted.WastedAPI
         {
             return String.Join("/", ClientUsersEnd, name, password);
         }
-        
+
         public static string PlaceUserEnd(string name, string password)
         {
             return String.Join("/", PlaceUsersEnd, name, password);
         }
 
-        private static HttpClient Client = new HttpClient();
-        private delegate T DefaultObject<T>();
+        private static readonly HttpClient Client = new HttpClient();
 
         /// <summary>
         /// Gets data from API
@@ -45,9 +44,9 @@ namespace Wasted.WastedAPI
         public static async Task<T> GetData<T>(string linkEnd)
         {
             string dataJson = await Client.GetStringAsync(LinkStart + linkEnd);
-            return JsonConvert.DeserializeObject<T>(dataJson); 
+            return JsonConvert.DeserializeObject<T>(dataJson);
         }
-        
+
         private static void CreateBusinessObject<T>(T data, string linkEnd)
         {
             Task.Run(async () =>
@@ -59,7 +58,7 @@ namespace Wasted.WastedAPI
             Task.Run(async () =>
                 await Client.PutAsync(LinkStart + linkEnd, GetStringContent(data))).Wait();
         }
-        
+
         private static void DeleteBusinessObject(int id, string linkEnd)
         {
             Task.Run(async () =>
@@ -77,7 +76,7 @@ namespace Wasted.WastedAPI
 
         public static void CreateDeal(Deal deal) => CreateBusinessObject(deal, DealsEnd);
         public static void UpdateDeal(Deal deal) => UpdateBusinessObject(deal, DealsEnd);
-        
+
         public static void CreateFoodPlace(FoodPlace foodPlace) => CreateBusinessObject(foodPlace, FoodPlacesEnd);
         public static void DeleteFoodPlace(FoodPlace foodPlace) => DeleteBusinessObject(foodPlace.Id, FoodPlacesEnd);
 

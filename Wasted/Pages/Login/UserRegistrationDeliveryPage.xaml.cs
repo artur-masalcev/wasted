@@ -22,7 +22,7 @@ namespace Wasted.Pages.Login
         private void SubmitUserData(string userName, string userSurname, string userCity, string userAddress)
         {
             ExceptionChecker.CheckValidParams(userName, userSurname, userCity, userAddress);
-            
+
             DataService dataService = DependencyService.Get<DataService>();
             User currentUser = dataService.CurrentUser;
 
@@ -30,11 +30,11 @@ namespace Wasted.Pages.Login
             currentUser.Surname = userSurname;
             currentUser.City = userCity;
             currentUser.Address = userAddress;
-            
+
             currentUser.CreateUser();
             Navigation.PushAsync(new LoginPage());
         }
-        
+
         private void CreateClicked(object sender, EventArgs e)
         {
             ExceptionHandler.WrapFunctionCall(

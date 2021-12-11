@@ -12,6 +12,5 @@ namespace Wasted.Pages.Client
             InitializeComponent();
             SelectedTabColor = Color.Black;
         }
-
     }
 }

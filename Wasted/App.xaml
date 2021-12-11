@@ -1,351 +1,357 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <Application
-	xmlns="http://xamarin.com/schemas/2014/forms"
-	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	xmlns:pcview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             x:Class="Wasted.App">
-	<Application.Resources>
-		<!--#region Colors -->
-		<Color x:Key="AppEmerald">#8dd5af</Color>
-		<Color x:Key="AccentColor">#7eab55</Color>
-		<Color x:Key="Yellow">#FEDD00</Color>
-		<Color x:Key="SeparatorColor">#D3D3D3</Color>
-		<Color x:Key="EntryTextColor">#FF464859</Color>
-		<Color x:Key="Blue">#1E90FF</Color>
-		<Color x:Key="LightBlue">#ADD8E6</Color>
-		<Color x:Key="ContentBackgroundColor">#C0808080</Color>
-		<Color x:Key="TextBlack">#272626</Color>
-		<Color x:Key="TextGrey">#757171</Color>
-		<!--#endregion-->
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pcview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    x:Class="Wasted.App">
+    <Application.Resources>
+        <!--#region Colors -->
+        <Color x:Key="AppEmerald">#8dd5af</Color>
+        <Color x:Key="AccentColor">#7eab55</Color>
+        <Color x:Key="Yellow">#FEDD00</Color>
+        <Color x:Key="SeparatorColor">#D3D3D3</Color>
+        <Color x:Key="EntryTextColor">#FF464859</Color>
+        <Color x:Key="Blue">#1E90FF</Color>
+        <Color x:Key="LightBlue">#ADD8E6</Color>
+        <Color x:Key="ContentBackgroundColor">#C0808080</Color>
+        <Color x:Key="TextBlack">#272626</Color>
+        <Color x:Key="TextGrey">#757171</Color>
+        <!--#endregion-->
 
-		<!--#retgion Implicit styles -->
+        <!--#region Implicit styles -->
 
-		<!--#region Labels -->
-		<Style TargetType="Label">
-			<Setter Property="TextColor" Value="{StaticResource TextBlack}" />
-			<Setter Property="Margin" Value="5, 0" />
-		</Style>
+        <!--#region Labels -->
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource TextBlack}" />
+            <Setter Property="Margin" Value="5, 0" />
+        </Style>
 
-		<Style TargetType="Entry">
-			<Setter Property="HeightRequest" Value="45"/>
-			<Setter Property="BackgroundColor" Value="White"/>
-		</Style>
+        <Style TargetType="Entry">
+            <Setter Property="HeightRequest" Value="45" />
+            <Setter Property="BackgroundColor" Value="White" />
+        </Style>
 
-		<Style x:Key="RedLabel" TargetType="Label">
-			<Setter Property="TextColor" Value="#FF0000" />
-		</Style>
+        <Style x:Key="RedLabel" TargetType="Label">
+            <Setter Property="TextColor" Value="#FF0000" />
+        </Style>
 
-		<Style x:Key="SectionTitle" TargetType="Label">
-			<Setter Property="Margin" Value="5" />
-			<Setter Property="FontSize" Value="22" />
-			<Setter Property="FontAttributes" Value="Bold" />
-			<Setter Property="FontFamily" Value="Arial" />
-			<Setter Property="TextColor" Value="{StaticResource TextBlack}" />
-		</Style>
+        <Style x:Key="SectionTitle" TargetType="Label">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontFamily" Value="Arial" />
+            <Setter Property="TextColor" Value="{StaticResource TextBlack}" />
+        </Style>
 
-		<Style x:Key="CardTitle" TargetType="Label">
-			<Setter Property="Margin" Value="5" />
-			<Setter Property="LineBreakMode" Value="TailTruncation"/>
-			<Setter Property="FontSize" Value="18" />
-			<Setter Property="FontAttributes" Value="Bold" />
-			<Setter Property="TextColor" Value="{StaticResource TextBlack}" />
-		</Style>
+        <Style x:Key="CardTitle" TargetType="Label">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="LineBreakMode" Value="TailTruncation" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="{StaticResource TextBlack}" />
+        </Style>
 
-		<Style x:Key="SearchCardTitle" TargetType="Label"
-            BasedOn="{StaticResource CardTitle}">
-			<Setter Property="FontSize" Value="20" />
-			<Setter Property="HorizontalTextAlignment" Value="Center"/>
-		</Style>
+        <Style x:Key="SearchCardTitle" TargetType="Label"
+               BasedOn="{StaticResource CardTitle}">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+        </Style>
 
-		<Style x:Key="DealFoodPlaceLabel" TargetType="Label">
-			<Setter Property="FontSize" Value="15"/>
-			<Setter Property="TextColor" Value="LightSlateGray"/>
-			<Setter Property="HorizontalTextAlignment" Value="Center"/>
-			<Setter Property="LineBreakMode" Value="TailTruncation"/>
-		</Style>
+        <Style x:Key="DealFoodPlaceLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="TextColor" Value="LightSlateGray" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="LineBreakMode" Value="TailTruncation" />
+        </Style>
 
-		<Style x:Key="CurrentCostLabel" TargetType="Label">
-			<Setter Property="FontSize" Value="20" />
-			<Setter Property="FontAttributes" Value="Bold" />
-			<Setter Property="TextColor" Value="{StaticResource AccentColor}" />
-			<Setter Property="HorizontalTextAlignment" Value="Center"/>
-		</Style>
+        <Style x:Key="CurrentCostLabel" TargetType="Label">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+        </Style>
 
-		<Style x:Key="PreviousCostLabel" TargetType="Label">
-			<Setter Property="TextDecorations" Value="Strikethrough" />
-			<Setter Property="FontSize" Value="15" />
-			<Setter Property="FontAttributes" Value="Bold" />
-			<Setter Property="TextColor" Value="LightSlateGray" />
-			<Setter Property="HorizontalTextAlignment" Value="Center"/>
-		</Style>
+        <Style x:Key="PreviousCostLabel" TargetType="Label">
+            <Setter Property="TextDecorations" Value="Strikethrough" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="LightSlateGray" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+        </Style>
 
-		<Style x:Key="DealCostLabel" TargetType="Label">
-			<Setter Property="HorizontalOptions" Value="Center" />
-			<Setter Property="VerticalOptions" Value="Center" />
-			<Setter Property="FontSize" Value="20" />
-			<Setter Property="FontAttributes" Value="Bold" />
-			<Setter Property="TextColor" Value="White" />
-		</Style>
+        <Style x:Key="DealCostLabel" TargetType="Label">
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="White" />
+        </Style>
 
-		<Style x:Key="RatingLabel" TargetType="Label">
-			<Setter Property="Margin" Value="10, 5" />
-			<Setter Property="FontSize" Value="20" />
-			<Setter Property="FontAttributes" Value="Bold"/>
-		</Style>
+        <Style x:Key="RatingLabel" TargetType="Label">
+            <Setter Property="Margin" Value="10, 5" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontAttributes" Value="Bold" />
+        </Style>
 
-		<Style x:Key="RatingStar" TargetType="Label">
-			<Setter Property="Text" Value="☆" />
-			<Setter Property="TextColor" Value="{StaticResource Yellow}" />
-			<Setter Property="FontSize" Value="50" />
-		</Style>
+        <Style x:Key="RatingStar" TargetType="Label">
+            <Setter Property="Text" Value="☆" />
+            <Setter Property="TextColor" Value="{StaticResource Yellow}" />
+            <Setter Property="FontSize" Value="50" />
+        </Style>
 
-		<Style x:Key="PageTitle" TargetType="Label">
-			<Setter Property="FontSize" Value="Title"/>
-			<Setter Property="FontAttributes" Value="Bold"/>
-		</Style>
-		<!--#endregion-->
+        <Style x:Key="PageTitle" TargetType="Label">
+            <Setter Property="FontSize" Value="Title" />
+            <Setter Property="FontAttributes" Value="Bold" />
+        </Style>
+        <!--#endregion-->
 
-		<!--#region StackLayouts -->
-		<Style x:Key="BaseStackLayout" TargetType="StackLayout">
-			<Setter Property="Spacing" Value="0" />
-			<Setter Property="Padding" Value="5" />
-			<Setter Property="Margin" Value="5" />
-			<Setter Property="HorizontalOptions" Value="FillAndExpand" />
-		</Style>
+        <!--#region StackLayouts -->
+        <Style x:Key="BaseStackLayout" TargetType="StackLayout">
+            <Setter Property="Spacing" Value="0" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        </Style>
 
-		<Style x:Key="ConfirmCancelLayout" TargetType="StackLayout">
-			<Setter Property="Orientation" Value="Horizontal" />
-			<Setter Property="Margin" Value="10" />
-		</Style>
+        <Style x:Key="ConfirmCancelLayout" TargetType="StackLayout">
+            <Setter Property="Orientation" Value="Horizontal" />
+            <Setter Property="Margin" Value="10" />
+        </Style>
 
-		<Style x:Key="DealCardViewLayout" TargetType="StackLayout"
+        <Style x:Key="DealCardViewLayout" TargetType="StackLayout"
                BasedOn="{StaticResource BaseStackLayout}">
-			<Setter Property="WidthRequest" Value="170"/>
-			<Setter Property="HeightRequest" Value="200"/>
-		</Style>
+            <Setter Property="WidthRequest" Value="170" />
+            <Setter Property="HeightRequest" Value="200" />
+        </Style>
 
-		<Style x:Key="CardContent" TargetType="StackLayout">
-			<Setter Property="HorizontalOptions" Value="FillAndExpand" />
-			<Setter Property="VerticalOptions" Value="FillAndExpand" />
-			<Setter Property="Spacing" Value="2" />
-		</Style>
+        <Style x:Key="CardContent" TargetType="StackLayout">
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            <Setter Property="Spacing" Value="2" />
+        </Style>
 
-		<!--#endregion-->
+        <!--#endregion-->
 
-		<!--#region CollectionViews -->
+        <!--#region CollectionViews -->
 
-		<Style x:Key="HorizontalCollectionView" TargetType="CollectionView">
-			<Setter Property="HeightRequest" Value="200" />
-			<Setter Property="SelectionMode" Value="Single" />
-		</Style>
+        <Style x:Key="HorizontalCollectionView" TargetType="CollectionView">
+            <Setter Property="HeightRequest" Value="200" />
+            <Setter Property="SelectionMode" Value="Single" />
+        </Style>
 
-		<!--#endregion-->
+        <!--#endregion-->
 
-		<!--#region Frames -->
+        <!--#region Frames -->
 
-		<Style x:Key="BaseCardView" TargetType="Frame">
-			<Setter Property="Padding" Value="0" />
-			<Setter Property="Margin" Value="5" />
-			<Setter Property="HorizontalOptions" Value="FillAndExpand" />
-			<Setter Property="OutlineColor" Value="LightGray" />
-			<Setter Property="BorderColor" Value="LightGray" />
-			<Setter Property="HasShadow" Value="True" />
-		</Style>
+        <Style x:Key="BaseCardView" TargetType="Frame">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="OutlineColor" Value="LightGray" />
+            <Setter Property="BorderColor" Value="LightGray" />
+            <Setter Property="HasShadow" Value="True" />
+        </Style>
 
-		<Style x:Key="RoundedCardView" TargetType="Frame"
-             BasedOn="{StaticResource BaseCardView}">
-			<Setter Property="HeightRequest" Value="170" />
-			<Setter Property="WidthRequest" Value="100" />
-			<Setter Property="CornerRadius" Value="20" />
-			<Setter Property="IsClippedToBounds" Value="False" />
-		</Style>
+        <Style x:Key="RoundedCardView" TargetType="Frame"
+               BasedOn="{StaticResource BaseCardView}">
+            <Setter Property="HeightRequest" Value="170" />
+            <Setter Property="WidthRequest" Value="100" />
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="IsClippedToBounds" Value="False" />
+        </Style>
 
-		<Style x:Key="SearchBarView" TargetType="Frame"
-             BasedOn="{StaticResource RoundedCardView}">
-			<Setter Property="HeightRequest" Value="50" />
-		</Style>
+        <Style x:Key="SearchBarView" TargetType="Frame"
+               BasedOn="{StaticResource RoundedCardView}">
+            <Setter Property="HeightRequest" Value="50" />
+        </Style>
 
-		<!--#endregion-->
+        <!--#endregion-->
 
-		<!--#region Images -->
+        <!--#region Images -->
 
-		<Style x:Key="BaseCardHeaderImage" TargetType="Image">
-			<Setter Property="WidthRequest" Value="300" />
-			<Setter Property="HeightRequest" Value="90" />
-		</Style>
+        <Style x:Key="BaseCardHeaderImage" TargetType="Image">
+            <Setter Property="WidthRequest" Value="300" />
+            <Setter Property="HeightRequest" Value="90" />
+        </Style>
 
-		<Style x:Key="CardHeaderImage" TargetType="Image"
-             BasedOn="{StaticResource BaseCardHeaderImage}">
-			<Setter Property="Aspect" Value="AspectFill" />
-		</Style>
+        <Style x:Key="CardHeaderImage" TargetType="Image"
+               BasedOn="{StaticResource BaseCardHeaderImage}">
+            <Setter Property="Aspect" Value="AspectFill" />
+        </Style>
 
-		<Style x:Key="CardPlaceImage" TargetType="Image"
-             BasedOn="{StaticResource BaseCardHeaderImage}">
-			<Setter Property="Aspect" Value="AspectFit" />
-			<Setter Property="Margin" Value="15" />
-		</Style>
+        <Style x:Key="CardPlaceImage" TargetType="Image"
+               BasedOn="{StaticResource BaseCardHeaderImage}">
+            <Setter Property="Aspect" Value="AspectFit" />
+            <Setter Property="Margin" Value="15" />
+        </Style>
 
-		<Style x:Key="IconImage" TargetType="Image">
-			<Setter Property="WidthRequest" Value="20" />
-			<Setter Property="Margin" Value="5,0,0,0" />
-		</Style>
+        <Style x:Key="IconImage" TargetType="Image">
+            <Setter Property="WidthRequest" Value="20" />
+            <Setter Property="Margin" Value="5,0,0,0" />
+        </Style>
 
-		<!--#endregion-->
+        <!--#endregion-->
 
-		<!--#region Buttons -->
-		<Style x:Key="RateButton" TargetType="Button">
-			<Setter Property="Margin" Value="0, 5" />
-			<Setter Property="HeightRequest" Value="35" />
-			<Setter Property="WidthRequest" Value="350" />
-			<Setter Property="CornerRadius" Value="15" />
-			<Setter Property="BorderWidth" Value="0.5" />
-			<Setter Property="BackgroundColor" Value="White"/>
-			<Setter Property="BorderColor" Value="{StaticResource TextBlack}" />
-			<Setter Property="HorizontalOptions" Value="CenterAndExpand" />
-		</Style>
+        <!--#region Buttons -->
+        <Style x:Key="RateButton" TargetType="Button">
+            <Setter Property="Margin" Value="0, 5" />
+            <Setter Property="HeightRequest" Value="35" />
+            <Setter Property="WidthRequest" Value="350" />
+            <Setter Property="CornerRadius" Value="15" />
+            <Setter Property="BorderWidth" Value="0.5" />
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="BorderColor" Value="{StaticResource TextBlack}" />
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+        </Style>
 
-		<Style x:Key="CancelButton" TargetType="Button">
-			<Setter Property="Text" Value="ⓧ" />
-			<Setter Property="TextColor" Value="{StaticResource TextBlack}" />
-			<Setter Property="FontSize" Value="25" />
-			<Setter Property="HorizontalOptions" Value="EndAndExpand" />
-			<Setter Property="BorderColor" Value="Transparent"/>
-			<Setter Property="BackgroundColor" Value="Transparent"/>
-		</Style>
+        <Style x:Key="CancelButton" TargetType="Button">
+            <Setter Property="Text" Value="ⓧ" />
+            <Setter Property="TextColor" Value="{StaticResource TextBlack}" />
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+            <Setter Property="BorderColor" Value="Transparent" />
+            <Setter Property="BackgroundColor" Value="Transparent" />
+        </Style>
 
-		<Style x:Key="ConfirmButton" TargetType="Button"
-            BasedOn="{StaticResource RateButton}">
-			<Setter Property="Text" Value="Submit" />
-			<Setter Property="TextColor" Value="White"/>
-			<Setter Property="FontAttributes" Value="Bold"/>
-			<Setter Property="BorderColor" Value="Transparent"/>
-			<Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
-		</Style>
+        <Style x:Key="ConfirmButton" TargetType="Button"
+               BasedOn="{StaticResource RateButton}">
+            <Setter Property="Text" Value="Submit" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="BorderColor" Value="Transparent" />
+            <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
+        </Style>
 
-		<Style x:Key="OrderButton" TargetType="Button">
-			<Setter Property="CornerRadius" Value="20" />
-			<Setter Property="VerticalOptions" Value="EndAndExpand" />
-			<Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
-			<Setter Property="TextColor" Value="White" />
-			<Setter Property="Margin" Value="30" />
-		</Style>
+        <Style x:Key="OrderButton" TargetType="Button">
+            <Setter Property="CornerRadius" Value="20" />
+            <Setter Property="VerticalOptions" Value="EndAndExpand" />
+            <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="Margin" Value="30" />
+        </Style>
 
-		<Style x:Key="AuthPrimaryActionButton" TargetType="Button">
-			<Setter Property="CornerRadius" Value="10"/>
-			<Setter Property="BackgroundColor" Value="White"/>
-			<Setter Property="FontAttributes" Value="Bold"/>
-			<Setter Property="TextColor" Value="{StaticResource TextBlack}"/>
-		</Style>
+        <Style x:Key="AuthPrimaryActionButton" TargetType="Button">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="{StaticResource TextBlack}" />
+        </Style>
 
-		<Style x:Key="AuthSecondaryActionButton" TargetType="Button">
-            <Setter Property="BackgroundColor" Value="Transparent"/>
-            <Setter Property="TextColor" Value="White"/>
+        <Style x:Key="AuthSecondaryActionButton" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="TextColor" Value="White" />
         </Style>
 
         <Style x:Key="CustomNavBarBackButton" TargetType="Button">
-            <Setter Property="BackgroundColor" Value="Transparent"/>
-            <Setter Property="TextColor" Value="White"/>
-            <Setter Property="FontAttributes" Value="Bold"/>
-            <Setter Property="FontSize" Value="40"/>
-            <Setter Property="WidthRequest" Value="20"/>
-            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="FontSize" Value="40" />
+            <Setter Property="WidthRequest" Value="20" />
+            <Setter Property="VerticalOptions" Value="Center" />
         </Style>
-		
-		<Style x:Key="FormActionButton" TargetType="Button">
-			<Setter Property="CornerRadius" Value="10"/>
-			<Setter Property="BackgroundColor" Value="{StaticResource TextBlack}"/>
-			<Setter Property="TextColor" Value="White"/>
-			<Setter Property="Margin" Value="40, 0, 40, 0"/>
-			<Setter Property="FontAttributes" Value="Bold"/>
-		</Style>
-		<!--#endregion-->
 
-		<!--#region BoxViews -->
+        <Style x:Key="FormActionButton" TargetType="Button">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="BackgroundColor" Value="{StaticResource TextBlack}" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="Margin" Value="40, 0, 40, 0" />
+            <Setter Property="FontAttributes" Value="Bold" />
+        </Style>
+        <!--#endregion-->
 
-		<Style x:Key="Separator" TargetType="BoxView">
-			<Setter Property="HeightRequest" Value="1" />
-			<Setter Property="Color" Value="{StaticResource SeparatorColor}" />
-		</Style>
+        <!--#region BoxViews -->
 
-		<!--#endregion-->
+        <Style x:Key="Separator" TargetType="BoxView">
+            <Setter Property="HeightRequest" Value="1" />
+            <Setter Property="Color" Value="{StaticResource SeparatorColor}" />
+        </Style>
 
-		<!--#region Entries -->
+        <!--#endregion-->
 
-		<Style x:Key="Entry" TargetType="Entry">
-			<Setter Property="TextColor" Value="{StaticResource EntryTextColor}" />
-			<Setter Property="Margin" Value="0,0,20,0" />
-			<Setter Property="FontSize" Value="16" />
-			<Setter Property="HorizontalOptions" Value="FillAndExpand" />
-		</Style>
+        <!--#region Entries -->
 
-		<!--#endregion-->
+        <Style x:Key="Entry" TargetType="Entry">
+            <Setter Property="TextColor" Value="{StaticResource EntryTextColor}" />
+            <Setter Property="Margin" Value="0,0,20,0" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        </Style>
 
-		<!--#region AbsoluteLayouts -->
+        <!--#endregion-->
 
-		<Style TargetType="AbsoluteLayout">
-			<Setter Property="Padding" Value="0" />
-			<Setter Property="HorizontalOptions" Value="FillAndExpand" />
-			<Setter Property="VerticalOptions" Value="FillAndExpand" />
-		</Style>
+        <!--#region AbsoluteLayouts -->
 
-		<!--#endregion-->
+        <Style TargetType="AbsoluteLayout">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+            <Setter Property="VerticalOptions" Value="FillAndExpand" />
+        </Style>
 
-		<!--#region ContentViews -->
+        <!--#endregion-->
 
-		<Style TargetType="ContentView">
-			<Setter Property="BackgroundColor" Value="{StaticResource ContentBackgroundColor}" />
-			<Setter Property="Padding" Value="10, 0" />
-			<Setter Property="IsVisible" Value="false" />
-			<Setter Property="AbsoluteLayout.LayoutBounds" Value="0, 0, 1, 1" />
-			<Setter Property="AbsoluteLayout.LayoutFlags" Value="All" />
-		</Style>
+        <!--#region ContentViews -->
 
-		<!--#endregion-->
+        <Style TargetType="ContentView">
+            <Setter Property="BackgroundColor" Value="{StaticResource ContentBackgroundColor}" />
+            <Setter Property="Padding" Value="10, 0" />
+            <Setter Property="IsVisible" Value="false" />
+            <Setter Property="AbsoluteLayout.LayoutBounds" Value="0, 0, 1, 1" />
+            <Setter Property="AbsoluteLayout.LayoutFlags" Value="All" />
+        </Style>
 
-		<!--#endregion-->
+        <!--#endregion-->
 
-		<!--#region Data templates -->
+        <!--#endregion-->
 
-		<!--#region Deal card template-->
-		<DataTemplate x:Key="DealsCollectionViewTemplate">
-			<StackLayout Style="{StaticResource DealCardViewLayout}">
-				<Frame Padding="0" CornerRadius="10">
-					<StackLayout>
-						<pcview:PancakeView CornerRadius="10, 10, 0, 0">
-							<Image Style="{StaticResource CardHeaderImage}" Source="{Binding ImageURL}" />
-						</pcview:PancakeView>
+        <!--#region Data templates -->
 
-						<StackLayout HorizontalOptions="Center">
-							<Label Text="{Binding Title}" Style="{StaticResource CardTitle}" HorizontalTextAlignment="Center" Padding="5, 0, 5, 0" />
-							<Label Text="{Binding FoodPlaceTitle}" Style="{StaticResource DealFoodPlaceLabel}" Padding="5, 0, 5, 0" />
-							<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-								<Label Text="{Binding PreviousCost, StringFormat='{0:F2}€'}" Style="{StaticResource PreviousCostLabel}" />
-								<Label Text="{Binding CurrentCost, StringFormat='{0:F2}€'}" Style="{StaticResource CurrentCostLabel}" />
-							</StackLayout>
-						</StackLayout>
-					</StackLayout>
-				</Frame>
-			</StackLayout>
-		</DataTemplate>
-		<!--#endregion-->
+        <!--#region Deal card template-->
+        <DataTemplate x:Key="DealsCollectionViewTemplate">
+            <StackLayout Style="{StaticResource DealCardViewLayout}">
+                <Frame Padding="0" CornerRadius="10">
+                    <StackLayout>
+                        <pcview:PancakeView CornerRadius="10, 10, 0, 0">
+                            <Image Style="{StaticResource CardHeaderImage}" Source="{Binding ImageURL}" />
+                        </pcview:PancakeView>
 
-		<!--#region Food place card template-->
-		<DataTemplate x:Key="FoodPlacesCollectionViewTemplate">
-			<StackLayout Style="{StaticResource BaseStackLayout}">
-				<Frame Padding="0" CornerRadius="10">
-					<StackLayout Style="{StaticResource CardContent}">
-						<pcview:PancakeView CornerRadius="10, 10, 0, 0">
-							<Image Style="{StaticResource CardHeaderImage}" Source="{Binding HeaderURL}" />
-						</pcview:PancakeView>
+                        <StackLayout HorizontalOptions="Center">
+                            <Label Text="{Binding Title}" Style="{StaticResource CardTitle}"
+                                   HorizontalTextAlignment="Center" Padding="5, 0, 5, 0" />
+                            <Label Text="{Binding FoodPlaceTitle}" Style="{StaticResource DealFoodPlaceLabel}"
+                                   Padding="5, 0, 5, 0" />
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                <Label Text="{Binding PreviousCost, StringFormat='{0:F2}€'}"
+                                       Style="{StaticResource PreviousCostLabel}" />
+                                <Label Text="{Binding CurrentCost, StringFormat='{0:F2}€'}"
+                                       Style="{StaticResource CurrentCostLabel}" />
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </DataTemplate>
+        <!--#endregion-->
 
-						<Label Text="{Binding Title}" Style="{StaticResource CardTitle}" />
-						<Label Text="{Binding Rating, StringFormat='☆ {0:F1}'}"/>
-						<Label Text="{Binding DealsCount, StringFormat='{0} deals'}" FontAttributes="Bold" TextColor="{StaticResource AccentColor}" />
-					</StackLayout>
-				</Frame>
-			</StackLayout>
-		</DataTemplate>
+        <!--#region Food place card template-->
+        <DataTemplate x:Key="FoodPlacesCollectionViewTemplate">
+            <StackLayout Style="{StaticResource BaseStackLayout}">
+                <Frame Padding="0" CornerRadius="10">
+                    <StackLayout Style="{StaticResource CardContent}">
+                        <pcview:PancakeView CornerRadius="10, 10, 0, 0">
+                            <Image Style="{StaticResource CardHeaderImage}" Source="{Binding HeaderURL}" />
+                        </pcview:PancakeView>
 
-		<!--#endregion-->
-	</Application.Resources>
+                        <Label Text="{Binding Title}" Style="{StaticResource CardTitle}" />
+                        <Label Text="{Binding Rating, StringFormat='☆ {0:F1}'}" />
+                        <Label Text="{Binding DealsCount, StringFormat='{0} deals'}" FontAttributes="Bold"
+                               TextColor="{StaticResource AccentColor}" />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </DataTemplate>
+
+        <!--#endregion-->
+    </Application.Resources>
 </Application>

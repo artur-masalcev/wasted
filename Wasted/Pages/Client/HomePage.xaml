@@ -1,18 +1,20 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage
-	xmlns="http://xamarin.com/schemas/2014/forms"
-	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Wasted.Pages.Client.HomePage">
-	<ContentPage.Content>
-        <RefreshView x:Name="refreshView"  RefreshColor="DimGray" Refreshing="RefreshView_Refreshing">
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Wasted.Pages.Client.HomePage">
+    <ContentPage.Content>
+        <RefreshView x:Name="RefreshView" RefreshColor="DimGray" Refreshing="RefreshView_Refreshing">
             <ScrollView>
                 <StackLayout>
 
                     <!--#region Nearby food places-->
                     <Label Text="Food places near you" Style="{StaticResource SectionTitle}" />
-                    <CollectionView x:Name="nearbyFoodPlacesCollectionView" Style="{StaticResource HorizontalCollectionView}"
-									SelectionChanged="FoodPlacesCollectionViewListSelectionChanged"
-									ItemTemplate="{StaticResource FoodPlacesCollectionViewTemplate}">
+                    <CollectionView x:Name="NearbyFoodPlacesCollectionView"
+                                    Style="{StaticResource HorizontalCollectionView}"
+                                    SelectionChanged="FoodPlacesCollectionViewListSelectionChanged"
+                                    ItemTemplate="{StaticResource FoodPlacesCollectionViewTemplate}">
 
                         <CollectionView.ItemsLayout>
                             <LinearItemsLayout Orientation="Horizontal" />
@@ -22,10 +24,11 @@
 
                     <!--#region Special offers-->
                     <Label Text="Special offers" Style="{StaticResource SectionTitle}" />
-                    <CollectionView x:Name="specialOffersCollectionView" Style="{StaticResource HorizontalCollectionView}"
-									SelectionChanged="DealsCollectionViewListSelectionChanged"
-									SelectionMode="Single"
-									ItemTemplate="{StaticResource DealsCollectionViewTemplate}">
+                    <CollectionView x:Name="SpecialOffersCollectionView"
+                                    Style="{StaticResource HorizontalCollectionView}"
+                                    SelectionChanged="DealsCollectionViewListSelectionChanged"
+                                    SelectionMode="Single"
+                                    ItemTemplate="{StaticResource DealsCollectionViewTemplate}">
 
                         <CollectionView.ItemsLayout>
                             <LinearItemsLayout Orientation="Horizontal" />
@@ -35,9 +38,10 @@
 
                     <!--#region Popular food places-->
                     <Label Text="Popular food places" Style="{StaticResource SectionTitle}" />
-                    <CollectionView x:Name="popularFoodPlacesCollectionView" Style="{StaticResource HorizontalCollectionView}"
-									SelectionChanged="FoodPlacesCollectionViewListSelectionChanged"
-									ItemTemplate="{StaticResource FoodPlacesCollectionViewTemplate}">
+                    <CollectionView x:Name="PopularFoodPlacesCollectionView"
+                                    Style="{StaticResource HorizontalCollectionView}"
+                                    SelectionChanged="FoodPlacesCollectionViewListSelectionChanged"
+                                    ItemTemplate="{StaticResource FoodPlacesCollectionViewTemplate}">
 
                         <CollectionView.ItemsLayout>
                             <LinearItemsLayout Orientation="Horizontal" />

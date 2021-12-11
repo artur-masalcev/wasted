@@ -12,7 +12,7 @@ namespace DataAPI.Repositories
         {
             _dbContext = dbContext;
         }
-        
+
         public IEnumerable<Rating> Get()
         {
             return _dbContext.Ratings

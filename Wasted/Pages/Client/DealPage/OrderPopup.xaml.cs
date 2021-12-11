@@ -13,16 +13,18 @@ namespace Wasted.Pages.Client.DealPage
         public Deal SelectedDeal { get; set; }
         public int StepperDealQuantity => SelectedDeal.Quantity == 0 ? 1 : SelectedDeal.Quantity;
 
-        private int selectedCount = 0;
+        private int _selectedCount = 0;
+
         public int SelectedCount
         {
-            get { return selectedCount; }
+            get => _selectedCount;
             set
             {
-                selectedCount = value;
+                _selectedCount = value;
                 OnPropertyChanged();
             }
         }
+
         public OrderPopup(Deal deal)
         {
             SelectedDeal = deal;
@@ -36,10 +38,10 @@ namespace Wasted.Pages.Client.DealPage
         public void OnConfirmClicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync(true); // Close the popup
-            SelectedDeal.Quantity -= (int) stepper.Value;
+            SelectedDeal.Quantity -= (int) Stepper.Value;
             DataProvider.UpdateDeal(SelectedDeal);
-            
-            bool selectedSomething = stepper.Value != 0;
+
+            bool selectedSomething = Stepper.Value != 0;
             if (selectedSomething)
                 UserDialogs.Instance.Toast("Order confirmed", new TimeSpan(3));
         }
@@ -51,7 +53,7 @@ namespace Wasted.Pages.Client.DealPage
 
         private void StepperValueChanged(object sender, ValueChangedEventArgs e)
         {
-            SelectedCount = (int)stepper.Value;
+            SelectedCount = (int) Stepper.Value;
         }
     }
 }

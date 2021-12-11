@@ -20,7 +20,7 @@ namespace DataAPI.Controllers
             _placesRepository = placesRepository;
             _mapper = mapper;
         }
-        
+
         [HttpGet]
         public IEnumerable<FoodPlaceDTO> GetFoodPlaces()
         {

@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using DataAPI.DTO;
@@ -22,13 +21,13 @@ namespace DataAPI.Controllers
             _clientUsersRepository = clientUsersRepository;
             _mapper = mapper;
         }
-        
+
         [HttpGet]
         public IEnumerable<ClientUserDTO> GetClientUsers()
         {
             return _clientUsersRepository.Get().Select(_mapper.Map<ClientUserDTO>);
         }
-        
+
         [HttpGet("{username}/{password}")]
         public ClientUserDTO GetClientUser(string username, string password)
         {

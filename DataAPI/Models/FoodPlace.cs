@@ -15,7 +15,7 @@ namespace DataAPI.Models
         public string Street { get; set; } //Never used
         public string City { get; set; } //Never used
         public string WorkingHours { get; set; } //Never used
-        
+
         public int FoodPlaceTypeId { get; set; }
         public FoodPlaceType PlaceType { get; set; }
         public int PlaceUserId { get; set; }

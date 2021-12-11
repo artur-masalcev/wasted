@@ -17,11 +17,12 @@ namespace Wasted.Pages.Place.NewPlace
     public partial class NewPlaceImagePage : ContentPage
     {
         public FoodPlace CurrentPlace { get; set; }
+
         public NewPlaceImagePage(FoodPlace place)
         {
             CurrentPlace = place;
             InitializeComponent();
-            
+
             On<iOS>().SetUseSafeArea(true);
         }
 
@@ -39,7 +40,7 @@ namespace Wasted.Pages.Place.NewPlace
         {
             ExceptionChecker.CheckValidParams(CurrentPlace.HeaderURL, CurrentPlace.LogoURL);
             DataService service = DependencyService.Get<DataService>();
-            PlaceUser currentPlaceUser = (PlaceUser)service.CurrentUser;
+            PlaceUser currentPlaceUser = (PlaceUser) service.CurrentUser;
             CurrentPlace.PlaceUserId = currentPlaceUser.Id;
             CurrentPlace.FoodPlaceTypeId = 1; //TODO: let select
             DataProvider.CreateFoodPlace(CurrentPlace);
@@ -54,7 +55,7 @@ namespace Wasted.Pages.Place.NewPlace
                 this
             );
         }
-        
+
         private void BackClicked(object sender, EventArgs e)
         {
             Navigation.PopAsync(true);

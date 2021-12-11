@@ -8,25 +8,26 @@ namespace Wasted.Pages.Client.FoodPlaceRating
     /// <summary>
     /// Includes functions for representing numeric values of rating in user-friendly way
     /// </summary>
-
     public class Emojis
     {
-        static string[] emojis = {
+        static readonly string[] _emojis =
+        {
             "🤬", "🤢", "😡", "😐", "😋", "😍"
         };
 
         public string this[int index] =>
-            index >= 0 && index < emojis.Length ? emojis[index] : throw new ArgumentOutOfRangeException();
+            index >= 0 && index < _emojis.Length ? _emojis[index] : throw new ArgumentOutOfRangeException();
     }
 
     public class Comments
     {
-        static string[] comments = {
+        static readonly string[] _comments =
+        {
             "#@$?!", "Disgusting", "Ew", "Not bad", "Great", "Amazing"
         };
 
         public string this[int index] =>
-            index >= 0 && index < comments.Length ? comments[index] : throw new ArgumentOutOfRangeException();
+            index >= 0 && index < _comments.Length ? _comments[index] : throw new ArgumentOutOfRangeException();
     }
 
     public static class RatingToAssociation

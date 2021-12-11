@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <pages:PopupPage
-	xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-	xmlns="http://xamarin.com/schemas/2014/forms"
-	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Wasted.Pages.Client.DealPage.OrderPopup">
 
     <!--#region Order view-->
@@ -11,22 +12,22 @@
         <StackLayout BackgroundColor="White">
 
             <StackLayout Orientation="Horizontal"
-                    HorizontalOptions="Center"
-                    Spacing="20">
+                         HorizontalOptions="Center"
+                         Spacing="20">
                 <Label Style="{StaticResource RatingLabel}"
-                        Text="{Binding SelectedCount, StringFormat='Count: {0}'}" />
+                       Text="{Binding SelectedCount, StringFormat='Count: {0}'}" />
 
 
-                <Stepper x:Name="stepper"
-                        Maximum="{Binding StepperDealQuantity}"
-                        Increment="1"
-                        ValueChanged="StepperValueChanged"/>
+                <Stepper x:Name="Stepper"
+                         Maximum="{Binding StepperDealQuantity}"
+                         Increment="1"
+                         ValueChanged="StepperValueChanged" />
 
             </StackLayout>
 
             <StackLayout Style="{StaticResource ConfirmCancelLayout}">
-                <Button Style="{StaticResource CancelButton}" Clicked="OnCancelClicked"  WidthRequest="75"/>
-                <Button Style="{StaticResource ConfirmButton}" Clicked="OnConfirmClicked" WidthRequest="220"/>
+                <Button Style="{StaticResource CancelButton}" Clicked="OnCancelClicked" WidthRequest="75" />
+                <Button Style="{StaticResource ConfirmButton}" Clicked="OnConfirmClicked" WidthRequest="220" />
             </StackLayout>
 
         </StackLayout>

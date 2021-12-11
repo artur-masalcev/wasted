@@ -7,6 +7,7 @@ namespace DataAPI.Repositories
     public class FoodPlaceTypeRepository
     {
         private readonly AppDbContext _dbContext;
+
         public FoodPlaceTypeRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;

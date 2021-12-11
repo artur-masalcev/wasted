@@ -1,5 +1,4 @@
-﻿
-namespace DataAPI.DTO
+﻿namespace DataAPI.DTO
 {
     public class DealDTO
     {
@@ -11,7 +10,7 @@ namespace DataAPI.DTO
         public string Due { get; set; }
         public string ImageURL { get; set; }
         public string Description { get; set; }
-        
+
         public string FoodPlaceTitle { get; set; }
     }
 }

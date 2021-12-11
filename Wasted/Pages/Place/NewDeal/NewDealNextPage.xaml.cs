@@ -17,13 +17,14 @@ namespace Wasted.Pages.Place.NewDeal
     {
         public EntryLengthValidator Validator { get; set; }
         public Deal CurrentDeal { get; set; }
+
         public NewDealNextPage(Deal currentDeal)
         {
             CurrentDeal = currentDeal;
             Validator = new EntryLengthValidator(maxEntryLength: 100);
             BindingContext = Validator;
             InitializeComponent();
-            
+
             On<iOS>().SetUseSafeArea(true);
         }
 
@@ -51,11 +52,11 @@ namespace Wasted.Pages.Place.NewDeal
             DataService service = DependencyService.Get<DataService>();
             string dealExpirationDate = DueDatePicker.Date.ToString("yyyy-MM-dd");
             ExceptionHandler.WrapFunctionCall(
-                    () => FillDealValues(service, dealExpirationDate, DescriptionEntry.Text),
-                    this
-                );
+                () => FillDealValues(service, dealExpirationDate, DescriptionEntry.Text),
+                this
+            );
         }
-        
+
         private void BackClicked(object sender, EventArgs e)
         {
             Navigation.PopAsync(true);

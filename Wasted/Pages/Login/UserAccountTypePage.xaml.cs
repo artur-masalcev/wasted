@@ -36,7 +36,8 @@ namespace Wasted.Pages.Login
         private void OnUserTypeRadioButtonCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             RadioButton radioButton = sender as RadioButton;
-            switch (radioButton.Value) {
+            switch (radioButton.Value)
+            {
                 case "User":
                     DataService.CurrentUser = new ClientUser();
                     break;

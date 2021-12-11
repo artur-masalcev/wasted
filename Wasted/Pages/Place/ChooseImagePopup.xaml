@@ -1,31 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:pages="http://rotorgames.com"
-             x:Class="Wasted.Pages.Place.ChooseImagePopup">
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:pages="http://rotorgames.com"
+                 x:Class="Wasted.Pages.Place.ChooseImagePopup">
     <StackLayout VerticalOptions="Center">
         <Frame CornerRadius="20" BackgroundColor="White" Margin="8, 0, 8, 0">
             <StackLayout>
                 <!--#region Header -->
-                <Button Style="{StaticResource CancelButton}" Clicked="OnCancelClicked"/>
-                <Label Text="Choose image" 
+                <Button Style="{StaticResource CancelButton}" Clicked="OnCancelClicked" />
+                <Label Text="Choose image"
                        HorizontalOptions="CenterAndExpand"
-                       FontAttributes="Bold"/>
+                       FontAttributes="Bold" />
                 <!--#endregion -->
-                
+
                 <!--#region Form -->
                 <StackLayout Margin="0, 10, 0, 20">
                     <StackLayout>
                         <Label Text="URL" />
-                        <Entry x:Name="URLEntry" />
+                        <Entry x:Name="UrlEntry" />
                     </StackLayout>
                 </StackLayout>
                 <!--#endregion -->
-                
+
                 <!--#region Action Button -->
                 <Button Text="Choose" Clicked="ImageButtonClicked"
-                                      Style="{StaticResource FormActionButton}"/>
+                        Style="{StaticResource FormActionButton}" />
                 <!--#endregion -->
             </StackLayout>
         </Frame>

@@ -12,12 +12,13 @@ namespace Wasted.Pages.Place
     {
         public IImageChooser Chooser { get; set; }
         public PropertyInfo Property { get; set; }
+
         public ChooseImagePopup(IImageChooser obj, string property)
         {
             Chooser = obj;
             InitializeComponent();
             Property = obj.GetType().GetProperty(property);
-            URLEntry.Text = (string)Property?.GetValue(Chooser, null);
+            UrlEntry.Text = (string) Property?.GetValue(Chooser, null);
         }
 
         /// <summary>
@@ -25,10 +26,10 @@ namespace Wasted.Pages.Place
         /// </summary>
         private void ImageButtonClicked(object sender, EventArgs e)
         {
-            Property?.SetValue(Chooser, URLEntry.Text);
+            Property?.SetValue(Chooser, UrlEntry.Text);
             PopupNavigation.Instance.PopAsync();
         }
-        
+
         private void OnCancelClicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync(true); // Close the popup

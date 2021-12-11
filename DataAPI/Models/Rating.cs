@@ -9,7 +9,7 @@ namespace DataAPI.Models
 
         public int FoodPlaceId { get; set; }
         public FoodPlace FoodPlace { get; set; }
-        
+
         public int ClientUserId { get; set; }
         public ClientUser ClientUser { get; set; }
     }

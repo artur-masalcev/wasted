@@ -18,7 +18,7 @@ namespace Wasted.Pages.Client
     public partial class FoodPlacesPage : ContentPage
     {
         public FoodPlace SelectedFoodPlace { get; set; }
-        private DataService service;
+        private readonly DataService _service;
 
         public FoodPlacesPage(FoodPlace selectedFoodPlace)
         {
@@ -29,7 +29,7 @@ namespace Wasted.Pages.Client
 
             InitializeViews();
 
-            service = DependencyService.Get<DataService>();
+            _service = DependencyService.Get<DataService>();
         }
 
         /// <summary>
@@ -37,12 +37,13 @@ namespace Wasted.Pages.Client
         /// </summary>
         private void InitializeViews()
         {
-            contentScrollView.BindingContext = SelectedFoodPlace;
-            dealsCollectionView.ItemsSource = DataOrganizer.FilterDeals(SelectedFoodPlace.Deals,
+            ContentScrollView.BindingContext = SelectedFoodPlace;
+            DealsCollectionView.ItemsSource = DataOrganizer.FilterDeals(SelectedFoodPlace.Deals,
                 DefaultFilters.DealInStock);
-            
+
             const int dealHeight = 220;
-            dealsCollectionView.HeightRequest = dealHeight * ((SelectedFoodPlace.Deals.Count  + 1) / 2); //Two items in one row
+            DealsCollectionView.HeightRequest =
+                dealHeight * ((SelectedFoodPlace.Deals.Count + 1) / 2); //Two items in one row
         }
 
         /// <summary>
@@ -70,10 +71,10 @@ namespace Wasted.Pages.Client
         /// </summary>
         private void RefreshView_Refreshing(object sender, EventArgs e)
         {
-            SelectedFoodPlace = service.AllFoodPlaces.Find(place => place.Id == SelectedFoodPlace.Id);
+            SelectedFoodPlace = _service.AllFoodPlaces.Find(place => place.Id == SelectedFoodPlace.Id);
             BindingContext = SelectedFoodPlace;
             InitializeViews();
-            refreshView.IsRefreshing = false;
+            RefreshView.IsRefreshing = false;
         }
-    }  
+    }
 }

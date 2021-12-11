@@ -14,18 +14,19 @@ namespace Wasted.Pages.Client.DealPage
     public partial class ItemsPage : ContentPage
     {
         public Deal SelectedDeal { get; set; }
-        private DataService service;
+        private readonly DataService _service;
+
         public ItemsPage(Deal selectedDeal)
         {
             SelectedDeal = selectedDeal;
-           
+
             InitializeComponent();
 
             On<iOS>().SetUseSafeArea(true);
 
             BindingContext = SelectedDeal;
 
-            service = DependencyService.Get<DataService>();
+            _service = DependencyService.Get<DataService>();
         }
 
         /// <summary>
@@ -42,15 +43,15 @@ namespace Wasted.Pages.Client.DealPage
                 UserDialogs.Instance.Toast("No orders left!", new TimeSpan(3));
             }
         }
-        
+
         /// <summary>
         /// Refreshes the page on scroll down.
         /// </summary>
         private void RefreshView_Refreshing(object sender, EventArgs e)
         {
-            SelectedDeal = service.AllDeals.Find(deal => deal.Id == SelectedDeal.Id);
+            SelectedDeal = _service.AllDeals.Find(deal => deal.Id == SelectedDeal.Id);
             BindingContext = SelectedDeal;
-            refreshView.IsRefreshing = false;
+            RefreshView.IsRefreshing = false;
         }
     }
 }

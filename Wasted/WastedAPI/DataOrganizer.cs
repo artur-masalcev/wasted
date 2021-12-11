@@ -11,19 +11,20 @@ namespace Wasted.WastedAPI
         /// <summary>
         /// Sorts food places by the location to the user.
         /// </summary>
-        public static IEnumerable<FoodPlace> SortPlacesByUserLocation(List<FoodPlace> allFoodPlaces, Location userLocation,
+        public static IEnumerable<FoodPlace> SortPlacesByUserLocation(List<FoodPlace> allFoodPlaces,
+            Location userLocation,
             int nearbyPlacesCount, int maxRadiusInKilometers)
         {
             double GetDistance(Location location, FoodPlace place) =>
                 Location.CalculateDistance(location, place.PlaceLocation, DistanceUnits.Kilometers);
 
             return (
-                   from place in allFoodPlaces
-                   orderby GetDistance(userLocation, place)
-                   where GetDistance(userLocation, place) <= maxRadiusInKilometers
-                   select place
-                   )
-                   .Take(nearbyPlacesCount);
+                    from place in allFoodPlaces
+                    orderby GetDistance(userLocation, place)
+                    where GetDistance(userLocation, place) <= maxRadiusInKilometers
+                    select place
+                )
+                .Take(nearbyPlacesCount);
         }
 
         /// <summary>
@@ -32,24 +33,25 @@ namespace Wasted.WastedAPI
         public static IEnumerable<Deal> SortOffersByPriceChange(List<Deal> allDeals, int specialOffersCount)
         {
             return (
-                   from deal in allDeals
-                   orderby deal.CurrentCost / deal.PreviousCost
-                   select deal
-                   )
-                   .Take(specialOffersCount);
+                    from deal in allDeals
+                    orderby deal.CurrentCost / deal.PreviousCost
+                    select deal
+                )
+                .Take(specialOffersCount);
         }
 
         /// <summary>
         /// Sorts food places by the number of ratings.
         /// </summary>
-        public static IEnumerable<FoodPlace> SortPlacesByRatingDescending(List<FoodPlace> allFoodPlaces, int popularPlacesCount)
+        public static IEnumerable<FoodPlace> SortPlacesByRatingDescending(List<FoodPlace> allFoodPlaces,
+            int popularPlacesCount)
         {
             return (
-                   from place in allFoodPlaces
-                   orderby -place.Ratings.Count
-                   select place
-                   )
-                   .Take(popularPlacesCount);
+                    from place in allFoodPlaces
+                    orderby -place.Ratings.Count
+                    select place
+                )
+                .Take(popularPlacesCount);
         }
 
         /// <summary>

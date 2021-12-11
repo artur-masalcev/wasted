@@ -12,7 +12,7 @@ namespace Wasted.WastedAPI.Business_Objects.Users
         public string City { get; set; }
         public string Address { get; set; }
         public int Id { get; set; }
-        
+
         [JsonConstructor]
         protected User(string username = null, string password = null, string name = null,
             string surname = null, string city = null, string address = null, int id = default)
@@ -25,6 +25,7 @@ namespace Wasted.WastedAPI.Business_Objects.Users
             Address = address;
             Id = id;
         }
+
         public abstract void PushPage(ContentPage page);
         public abstract void CreateUser();
     }

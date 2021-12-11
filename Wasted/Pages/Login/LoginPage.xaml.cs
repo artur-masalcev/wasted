@@ -14,22 +14,23 @@ namespace Wasted.Pages.Login
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        private DataService service;
+        private readonly DataService _service;
+
         public LoginPage()
         {
-            service = DependencyService.Get<DataService>();
+            _service = DependencyService.Get<DataService>();
             InitializeComponent();
             On<iOS>().SetUseSafeArea(true);
         }
 
         private Tuple<User, Func<User>> GetUserDetails(string username, string password)
         {
-            User user = service.GetPlaceUser(username, password);
+            User user = _service.GetPlaceUser(username, password);
             if (user != null)
-                return new Tuple<User, Func<User>>(user, () => service.GetPlaceUser(username, password));
-            user = service.GetClientUser(username, password);
+                return new Tuple<User, Func<User>>(user, () => _service.GetPlaceUser(username, password));
+            user = _service.GetClientUser(username, password);
             if (user != null)
-                return new Tuple<User, Func<User>>(user, () => service.GetClientUser(username, password));
+                return new Tuple<User, Func<User>>(user, () => _service.GetClientUser(username, password));
             return null;
         }
 
@@ -42,9 +43,9 @@ namespace Wasted.Pages.Login
             if (user != null)
             {
                 Location userLocation = GetLocation().Result;
-                service.CurrentUser = user; //Sets user for whole app
-                service.UserGettingFunction = userGettingFunction;
-                service.UserLocation = userLocation;
+                _service.CurrentUser = user; //Sets user for whole app
+                _service.UserGettingFunction = userGettingFunction;
+                _service.UserLocation = userLocation;
                 user.PushPage(this); //Creates appropriate page
             }
             else
@@ -52,7 +53,7 @@ namespace Wasted.Pages.Login
                 DisplayAlert("", "Username or password is incorrect. Try Again.", "OK");
             }
         }
-        
+
         private void LoginClicked(object sender, EventArgs e)
         {
             ExceptionHandler.WrapFunctionCall(
@@ -75,12 +76,12 @@ namespace Wasted.Pages.Login
                     location = await Geolocation.GetLocationAsync(
                         new GeolocationRequest(GeolocationAccuracy.Default, TimeSpan.FromSeconds(5)));
                 }
-                
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Error", ex.Message, "OK");
             }
+
             return location;
         }
 

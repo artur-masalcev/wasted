@@ -14,15 +14,17 @@ namespace Wasted.Pages.Place.NewPlace
     {
         public EntryLengthValidator Validator { get; set; }
         public FoodPlace CurrentFoodPlace { get; set; }
+
         public NewPlacePage()
         {
             InitializeComponent();
             Validator = new EntryLengthValidator(maxEntryLength: 30);
             BindingContext = Validator;
             CityPicker.ItemsSource = new[] {"Vilnius"};
-            
+
             On<iOS>().SetUseSafeArea(true);
         }
+
         private void DescriptionEntryTextChanged(object sender, TextChangedEventArgs e)
         {
             Validator.EntryTextChanged(sender, e);
@@ -32,19 +34,21 @@ namespace Wasted.Pages.Place.NewPlace
         {
             ExceptionChecker.CheckValidParams(titleText, selectedCity, descriptionEntryText);
             CurrentFoodPlace = new FoodPlace(
-                title:titleText,
-                city:selectedCity,
-                description:descriptionEntryText
+                title: titleText,
+                city: selectedCity,
+                description: descriptionEntryText
             );
             Navigation.PushAsync(new NewPlaceImagePage(CurrentFoodPlace));
         }
+
         private void NextButtonClicked(object sender, EventArgs e)
         {
             ExceptionHandler.WrapFunctionCall(
-                () => GoToNextPage(TitleEntry.Text, (string)CityPicker.SelectedItem, DescriptionEntry.Text),
+                () => GoToNextPage(TitleEntry.Text, (string) CityPicker.SelectedItem, DescriptionEntry.Text),
                 this
             );
         }
+
         private void BackClicked(object sender, EventArgs e)
         {
             Navigation.PopAsync(true);

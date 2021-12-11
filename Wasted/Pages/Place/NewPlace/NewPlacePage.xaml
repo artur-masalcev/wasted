@@ -11,31 +11,30 @@
                 <Button Text="‹"
                         Style="{StaticResource CustomNavBarBackButton}"
                         TextColor="{StaticResource TextBlack}"
-                        Clicked="BackClicked"
-                />
-    
+                        Clicked="BackClicked" />
+
                 <Label Text="Add new place"
                        VerticalTextAlignment="Center"
-                       Style="{StaticResource PageTitle}"/>
+                       Style="{StaticResource PageTitle}" />
             </StackLayout>
             <!--#endregion-->
-    
+
             <!--#region Data form-->
             <StackLayout Spacing="20" VerticalOptions="CenterAndExpand" Margin="0, 0, 0, 80">
                 <StackLayout>
                     <Label Text="Title" />
-                    <Entry x:Name="TitleEntry"/>
+                    <Entry x:Name="TitleEntry" />
                 </StackLayout>
-    
+
                 <StackLayout>
                     <Label Text="City" />
                     <Picker x:Name="CityPicker"
-                            Title="Choose city"/>
+                            Title="Choose city" />
                 </StackLayout>
-    
+
                 <StackLayout>
                     <Label Text="{Binding MaxEntryLength, StringFormat='Short description (fewer than {0} words)'}" />
-                    <Entry x:Name="DescriptionEntry" TextChanged="DescriptionEntryTextChanged"/>
+                    <Entry x:Name="DescriptionEntry" TextChanged="DescriptionEntryTextChanged" />
                     <Label>
                         <Label.FormattedText>
                             <FormattedString>
@@ -48,13 +47,12 @@
                 </StackLayout>
             </StackLayout>
             <!--#endregion-->
-    
+
             <!--#region Next button-->
             <Button Text="Next"
                     Clicked="NextButtonClicked"
                     Style="{StaticResource FormActionButton}"
-                    VerticalOptions="EndAndExpand"
-                    />
+                    VerticalOptions="EndAndExpand" />
             <!--#endregion-->
         </StackLayout>
     </ContentPage.Content>

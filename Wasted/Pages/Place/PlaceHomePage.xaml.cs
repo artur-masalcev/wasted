@@ -19,16 +19,17 @@ namespace Wasted.Pages.Place
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PlaceHomePage : ContentPage
     {
-        private DataService service;
-        private PlaceUser currentPlaceUser;
-        public List<FoodPlace> OwnedPlaces => currentPlaceUser.OwnedPlaces;
+        private readonly DataService _service;
+        private readonly PlaceUser _currentPlaceUser;
+        public List<FoodPlace> OwnedPlaces => _currentPlaceUser.OwnedPlaces;
         public ICommand DeleteCommand { get; set; }
+
         public PlaceHomePage()
         {
-            service = DependencyService.Get<DataService>();
+            _service = DependencyService.Get<DataService>();
             InitializeComponent();
             DeleteCommand = new Command(DeletePlace);
-            currentPlaceUser = (PlaceUser)service.CurrentUser;
+            _currentPlaceUser = (PlaceUser) _service.CurrentUser;
             BindingContext = this;
             On<iOS>().SetUseSafeArea(true);
         }
@@ -51,7 +52,7 @@ namespace Wasted.Pages.Place
         {
             FoodPlace selectedPlace = obj as FoodPlace;
             DataProvider.DeleteFoodPlace(selectedPlace);
-            currentPlaceUser.OwnedPlaces = currentPlaceUser.OwnedPlaces
+            _currentPlaceUser.OwnedPlaces = _currentPlaceUser.OwnedPlaces
                 .Where(place => place != selectedPlace)
                 .ToList();
             OnPropertyChanged("OwnedPlaces");

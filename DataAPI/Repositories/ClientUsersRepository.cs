@@ -14,7 +14,7 @@ namespace DataAPI.Repositories
         {
             _dbContext = dbContext;
         }
-        
+
         public IEnumerable<ClientUser> Get()
         {
             return _dbContext.ClientUsers

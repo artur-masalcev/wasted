@@ -8,6 +8,7 @@ namespace DataAPI.Repositories
     public class PlacesRepository
     {
         private readonly AppDbContext _dbContext;
+
         public PlacesRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
@@ -36,6 +37,5 @@ namespace DataAPI.Repositories
             _dbContext.FoodPlaces.Remove(placeToDelete);
             _dbContext.SaveChangesAsync();
         }
-        
     }
 }

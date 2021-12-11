@@ -12,10 +12,11 @@ namespace Wasted.Pages.Login
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserRegistrationDataPage : ContentPage
     {
-        private DataService service;
+        private readonly DataService _service;
+
         public UserRegistrationDataPage()
         {
-            service = DependencyService.Get<DataService>();
+            _service = DependencyService.Get<DataService>();
             InitializeComponent();
             On<iOS>().SetUseSafeArea(true); // Put margin on iOS devices that have top notch
         }
@@ -24,8 +25,8 @@ namespace Wasted.Pages.Login
         {
             ExceptionChecker.CheckValidParams(username, password);
 
-            bool existsUser = (service.GetPlaceUser(username, password) ??
-                                (User) service.GetClientUser(username, password)) != null;
+            bool existsUser = (_service.GetPlaceUser(username, password) ??
+                               (User) _service.GetClientUser(username, password)) != null;
 
             if (!existsUser)
             {
@@ -40,7 +41,7 @@ namespace Wasted.Pages.Login
                 throw new UserAlreadyExistsException();
             }
         }
-        
+
         private void NextClicked(object sender, EventArgs e)
         {
             string password = PasswordEntry.Text ?? "";

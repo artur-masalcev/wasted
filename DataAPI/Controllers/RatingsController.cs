@@ -10,17 +10,18 @@ namespace DataAPI.Controllers
     public class RatingsController : ControllerBase
     {
         private readonly RatingsRepository _ratingsRepository;
+
         public RatingsController(RatingsRepository ratingsRepository)
         {
             _ratingsRepository = ratingsRepository;
         }
-        
+
         [HttpGet]
         public IEnumerable<Rating> GetRatings()
         {
             return _ratingsRepository.Get();
         }
-        
+
         [HttpPost]
         public ActionResult<Rating> PostRating([FromBody] Rating rating)
         {

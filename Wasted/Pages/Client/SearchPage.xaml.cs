@@ -21,35 +21,38 @@ namespace Wasted.Pages.Client
         public List<FoodPlaceType> FoodPlaceTypes { get; set; }
         public string[] PlaceTypeNames { get; set; }
 
-        private string currentPlaceType;
+        private string _currentPlaceType;
+
         public string CurrentPlaceType
         {
-            get { return currentPlaceType; }
+            get => _currentPlaceType;
             set
-            { 
-                currentPlaceType = value;
+            {
+                _currentPlaceType = value;
                 OnPropertyChanged();
             }
         }
 
-        private string sectionTitleText = "All places";
+        private string _sectionTitleText = "All places";
+
         public string SectionTitleText
         {
-            get { return sectionTitleText; }
+            get => _sectionTitleText;
             set
             {
-                sectionTitleText = value;
+                _sectionTitleText = value;
                 OnPropertyChanged();
             }
         }
 
-        private string allPlaceButtonText;
+        private string _allPlaceButtonText;
+
         public string AllPlaceButtonText
         {
-            get { return allPlaceButtonText; }
+            get => _allPlaceButtonText;
             set
             {
-                allPlaceButtonText = value;
+                _allPlaceButtonText = value;
                 OnPropertyChanged();
             }
         }
@@ -60,9 +63,9 @@ namespace Wasted.Pages.Client
             FoodPlaceTypes = service.GetFoodPlaceTypes;
             PlaceTypeNames = FoodPlaceTypes.Select(type => type.Type).ToArray();
             AllPlaces = FoodPlaceTypes
-                .Aggregate(new List<FoodPlace>(), (acc, next) => acc.Concat(next.FoodPlaces).ToList()) 
+                .Aggregate(new List<FoodPlace>(), (acc, next) => acc.Concat(next.FoodPlaces).ToList())
                 .ToList();
-            
+
             InitializeComponent();
             On<iOS>().SetUseSafeArea(true);
         }
@@ -74,8 +77,8 @@ namespace Wasted.Pages.Client
         {
             base.OnAppearing();
             AvailablePlaces = AllPlaces;
-            restaurantLayout.BindingContext = this;
-            restaurantTypeCollectionView.ItemsSource = PlaceTypeNames;
+            RestaurantLayout.BindingContext = this;
+            RestaurantTypeCollectionView.ItemsSource = PlaceTypeNames;
         }
 
         /// <summary>
@@ -95,8 +98,8 @@ namespace Wasted.Pages.Client
         /// </summary>
         private void ShowFoodPlaces(bool show)
         {
-            restaurantLayout.IsVisible = show;
-            restaurantTypeCollectionView.IsVisible = !show;
+            RestaurantLayout.IsVisible = show;
+            RestaurantTypeCollectionView.IsVisible = !show;
         }
 
         /// <summary>
@@ -104,19 +107,18 @@ namespace Wasted.Pages.Client
         /// </summary>
         private void TypesCollectionViewListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (restaurantTypeCollectionView.SelectedItem == null) //Called from allPlaceButton.
+            if (RestaurantTypeCollectionView.SelectedItem == null) //Called from allPlaceButton.
                 return;
 
             ShowFoodPlaces(true);
 
-            string type = (string)e.CurrentSelection.FirstOrDefault();
+            string type = (string) e.CurrentSelection.FirstOrDefault();
             AvailablePlaces = FoodPlaceTypes.Find(t => t.Type == type).FoodPlaces;
-            allPlacesCollectionView.ItemsSource = AvailablePlaces;
+            AllPlacesCollectionView.ItemsSource = AvailablePlaces;
 
             SectionTitleText = type + "s";
-            allPlaceButton.IsVisible = true; //Return to all places from current place type
+            AllPlaceButton.IsVisible = true; //Return to all places from current place type
             AllPlaceButtonText = SectionTitleText;
-
         }
 
         /// <summary>
@@ -125,12 +127,12 @@ namespace Wasted.Pages.Client
         private void AllPlaceButtonClicked(object sender, EventArgs e)
         {
             ShowFoodPlaces(false);
-            allPlaceButton.IsVisible = false;
+            AllPlaceButton.IsVisible = false;
             AvailablePlaces = AllPlaces;
-            allPlacesCollectionView.ItemsSource = AvailablePlaces;
+            AllPlacesCollectionView.ItemsSource = AvailablePlaces;
 
             SectionTitleText = "All places";
-            restaurantTypeCollectionView.SelectedItem = null;
+            RestaurantTypeCollectionView.SelectedItem = null;
         }
 
         /// <summary>
@@ -146,17 +148,17 @@ namespace Wasted.Pages.Client
                 var filteredPlaces = AvailablePlaces.Where(MaskFunction);
 
                 bool isValid = Regex.IsMatch(e.NewTextValue, restaurantNameRegex);
-                searchBar.TextColor = isValid ? Color.Default : Color.Red;
+                SearchBar.TextColor = isValid ? Color.Default : Color.Red;
 
                 if (string.IsNullOrWhiteSpace(e.NewTextValue))
                 {
                     ShowFoodPlaces(false);
-                    allPlacesCollectionView.ItemsSource = AvailablePlaces;
+                    AllPlacesCollectionView.ItemsSource = AvailablePlaces;
                 }
                 else
                 {
                     ShowFoodPlaces(true);
-                    allPlacesCollectionView.ItemsSource = filteredPlaces;
+                    AllPlacesCollectionView.ItemsSource = filteredPlaces;
                 }
             }
             catch (NullReferenceException)
@@ -171,7 +173,7 @@ namespace Wasted.Pages.Client
         private void RefreshView_Refreshing(object sender, EventArgs e)
         {
             OnAppearing();
-            refreshView.IsRefreshing = false;
+            RefreshView.IsRefreshing = false;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace DataAPI.DTO
         public string Street { get; set; } //Never used
         public string City { get; set; } //Never used
         public string WorkingHours { get; set; } //Never used
-        
+
         public string PlaceTypeValue { get; set; }
 
         public List<RatingDTO> Ratings { get; set; }
