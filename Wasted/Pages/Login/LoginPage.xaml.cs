@@ -23,15 +23,28 @@ namespace Wasted
             On<iOS>().SetUseSafeArea(true);
         }
 
+        private Tuple<User, Func<User>> GetUserDetails(string username, string password)
+        {
+            User user = service.GetPlaceUser(username, password);
+            if (user != null)
+                return new Tuple<User, Func<User>>(user, () => service.GetPlaceUser(username, password));
+            user = service.GetClientUser(username, password);
+            if (user != null)
+                return new Tuple<User, Func<User>>(user, () => service.GetClientUser(username, password));
+            return null;
+        }
+
         private void SubmitUserData(string username, string password)
         {
             ExceptionChecker.CheckValidParams(username, password);
-            User user = service.GetPlaceUser(username, password) ??
-                        (User) service.GetClientUser(username, password);
+            Tuple<User, Func<User>> userDetails = GetUserDetails(username, password);
+            User user = userDetails.Item1;
+            Func<User> userGettingFunction = userDetails.Item2;
             if (user != null)
             {
                 Location userLocation = GetLocation().Result;
                 service.CurrentUser = user; //Sets user for whole app
+                service.UserGettingFunction = userGettingFunction;
                 service.UserLocation = userLocation;
                 user.PushPage(this); //Creates appropriate page
             }

@@ -42,7 +42,7 @@ namespace Wasted.Pages.Place.NewPlace
             CurrentPlace.PlaceUserId = currentPlaceUser.Id;
             CurrentPlace.FoodPlaceTypeId = 1; //TODO: let select
             DataProvider.CreateFoodPlace(CurrentPlace);
-            currentPlaceUser.OwnedPlaces.Add(CurrentPlace);
+            service.UpdateUserInfo(); //Fetches the id of a new place
             currentPlaceUser.PushPage(this);
         }
 

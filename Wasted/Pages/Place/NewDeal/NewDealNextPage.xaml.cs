@@ -16,11 +16,9 @@ namespace Wasted.Pages.Place.NewDeal
     {
         public EntryLengthValidator Validator { get; set; }
         public Deal CurrentDeal { get; set; }
-        public FoodPlace SelectedPlace { get; set; }
-        public NewDealNextPage(Deal currentDeal, FoodPlace selectedPlace)
+        public NewDealNextPage(Deal currentDeal)
         {
             CurrentDeal = currentDeal;
-            SelectedPlace = selectedPlace;
             Validator = new EntryLengthValidator(maxEntryLength: 100);
             BindingContext = Validator;
             InitializeComponent();

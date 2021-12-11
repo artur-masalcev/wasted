@@ -13,17 +13,18 @@ namespace Wasted.Utils
 {
     public class DataService
     {
-
+        public Func<User> UserGettingFunction;
+        public void UpdateUserInfo()
+        {
+            CurrentUser = UserGettingFunction.Invoke();
+        }
         public User CurrentUser { get; set; }
 
         public List<FoodPlace> AllFoodPlaces => Task.Run(async () =>
             await DataProvider.GetData<List<FoodPlace>>(DataProvider.FoodPlacesEnd)).Result;
 
-        private Lazy<Task<List<Deal>>> LazyAllDeals = new Lazy<Task<List<Deal>>>(() => Task.Run(async () =>
-            await DataProvider.GetData<List<Deal>>(DataProvider.DealsEnd))
-        );
-
-        public List<Deal> AllDeals => LazyAllDeals.Value.Result;
+        public List<Deal> AllDeals => Task.Run(async () =>
+            await DataProvider.GetData<List<Deal>>(DataProvider.DealsEnd)).Result;
 
         public List<ClientUser> ClientUsers => Task.Run(async () =>
             await DataProvider.GetData<List<ClientUser>>(DataProvider.ClientUsersEnd)).Result;

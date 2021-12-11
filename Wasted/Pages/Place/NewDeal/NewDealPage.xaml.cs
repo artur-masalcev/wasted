@@ -38,7 +38,7 @@ namespace Wasted.Pages.Place.NewDeal
                 previousCost:double.Parse(previousCostText)
             );
             SelectedPlace.Deals.Add(currentDeal);
-            Navigation.PushAsync(new NewDealNextPage(currentDeal, SelectedPlace));
+            Navigation.PushAsync(new NewDealNextPage(currentDeal));
         }
         private void NextButtonClicked(object sender, EventArgs e)
         {
