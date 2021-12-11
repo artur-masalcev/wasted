@@ -14,7 +14,7 @@
             <Setter Property="TextColor" Value="White" />
         </Style>
 		
-	    <Style TargetType="Entry" x:Key="PasswordEntry">
+	    <Style TargetType="wasted:RoundedEntry" x:Key="PasswordEntry">
 			<Setter Property="HeightRequest" Value="45"/>
 			<Setter Property="BackgroundColor" Value="White"/>
 		</Style>
