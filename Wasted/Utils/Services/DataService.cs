@@ -47,7 +47,7 @@ namespace Wasted.Utils.Services
                 await DataProvider.GetData<ClientUser>(DataProvider.ClientUserEnd(username, password))).Result;
         }
 
-        public PlaceUser GetPlaceUser(string username, string password) //TODO: fix name mismatches
+        public PlaceUser GetPlaceUser(string username, string password)
         {
             return Task.Run(async () =>
                 await DataProvider.GetData<PlaceUser>(DataProvider.PlaceUserEnd(username, password))).Result;

@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAPI.Repositories
 {
-    public class FoodPlaceTypeRepository
+    public class FoodPlaceTypesRepository
     {
         private readonly AppDbContext _dbContext;
 
-        public FoodPlaceTypeRepository(AppDbContext dbContext)
+        public FoodPlaceTypesRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
         }
