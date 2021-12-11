@@ -10,8 +10,7 @@
         <StackLayout>
             <!--#region Custom navigation bar-->
             <StackLayout Orientation="Horizontal">
-                <Button Text="‹"
-                        Style="{StaticResource CustomNavBarBackButton}"
+                <Button Style="{StaticResource CustomNavBarBackButton}"
                         TextColor="{StaticResource TextBlack}"
                         Clicked="BackClicked"
                 />

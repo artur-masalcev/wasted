@@ -24,9 +24,8 @@
         <StackLayout Padding="15, 0, 15, 0">
             <!--#region Custom navigation bar-->
             <StackLayout Orientation="Horizontal">
-                <Button Text="‹"
-                        Style="{StaticResource CustomNavBarBackButton}"
-                        Clicked="BackClicked" />
+                <Button Style="{StaticResource CustomNavBarBackButton}"
+                        Clicked="BackClicked"/>
 
                 <Label Text="Personal information"
                        VerticalTextAlignment="Center"
