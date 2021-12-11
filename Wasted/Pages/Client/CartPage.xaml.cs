@@ -65,12 +65,12 @@ namespace Wasted
                 {
                     service.OrderedDeals.Add(new OrderedDeal(cartDeal, "Preparing", cartDeal.Quantity));
                 }
-            
+
                 service.CartDeals = new List<CartDeal>();
                 CartDeals = service.CartDeals;
                 OnAppearing();
-                
-                MessagingCenter.Send<object, int>(this,"click",(int) NavigationPages.ORDER_STATUS_PAGE);
+
+                MessagingCenter.Send<object, int>(this, "click", (int) NavigationPages.ORDER_STATUS_PAGE);
                 UserDialogs.Instance.Toast("Purchased successfully", new TimeSpan(3));
             }
             else

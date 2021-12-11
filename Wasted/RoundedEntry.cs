@@ -4,6 +4,5 @@ namespace Wasted
 {
     public class RoundedEntry : Entry
     {
-        
     }
 }

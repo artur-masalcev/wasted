@@ -13,14 +13,9 @@ namespace Wasted.Pages.Place
 
         public string DealTitle => SelectedDeal.Title;
         public int Quantity => SelectedDeal.Quantity;
-        
-        public string Message{
 
-            get {
-                return string.Format("Deal {0} (x{1}) is done preparing",  DealTitle, Quantity);
-            }
-        }
-        
+        public string Message => $"Deal {DealTitle} (x{Quantity}) is done preparing";
+
         public OrderStatusPlacePopup(OrderedDeal deal)
         {
             InitializeComponent();

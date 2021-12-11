@@ -24,18 +24,21 @@
                             <SwipeView>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="200"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="200" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <Label Grid.Column="0" Text="{Binding Title }" />
                                     <Label Grid.Column="1" Text="{Binding City}" />
-                                    <Label Grid.Column="2" Text="{Binding DealsCount, StringFormat='{0} deals'}" HorizontalTextAlignment="End"/>
+                                    <Label Grid.Column="2" Text="{Binding DealsCount, StringFormat='{0} deals'}"
+                                           HorizontalTextAlignment="End" />
                                 </Grid>
                                 <SwipeView.RightItems>
                                     <SwipeItems>
-                                        <SwipeItem Text="Delete" BackgroundColor="Red" Command="{Binding Path=BindingContext.DeleteCommand,
-                                            Source={x:Reference YourPlacesCollectionView}}" CommandParameter="{Binding .}"/>
+                                        <SwipeItem Text="Delete" BackgroundColor="Red"
+                                                   Command="{Binding Path=BindingContext.DeleteCommand,
+                                            Source={x:Reference YourPlacesCollectionView}}"
+                                                   CommandParameter="{Binding .}" />
                                     </SwipeItems>
                                 </SwipeView.RightItems>
                             </SwipeView>

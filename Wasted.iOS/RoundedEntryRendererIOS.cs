@@ -6,6 +6,7 @@ using Xamarin.Forms.Platform.iOS;
 using Xamarin.Forms.Xaml;
 
 [assembly: ExportRenderer(typeof(RoundedEntry), typeof(RoundedEntryRendererIOS))]
+
 namespace Wasted.iOS
 {
     public class RoundedEntryRendererIOS : EntryRenderer

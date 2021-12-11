@@ -9,17 +9,16 @@
             android:TabbedPage.ToolbarPlacement="Bottom"
             NavigationPage.HasNavigationBar="false">
 
-            <client:HomePage
-                 Title="Home"
-                 Icon="nav_bar_home.png"/>
-            <client:SearchPage
-                 Title="Search"
-                 Icon="nav_bar_search.png"/>
-            <wasted:CartPage
-                Title="Cart"
-                Icon="nav_bar_cart.png"/>
-            <wasted:OrderStatusPage
-                 Title="Order Status"
-                 Icon="nav_bar_order.png"/>
+    <client:HomePage
+        Title="Home"
+        Icon="nav_bar_home.png" />
+    <client:SearchPage
+        Title="Search"
+        Icon="nav_bar_search.png" />
+    <wasted:CartPage
+        Title="Cart"
+        Icon="nav_bar_cart.png" />
+    <wasted:OrderStatusPage
+        Title="Order Status"
+        Icon="nav_bar_order.png" />
 </TabbedPage>
-

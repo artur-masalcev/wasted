@@ -7,12 +7,15 @@ using Xamarin.Forms.Platform.Android;
 using Xamarin.Forms.Xaml;
 
 [assembly: ExportRenderer(typeof(RoundedEntry), typeof(RoundedEntryRenderedAndroid))]
+
 namespace Wasted.Droid
 {
     public class RoundedEntryRenderedAndroid : EntryRenderer
     {
-        public RoundedEntryRenderedAndroid(Context context) : base(context) {}
-        
+        public RoundedEntryRenderedAndroid(Context context) : base(context)
+        {
+        }
+
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {
             base.OnElementChanged(e);
@@ -24,7 +27,7 @@ namespace Wasted.Droid
                 gradientDrawable.SetStroke(5, Android.Graphics.Color.White);
                 gradientDrawable.SetColor(Android.Graphics.Color.White);
                 Control.SetBackground(gradientDrawable);
-                
+
                 Control.SetPadding(50, Control.PaddingTop, Control.PaddingRight, Control.PaddingBottom);
             }
         }

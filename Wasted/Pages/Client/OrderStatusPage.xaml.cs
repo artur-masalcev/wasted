@@ -21,7 +21,7 @@ namespace Wasted
             InitializeComponent();
             OrderedDealsCollectionView.ItemsSource = service.OrderedDeals;
         }
-        
+
         /// <summary>
         /// Sets OrderedDealsCollectionView with OrderedDeals
         /// </summary>

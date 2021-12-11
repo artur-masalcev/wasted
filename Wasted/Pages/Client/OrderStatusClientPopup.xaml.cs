@@ -12,13 +12,8 @@ namespace Wasted.Pages.Client
         public OrderedDeal SelectedDeal { get; set; }
         public string DealTitle => SelectedDeal.Title;
         public int Quantity => SelectedDeal.Quantity;
-        
-        public string Message{
 
-            get {
-                return string.Format("Deal {0} (x{1}) is received",  DealTitle, Quantity);
-            }
-        }
+        public string Message => $"Deal {DealTitle} (x{Quantity}) is received";
 
         public OrderStatusClientPopup(OrderedDeal deal)
         {

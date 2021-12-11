@@ -37,7 +37,7 @@ namespace Wasted.Utils.Services
             await DataProvider.GetData<List<PlaceUser>>(DataProvider.PlaceUsersEnd)).Result;
 
         public Location UserLocation { get; set; }
-        
+
         public List<CartDeal> CartDeals { get; set; } = new List<CartDeal>();
         public List<OrderedDeal> OrderedDeals { get; set; } = new List<OrderedDeal>();
 

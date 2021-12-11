@@ -48,14 +48,14 @@ namespace Wasted.Pages.Client.DealPage
             bool selectedSomething = Stepper.Value != 0;
             if (selectedSomething)
             {
-                CartDeal cartDeal = new CartDeal(SelectedDeal, (int) Stepper.Value, Stepper.Value * SelectedDeal.CurrentCost);
+                CartDeal cartDeal = new CartDeal(SelectedDeal, (int) Stepper.Value,
+                    Stepper.Value * SelectedDeal.CurrentCost);
                 service.CartDeals.Add(cartDeal);
                 // Navigates to the third tabbed page and closes the Deal Page
-                MessagingCenter.Send<object, int>(this,"click",(int) NavigationPages.CART_PAGE);
+                MessagingCenter.Send<object, int>(this, "click", (int) NavigationPages.CART_PAGE);
                 Application.Current.MainPage.Navigation.PopAsync();
                 UserDialogs.Instance.Toast("Added to cart", new TimeSpan(3));
             }
-                
         }
 
         public void OnCancelClicked(object sender, EventArgs e)

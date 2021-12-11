@@ -1,12 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Wasted.OrderStatusPage">
     <ContentPage.Content>
-        <RefreshView x:Name="RefreshView"  RefreshColor="DimGray" Refreshing="RefreshView_Refreshing">
+        <RefreshView x:Name="RefreshView" RefreshColor="DimGray" Refreshing="RefreshView_Refreshing">
             <StackLayout>
-                <Label Text="Purchase status:" Style="{StaticResource SectionTitle}"></Label>
+                <Label Text="Purchase status:" Style="{StaticResource SectionTitle}" />
                 <CollectionView x:Name="OrderedDealsCollectionView"
                                 SelectionMode="Single"
                                 ItemsLayout="VerticalList"
@@ -16,13 +17,13 @@
                             <Frame>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="40"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="40" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <Label Grid.Column="0" Text="{Binding Quantity, StringFormat='{0}x' }" />
                                     <Label Grid.Column="1" Text="{Binding Title}" />
-                                    <Label Grid.Column="2" Text="{Binding Status}" HorizontalTextAlignment="End"/>
+                                    <Label Grid.Column="2" Text="{Binding Status}" HorizontalTextAlignment="End" />
                                 </Grid>
                             </Frame>
                         </DataTemplate>

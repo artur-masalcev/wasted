@@ -13,11 +13,11 @@
             <Setter Property="FontAttributes" Value="Bold" />
             <Setter Property="TextColor" Value="White" />
         </Style>
-		
-	    <Style TargetType="wasted:RoundedEntry" x:Key="PasswordEntry">
-			<Setter Property="HeightRequest" Value="45"/>
-			<Setter Property="BackgroundColor" Value="White"/>
-		</Style>
+
+        <Style TargetType="wasted:RoundedEntry" x:Key="PasswordEntry">
+            <Setter Property="HeightRequest" Value="45" />
+            <Setter Property="BackgroundColor" Value="White" />
+        </Style>
 
         <Style TargetType="NavigationPage">
             <Setter Property="BarBackgroundColor" Value="{StaticResource AppEmerald}" />
@@ -30,18 +30,18 @@
             <!--Logo-->
             <Image Source="logo_white" Scale="0.7" />
 
-			<!--#region Fields-->
-			<StackLayout Spacing="20" VerticalOptions="CenterAndExpand" Margin="0, 0, 0, 80">
-				<StackLayout>
-					<Label Text="Username"/>
-					<wasted:RoundedEntry x:Name="UsernameEntry"/>
-				</StackLayout>
-				<StackLayout>
-					<Label Text="Password"/>
-					<wasted:RoundedEntry x:Name="PasswordEntry" IsPassword="True"/>
-				</StackLayout>
-			</StackLayout>
-			<!--#endregion-->
+            <!--#region Fields-->
+            <StackLayout Spacing="20" VerticalOptions="CenterAndExpand" Margin="0, 0, 0, 80">
+                <StackLayout>
+                    <Label Text="Username" />
+                    <wasted:RoundedEntry x:Name="UsernameEntry" />
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Password" />
+                    <wasted:RoundedEntry x:Name="PasswordEntry" IsPassword="True" />
+                </StackLayout>
+            </StackLayout>
+            <!--#endregion-->
 
             <!--#region Action buttons-->
             <Button Text="Login"

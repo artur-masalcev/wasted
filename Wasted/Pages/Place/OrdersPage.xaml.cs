@@ -21,19 +21,21 @@ namespace Wasted.Pages.Place
         private DataService service;
         public PlaceUser CurrentUser { get; set; }
         private IEnumerable<FoodPlace> ownedPlaces;
+
         public IEnumerable<FoodPlace> OwnedPlaces
         {
-            get { return ownedPlaces; }
+            get => ownedPlaces;
             set
             {
                 ownedPlaces = value;
                 OnPropertyChanged();
             }
         }
+
         public OrdersPage()
         {
             service = DependencyService.Get<DataService>();
-            CurrentUser = (PlaceUser)service.CurrentUser;
+            CurrentUser = (PlaceUser) service.CurrentUser;
             //OwnedPlaces = CurrentUser.OwnedPlaceIDs.Select(id => service.AllFoodPlaces[id - 1]);
             InitializeComponent();
 
@@ -53,7 +55,7 @@ namespace Wasted.Pages.Place
                 return false;
             });
         }
-        
+
         /// <summary>
         /// Sets OrderedDealsCollectionView with OrderedDeals
         /// </summary>

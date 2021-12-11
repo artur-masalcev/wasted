@@ -1,5 +1,4 @@
-﻿
-namespace Wasted.WastedAPI.Business_Objects
+﻿namespace Wasted.WastedAPI.Business_Objects
 {
     public class CartDeal
     {

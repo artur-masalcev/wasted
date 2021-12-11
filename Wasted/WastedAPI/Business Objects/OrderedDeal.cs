@@ -11,17 +11,14 @@ namespace Wasted.Dummy_API.Business_Objects
 
         public string Status
         {
-            get
-            {
-                return status;
-            }
+            get => status;
             set
             {
                 status = value;
                 OnPropertyChanged();
             }
         }
-        
+
         public int Quantity { get; set; }
 
         public string Title => PurchasedDeal.Title;
