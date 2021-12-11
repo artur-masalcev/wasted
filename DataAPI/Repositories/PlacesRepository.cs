@@ -20,7 +20,6 @@ namespace DataAPI.Repositories
                 .Include(p => p.Deals)
                 .Include(p => p.Ratings)
                 .Include(p => p.PlaceType)
-                //.Include(p => p.PlaceUser)
                 .ToList();
         }
 

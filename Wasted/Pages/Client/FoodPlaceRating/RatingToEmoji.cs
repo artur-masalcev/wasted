@@ -10,7 +10,7 @@ namespace Wasted.Pages.Client.FoodPlaceRating
     /// </summary>
     public class Emojis
     {
-        static readonly string[] _emojis =
+        private static readonly string[] _emojis =
         {
             "🤬", "🤢", "😡", "😐", "😋", "😍"
         };
@@ -21,7 +21,7 @@ namespace Wasted.Pages.Client.FoodPlaceRating
 
     public class Comments
     {
-        static readonly string[] _comments =
+        private static readonly string[] _comments =
         {
             "#@$?!", "Disgusting", "Ew", "Not bad", "Great", "Amazing"
         };

@@ -1,4 +1,3 @@
-using DataAPI.Models;
 using DataAPI.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,12 +20,12 @@ namespace DataAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
-            services.AddScoped<DealsRepository>(); //TODO: rename to singular
+            services.AddScoped<DealsRepository>();
             services.AddScoped<PlacesRepository>();
             services.AddScoped<ClientUsersRepository>();
             services.AddScoped<PlaceUsersRepository>();
             services.AddScoped<RatingsRepository>();
-            services.AddScoped<FoodPlaceTypeRepository>();
+            services.AddScoped<FoodPlaceTypesRepository>();
             services.AddDbContext<AppDbContext>(o => o.UseSqlite("Data source=database.db"));
             services.AddControllers();
         }

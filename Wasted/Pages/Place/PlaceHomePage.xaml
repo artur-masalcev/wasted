@@ -20,31 +20,29 @@
                             ItemsSource="{Binding OwnedPlaces}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <SwipeView>
-                            <Frame HasShadow="false"
-                                   CornerRadius="0">
-                                <StackLayout Orientation="Horizontal" Background="White">
-                                    <StackLayout>
-                                        <Label Text="{Binding Title }"
-                                               FontAttributes="Bold" />
-                                        <Label Text="{Binding City}" />
-                                    </StackLayout>
-                                    <Label Text="{Binding DealsCount, StringFormat='{0} deals'}"
-                                           HorizontalOptions="EndAndExpand"
-                                           VerticalOptions="Center"
-                                           FontAttributes="Bold" />
-                                    <Label Text="›"
-                                           VerticalOptions="Center"
-                                           FontSize="20" />
-                                </StackLayout>
-                            </Frame>
-                            <SwipeView.RightItems>
-                                <SwipeItem Text="Delete" BackgroundColor="Tomato"
-                                           Command="{Binding Path=BindingContext.DeleteCommand,
-                                        Source={x:Reference YourPlacesCollectionView}}"
-                                           CommandParameter="{Binding .}" />
-                            </SwipeView.RightItems>
-                        </SwipeView>
+                        <Frame>
+                            <SwipeView>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="200" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Text="{Binding Title }" />
+                                    <Label Grid.Column="1" Text="{Binding City}" />
+                                    <Label Grid.Column="2" Text="{Binding DealsCount, StringFormat='{0} deals'}"
+                                           HorizontalTextAlignment="End" />
+                                </Grid>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Delete" BackgroundColor="Red"
+                                                   Command="{Binding Path=BindingContext.DeleteCommand,
+                                            Source={x:Reference YourPlacesCollectionView}}"
+                                                   CommandParameter="{Binding .}" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                            </SwipeView>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

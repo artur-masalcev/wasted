@@ -2,6 +2,7 @@
 using Acr.UserDialogs;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
+using Wasted.Utils.Services;
 using Wasted.WastedAPI;
 using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
@@ -11,6 +12,7 @@ namespace Wasted.Pages.Client.DealPage
     public partial class OrderPopup : PopupPage
     {
         public Deal SelectedDeal { get; set; }
+        private readonly DataService _service;
         public int StepperDealQuantity => SelectedDeal.Quantity == 0 ? 1 : SelectedDeal.Quantity;
 
         private int _selectedCount = 0;
@@ -30,6 +32,7 @@ namespace Wasted.Pages.Client.DealPage
             SelectedDeal = deal;
             InitializeComponent();
             BindingContext = this;
+            _service = DependencyService.Get<DataService>();
         }
 
         /// <summary>
@@ -37,18 +40,24 @@ namespace Wasted.Pages.Client.DealPage
         /// </summary>
         public void OnConfirmClicked(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PopAsync(true); // Close the popup
+            PopupNavigation.Instance.PopAsync(); // Close the popup
             SelectedDeal.Quantity -= (int) Stepper.Value;
             DataProvider.UpdateDeal(SelectedDeal);
 
             bool selectedSomething = Stepper.Value != 0;
             if (selectedSomething)
-                UserDialogs.Instance.Toast("Order confirmed", new TimeSpan(3));
+            {
+                OrderDeal cartDeal = new OrderDeal(SelectedDeal, OrderStatus.Preparing,
+                    (int)Stepper.Value);
+                _service.CartDeals.Add(cartDeal);
+                UserDialogs.Instance.Toast("Added to cart", new TimeSpan(3));
+                Navigation.PushAsync(new CartPage());
+            }
         }
 
         public void OnCancelClicked(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PopAsync(true); // Close the popup
+            PopupNavigation.Instance.PopAsync(); // Close the popup
         }
 
         private void StepperValueChanged(object sender, ValueChangedEventArgs e)

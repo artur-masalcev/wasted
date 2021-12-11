@@ -11,6 +11,7 @@
         public string ImageURL { get; set; }
         public string Description { get; set; }
 
+        public int FoodPlaceId { get; set; }
         public string FoodPlaceTitle { get; set; }
     }
 }

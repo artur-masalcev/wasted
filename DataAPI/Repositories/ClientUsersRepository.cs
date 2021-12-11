@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using DataAPI.Models;
 using DataAPI.Models.Users;
 using Microsoft.EntityFrameworkCore;
 

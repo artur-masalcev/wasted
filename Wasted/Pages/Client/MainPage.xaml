@@ -15,4 +15,10 @@
     <client:SearchPage
         Title="Search"
         Icon="nav_bar_search.png" />
+    <client:CartPage
+        Title="Cart"
+        Icon="nav_bar_cart.png" />
+    <client:OrderStatusPage
+        Title="Order Status"
+        Icon="nav_bar_order.png" />
 </TabbedPage>

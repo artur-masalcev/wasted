@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Wasted.Utils.Services;
@@ -37,13 +37,17 @@ namespace Wasted.Utils.Services
 
         public Location UserLocation { get; set; }
 
+
+        public List<OrderDeal> CartDeals { get; set; } = new List<OrderDeal>();
+        public List<OrderDeal> OrderedDeals { get; set; } = new List<OrderDeal>();
+
         public ClientUser GetClientUser(string username, string password)
         {
             return Task.Run(async () =>
                 await DataProvider.GetData<ClientUser>(DataProvider.ClientUserEnd(username, password))).Result;
         }
 
-        public PlaceUser GetPlaceUser(string username, string password) //TODO: fix name mismatches
+        public PlaceUser GetPlaceUser(string username, string password)
         {
             return Task.Run(async () =>
                 await DataProvider.GetData<PlaceUser>(DataProvider.PlaceUserEnd(username, password))).Result;
