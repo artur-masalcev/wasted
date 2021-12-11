@@ -1,4 +1,3 @@
-using DataAPI.Models;
 using DataAPI.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

@@ -1,6 +1,5 @@
 ﻿using System;
 using Rg.Plugins.Popup.Services;
-using Wasted.Utils;
 using Wasted.Utils.Exceptions;
 using Wasted.Utils.Services;
 using Wasted.WastedAPI;

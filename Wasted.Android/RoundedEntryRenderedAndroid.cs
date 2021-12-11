@@ -4,7 +4,6 @@ using Wasted;
 using Wasted.Droid;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using Xamarin.Forms.Xaml;
 
 [assembly: ExportRenderer(typeof(RoundedEntry), typeof(RoundedEntryRenderedAndroid))]
 

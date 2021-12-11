@@ -12,13 +12,12 @@ namespace Wasted.Pages.Client
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderStatusPage : ContentPage
     {
-        private readonly DataService service;
+        private readonly DataService _service;
 
         public OrderStatusPage()
         {
-            service = DependencyService.Get<DataService>();
+            _service = DependencyService.Get<DataService>();
             InitializeComponent();
-            OrderedDealsCollectionView.ItemsSource = service.OrderedDeals;
         }
 
         /// <summary>
@@ -28,7 +27,7 @@ namespace Wasted.Pages.Client
         {
             base.OnAppearing();
             OrderedDealsCollectionView.ItemsSource = null;
-            OrderedDealsCollectionView.ItemsSource = service.OrderedDeals;
+            OrderedDealsCollectionView.ItemsSource = _service.OrderedDeals;
         }
 
         private void RefreshView_Refreshing(object sender, EventArgs e)
@@ -41,7 +40,7 @@ namespace Wasted.Pages.Client
         {
             SelectionChanger.ListSelectionChanged(sender, () =>
             {
-                OrderedDeal order = e.CurrentSelection.FirstOrDefault() as OrderedDeal;
+                OrderDeal order = e.CurrentSelection.FirstOrDefault() as OrderDeal;
                 if (order.Status.Equals("Ready to pick up"))
                 {
                     PopupNavigation.Instance.PushAsync(new OrderStatusClientPopup(order));

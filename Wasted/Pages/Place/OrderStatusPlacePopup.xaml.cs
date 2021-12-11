@@ -9,14 +9,14 @@ namespace Wasted.Pages.Place
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderStatusPlacePopup : PopupPage
     {
-        public OrderedDeal SelectedDeal { get; set; }
+        public OrderDeal SelectedDeal { get; set; }
 
         public string DealTitle => SelectedDeal.Title;
         public int Quantity => SelectedDeal.Quantity;
 
         public string Message => $"Deal {DealTitle} (x{Quantity}) is done preparing";
 
-        public OrderStatusPlacePopup(OrderedDeal deal)
+        public OrderStatusPlacePopup(OrderDeal deal)
         {
             InitializeComponent();
             SelectedDeal = deal;
@@ -26,7 +26,7 @@ namespace Wasted.Pages.Place
         private void Button_OnClicked(object sender, EventArgs e)
         {
             SelectedDeal.Status = "Ready to pick up";
-            PopupNavigation.Instance.PopAsync(true);
+            PopupNavigation.Instance.PopAsync();
         }
     }
 }

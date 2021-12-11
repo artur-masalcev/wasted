@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Rg.Plugins.Popup.Services;
 using Wasted.Utils;
 using Wasted.Utils.Services;
 using Wasted.WastedAPI.Business_Objects;
 using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Forms;
-using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 
 namespace Wasted.Pages.Place
@@ -17,7 +14,6 @@ namespace Wasted.Pages.Place
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrdersPage : ContentPage
     {
-        private readonly PlaceUser _currentPlaceUser;
         private readonly DataService _service;
         public PlaceUser CurrentUser { get; set; }
         private IEnumerable<FoodPlace> ownedPlaces;
@@ -42,7 +38,7 @@ namespace Wasted.Pages.Place
             ownedPlaceIds = new HashSet<int>(OwnedPlaces.Select(place => place.Id));
             InitializeComponent();
             OrdersCollectionView.ItemsSource = _service.OrderedDeals.Where(order =>
-                ownedPlaceIds.Contains(order.PurchasedDeal.SelectedDeal.FoodPlaceId));
+                ownedPlaceIds.Contains(order.PurchasedDeal.FoodPlaceId));
 
         }
 
@@ -54,7 +50,7 @@ namespace Wasted.Pages.Place
             base.OnAppearing();
             OrdersCollectionView.ItemsSource = null;
             OrdersCollectionView.ItemsSource = _service.OrderedDeals.Where(order =>
-                ownedPlaceIds.Contains(order.PurchasedDeal.SelectedDeal.FoodPlaceId));
+                ownedPlaceIds.Contains(order.PurchasedDeal.FoodPlaceId));
         }
 
         private void RefreshView_Refreshing(object sender, EventArgs e)
@@ -67,7 +63,7 @@ namespace Wasted.Pages.Place
         {
             SelectionChanger.ListSelectionChanged(sender, () =>
             {
-                OrderedDeal order = e.CurrentSelection.FirstOrDefault() as OrderedDeal;
+                OrderDeal order = e.CurrentSelection.FirstOrDefault() as OrderDeal;
                 if (order.Status.Equals("Preparing"))
                 {
                     PopupNavigation.Instance.PushAsync(new OrderStatusPlacePopup(order));

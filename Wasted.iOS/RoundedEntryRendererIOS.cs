@@ -3,7 +3,6 @@ using Wasted;
 using Wasted.iOS;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
-using Xamarin.Forms.Xaml;
 
 [assembly: ExportRenderer(typeof(RoundedEntry), typeof(RoundedEntryRendererIOS))]
 

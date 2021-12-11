@@ -9,13 +9,13 @@ namespace Wasted.Pages.Client
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderStatusClientPopup : PopupPage
     {
-        public OrderedDeal SelectedDeal { get; set; }
+        public OrderDeal SelectedDeal { get; set; }
         public string DealTitle => SelectedDeal.Title;
         public int Quantity => SelectedDeal.Quantity;
 
         public string Message => $"Deal {DealTitle} (x{Quantity}) is received";
 
-        public OrderStatusClientPopup(OrderedDeal deal)
+        public OrderStatusClientPopup(OrderDeal deal)
         {
             InitializeComponent();
             SelectedDeal = deal;

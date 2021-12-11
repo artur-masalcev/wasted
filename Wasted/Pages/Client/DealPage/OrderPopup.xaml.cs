@@ -2,7 +2,6 @@
 using Acr.UserDialogs;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
-using Wasted.Utils;
 using Wasted.Utils.Services;
 using Wasted.WastedAPI;
 using Wasted.WastedAPI.Business_Objects;
@@ -48,8 +47,8 @@ namespace Wasted.Pages.Client.DealPage
             bool selectedSomething = Stepper.Value != 0;
             if (selectedSomething)
             {
-                CartDeal cartDeal = new CartDeal(SelectedDeal, (int) Stepper.Value,
-                    Stepper.Value * SelectedDeal.CurrentCost);
+                OrderDeal cartDeal = new OrderDeal(SelectedDeal, "Preparing",
+                    (int)Stepper.Value);
                 _service.CartDeals.Add(cartDeal);
                 UserDialogs.Instance.Toast("Added to cart", new TimeSpan(3));
                 Navigation.PushAsync(new CartPage());

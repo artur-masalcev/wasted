@@ -37,8 +37,9 @@ namespace Wasted.Utils.Services
 
         public Location UserLocation { get; set; }
 
-        public List<CartDeal> CartDeals { get; set; } = new List<CartDeal>();
-        public List<OrderedDeal> OrderedDeals { get; set; } = new List<OrderedDeal>();
+
+        public List<OrderDeal> CartDeals { get; set; } = new List<OrderDeal>();
+        public List<OrderDeal> OrderedDeals { get; set; } = new List<OrderDeal>();
 
         public ClientUser GetClientUser(string username, string password)
         {

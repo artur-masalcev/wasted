@@ -13,7 +13,7 @@ namespace Wasted.Pages.Client
     public partial class CartPage : ContentPage
     {
         private readonly DataService service;
-        public List<CartDeal> CartDeals { get; set; }
+        public List<OrderDeal> CartDeals { get; set; }
 
         public CartPage()
         {
@@ -45,12 +45,8 @@ namespace Wasted.Pages.Client
         {
             if (CartDeals.Any())
             {
-                foreach (CartDeal cartDeal in service.CartDeals)
-                {
-                    service.OrderedDeals.Add(new OrderedDeal(cartDeal, "Preparing", cartDeal.Quantity));
-                }
-
-                service.CartDeals = new List<CartDeal>();
+                service.OrderedDeals = new List<OrderDeal>(service.CartDeals);
+                service.CartDeals = new List<OrderDeal>();
                 CartDeals = service.CartDeals;
                 OnAppearing();
                 UserDialogs.Instance.Toast("Purchased successfully", new TimeSpan(3));
