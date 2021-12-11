@@ -69,8 +69,7 @@ namespace Wasted
                 service.CartDeals = new List<CartDeal>();
                 CartDeals = service.CartDeals;
                 OnAppearing();
-
-                MessagingCenter.Send<object, int>(this, "click", (int) NavigationPages.ORDER_STATUS_PAGE);
+                Navigation.PushAsync(new OrderStatusPage());
                 UserDialogs.Instance.Toast("Purchased successfully", new TimeSpan(3));
             }
             else
