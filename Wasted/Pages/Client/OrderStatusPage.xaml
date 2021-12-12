@@ -7,7 +7,7 @@
     <ContentPage.Content>
         <RefreshView x:Name="RefreshView" RefreshColor="DimGray" Refreshing="RefreshView_Refreshing">
             <StackLayout>
-                <Label Text="Purchase status:" Style="{StaticResource SectionTitle}" />
+                <Label Text="Purchase status" Style="{StaticResource SectionTitle}" />
                 <CollectionView x:Name="OrderedDealsCollectionView"
                                 SelectionMode="Single"
                                 ItemsLayout="VerticalList"
@@ -21,10 +21,14 @@
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Text="Quantity" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
-                                <Label Grid.Column="1" Text="Product name" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
-                                <Label Grid.Column="2" Text="Order Status" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
-                                <Label Grid.Column="3" Text="Time left (min)" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                <Label Grid.Column="0" Text="Quantity" FontAttributes="Bold"
+                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                <Label Grid.Column="1" Text="Product name" FontAttributes="Bold" 
+                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                <Label Grid.Column="2" Text="Order Status" FontAttributes="Bold" 
+                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                <Label Grid.Column="3" Text="Preparation time left (min)" FontAttributes="Bold"
+                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                             </Grid>
                         </StackLayout>
                     </CollectionView.Header>

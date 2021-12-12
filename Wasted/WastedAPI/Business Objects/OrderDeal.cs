@@ -34,10 +34,10 @@ namespace Wasted.WastedAPI.Business_Objects
         }
 
         public string DisplayableTimeLeft =>
-            ExpectedFinishTime == -1 ? "Not preparing" :
-            TimeLeft == -1 ? "Order should be ready soon" : TimeLeft.ToString();
+            Status != OrderStatus.Preparing ? "-" :
+            TimeLeft == -1 ? "ready soon" : TimeLeft.ToString();
 
-        public long ExpectedFinishTime { get; set; } = -1;
+        public long ExpectedFinishTime { get; set; }
         public int PlaceUserId { get; set; }
         public int ClientUserId { get; set; }
 

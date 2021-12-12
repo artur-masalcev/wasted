@@ -7,16 +7,33 @@
     <ContentPage.Content>
         <RefreshView x:Name="RefreshView" RefreshColor="DimGray" Refreshing="RefreshView_Refreshing">
             <StackLayout>
-                <Label Text="Your cart:" Style="{StaticResource SectionTitle}" />
+                <Label Text="Your cart" Style="{StaticResource SectionTitle}" />
                 <CollectionView x:Name="CartDealsCollectionView"
                                 SelectionMode="Single"
                                 ItemsLayout="VerticalList">
+                    <CollectionView.Header>
+                        <StackLayout>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="65"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="Quantity" FontAttributes="Bold"
+                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                <Label Grid.Column="1" Text="Product name" FontAttributes="Bold" 
+                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                <Label Grid.Column="2" Text="Cost" FontAttributes="Bold" 
+                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            </Grid>
+                        </StackLayout>
+                    </CollectionView.Header>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Frame>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="40" />
+                                        <ColumnDefinition Width="65" />
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
