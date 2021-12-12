@@ -9,6 +9,7 @@ using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace Wasted.Pages.Client
@@ -17,14 +18,13 @@ namespace Wasted.Pages.Client
     public partial class OrderStatusPage : ContentPage
     {
         private IEnumerable<OrderDeal> OrderedDeals { get; set; }
+        private CurrentUserService _service;
 
         public OrderStatusPage()
         {
-            CurrentUserService service = DependencyService.Get<CurrentUserService>();
-            OrderedDeals = DataProvider.GetClientOrders(service.CurrentUser.Id)
-                .Where(order => order.Status != OrderStatus.InCart);
+            _service = DependencyService.Get<CurrentUserService>();
             InitializeComponent();
-            
+
             On<iOS>().SetUseSafeArea(true);
         }
 
@@ -34,6 +34,9 @@ namespace Wasted.Pages.Client
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            OrderedDeals = DataProvider.GetClientOrders(_service.CurrentUser.Id)
+                .Where(order => order.Status != OrderStatus.InCart);
+            
             OrderedDealsCollectionView.ItemsSource = null;
             OrderedDealsCollectionView.ItemsSource = OrderedDeals;
         }

@@ -36,6 +36,7 @@ namespace DataAPI.Repositories
             {
                 Order oldOrder = _dbContext.Orders.Find(order.Id);
                 oldOrder.Status = order.Status;
+                oldOrder.ExpectedFinishTime = order.ExpectedFinishTime;
             }
             _dbContext.SaveChangesAsync();
         }

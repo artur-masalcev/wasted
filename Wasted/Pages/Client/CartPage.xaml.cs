@@ -38,6 +38,7 @@ namespace Wasted.Pages.Client
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            AllCartDeals = DataProvider.GetClientOrders(_service.CurrentUser.Id);
             CartDealsCollectionView.ItemsSource = null;
             CartDealsCollectionView.ItemsSource = CurrentCartDeals;
             Total.Text = "Total " + CurrentCartDeals.Sum(deal => deal.Cost) + " eur.";
@@ -48,7 +49,6 @@ namespace Wasted.Pages.Client
             OnAppearing();
             RefreshView.IsRefreshing = false;
         }
-        
 
         private void ClickedPurchase(object sender, EventArgs e)
         {
@@ -57,12 +57,11 @@ namespace Wasted.Pages.Client
                 List<OrderDeal> dealsToUpdate = new List<OrderDeal>(CurrentCartDeals);
                 foreach (OrderDeal currentCartDeal in dealsToUpdate)
                 {
-                    currentCartDeal.Status = OrderStatus.Preparing;
+                    currentCartDeal.Status = OrderStatus.WaitingForAcceptance;
                 }
-                DataProvider.UpdateOrdersStatus(dealsToUpdate);
+                DataProvider.UpdateOrders(dealsToUpdate);
                 OnAppearing();
                 UserDialogs.Instance.Toast("Purchased successfully", new TimeSpan(3));
-                Navigation.PushAsync(new OrderStatusPage());
             }
             else
             {
