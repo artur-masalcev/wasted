@@ -25,7 +25,6 @@ namespace Wasted.Pages.Client
         {
             InitializeComponent();
             _service = DependencyService.Get<CurrentUserService>();
-            AllCartDeals = DataProvider.GetClientOrders(_service.CurrentUser.Id);
         }
 
         /// <summary>
@@ -34,6 +33,7 @@ namespace Wasted.Pages.Client
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            AllCartDeals = DataProvider.GetClientOrders(_service.CurrentUser.Id);
             CartDealsCollectionView.ItemsSource = null;
             CartDealsCollectionView.ItemsSource = CurrentCartDeals;
             Total.Text = "Total " + CurrentCartDeals.Sum(deal => deal.Cost) + " eur.";
