@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Rg.Plugins.Popup.Services;
 using Wasted.Utils;
 using Wasted.Utils.Services;
+using Wasted.WastedAPI;
 using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,11 +14,13 @@ namespace Wasted.Pages.Client
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderStatusPage : ContentPage
     {
-        private readonly DataService _service;
+        private IEnumerable<OrderDeal> OrderedDeals { get; set; }
 
         public OrderStatusPage()
         {
-            _service = DependencyService.Get<DataService>();
+            CurrentUserService service = DependencyService.Get<CurrentUserService>();
+            OrderedDeals = DataProvider.GetClientOrders(service.CurrentUser.Id)
+                .Where(order => order.Status != OrderStatus.InCart);
             InitializeComponent();
         }
 
@@ -27,7 +31,7 @@ namespace Wasted.Pages.Client
         {
             base.OnAppearing();
             OrderedDealsCollectionView.ItemsSource = null;
-            OrderedDealsCollectionView.ItemsSource = _service.OrderedDeals;
+            OrderedDealsCollectionView.ItemsSource = OrderedDeals;
         }
 
         private void RefreshView_Refreshing(object sender, EventArgs e)

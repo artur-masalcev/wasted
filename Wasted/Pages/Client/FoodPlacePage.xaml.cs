@@ -18,7 +18,7 @@ namespace Wasted.Pages.Client
     public partial class FoodPlacesPage : ContentPage
     {
         public FoodPlace SelectedFoodPlace { get; set; }
-        private readonly DataService _service;
+        private readonly CurrentUserService _service;
 
         public FoodPlacesPage(FoodPlace selectedFoodPlace)
         {
@@ -29,7 +29,7 @@ namespace Wasted.Pages.Client
 
             InitializeViews();
 
-            _service = DependencyService.Get<DataService>();
+            _service = DependencyService.Get<CurrentUserService>();
         }
 
         /// <summary>

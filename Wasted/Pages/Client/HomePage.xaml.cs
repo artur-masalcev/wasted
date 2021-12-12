@@ -15,11 +15,11 @@ namespace Wasted.Pages.Client
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
-        private readonly DataService _service;
+        private readonly CurrentUserService _service;
 
         public HomePage()
         {
-            _service = DependencyService.Get<DataService>();
+            _service = DependencyService.Get<CurrentUserService>();
             InitializeComponent();
             On<iOS>().SetUseSafeArea(true);
         }

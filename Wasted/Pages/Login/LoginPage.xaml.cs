@@ -15,11 +15,11 @@ namespace Wasted.Pages.Login
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        private readonly DataService _service;
+        private readonly CurrentUserService _service;
 
         public LoginPage()
         {
-            _service = DependencyService.Get<DataService>();
+            _service = DependencyService.Get<CurrentUserService>();
             InitializeComponent();
             On<iOS>().SetUseSafeArea(true);
         }

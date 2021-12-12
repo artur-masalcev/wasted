@@ -26,15 +26,14 @@ namespace Wasted.WastedAPI
         private static string PlaceUsersEnd => "placeusers";
         private static string PlaceTypeEnd => "foodplacetypes";
         private static string RatingsEnd => "ratings";
-        private static string ClientUserEnd(string name, string password) => string.Join("/", ClientUsersEnd, name, password);
-        private static string PlaceUserEnd(string name, string password) => string.Join("/", PlaceUsersEnd, name, password);
-   
-        
+        private static string OrdersEnd => "orders";
+        private static string JoinParams(params string[] linkParams) => string.Join("/", linkParams);
+
 
         /// <summary>
         /// Gets data from API
         /// </summary>
-        private static T GetData<T>(string linkEnd)
+        private static T GetBusinessObject<T>(string linkEnd)
         {
             string dataJson = Task.Run(async () => await Client.GetStringAsync(LinkStart + linkEnd)).Result;
             return JsonConvert.DeserializeObject<T>(dataJson);
@@ -67,24 +66,34 @@ namespace Wasted.WastedAPI
             return new StringContent(content, Encoding.UTF8, "application/json");
         }
 
-        public static List<Deal> GetAllDeals() => GetData<List<Deal>>(DealsEnd);
+        public static List<Deal> GetAllDeals() => GetBusinessObject<List<Deal>>(DealsEnd);
         public static void CreateDeal(Deal deal) => CreateBusinessObject(deal, DealsEnd);
         public static void UpdateDeal(Deal deal) => UpdateBusinessObject(deal, DealsEnd);
 
-        public static List<FoodPlace> GetAllFoodPlaces() => GetData<List<FoodPlace>>(FoodPlacesEnd);
+        public static List<FoodPlace> GetAllFoodPlaces() => GetBusinessObject<List<FoodPlace>>(FoodPlacesEnd);
         public static void CreateFoodPlace(FoodPlace foodPlace) => CreateBusinessObject(foodPlace, FoodPlacesEnd);
         public static void DeleteFoodPlace(FoodPlace foodPlace) => DeleteBusinessObject(foodPlace.Id, FoodPlacesEnd);
 
-        public static ClientUser GetClientUser(string username, string password) => GetData<ClientUser>(ClientUserEnd(username, password));
+        public static ClientUser GetClientUser(string username, string password) =>
+            GetBusinessObject<ClientUser>(JoinParams(ClientUsersEnd, username, password));
 
         public static void CreateClientUser(ClientUser clientUser) => CreateBusinessObject(clientUser, ClientUsersEnd);
 
-        public static PlaceUser GetPlaceUser(string username, string password) => GetData<PlaceUser>(PlaceUserEnd(username, password));
+        public static PlaceUser GetPlaceUser(string username, string password) =>
+            GetBusinessObject<PlaceUser>(JoinParams(PlaceUsersEnd, username, password));
         public static void CreatePlaceUser(PlaceUser placeUser) => CreateBusinessObject(placeUser, PlaceUsersEnd);
 
         public static void CreateRating(RatingDTO rating) => CreateBusinessObject(rating, RatingsEnd);
         public static void UpdateRating(RatingDTO rating) => UpdateBusinessObject(rating, RatingsEnd);
 
-        public static List<FoodPlaceType> GetFoodPlaceTypes() => GetData<List<FoodPlaceType>>(PlaceTypeEnd);
+        public static List<FoodPlaceType> GetFoodPlaceTypes() => GetBusinessObject<List<FoodPlaceType>>(PlaceTypeEnd);
+
+        public static List<OrderDeal> GetClientOrders(int clientUserId) =>
+            GetBusinessObject<List<OrderDeal>>(JoinParams(OrdersEnd, ClientUsersEnd, clientUserId.ToString()));
+        public static List<OrderDeal> GetPlaceOrders(int placeUserId) =>
+            GetBusinessObject<List<OrderDeal>>(JoinParams(OrdersEnd, PlaceUsersEnd, placeUserId.ToString()));
+        public static void CreateOrder(OrderDeal orderDeal) => CreateBusinessObject(orderDeal, OrdersEnd);
+        public static void UpdateOrdersStatus(List<OrderDeal> orderDeals) =>
+            UpdateBusinessObject(orderDeals, OrdersEnd);
     }
 }

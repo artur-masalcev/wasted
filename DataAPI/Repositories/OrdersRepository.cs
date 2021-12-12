@@ -29,5 +29,15 @@ namespace DataAPI.Repositories
             _dbContext.SaveChangesAsync();
             return order;
         }
+        
+        public void Update(List<Order> orders)
+        {
+            foreach (Order order in orders)
+            {
+                Order oldOrder = _dbContext.Orders.Find(order.Id);
+                oldOrder.Status = order.Status;
+            }
+            _dbContext.SaveChangesAsync();
+        }
     }
 }

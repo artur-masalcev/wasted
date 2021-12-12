@@ -28,8 +28,8 @@ namespace Wasted.Pages.Login
 
             if (!existsUser)
             {
-                DataService dataService = DependencyService.Get<DataService>();
-                User user = dataService.CurrentUser;
+                CurrentUserService currentUserService = DependencyService.Get<CurrentUserService>();
+                User user = currentUserService.CurrentUser;
                 user.Username = username;
                 user.Password = password;
                 Navigation.PushAsync(new UserRegistrationDeliveryPage());

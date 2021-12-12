@@ -38,7 +38,7 @@ namespace Wasted.Pages.Place.NewDeal
             PopupNavigation.Instance.PushAsync(new ChooseImagePopup(CurrentDeal, "ImageURL"));
         }
 
-        private void FillDealValues(DataService service, string dealExpirationDate, string dealDescription)
+        private void FillDealValues(CurrentUserService service, string dealExpirationDate, string dealDescription)
         {
             ExceptionChecker.CheckValidParams(dealDescription, CurrentDeal.ImageURL);
             CurrentDeal.Due = dealExpirationDate;
@@ -49,7 +49,7 @@ namespace Wasted.Pages.Place.NewDeal
 
         private void DoneButtonClicked(object sender, EventArgs e)
         {
-            DataService service = DependencyService.Get<DataService>();
+            CurrentUserService service = DependencyService.Get<CurrentUserService>();
             string dealExpirationDate = DueDatePicker.Date.ToString("yyyy-MM-dd");
             ExceptionHandler.WrapFunctionCall(
                 () => FillDealValues(service, dealExpirationDate, DescriptionEntry.Text),

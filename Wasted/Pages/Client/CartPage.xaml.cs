@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Acr.UserDialogs;
 using Wasted.Utils.Services;
+using Wasted.WastedAPI;
 using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,15 +13,19 @@ namespace Wasted.Pages.Client
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CartPage : ContentPage
     {
-        private readonly DataService service;
-        public List<OrderDeal> CartDeals { get; set; }
+        private readonly CurrentUserService _service;
+        private List<OrderDeal> AllCartDeals { get; set; }
+
+        private List<OrderDeal> CurrentCartDeals =>
+            AllCartDeals.Where(order => order.Status == OrderStatus.InCart)
+                .ToList();
+        
 
         public CartPage()
         {
             InitializeComponent();
-            service = DependencyService.Get<DataService>();
-            CartDeals = service.CartDeals;
-            CartDealsCollectionView.ItemsSource = CartDeals;
+            _service = DependencyService.Get<CurrentUserService>();
+            AllCartDeals = DataProvider.GetClientOrders(_service.CurrentUser.Id);
         }
 
         /// <summary>
@@ -30,8 +35,8 @@ namespace Wasted.Pages.Client
         {
             base.OnAppearing();
             CartDealsCollectionView.ItemsSource = null;
-            CartDealsCollectionView.ItemsSource = CartDeals;
-            Total.Text = "Total " + service.CartDeals.Sum(deal => deal.Cost) + " eur.";
+            CartDealsCollectionView.ItemsSource = CurrentCartDeals;
+            Total.Text = "Total " + CurrentCartDeals.Sum(deal => deal.Cost) + " eur.";
         }
 
         private void RefreshView_Refreshing(object sender, EventArgs e)
@@ -40,14 +45,16 @@ namespace Wasted.Pages.Client
             RefreshView.IsRefreshing = false;
         }
         
-
         private void ClickedPurchase(object sender, EventArgs e)
         {
-            if (CartDeals.Any())
+            if (CurrentCartDeals.Any())
             {
-                service.OrderedDeals = new List<OrderDeal>(service.CartDeals);
-                service.CartDeals = new List<OrderDeal>();
-                CartDeals = service.CartDeals;
+                List<OrderDeal> dealsToUpdate = new List<OrderDeal>(CurrentCartDeals);
+                foreach (OrderDeal currentCartDeal in dealsToUpdate)
+                {
+                    currentCartDeal.Status = OrderStatus.Preparing;
+                }
+                DataProvider.UpdateOrdersStatus(dealsToUpdate);
                 OnAppearing();
                 UserDialogs.Instance.Toast("Purchased successfully", new TimeSpan(3));
                 Navigation.PushAsync(new OrderStatusPage());

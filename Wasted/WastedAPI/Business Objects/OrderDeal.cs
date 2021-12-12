@@ -4,8 +4,7 @@ namespace Wasted.WastedAPI.Business_Objects
 {
     public class OrderDeal : ChangeablePropertyObject
     {
-        public Deal PurchasedDeal { get; set; }
-        
+        public int Id { get; set; }
         private string _status;
         public string Status
         {
@@ -16,17 +15,25 @@ namespace Wasted.WastedAPI.Business_Objects
                 OnPropertyChanged();
             }
         }
+        public int DealId { get; set; }
 
         public int Quantity { get; set; }
-        
-        public double Cost => Quantity * PurchasedDeal.CurrentCost;
-        public string Title => PurchasedDeal.Title;
+        public string Title { get; set; }
+        public double Cost { get; set; }
+        public int PlaceUserId { get; set; }
+        public int ClientUserId { get; set; }
 
-        public OrderDeal(Deal purchasedDeal, string status, int quantity)
+        public OrderDeal(int dealId = default, string status = null, int quantity = default, int clientUserId = default,
+            int dealFoodPlacePlaceUserId = default, string dealTitle = null, double dealCurrentCost = default)
         {
-            PurchasedDeal = purchasedDeal;
+            DealId = dealId;
+            Title = dealTitle;
+            Quantity = quantity;
+            ClientUserId = clientUserId;
+            Cost = quantity * dealCurrentCost;
             Status = status;
             Quantity = quantity;
+            PlaceUserId = dealFoodPlacePlaceUserId;
         }
     }
 }

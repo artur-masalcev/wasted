@@ -8,11 +8,11 @@ using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(DataService))]
+[assembly: Dependency(typeof(CurrentUserService))]
 
 namespace Wasted.Utils.Services
 {
-    public class DataService
+    public class CurrentUserService
     {
         public Func<User> UserGettingFunction;
         public void UpdateUserInfo()
@@ -21,9 +21,5 @@ namespace Wasted.Utils.Services
         }
         public User CurrentUser { get; set; }
         public Location UserLocation { get; set; }
-
-
-        public List<OrderDeal> CartDeals { get; set; } = new List<OrderDeal>();
-        public List<OrderDeal> OrderedDeals { get; set; } = new List<OrderDeal>();
     }
 }

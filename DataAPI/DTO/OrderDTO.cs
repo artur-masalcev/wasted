@@ -9,5 +9,7 @@
         public int DealId { get; set; }
         public int ClientUserId { get; set; }
         public int DealFoodPlacePlaceUserId { get; set; }
+        public string DealTitle { get; set; }
+        public double DealCurrentCost { get; set; }
     }
 }

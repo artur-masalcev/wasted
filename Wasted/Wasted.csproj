@@ -24,6 +24,9 @@
 	    <Compile Include="..\DataAPI\DTO\FoodPlaceTypeDTO.cs">
 	      <Link>WastedAPI\Business Objects\DTO\FoodPlaceTypeDTO.cs</Link>
 	    </Compile>
+	    <Compile Include="..\DataAPI\DTO\OrderDTO.cs">
+	      <Link>WastedAPI\Business Objects\DTO\OrderDTO.cs</Link>
+	    </Compile>
 	    <Compile Include="..\DataAPI\DTO\PlaceUserDTO.cs">
 	      <Link>WastedAPI\Business Objects\DTO\PlaceUserDTO.cs</Link>
 	    </Compile>
