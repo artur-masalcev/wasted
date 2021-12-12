@@ -14,5 +14,8 @@
     <place:OrdersPage
         Title="Orders"
         Icon="nav_bar_order.png" />
+    <place:SettingsPage
+        Title="Settings"
+        Icon="nav_bar_settings.png" />
 
 </TabbedPage>

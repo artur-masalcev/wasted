@@ -76,6 +76,7 @@
     <AndroidResource Include="Resources\drawable\nav_bar_home.png" />
     <AndroidResource Include="Resources\drawable\nav_bar_order.png" />
     <AndroidResource Include="Resources\drawable\nav_bar_search.png" />
+    <AndroidResource Include="Resources\drawable\nav_bar_settings.png" />
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\mipmap-anydpi-v26\icon.xml" />
