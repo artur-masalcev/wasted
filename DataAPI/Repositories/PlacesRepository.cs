@@ -32,7 +32,7 @@ namespace DataAPI.Repositories
 
         public void Delete(int foodPlaceId)
         {
-            FoodPlace placeToDelete = _dbContext.FoodPlaces.Find(foodPlaceId);
+            var placeToDelete = _dbContext.FoodPlaces.Find(foodPlaceId);
             _dbContext.FoodPlaces.Remove(placeToDelete);
             _dbContext.SaveChangesAsync();
         }

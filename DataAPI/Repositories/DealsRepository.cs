@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DataAPI.Models;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +29,13 @@ namespace DataAPI.Repositories
             return deal;
         }
 
+        public void Delete(int dealId)
+        {
+            var dealToDelete = _dbContext.Deals.Find(dealId);
+            _dbContext.Deals.Remove(dealToDelete);
+            _dbContext.SaveChangesAsync();
+        }
+        
         public void Update(Deal updatedDeal)
         {
             var selectedDeal = _dbContext.Deals.Find(updatedDeal.Id);
