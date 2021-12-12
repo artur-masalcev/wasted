@@ -4,11 +4,10 @@ using System.Linq;
 using Rg.Plugins.Popup.Services;
 using Wasted.Utils;
 using Wasted.Utils.Services;
+using Wasted.WastedAPI;
 using Wasted.WastedAPI.Business_Objects;
 using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration;
-using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace Wasted.Pages.Place
@@ -16,12 +15,9 @@ namespace Wasted.Pages.Place
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrdersPage : ContentPage
     {
-        private readonly DataService _service;
+        private readonly CurrentUserService _service;
         public PlaceUser CurrentUser { get; set; }
         private IEnumerable<FoodPlace> ownedPlaces;
-        private HashSet<int> ownedPlaceIds;
-
-
         public IEnumerable<FoodPlace> OwnedPlaces
         {
             get => ownedPlaces;
@@ -34,15 +30,10 @@ namespace Wasted.Pages.Place
 
         public OrdersPage()
         {
-            _service = DependencyService.Get<DataService>();
+            _service = DependencyService.Get<CurrentUserService>();
             CurrentUser = (PlaceUser) _service.CurrentUser;
             OwnedPlaces = CurrentUser.OwnedPlaces;
-            ownedPlaceIds = new HashSet<int>(OwnedPlaces.Select(place => place.Id));
             InitializeComponent();
-            OrdersCollectionView.ItemsSource = _service.OrderedDeals.Where(order =>
-                ownedPlaceIds.Contains(order.PurchasedDeal.FoodPlaceId));
-            
-            On<iOS>().SetUseSafeArea(true);
         }
 
         /// <summary>
@@ -52,8 +43,8 @@ namespace Wasted.Pages.Place
         {
             base.OnAppearing();
             OrdersCollectionView.ItemsSource = null;
-            OrdersCollectionView.ItemsSource = _service.OrderedDeals.Where(order =>
-                ownedPlaceIds.Contains(order.PurchasedDeal.FoodPlaceId));
+            OrdersCollectionView.ItemsSource = DataProvider.GetPlaceOrders(CurrentUser.Id);
+
         }
 
         private void RefreshView_Refreshing(object sender, EventArgs e)

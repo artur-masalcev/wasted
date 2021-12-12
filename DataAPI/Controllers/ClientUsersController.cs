@@ -21,12 +21,6 @@ namespace DataAPI.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public IEnumerable<ClientUserDTO> GetClientUsers()
-        {
-            return _clientUsersRepository.Get().Select(_mapper.Map<ClientUserDTO>);
-        }
-
         [HttpGet("{username}/{password}")]
         public ClientUserDTO GetClientUser(string username, string password)
         {
@@ -40,7 +34,7 @@ namespace DataAPI.Controllers
         public ActionResult<ClientUser> PostClientUser([FromBody] ClientUser clientUser)
         {
             var newClientUser = _clientUsersRepository.Create(clientUser);
-            return CreatedAtAction(nameof(GetClientUsers), new {id = newClientUser.Id}, newClientUser);
+            return CreatedAtAction(nameof(GetClientUser), new {id = newClientUser.Id}, newClientUser);
         }
     }
 }

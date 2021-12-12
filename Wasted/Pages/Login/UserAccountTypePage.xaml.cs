@@ -11,14 +11,14 @@ namespace Wasted.Pages.Login
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserAccountTypePage : ContentPage
     {
-        public DataService DataService { get; set; }
+        public CurrentUserService CurrentUserService { get; set; }
 
         public UserAccountTypePage()
         {
             InitializeComponent();
-            DataService = DependencyService.Get<DataService>();
+            CurrentUserService = DependencyService.Get<CurrentUserService>();
             On<iOS>().SetUseSafeArea(true); // Put margin on iOS devices that have top notch
-            DataService.CurrentUser = new ClientUser();
+            CurrentUserService.CurrentUser = new ClientUser();
         }
 
         private void ContinueClicked(object sender, EventArgs e)
@@ -38,11 +38,11 @@ namespace Wasted.Pages.Login
             switch (radioButton.Value)
             {
                 case "User":
-                    DataService.CurrentUser = new ClientUser();
+                    CurrentUserService.CurrentUser = new ClientUser();
                     break;
 
                 case "FoodPlace":
-                    DataService.CurrentUser = new PlaceUser();
+                    CurrentUserService.CurrentUser = new PlaceUser();
                     break;
             }
         }

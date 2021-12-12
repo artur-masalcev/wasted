@@ -1,6 +1,7 @@
 ﻿using System;
 using Wasted.Utils.Exceptions;
 using Wasted.Utils.Services;
+using Wasted.WastedAPI;
 using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
@@ -12,11 +13,8 @@ namespace Wasted.Pages.Login
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserRegistrationDataPage : ContentPage
     {
-        private readonly DataService _service;
-
         public UserRegistrationDataPage()
         {
-            _service = DependencyService.Get<DataService>();
             InitializeComponent();
             On<iOS>().SetUseSafeArea(true); // Put margin on iOS devices that have top notch
         }
@@ -25,13 +23,13 @@ namespace Wasted.Pages.Login
         {
             ExceptionChecker.CheckValidParams(username, password);
 
-            bool existsUser = (_service.GetPlaceUser(username, password) ??
-                               (User) _service.GetClientUser(username, password)) != null;
+            bool existsUser = (DataProvider.GetPlaceUser(username, password) ??
+                               (User) DataProvider.GetClientUser(username, password)) != null;
 
             if (!existsUser)
             {
-                DataService dataService = DependencyService.Get<DataService>();
-                User user = dataService.CurrentUser;
+                CurrentUserService currentUserService = DependencyService.Get<CurrentUserService>();
+                User user = currentUserService.CurrentUser;
                 user.Username = username;
                 user.Password = password;
                 Navigation.PushAsync(new UserRegistrationDeliveryPage());

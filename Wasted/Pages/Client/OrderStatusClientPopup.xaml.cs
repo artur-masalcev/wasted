@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
+using Wasted.WastedAPI;
 using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms.Xaml;
 
@@ -25,7 +27,8 @@ namespace Wasted.Pages.Client
         private void Button_OnClicked(object sender, EventArgs e)
         {
             SelectedDeal.Status = OrderStatus.Received;
-            PopupNavigation.Instance.PopAsync(true);
+            DataProvider.UpdateOrdersStatus(new List<OrderDeal>{SelectedDeal});
+            PopupNavigation.Instance.PopAsync();
         }
     }
 }

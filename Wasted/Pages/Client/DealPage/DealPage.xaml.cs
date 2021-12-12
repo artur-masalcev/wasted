@@ -2,6 +2,7 @@
 using Acr.UserDialogs;
 using Rg.Plugins.Popup.Services;
 using Wasted.Utils.Services;
+using Wasted.WastedAPI;
 using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
@@ -14,7 +15,7 @@ namespace Wasted.Pages.Client.DealPage
     public partial class ItemsPage : ContentPage
     {
         public Deal SelectedDeal { get; set; }
-        private readonly DataService _service;
+        private readonly CurrentUserService _service;
 
         public ItemsPage(Deal selectedDeal)
         {
@@ -26,7 +27,7 @@ namespace Wasted.Pages.Client.DealPage
 
             BindingContext = SelectedDeal;
 
-            _service = DependencyService.Get<DataService>();
+            _service = DependencyService.Get<CurrentUserService>();
         }
 
         /// <summary>
@@ -49,7 +50,7 @@ namespace Wasted.Pages.Client.DealPage
         /// </summary>
         private void RefreshView_Refreshing(object sender, EventArgs e)
         {
-            SelectedDeal = _service.AllDeals.Find(deal => deal.Id == SelectedDeal.Id);
+            SelectedDeal = DataProvider.GetAllDeals().Find(deal => deal.Id == SelectedDeal.Id);
             BindingContext = SelectedDeal;
             RefreshView.IsRefreshing = false;
         }

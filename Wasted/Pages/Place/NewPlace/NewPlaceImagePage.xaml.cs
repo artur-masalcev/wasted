@@ -38,7 +38,7 @@ namespace Wasted.Pages.Place.NewPlace
         private void AddPlaceToPlaces()
         {
             ExceptionChecker.CheckValidParams(CurrentPlace.HeaderURL, CurrentPlace.LogoURL);
-            DataService service = DependencyService.Get<DataService>();
+            CurrentUserService service = DependencyService.Get<CurrentUserService>();
             PlaceUser currentPlaceUser = (PlaceUser) service.CurrentUser;
             CurrentPlace.PlaceUserId = currentPlaceUser.Id;
             CurrentPlace.FoodPlaceTypeId = 1; //TODO: let select

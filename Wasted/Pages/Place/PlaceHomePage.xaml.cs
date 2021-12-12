@@ -19,13 +19,13 @@ namespace Wasted.Pages.Place
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PlaceHomePage : ContentPage
     {
-        private readonly DataService _service;
+        private readonly CurrentUserService _service;
         private readonly PlaceUser _currentPlaceUser;
         public List<FoodPlace> OwnedPlaces => _currentPlaceUser.OwnedPlaces;
 
         public PlaceHomePage()
         {
-            _service = DependencyService.Get<DataService>();
+            _service = DependencyService.Get<CurrentUserService>();
             InitializeComponent();
             _currentPlaceUser = (PlaceUser) _service.CurrentUser;
             BindingContext = this;

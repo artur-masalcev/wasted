@@ -22,8 +22,8 @@ namespace Wasted.Pages.Login
         {
             ExceptionChecker.CheckValidParams(userName, userSurname, userCity, userAddress);
 
-            DataService dataService = DependencyService.Get<DataService>();
-            User currentUser = dataService.CurrentUser;
+            CurrentUserService currentUserService = DependencyService.Get<CurrentUserService>();
+            User currentUser = currentUserService.CurrentUser;
 
             currentUser.Name = userName;
             currentUser.Surname = userSurname;

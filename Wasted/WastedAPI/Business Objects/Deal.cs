@@ -29,10 +29,11 @@ namespace Wasted.WastedAPI.Business_Objects
 
         public string FoodPlaceTitle { get; set; }
         public int FoodPlaceId { get; set; }
+        public int PlaceUserId { get; set; }
 
         public Deal(int quantity = default, int id = default, string title = null, double previousCost = default,
             double currentCost = default, string due = null, string imageUrl = null, string description = null,
-            string foodPlaceTitle = null, int foodPlaceId = default)
+            string foodPlaceTitle = null, int foodPlaceId = default, int foodPlacePlaceUserId = default)
         {
             _quantity = quantity;
             Id = id;
@@ -44,6 +45,7 @@ namespace Wasted.WastedAPI.Business_Objects
             Description = description;
             FoodPlaceTitle = foodPlaceTitle;
             FoodPlaceId = foodPlaceId;
+            PlaceUserId = foodPlacePlaceUserId;
         }
     }
 }

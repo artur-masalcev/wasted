@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Wasted.Utils.Exceptions;
 using Wasted.Utils.Services;
+using Wasted.WastedAPI;
 using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -14,23 +15,23 @@ namespace Wasted.Pages.Login
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        private readonly DataService _service;
+        private readonly CurrentUserService _service;
 
         public LoginPage()
         {
-            _service = DependencyService.Get<DataService>();
+            _service = DependencyService.Get<CurrentUserService>();
             InitializeComponent();
             On<iOS>().SetUseSafeArea(true);
         }
 
         private Tuple<User, Func<User>> GetUserDetails(string username, string password)
         {
-            User user = _service.GetPlaceUser(username, password);
+            User user = DataProvider.GetPlaceUser(username, password);
             if (user != null)
-                return new Tuple<User, Func<User>>(user, () => _service.GetPlaceUser(username, password));
-            user = _service.GetClientUser(username, password);
+                return new Tuple<User, Func<User>>(user, () => DataProvider.GetPlaceUser(username, password));
+            user = DataProvider.GetClientUser(username, password);
             if (user != null)
-                return new Tuple<User, Func<User>>(user, () => _service.GetClientUser(username, password));
+                return new Tuple<User, Func<User>>(user, () => DataProvider.GetClientUser(username, password));
             return null;
         }
 

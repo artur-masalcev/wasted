@@ -15,7 +15,7 @@ namespace Wasted.Pages.Client.FoodPlaceRating
     {
         public FoodPlace SelectedFoodPlace { get; set; }
         public ClientUser User { get; set; }
-        public DataService DataService { get; set; }
+        public CurrentUserService CurrentUserService { get; set; }
 
         public int RatingBarRating => RatingBar.SelectedStarValue;
 
@@ -32,8 +32,8 @@ namespace Wasted.Pages.Client.FoodPlaceRating
             SelectedFoodPlace = foodPlace;
             InitializeComponent();
 
-            DataService = DependencyService.Get<DataService>();
-            User = (ClientUser) DataService.CurrentUser;
+            CurrentUserService = DependencyService.Get<CurrentUserService>();
+            User = (ClientUser) CurrentUserService.CurrentUser;
             _rating = User.Ratings.FirstOrDefault(r => r.FoodPlaceId == foodPlace.Id);
 
             if (_rating != null)
