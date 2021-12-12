@@ -48,10 +48,11 @@ namespace Wasted.WastedAPI
         {
             return (
                     from place in allFoodPlaces
-                    orderby -place.Ratings.Count
+                    orderby place.Ratings.Count
                     select place
                 )
-                .Take(popularPlacesCount);
+                .Skip(allFoodPlaces.Count - popularPlacesCount)
+                .Reverse();
         }
 
         /// <summary>
