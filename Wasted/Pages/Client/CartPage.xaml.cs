@@ -54,7 +54,7 @@ namespace Wasted.Pages.Client
                 {
                     currentCartDeal.Status = OrderStatus.WaitingForAcceptance;
                 }
-                DataProvider.UpdateOrdersStatus(dealsToUpdate);
+                DataProvider.UpdateOrders(dealsToUpdate);
                 OnAppearing();
                 UserDialogs.Instance.Toast("Purchased successfully", new TimeSpan(3));
             }

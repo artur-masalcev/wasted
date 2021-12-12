@@ -41,7 +41,7 @@
                                     <Label Grid.Column="0" Text="{Binding Quantity, StringFormat='{0}x'}" HorizontalTextAlignment="Center"/>
                                     <Label Grid.Column="1" Text="{Binding Title}" HorizontalTextAlignment="Center"/>
                                     <Label Grid.Column="2" Text="{Binding Status}" HorizontalTextAlignment="Center" />
-                                    <Label Grid.Column="3" Text="{Binding TimeLeft}" HorizontalTextAlignment="Center" />
+                                    <Label Grid.Column="3" Text="{Binding DisplayableTimeLeft}" HorizontalTextAlignment="Center" />
                                 </Grid>
                             </Frame>
                         </DataTemplate>

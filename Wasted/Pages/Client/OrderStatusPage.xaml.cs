@@ -33,8 +33,6 @@ namespace Wasted.Pages.Client
             OrderedDeals = DataProvider.GetClientOrders(_service.CurrentUser.Id)
                 .Where(order => order.Status != OrderStatus.InCart);
             
-            OrderedDeals.ForEach(orderedDeal => orderedDeal.TimeLeft = orderedDeal.PreparationTime);
-            
             OrderedDealsCollectionView.ItemsSource = null;
             OrderedDealsCollectionView.ItemsSource = OrderedDeals;
         }

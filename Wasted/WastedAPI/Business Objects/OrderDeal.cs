@@ -22,22 +22,22 @@ namespace Wasted.WastedAPI.Business_Objects
         public string Title { get; set; }
         public double Cost { get; set; }
         
-        private long timeLeft;
-
         public long TimeLeft
         {
-            get { return timeLeft; }
-            set
+            get
             {
-                long totalMinutes = value - ((long) TimeSpan
-                    .FromMilliseconds(DateTimeOffset.Now.ToUnixTimeMilliseconds() - StartTime).TotalMinutes);
-                timeLeft = totalMinutes > 0 ? totalMinutes : -1;
+                long calculatedTimeLeft = (long)Math.Ceiling(TimeSpan
+                    .FromMilliseconds(ExpectedFinishTime - DateTimeOffset.Now.ToUnixTimeMilliseconds())
+                    .TotalMinutes);
+                return calculatedTimeLeft > 0 ? calculatedTimeLeft : -1;
             }
         }
 
-        public int PreparationTime{ get; set; }
-        
-        public long StartTime { get; set; }
+        public string DisplayableTimeLeft =>
+            ExpectedFinishTime == -1 ? "Not preparing" :
+            TimeLeft == -1 ? "Order should be ready soon" : TimeLeft.ToString();
+
+        public long ExpectedFinishTime { get; set; } = -1;
         public int PlaceUserId { get; set; }
         public int ClientUserId { get; set; }
 

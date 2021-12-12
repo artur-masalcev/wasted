@@ -93,7 +93,7 @@ namespace Wasted.WastedAPI
         public static List<OrderDeal> GetPlaceOrders(int placeUserId) =>
             GetBusinessObject<List<OrderDeal>>(JoinParams(OrdersEnd, PlaceUsersEnd, placeUserId.ToString()));
         public static void CreateOrder(OrderDeal orderDeal) => CreateBusinessObject(orderDeal, OrdersEnd);
-        public static void UpdateOrdersStatus(List<OrderDeal> orderDeals) =>
+        public static void UpdateOrders(List<OrderDeal> orderDeals) =>
             UpdateBusinessObject(orderDeals, OrdersEnd);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Wasted.WastedAPI;
@@ -33,13 +34,12 @@ namespace Wasted.Pages.Place
             {
                 if (Time.Text != null)
                 {
-                    SelectedDeal.StartTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-                    SelectedDeal.TimeLeft = long.Parse(Time.Text);
-                    SelectedDeal.PreparationTime = Int32.Parse(Time.Text);
+                    SelectedDeal.ExpectedFinishTime = DateTimeOffset.Now.ToUnixTimeMilliseconds() +
+                                                      (long)TimeSpan.FromMinutes(long.Parse(Time.Text)).TotalMilliseconds;
                 }
                 
                 SelectedDeal.Status = OrderStatus.Preparing;
-                DataProvider.UpdateOrdersStatus(new List<OrderDeal>{SelectedDeal});
+                DataProvider.UpdateOrders(new List<OrderDeal>{SelectedDeal});
                 ErrorLabel.IsVisible = false;
                 PopupNavigation.Instance.PopAsync();
             }
