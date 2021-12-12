@@ -1,4 +1,5 @@
-﻿using Wasted.Utils;
+﻿using System;
+using Wasted.Utils;
 
 namespace Wasted.WastedAPI.Business_Objects
 {
@@ -20,6 +21,23 @@ namespace Wasted.WastedAPI.Business_Objects
         public int Quantity { get; set; }
         public string Title { get; set; }
         public double Cost { get; set; }
+        
+        public long TimeLeft
+        {
+            get
+            {
+                long calculatedTimeLeft = (long)Math.Ceiling(TimeSpan
+                    .FromMilliseconds(ExpectedFinishTime - DateTimeOffset.Now.ToUnixTimeMilliseconds())
+                    .TotalMinutes);
+                return calculatedTimeLeft > 0 ? calculatedTimeLeft : -1;
+            }
+        }
+
+        public string DisplayableTimeLeft =>
+            Status != OrderStatus.Preparing ? "-" :
+            TimeLeft == -1 ? "ready soon" : TimeLeft.ToString();
+
+        public long ExpectedFinishTime { get; set; }
         public int PlaceUserId { get; set; }
         public int ClientUserId { get; set; }
 

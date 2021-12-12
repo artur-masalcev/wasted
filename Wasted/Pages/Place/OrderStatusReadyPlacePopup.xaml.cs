@@ -9,7 +9,7 @@ using Xamarin.Forms.Xaml;
 namespace Wasted.Pages.Place
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OrderStatusPlacePopup : PopupPage
+    public partial class OrderStatusReadyPlacePopup : PopupPage
     {
         public OrderDeal SelectedDeal { get; set; }
 
@@ -18,7 +18,7 @@ namespace Wasted.Pages.Place
 
         public string Message => $"Deal {DealTitle} (x{Quantity}) is done preparing";
 
-        public OrderStatusPlacePopup(OrderDeal deal)
+        public OrderStatusReadyPlacePopup(OrderDeal deal)
         {
             InitializeComponent();
             SelectedDeal = deal;
@@ -28,7 +28,7 @@ namespace Wasted.Pages.Place
         private void Button_OnClicked(object sender, EventArgs e)
         {
             SelectedDeal.Status = OrderStatus.ReadyToPickUp;
-            DataProvider.UpdateOrdersStatus(new List<OrderDeal>{SelectedDeal});
+            DataProvider.UpdateOrders(new List<OrderDeal>{SelectedDeal});
             PopupNavigation.Instance.PopAsync();
         }
     }
