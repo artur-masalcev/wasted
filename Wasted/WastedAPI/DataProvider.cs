@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,33 +18,25 @@ namespace Wasted.WastedAPI
     {
         private static string Ip => ConfigurationProperties.LocalIpAddress;
         private static string LinkStart => "http://" + Ip + ":5001/";
-
-        public static string FoodPlacesEnd => "foodplaces";
-        public static string DealsEnd => "deals";
-        public static string ClientUsersEnd => "clientusers";
-        public static string PlaceUsersEnd => "placeusers";
-        public static string PlaceTypeEnd => "foodplacetypes";
-
-        public static string RatingsEnd => "ratings";
-
-        public static string ClientUserEnd(string name, string password)
-        {
-            return String.Join("/", ClientUsersEnd, name, password);
-        }
-
-        public static string PlaceUserEnd(string name, string password)
-        {
-            return String.Join("/", PlaceUsersEnd, name, password);
-        }
-
         private static readonly HttpClient Client = new HttpClient();
+
+        private static string FoodPlacesEnd => "foodplaces";
+        private static string DealsEnd => "deals";
+        private static string ClientUsersEnd => "clientusers";
+        private static string PlaceUsersEnd => "placeusers";
+        private static string PlaceTypeEnd => "foodplacetypes";
+        private static string RatingsEnd => "ratings";
+        private static string ClientUserEnd(string name, string password) => string.Join("/", ClientUsersEnd, name, password);
+        private static string PlaceUserEnd(string name, string password) => string.Join("/", PlaceUsersEnd, name, password);
+   
+        
 
         /// <summary>
         /// Gets data from API
         /// </summary>
-        public static async Task<T> GetData<T>(string linkEnd)
+        private static T GetData<T>(string linkEnd)
         {
-            string dataJson = await Client.GetStringAsync(LinkStart + linkEnd);
+            string dataJson = Task.Run(async () => await Client.GetStringAsync(LinkStart + linkEnd)).Result;
             return JsonConvert.DeserializeObject<T>(dataJson);
         }
 
@@ -66,7 +59,7 @@ namespace Wasted.WastedAPI
         }
 
         /// <summary>
-        /// Converts object to json StringContent. Serializing content once is not enough
+        /// Converts object to json StringContent.
         /// </summary>
         private static StringContent GetStringContent(object obj)
         {
@@ -74,16 +67,24 @@ namespace Wasted.WastedAPI
             return new StringContent(content, Encoding.UTF8, "application/json");
         }
 
+        public static List<Deal> GetAllDeals() => GetData<List<Deal>>(DealsEnd);
         public static void CreateDeal(Deal deal) => CreateBusinessObject(deal, DealsEnd);
         public static void UpdateDeal(Deal deal) => UpdateBusinessObject(deal, DealsEnd);
 
+        public static List<FoodPlace> GetAllFoodPlaces() => GetData<List<FoodPlace>>(FoodPlacesEnd);
         public static void CreateFoodPlace(FoodPlace foodPlace) => CreateBusinessObject(foodPlace, FoodPlacesEnd);
         public static void DeleteFoodPlace(FoodPlace foodPlace) => DeleteBusinessObject(foodPlace.Id, FoodPlacesEnd);
 
+        public static ClientUser GetClientUser(string username, string password) => GetData<ClientUser>(ClientUserEnd(username, password));
+
         public static void CreateClientUser(ClientUser clientUser) => CreateBusinessObject(clientUser, ClientUsersEnd);
+
+        public static PlaceUser GetPlaceUser(string username, string password) => GetData<PlaceUser>(PlaceUserEnd(username, password));
         public static void CreatePlaceUser(PlaceUser placeUser) => CreateBusinessObject(placeUser, PlaceUsersEnd);
 
         public static void CreateRating(RatingDTO rating) => CreateBusinessObject(rating, RatingsEnd);
         public static void UpdateRating(RatingDTO rating) => UpdateBusinessObject(rating, RatingsEnd);
+
+        public static List<FoodPlaceType> GetFoodPlaceTypes() => GetData<List<FoodPlaceType>>(PlaceTypeEnd);
     }
 }

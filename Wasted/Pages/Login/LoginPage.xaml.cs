@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Wasted.Utils.Exceptions;
 using Wasted.Utils.Services;
+using Wasted.WastedAPI;
 using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -25,12 +26,12 @@ namespace Wasted.Pages.Login
 
         private Tuple<User, Func<User>> GetUserDetails(string username, string password)
         {
-            User user = _service.GetPlaceUser(username, password);
+            User user = DataProvider.GetPlaceUser(username, password);
             if (user != null)
-                return new Tuple<User, Func<User>>(user, () => _service.GetPlaceUser(username, password));
-            user = _service.GetClientUser(username, password);
+                return new Tuple<User, Func<User>>(user, () => DataProvider.GetPlaceUser(username, password));
+            user = DataProvider.GetClientUser(username, password);
             if (user != null)
-                return new Tuple<User, Func<User>>(user, () => _service.GetClientUser(username, password));
+                return new Tuple<User, Func<User>>(user, () => DataProvider.GetClientUser(username, password));
             return null;
         }
 

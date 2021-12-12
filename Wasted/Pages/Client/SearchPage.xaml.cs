@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Wasted.Utils;
 using Wasted.Utils.Services;
+using Wasted.WastedAPI;
 using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
@@ -59,8 +60,7 @@ namespace Wasted.Pages.Client
 
         public SearchPage()
         {
-            DataService service = DependencyService.Get<DataService>();
-            FoodPlaceTypes = service.GetFoodPlaceTypes;
+            FoodPlaceTypes = DataProvider.GetFoodPlaceTypes();
             PlaceTypeNames = FoodPlaceTypes.Select(type => type.Type).ToArray();
             AllPlaces = FoodPlaceTypes
                 .Aggregate(new List<FoodPlace>(), (acc, next) => acc.Concat(next.FoodPlaces).ToList())
