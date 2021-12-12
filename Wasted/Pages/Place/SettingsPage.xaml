@@ -19,8 +19,13 @@
                     </TableSection>
                     
                     <TableSection>
-                        <TextCell Text="Log out"
-                                  TextColor="Crimson"/>
+                        <ViewCell>
+                            <Button BackgroundColor="Transparent"
+                                    Text="Log out"
+                                    TextColor="Crimson"
+                                    Clicked="LogOutClicked"
+                            />
+                        </ViewCell>
                     </TableSection>
                 </TableRoot>
             </TableView>
