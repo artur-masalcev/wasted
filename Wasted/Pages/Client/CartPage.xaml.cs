@@ -57,7 +57,6 @@ namespace Wasted.Pages.Client
                 DataProvider.UpdateOrdersStatus(dealsToUpdate);
                 OnAppearing();
                 UserDialogs.Instance.Toast("Purchased successfully", new TimeSpan(3));
-                Navigation.PushAsync(new OrderStatusPage());
             }
             else
             {

@@ -59,7 +59,6 @@ namespace Wasted.Pages.Client.DealPage
                 DataProvider.CreateOrder(cartDeal);
                 
                 UserDialogs.Instance.Toast("Added to cart", new TimeSpan(3));
-                Navigation.PushAsync(new CartPage());
             }
         }
 
