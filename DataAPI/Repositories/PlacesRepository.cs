@@ -43,8 +43,6 @@ namespace DataAPI.Repositories
 
             selectedFoodPlace.City = updatedFoodPlace.City;
             selectedFoodPlace.Description = updatedFoodPlace.Description;
-            selectedFoodPlace.Latitude = updatedFoodPlace.Latitude;
-            selectedFoodPlace.Longitude = updatedFoodPlace.Longitude;
             selectedFoodPlace.Street = updatedFoodPlace.Street;
             selectedFoodPlace.Title = updatedFoodPlace.Title;
             selectedFoodPlace.WorkingHours = updatedFoodPlace.WorkingHours;
