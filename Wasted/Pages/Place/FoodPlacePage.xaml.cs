@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Wasted.Pages.Place.NewDeal;
 using Wasted.Utils;
+using Wasted.Utils.Services;
+using Wasted.WastedAPI;
 using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
@@ -16,21 +19,30 @@ namespace Wasted.Pages.Place
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FoodPlacePage : ContentPage
     {
-        private readonly FoodPlace SelectedPlace;
-        public string FoodPlaceTitle => SelectedPlace.Title;
+        private FoodPlace SelectedPlace => DataProvider.GetAllFoodPlaces().First(foodPlace => foodPlace.Id == SelectedPlaceId);
+        private int SelectedPlaceId;
 
         public List<Deal> Deals => SelectedPlace.Deals;
 
-        public FoodPlacePage(FoodPlace selectedPlace)
+        public FoodPlacePage(int selectedPlaceId)
         {
             InitializeComponent();
 
-            SelectedPlace = selectedPlace;
+            SelectedPlaceId = selectedPlaceId;
 
             BindingContext = this;
 
             On<iOS>().SetUseSafeArea(true);
         }
+
+        protected override void OnAppearing()
+        {
+            PageTitleLabel.Text = SelectedPlace.Title;
+            DealsCollectionView.ItemsSource = SelectedPlace.Deals;
+
+            base.OnAppearing();
+        }
+        
         private void DealsCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Deal selectedDeal = e.CurrentSelection.First() as Deal;

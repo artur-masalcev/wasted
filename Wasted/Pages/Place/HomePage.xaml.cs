@@ -17,13 +17,13 @@ using Xamarin.Forms.Xaml;
 namespace Wasted.Pages.Place
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PlaceHomePage : ContentPage
+    public partial class HomePage : ContentPage
     {
         private readonly CurrentUserService _service;
-        private readonly PlaceUser _currentPlaceUser;
+        private PlaceUser _currentPlaceUser;
         public List<FoodPlace> OwnedPlaces => _currentPlaceUser.OwnedPlaces;
 
-        public PlaceHomePage()
+        public HomePage()
         {
             _service = DependencyService.Get<CurrentUserService>();
             InitializeComponent();
@@ -32,12 +32,20 @@ namespace Wasted.Pages.Place
             On<iOS>().SetUseSafeArea(true);
         }
 
+        protected override void OnAppearing()
+        {
+            PlacesCollectionView.ItemsSource = ((PlaceUser) _service.CurrentUser).OwnedPlaces;
+            base.OnAppearing();
+        }
+
         private void PlacesCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectionChanger.ListSelectionChanged(sender, () =>
             {
-                FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
-                Navigation.PushAsync(new FoodPlacePage(selectedPlace));
+                var selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
+
+                if (selectedPlace != null) Navigation.PushAsync(new FoodPlacePage(selectedPlace.Id));
+                else DisplayAlert("Error", "Food place does not exist", "OK");
             });
         }
 

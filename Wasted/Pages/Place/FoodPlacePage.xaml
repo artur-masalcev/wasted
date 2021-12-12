@@ -13,7 +13,7 @@
                         Clicked="BackClicked"
                 />
 
-                <Label Text="{Binding FoodPlaceTitle}"
+                <Label x:Name="PageTitleLabel"
                        VerticalTextAlignment="Center"
                        Style="{StaticResource PageTitle}"
                        LineBreakMode="TailTruncation"/>

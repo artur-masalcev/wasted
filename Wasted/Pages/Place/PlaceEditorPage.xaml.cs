@@ -80,9 +80,9 @@ namespace Wasted.Pages.Place
             }
             
             UpdateSelectedPlaceObject();
-
-            _service.UpdateUserInfo();
+            
             DataProvider.UpdateFoodPlace(SelectedPlace);
+            _service.UpdateUserInfo();
         }
 
         private void ShowPreviewClicked(object sender, EventArgs e)
