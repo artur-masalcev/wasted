@@ -98,7 +98,7 @@ namespace Wasted.Pages.Place
         private void DeletePlaceClicked(object sender, EventArgs e)
         {
             DataProvider.DeleteFoodPlace(SelectedPlace);
-            DependencyService.Get<DataService>().CurrentUser.PushPage(this);
+            DependencyService.Get<CurrentUserService>().CurrentUser.PushPage(this);
         }
 
         private void DescriptionEntryTextChanged(object sender, TextChangedEventArgs e)
