@@ -15,6 +15,7 @@ namespace DataAPI
             CreateMap<ClientUser, ClientUserDTO>();
             CreateMap<Rating, RatingDTO>();
             CreateMap<FoodPlaceType, FoodPlaceTypeDTO>();
+            CreateMap<Order, OrderDTO>();
         }
     }
 }

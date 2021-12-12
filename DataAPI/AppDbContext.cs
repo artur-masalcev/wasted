@@ -12,6 +12,7 @@ namespace DataAPI
         public DbSet<PlaceUser> PlaceUsers { get; set; }
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<FoodPlaceType> FoodPlaceTypes { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
