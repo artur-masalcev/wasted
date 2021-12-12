@@ -12,18 +12,36 @@
                                 SelectionMode="Single"
                                 ItemsLayout="VerticalList"
                                 SelectionChanged="OrderedDealsCollectionView_OnSelectionChanged">
+                    <CollectionView.Header>
+                        <StackLayout>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="65"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="Quantity" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                <Label Grid.Column="1" Text="Product name" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                <Label Grid.Column="2" Text="Order Status" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                <Label Grid.Column="3" Text="Time left (min)" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                            </Grid>
+                        </StackLayout>
+                    </CollectionView.Header>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Frame>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="40" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="65"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0" Text="{Binding Quantity, StringFormat='{0}x' }" />
-                                    <Label Grid.Column="1" Text="{Binding Title}" />
-                                    <Label Grid.Column="2" Text="{Binding Status}" HorizontalTextAlignment="End" />
+                                    <Label Grid.Column="0" Text="{Binding Quantity, StringFormat='{0}x'}" HorizontalTextAlignment="Center"/>
+                                    <Label Grid.Column="1" Text="{Binding Title}" HorizontalTextAlignment="Center"/>
+                                    <Label Grid.Column="2" Text="{Binding Status}" HorizontalTextAlignment="Center" />
+                                    <Label Grid.Column="3" Text="{Binding TimeLeft}" HorizontalTextAlignment="Center" />
                                 </Grid>
                             </Frame>
                         </DataTemplate>

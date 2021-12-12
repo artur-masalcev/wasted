@@ -52,7 +52,7 @@ namespace Wasted.Pages.Client
                 List<OrderDeal> dealsToUpdate = new List<OrderDeal>(CurrentCartDeals);
                 foreach (OrderDeal currentCartDeal in dealsToUpdate)
                 {
-                    currentCartDeal.Status = OrderStatus.Preparing;
+                    currentCartDeal.Status = OrderStatus.WaitingForAcceptance;
                 }
                 DataProvider.UpdateOrdersStatus(dealsToUpdate);
                 OnAppearing();

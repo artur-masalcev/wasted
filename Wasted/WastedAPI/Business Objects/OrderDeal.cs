@@ -1,4 +1,5 @@
-﻿using Wasted.Utils;
+﻿using System;
+using Wasted.Utils;
 
 namespace Wasted.WastedAPI.Business_Objects
 {
@@ -20,6 +21,23 @@ namespace Wasted.WastedAPI.Business_Objects
         public int Quantity { get; set; }
         public string Title { get; set; }
         public double Cost { get; set; }
+        
+        private long timeLeft;
+
+        public long TimeLeft
+        {
+            get { return timeLeft; }
+            set
+            {
+                long totalMinutes = value - ((long) TimeSpan
+                    .FromMilliseconds(DateTimeOffset.Now.ToUnixTimeMilliseconds() - StartTime).TotalMinutes);
+                timeLeft = totalMinutes > 0 ? totalMinutes : -1;
+            }
+        }
+
+        public int PreparationTime{ get; set; }
+        
+        public long StartTime { get; set; }
         public int PlaceUserId { get; set; }
         public int ClientUserId { get; set; }
 

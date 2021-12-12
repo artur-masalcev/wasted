@@ -7,7 +7,9 @@ namespace DataAPI.Models
         public int Id { get; set; }
         public string Status { get; set; }
         public int Quantity { get; set; }
-        
+        public long TimeLeft { get; set; }
+        public int PreparationTime{ get; set; }
+        public long StartTime { get; set; }
         public int DealId { get; set; }
         public Deal Deal { get; set; }
         

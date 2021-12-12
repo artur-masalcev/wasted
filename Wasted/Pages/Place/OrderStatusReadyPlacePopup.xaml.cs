@@ -9,7 +9,7 @@ using Xamarin.Forms.Xaml;
 namespace Wasted.Pages.Place
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OrderStatusPlacePopup : PopupPage
+    public partial class OrderStatusReadyPlacePopup : PopupPage
     {
         public OrderDeal SelectedDeal { get; set; }
 
@@ -18,7 +18,7 @@ namespace Wasted.Pages.Place
 
         public string Message => $"Deal {DealTitle} (x{Quantity}) is done preparing";
 
-        public OrderStatusPlacePopup(OrderDeal deal)
+        public OrderStatusReadyPlacePopup(OrderDeal deal)
         {
             InitializeComponent();
             SelectedDeal = deal;

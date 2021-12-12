@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:wasted="clr-namespace:Wasted;assembly=Wasted"
+    x:Class="Wasted.Pages.Place.OrderStatusPreparedPlacePopup">
+    
+    <!--#region Confirmation Popup-->
+    <StackLayout Style="{StaticResource DealCardViewLayout}"
+                 VerticalOptions="Center">
+        <StackLayout BackgroundColor="White">
+                
+            <Label Text="{Binding  Message}"/>
+            
+            <Label Text="Approximate time (min.) for order preparation (optional)"/>
+            <wasted:RoundedEntry x:Name="Time"/>
+            <Label x:Name="ErrorLabel" Text="Only whole numbers are accepted" TextColor="PaleVioletRed" IsVisible="False"/>
+            
+            <Button Text="YES" Clicked="Button_OnClicked"/>
+                
+        </StackLayout>
+    </StackLayout>
+    <!--#endregion-->
+
+</pages:PopupPage>

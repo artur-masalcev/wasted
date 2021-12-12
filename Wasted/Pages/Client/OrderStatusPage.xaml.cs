@@ -7,6 +7,7 @@ using Wasted.Utils.Services;
 using Wasted.WastedAPI;
 using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace Wasted.Pages.Client
@@ -31,6 +32,9 @@ namespace Wasted.Pages.Client
             base.OnAppearing();
             OrderedDeals = DataProvider.GetClientOrders(_service.CurrentUser.Id)
                 .Where(order => order.Status != OrderStatus.InCart);
+            
+            OrderedDeals.ForEach(orderedDeal => orderedDeal.TimeLeft = orderedDeal.PreparationTime);
+            
             OrderedDealsCollectionView.ItemsSource = null;
             OrderedDealsCollectionView.ItemsSource = OrderedDeals;
         }

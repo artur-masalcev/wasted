@@ -58,9 +58,13 @@ namespace Wasted.Pages.Place
             SelectionChanger.ListSelectionChanged(sender, () =>
             {
                 OrderDeal order = e.CurrentSelection.FirstOrDefault() as OrderDeal;
-                if (order.Status.Equals(OrderStatus.Preparing))
+                if (order.Status.Equals(OrderStatus.WaitingForAcceptance))
                 {
-                    PopupNavigation.Instance.PushAsync(new OrderStatusPlacePopup(order));
+                    PopupNavigation.Instance.PushAsync(new OrderStatusPreparedPlacePopup(order));
+                }
+                else if (order.Status.Equals(OrderStatus.Preparing))
+                {
+                    PopupNavigation.Instance.PushAsync(new OrderStatusReadyPlacePopup(order));
                 }
             });
         }
