@@ -29,6 +29,8 @@ namespace Wasted.Pages.Place
         private string NewDueDate => DueDatePicker.Date.ToString("yyyy-MM-dd");
         private string NewDescription => DescriptionEntry.Text;
 
+        private CurrentUserService _service = DependencyService.Get<CurrentUserService>();
+        
         public DealEditorPage(Deal selectedDeal)
         {
             InitializeComponent();
@@ -101,8 +103,9 @@ namespace Wasted.Pages.Place
             }
 
             UpdateSelectedDealObject();
-
+            
             DataProvider.UpdateDeal(SelectedDeal);
+            _service.UpdateUserInfo();
         }
 
         private void ShowPreviewClicked(object sender, EventArgs e)
@@ -119,9 +122,10 @@ namespace Wasted.Pages.Place
         }
 
         private void DeleteOfferClicked(object sender, EventArgs e)
-        {
-           DataProvider.DeleteDeal(SelectedDeal);
-           Navigation.PopAsync();
+        { 
+            DataProvider.DeleteDeal(SelectedDeal);
+            _service.UpdateUserInfo();
+            Navigation.PopAsync();
         }
     }
 }

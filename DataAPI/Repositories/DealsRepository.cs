@@ -28,10 +28,18 @@ namespace DataAPI.Repositories
             return deal;
         }
 
-        public void Update(Deal deal)
+        public void Update(Deal updatedDeal)
         {
-            Deal oldDeal = _dbContext.Deals.Find(deal.Id);
-            oldDeal.Quantity = deal.Quantity;
+            var selectedDeal = _dbContext.Deals.Find(updatedDeal.Id);
+            
+            selectedDeal.Description = updatedDeal.Description;
+            selectedDeal.Due = updatedDeal.Due;
+            selectedDeal.Quantity = updatedDeal.Quantity;
+            selectedDeal.Title = updatedDeal.Title;
+            selectedDeal.CurrentCost = updatedDeal.CurrentCost;
+            selectedDeal.PreviousCost = updatedDeal.PreviousCost;
+            selectedDeal.ImageURL = updatedDeal.ImageURL;
+            
             _dbContext.SaveChangesAsync();
         }
     }

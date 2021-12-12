@@ -40,5 +40,12 @@ namespace DataAPI.Controllers
             _placesRepository.Delete(id);
             return NoContent();
         }
+
+        [HttpPut]
+        public ActionResult<FoodPlace> UpdateFoodPlace([FromBody] FoodPlace foodPlace)
+        {
+            _placesRepository.Update(foodPlace);
+            return foodPlace;
+        }
     }
 }

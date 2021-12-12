@@ -26,6 +26,8 @@ namespace Wasted.Pages.Place
         private string NewDescription => DescriptionEntry.Text;
         private string NewHeaderURL => SelectedPlace.HeaderURL;
         private string NewLogoURL => SelectedPlace.LogoURL;
+        
+        private CurrentUserService _service = DependencyService.Get<CurrentUserService>();
 
         public PlaceEditorPage(FoodPlace selectedPlace)
         {
@@ -79,6 +81,7 @@ namespace Wasted.Pages.Place
             
             UpdateSelectedPlaceObject();
 
+            _service.UpdateUserInfo();
             DataProvider.UpdateFoodPlace(SelectedPlace);
         }
 
@@ -98,7 +101,8 @@ namespace Wasted.Pages.Place
         private void DeletePlaceClicked(object sender, EventArgs e)
         {
             DataProvider.DeleteFoodPlace(SelectedPlace);
-            DependencyService.Get<CurrentUserService>().CurrentUser.PushPage(this);
+            _service.UpdateUserInfo();
+            _service.CurrentUser.PushPage(this);
         }
 
         private void DescriptionEntryTextChanged(object sender, TextChangedEventArgs e)
