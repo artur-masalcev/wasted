@@ -17,7 +17,7 @@ namespace DataAPITest
         private readonly IMapper _mapper;
         private readonly DealsController _dealsController;
         private readonly Mock<IDealsRepository> _dealsRepository;
-        private readonly Deal _deal = new Deal();
+        private readonly Deal _deal = new();
 
         public DealsControllerTest()
         {
