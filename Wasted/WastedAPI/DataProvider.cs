@@ -57,7 +57,7 @@ namespace Wasted.WastedAPI
         }
 
         /// <summary>
-        /// Converts object to json StringContent. Serializing content once is not enough
+        /// Converts object to json StringContent
         /// </summary>
         private static StringContent GetStringContent(object obj)
         {
