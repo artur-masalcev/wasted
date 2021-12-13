@@ -1,3 +1,4 @@
+using DataAPI.Logging;
 using DataAPI.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,14 +18,16 @@ namespace DataAPI
         }
 
         public IConfiguration Configuration { get; }
-
+        
         public void ConfigureServices(IServiceCollection services)
         {
-            // Log.Logger = new LoggerConfiguration()
-            //     .WriteTo.File("Logs/Log.txt", rollingInterval: RollingInterval.Day)
-            //     .CreateLogger();
-            //
-            // services.AddSingleton(x => Log.Logger);
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.File("Logging/log.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+            
+            services.AddSingleton(x => Log.Logger);
+            Log.Logger.Error("bad");
+
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<DealsRepository>();
             services.AddScoped<PlacesRepository>();
@@ -44,6 +47,7 @@ namespace DataAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseMiddleware<AnalyticsMiddleware>();
 
             app.UseRouting();
 
@@ -51,7 +55,6 @@ namespace DataAPI
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
-           // app.UseMiddleware<ErrorHandlingMiddleware>();
         }
     }
 }
