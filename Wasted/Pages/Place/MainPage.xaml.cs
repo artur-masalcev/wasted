@@ -4,9 +4,9 @@ using Xamarin.Forms.Xaml;
 namespace Wasted.Pages.Place
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PlaceMainPage : TabbedPage
+    public partial class MainPage : TabbedPage
     {
-        public PlaceMainPage()
+        public MainPage()
         {
             InitializeComponent();
             SelectedTabColor = Color.Black;

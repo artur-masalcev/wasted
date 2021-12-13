@@ -6,6 +6,8 @@ using Wasted.Utils.Services;
 using Wasted.WastedAPI;
 using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace Wasted.Pages.Client
@@ -25,6 +27,9 @@ namespace Wasted.Pages.Client
         {
             InitializeComponent();
             _service = DependencyService.Get<CurrentUserService>();
+            AllCartDeals = DataProvider.GetClientOrders(_service.CurrentUser.Id);
+            
+            On<iOS>().SetUseSafeArea(true);
         }
 
         /// <summary>
@@ -44,7 +49,7 @@ namespace Wasted.Pages.Client
             OnAppearing();
             RefreshView.IsRefreshing = false;
         }
-        
+
         private void ClickedPurchase(object sender, EventArgs e)
         {
             if (CurrentCartDeals.Any())

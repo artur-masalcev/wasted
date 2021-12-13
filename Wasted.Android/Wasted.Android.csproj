@@ -71,8 +71,12 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\edit.png" />
     <AndroidResource Include="Resources\drawable\nav_bar_cart.png" />
+    <AndroidResource Include="Resources\drawable\nav_bar_home.png" />
     <AndroidResource Include="Resources\drawable\nav_bar_order.png" />
+    <AndroidResource Include="Resources\drawable\nav_bar_search.png" />
+    <AndroidResource Include="Resources\drawable\nav_bar_settings.png" />
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\mipmap-anydpi-v26\icon.xml" />
@@ -117,12 +121,6 @@
       <Generator>
       </Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\nav_bar_home.png">
-      <SubType>
-      </SubType>
-      <Generator>
-      </Generator>
-    </AndroidResource>
     <AndroidResource Include="Resources\mipmap-hdpi\nav_bar_search.png">
       <SubType>
       </SubType>
@@ -148,12 +146,6 @@
       </Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\mipmap-xxxhdpi\nav_bar_search.png">
-      <SubType>
-      </SubType>
-      <Generator>
-      </Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable\nav_bar_search.png">
       <SubType>
       </SubType>
       <Generator>

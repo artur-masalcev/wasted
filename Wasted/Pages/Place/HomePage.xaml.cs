@@ -17,45 +17,41 @@ using Xamarin.Forms.Xaml;
 namespace Wasted.Pages.Place
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PlaceHomePage : ContentPage
+    public partial class HomePage : ContentPage
     {
         private readonly CurrentUserService _service;
-        private readonly PlaceUser _currentPlaceUser;
+        private PlaceUser _currentPlaceUser;
         public List<FoodPlace> OwnedPlaces => _currentPlaceUser.OwnedPlaces;
-        public ICommand DeleteCommand { get; set; }
 
-        public PlaceHomePage()
+        public HomePage()
         {
             _service = DependencyService.Get<CurrentUserService>();
             InitializeComponent();
-            DeleteCommand = new Command(DeletePlace);
             _currentPlaceUser = (PlaceUser) _service.CurrentUser;
             BindingContext = this;
             On<iOS>().SetUseSafeArea(true);
         }
 
-        private void YourPlacesCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+        protected override void OnAppearing()
+        {
+            PlacesCollectionView.ItemsSource = ((PlaceUser) _service.CurrentUser).OwnedPlaces;
+            base.OnAppearing();
+        }
+
+        private void PlacesCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectionChanger.ListSelectionChanged(sender, () =>
             {
-                FoodPlace selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
-                Navigation.PushAsync(new NewDealPage(selectedPlace));
+                var selectedPlace = e.CurrentSelection.FirstOrDefault() as FoodPlace;
+
+                if (selectedPlace != null) Navigation.PushAsync(new FoodPlacePage(selectedPlace.Id));
+                else DisplayAlert("Error", "Food place does not exist", "OK");
             });
         }
 
         private void AddNewPlaceButtonClicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new NewPlacePage());
-        }
-
-        private void DeletePlace(object obj)
-        {
-            FoodPlace selectedPlace = obj as FoodPlace;
-            DataProvider.DeleteFoodPlace(selectedPlace);
-            _currentPlaceUser.OwnedPlaces = _currentPlaceUser.OwnedPlaces
-                .Where(place => place != selectedPlace)
-                .ToList();
-            OnPropertyChanged("OwnedPlaces");
         }
     }
 }

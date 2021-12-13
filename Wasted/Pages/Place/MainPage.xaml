@@ -3,16 +3,19 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:place="clr-namespace:Wasted.Pages.Place;assembly=Wasted"
-            x:Class="Wasted.Pages.Place.PlaceMainPage"
+            x:Class="Wasted.Pages.Place.MainPage"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"
             NavigationPage.HasNavigationBar="false">
 
-    <place:PlaceHomePage
+    <place:HomePage
         Title="Home"
         Icon="nav_bar_home.png" />
     <place:OrdersPage
         Title="Orders"
         Icon="nav_bar_order.png" />
+    <place:SettingsPage
+        Title="Settings"
+        Icon="nav_bar_settings.png" />
 
 </TabbedPage>

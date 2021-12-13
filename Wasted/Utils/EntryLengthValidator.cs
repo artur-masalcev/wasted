@@ -1,4 +1,4 @@
-﻿using Xamarin.Forms;
+using Xamarin.Forms;
 
 namespace Wasted.Utils
 {
@@ -26,7 +26,7 @@ namespace Wasted.Utils
         {
             if (!string.IsNullOrEmpty(e.NewTextValue) && e.NewTextValue.Length > MaxEntryLength)
             {
-                ((Entry) sender).Text = e.OldTextValue;
+                ((Entry) sender).Text = e.OldTextValue ?? "";
             }
             else
             {

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wasted.Pages.Place.PlaceEditorPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout Padding="7">
+            <!--#region Custom navigation bar-->
+            <StackLayout Orientation="Horizontal">
+                <Button Style="{StaticResource CustomNavBarBackButton}"
+                        TextColor="{StaticResource TextBlack}"
+                        Clicked="BackClicked"
+                />
+            </StackLayout>
+            <!--#endregion-->
+            
+            <!--#region Attributes form-->
+            <StackLayout Spacing="20">
+                <StackLayout>
+                    <Label Text="Title"/>
+                    <Entry x:Name="TitleEntry"
+                           Text="{Binding SelectedPlace.Title}"/>
+                </StackLayout> 
+                
+                <StackLayout>
+                    <StackLayout>
+                        <Label Text="{Binding Validator.MaxEntryLength, StringFormat='Short description (fewer than {0} words)'}" />
+                        <Entry x:Name="DescriptionEntry" 
+                               TextChanged="DescriptionEntryTextChanged"
+                               Text="{Binding SelectedPlace.Description}"
+                               />
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Validator.EntryLength}" />
+                                    <Span Text="/" />
+                                    <Span Text="{Binding Validator.MaxEntryLength}" />
+                                </FormattedString>
+                    
+                            </Label.FormattedText>
+                        </Label>
+                    </StackLayout>
+                </StackLayout>
+                
+                <StackLayout>
+                    <Label Text="Header image"/>
+                    <Button Text="Select" Clicked="ChooseHeaderImageClicked"/>
+                </StackLayout>
+                
+                <StackLayout>
+                    <Label Text="Logo image"/>
+                    <Button Text="Select" Clicked="ChooseLogoImageClicked"/>
+                </StackLayout>
+            </StackLayout>
+            <!--#endregion-->
+            
+            <!--#region Action Buttons-->
+            <StackLayout VerticalOptions="EndAndExpand" Spacing="3">
+                <Button Text="Save changes"
+                        Style="{StaticResource FormActionButton}"
+                        Clicked="SaveChangesClicked"/>
+                <Button Text="Preview"
+                        TextColor="DimGray"
+                        Clicked="ShowPreviewClicked"/>
+                <Button Text="Delete food place"
+                        TextColor="Crimson"
+                        Clicked="DeletePlaceClicked"/>
+            </StackLayout>
+            <!--#endregion-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

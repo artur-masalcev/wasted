@@ -7,12 +7,12 @@ namespace Wasted.Pages.Place
     {
         public static void PushClientPage(ContentPage page)
         {
-            page.Navigation.PushAsync(new MainPage());
+            page.Navigation.PushAsync(new Client.MainPage());
         }
 
         public static void PushPlacePage(ContentPage page)
         {
-            page.Navigation.PushAsync(new PlaceMainPage());
+            page.Navigation.PushAsync(new MainPage());
         }
     }
 }

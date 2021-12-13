@@ -21,4 +21,7 @@
     <client:OrderStatusPage
         Title="Order Status"
         Icon="nav_bar_order.png" />
+    <client:SettingsPage
+        Title="Settings"
+        Icon="nav_bar_settings.png" />
 </TabbedPage>

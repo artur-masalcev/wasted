@@ -34,6 +34,13 @@ namespace DataAPI.Controllers
             return CreatedAtAction(nameof(GetDeals), new {id = newDeal.Id}, newDeal);
         }
 
+        [HttpDelete("{id:int}")]
+        public ActionResult DeleteDeal(int id)
+        {
+            _dealsRepository.Delete(id);
+            return NoContent();
+        }
+        
         [HttpPut]
         public ActionResult<Deal> UpdateDeal([FromBody] Deal deal)
         {

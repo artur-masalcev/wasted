@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+	x:Class="Wasted.Pages.Place.DealPreviewPage"
+             NavigationPage.HasNavigationBar="False">
+	<ContentPage.Content>
+		<ScrollView>
+			<StackLayout>
+				<!--#region Custom navigation bar-->
+				<StackLayout Orientation="Horizontal">
+					<Button Style="{StaticResource CustomNavBarBackButton}"
+							TextColor="{StaticResource TextBlack}"
+							Clicked="BackClicked"
+                />
+				</StackLayout>
+				<!--#endregion-->
+				
+				<!--#region Previews-->
+				<StackLayout Spacing="20">
+					
+					<!--#region Deal page preview-->
+					<StackLayout>
+						<Label Text="Deal page"
+						       FontAttributes="Bold"
+						       HorizontalOptions="CenterAndExpand"/>
+						
+						<BoxView Style="{StaticResource Separator}"/>
+						<Grid RowSpacing="0">
+							<Grid.RowDefinitions>
+								<RowDefinition Height="200" />
+								<RowDefinition Height="75" />
+								<RowDefinition Height="25" />
+							</Grid.RowDefinitions>
+							<!--#region Header image-->
+							<Image Source="{Binding ImageURL}"
+                               Grid.RowSpan="3"
+                               Grid.Row="0"
+						       Aspect="AspectFill" />
+							<!--#endregion-->
+							<!--#region Price label-->
+							<StackLayout Grid.Row="1">
+								<Frame Style="{StaticResource RoundedCardView}" HasShadow="False" BorderColor="Transparent"
+                               CornerRadius="10"
+						       WidthRequest="110"
+                               HorizontalOptions="End"
+                               Background="#272626">
+									<StackLayout>
+										<Label Text="{Binding DealCosts.PreviousCost, StringFormat='{0:F2}€'}"
+									        Style="{StaticResource DealCostLabel}"
+									        TextDecorations="Strikethrough" FontAttributes="None"/>
+										<Label Text="{Binding DealCosts.CurrentCost, StringFormat='{0:F2}€'}"
+									        Style="{StaticResource DealCostLabel}" FontAttributes="Bold"/>
+									</StackLayout>
+								</Frame>
+							</StackLayout>
+							<!--#endregion-->
+						</Grid>
+						<!--#region Deal description-->
+						<StackLayout>
+							<StackLayout>
+								<Label Text="{Binding Title}" Style="{StaticResource SectionTitle}" FontSize="Title"/>
+								<StackLayout Orientation="Horizontal">
+									<Image Source="item_location.png" Style="{StaticResource IconImage}" Opacity="0.5"/>
+									<Label Text="{Binding FoodPlaceTitle}" VerticalOptions="Center" TextColor="{StaticResource TextGrey}"/>
+								</StackLayout>
+								<StackLayout Orientation="Horizontal">
+									<Image Source="item_due.png" Style="{StaticResource IconImage}" Opacity="0.5"/>
+									<Label Text="{Binding Due, StringFormat='Due {0}'}" TextColor="{StaticResource TextGrey}"/>
+								</StackLayout>
+								<StackLayout Orientation="Horizontal">
+									<Image Source="item_quantity.png" Style="{StaticResource IconImage}" Opacity="0.5"/>
+									<Label Text="{Binding Quantity, StringFormat='Quantity: {0}'}" TextColor="{StaticResource TextGrey}"/>
+								</StackLayout>
+							</StackLayout>
+							<BoxView Style="{StaticResource Separator}"/>
+							<StackLayout>
+								<Label Text="Description" Style="{StaticResource CardTitle}"/>
+								<Label
+                                Text="{Binding Description}"/>
+							</StackLayout>
+							<BoxView Style="{StaticResource Separator}"/>
+						</StackLayout>
+						<!--#endregion-->
+						<BoxView Style="{StaticResource Separator}"/>
+					</StackLayout>
+					<!--#endregion-->
+					
+					<!--#region Title page card preview-->
+					<StackLayout>
+						<Label Text="Title page card"
+                           FontAttributes="Bold"
+                           HorizontalOptions="CenterAndExpand"/>
+						
+						<StackLayout Style="{StaticResource DealCardViewLayout}">
+							<Frame Padding="0" 
+							       CornerRadius="10"
+							       HorizontalOptions="Center"
+							       HeightRequest="180"
+							       WidthRequest="180"
+							       >
+								<StackLayout>
+									<pancakeView:PancakeView CornerRadius="10, 10, 0, 0">
+										<Image Style="{StaticResource CardHeaderImage}" Source="{Binding ImageURL}" />
+									</pancakeView:PancakeView>
+
+									<StackLayout HorizontalOptions="Center">
+										<Label Text="{Binding Title}" Style="{StaticResource CardTitle}" HorizontalTextAlignment="Center" Padding="5, 0, 5, 0" />
+										<Label Text="{Binding FoodPlaceTitle}" Style="{StaticResource DealFoodPlaceLabel}" Padding="5, 0, 5, 0" />
+										<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+											<Label Text="{Binding DealCosts.PreviousCost, StringFormat='{0:F2}€'}" Style="{StaticResource PreviousCostLabel}" />
+											<Label Text="{Binding DealCosts.CurrentCost, StringFormat='{0:F2}€'}" Style="{StaticResource CurrentCostLabel}" />
+										</StackLayout>
+									</StackLayout>
+								</StackLayout>
+							</Frame>
+						</StackLayout>
+					</StackLayout>
+				</StackLayout>
+				<!--#endregion-->
+				
+			</StackLayout>
+			<!--#endregion-->
+		</ScrollView>
+	</ContentPage.Content>
+</ContentPage>

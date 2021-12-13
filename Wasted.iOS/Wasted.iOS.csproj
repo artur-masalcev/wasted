@@ -66,9 +66,25 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="RoundedEntryRendererIOS.cs" />
+    <ImageAsset Include="Assets.xcassets\edit.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\edit.imageset\edit.png" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_cart.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_cart.imageset\nav_bar_cart-1.png" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_cart.imageset\nav_bar_cart.png" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_cart.imageset\shopping-cart.png" />
     <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\home.png" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\home32.png" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\nav_bar_home-1.png" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\nav_bar_home.png" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_order.imageset\bill-1.png" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_order.imageset\bill.png" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_order.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_order.imageset\nav_bar_order-1.png" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_order.imageset\nav_bar_order-2.png" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_order.imageset\nav_bar_order.png" />
     <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -87,6 +103,16 @@
     <ImageAsset Include="Assets.xcassets\item_quantity.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\loupe.png" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\loupe32.png" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\nav_bar_search-1.png" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\nav_bar_search.png" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_settings.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_settings.imageset\nav_bar_settings-1.png" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_settings.imageset\nav_bar_settings.png" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_settings.imageset\setting-1.png" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_settings.imageset\setting-2.png" />
+    <ImageAsset Include="Assets.xcassets\nav_bar_settings.imageset\setting.png" />
     <ImageAsset Include="Assets.xcassets\star_outline.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -165,25 +191,7 @@
     <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\nav_bar_home.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\nav_bar_home-1.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\nav_bar_home-2.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\nav_bar_search.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\nav_bar_search-1.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\nav_bar_search-2.png">
       <Visible>false</Visible>
     </ImageAsset>
   </ItemGroup>
@@ -208,36 +216,6 @@
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\item_due.imageset\item_due.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-  </ItemGroup>
-  <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\nav_bar_home.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-  </ItemGroup>
-  <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\nav_bar_home-1.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-  </ItemGroup>
-  <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\nav_bar_home.imageset\nav_bar_home-2.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-  </ItemGroup>
-  <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\nav_bar_search.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-  </ItemGroup>
-  <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\nav_bar_search-1.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-  </ItemGroup>
-  <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\nav_bar_search.imageset\nav_bar_search-2.png">
       <Visible>false</Visible>
     </ImageAsset>
   </ItemGroup>
