@@ -51,7 +51,7 @@ namespace Wasted.Pages.Place
         
         private void BackClicked(object sender, EventArgs e)
         {
-            Navigation.PopAsync(true);
+            Navigation.PopAsync();
             base.OnBackButtonPressed();
         }
         
