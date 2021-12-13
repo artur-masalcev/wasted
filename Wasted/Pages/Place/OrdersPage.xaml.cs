@@ -16,18 +16,19 @@ namespace Wasted.Pages.Place
     public partial class OrdersPage : ContentPage
     {
         private readonly CurrentUserService _service;
+        private List<OrderDeal> PlaceOrders { get; set; }
         public PlaceUser CurrentUser { get; set; }
-        private IEnumerable<FoodPlace> ownedPlaces;
+        private IEnumerable<FoodPlace> _ownedPlaces;
         public IEnumerable<FoodPlace> OwnedPlaces
         {
-            get => ownedPlaces;
+            get => _ownedPlaces;
             set
             {
-                ownedPlaces = value;
+                _ownedPlaces = value;
                 OnPropertyChanged();
             }
         }
-
+        
         public OrdersPage()
         {
             _service = DependencyService.Get<CurrentUserService>();
@@ -42,9 +43,21 @@ namespace Wasted.Pages.Place
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            PlaceOrders = DataProvider.GetPlaceOrders(CurrentUser.Id);
             OrdersCollectionView.ItemsSource = null;
-            OrdersCollectionView.ItemsSource = DataProvider.GetPlaceOrders(CurrentUser.Id);
+            OrdersCollectionView.ItemsSource = PlaceOrders;
+            UpdateSummaryListView();
+        }
 
+        public void UpdateSummaryListView()
+        {
+            SummaryListView.ItemsSource = from groupElement in
+                    from order in PlaceOrders
+                    group order by order.Status
+                    into newGroup
+                    select newGroup
+                select new OrderStatusSummary(groupElement.Key, 
+                    groupElement.Sum(elem => elem.Quantity));
         }
 
         private void RefreshView_Refreshing(object sender, EventArgs e)
@@ -58,13 +71,14 @@ namespace Wasted.Pages.Place
             SelectionChanger.ListSelectionChanged(sender, () =>
             {
                 OrderDeal order = e.CurrentSelection.FirstOrDefault() as OrderDeal;
-                if (order.Status.Equals(OrderStatus.WaitingForAcceptance))
+                switch (order.Status)
                 {
-                    PopupNavigation.Instance.PushAsync(new OrderStatusPreparedPlacePopup(order));
-                }
-                else if (order.Status.Equals(OrderStatus.Preparing))
-                {
-                    PopupNavigation.Instance.PushAsync(new OrderStatusReadyPlacePopup(order));
+                    case OrderStatus.Preparing:
+                        PopupNavigation.Instance.PushAsync(new OrderStatusPlacePopup(order, this));
+                        break;
+                    case OrderStatus.WaitingForAcceptance:
+                        PopupNavigation.Instance.PushAsync(new OrderStatusPreparedPlacePopup(order));
+                        break;
                 }
             });
         }

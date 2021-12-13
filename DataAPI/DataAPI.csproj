@@ -40,5 +40,26 @@
     <_ContentIncludedByDefault Remove="Dummy Data Copies\PlaceUsersCopy.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="database.db" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\AppDbContextModelSnapshot.cs" />
+    <Compile Remove="Migrations\20211212171415_f.cs" />
+    <Compile Remove="Migrations\20211212171415_f.Designer.cs" />
+    <Compile Remove="Migrations\20211212171208_e.cs" />
+    <Compile Remove="Migrations\20211212171208_e.Designer.cs" />
+    <Compile Remove="Migrations\20211212165136_d.cs" />
+    <Compile Remove="Migrations\20211212165136_d.Designer.cs" />
+    <Compile Remove="Migrations\20211212162902_c.cs" />
+    <Compile Remove="Migrations\20211212162902_c.Designer.cs" />
+    <Compile Remove="Migrations\20211212105828_a.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations" />
+  </ItemGroup>
+
 
 </Project>
