@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace DataAPI
 {
@@ -19,6 +20,11 @@ namespace DataAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            // Log.Logger = new LoggerConfiguration()
+            //     .WriteTo.File("Logs/Log.txt", rollingInterval: RollingInterval.Day)
+            //     .CreateLogger();
+            //
+            // services.AddSingleton(x => Log.Logger);
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<DealsRepository>();
             services.AddScoped<PlacesRepository>();
@@ -44,6 +50,8 @@ namespace DataAPI
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+
+           // app.UseMiddleware<ErrorHandlingMiddleware>();
         }
     }
 }

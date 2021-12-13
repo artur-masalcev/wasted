@@ -38,6 +38,7 @@ namespace Wasted.Pages.Place.NewDeal
                 currentCost: double.Parse(currentCostText),
                 previousCost: double.Parse(previousCostText)
             );
+            //_logger.LogInformation(LogEvents.CreateDeal, "Deal {DealTitle} ({DealId}) created.", currentDeal.Title currentDeal.Id);
             SelectedPlace.Deals.Add(currentDeal);
             Navigation.PushAsync(new NewDealNextPage(currentDeal));
         }

@@ -2,15 +2,20 @@
 using System.Linq;
 using DataAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using DataAPI.Logs;
 
 namespace DataAPI.Repositories
 {
     public class OrdersRepository
     {
         private readonly AppDbContext _dbContext;
+        //private readonly ILogger<OrdersRepository> _logger;
 
         public OrdersRepository(AppDbContext dbContext)
+            //, ILogger<OrdersRepository> logger)
         {
+            //_logger = logger;
             _dbContext = dbContext;
         }
 
@@ -20,7 +25,7 @@ namespace DataAPI.Repositories
                 .Include(o => o.Deal)
                 .ThenInclude(d => d.FoodPlace)
                 .ThenInclude(f => f.PlaceUser)
-                .ToList(); //TODO: think if to list is needed
+                .ToList();
         }
 
         public Order Create(Order order)
