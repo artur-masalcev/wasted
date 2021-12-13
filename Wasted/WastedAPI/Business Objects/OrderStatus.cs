@@ -13,12 +13,13 @@
     {
         public string Status { get; set; }
         public int Quantity { get; set; }
+
         public OrderStatusSummary(string status, int quantity)
         {
             Status = status;
             Quantity = quantity;
         }
-        
+
         public override string ToString()
         {
             return $"{Status}: {Quantity}";

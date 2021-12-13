@@ -18,8 +18,8 @@ namespace Wasted.Pages.Place
         public int Quantity => SelectedDeal.Quantity;
 
         public string Message => $"Do you accept deal {DealTitle} (x{Quantity})?";
-        
-        
+
+
         public OrderStatusPreparedPlacePopup(OrderDeal deal)
         {
             InitializeComponent();
@@ -35,11 +35,12 @@ namespace Wasted.Pages.Place
                 if (Time.Text != null)
                 {
                     SelectedDeal.ExpectedFinishTime = DateTimeOffset.Now.ToUnixTimeMilliseconds() +
-                                                      (long)TimeSpan.FromMinutes(long.Parse(Time.Text)).TotalMilliseconds;
+                                                      (long) TimeSpan.FromMinutes(long.Parse(Time.Text))
+                                                          .TotalMilliseconds;
                 }
-                
+
                 SelectedDeal.Status = OrderStatus.Preparing;
-                DataProvider.UpdateOrders(new List<OrderDeal>{SelectedDeal});
+                DataProvider.UpdateOrders(new List<OrderDeal> {SelectedDeal});
                 ErrorLabel.IsVisible = false;
                 PopupNavigation.Instance.PopAsync();
             }

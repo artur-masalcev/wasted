@@ -11,7 +11,7 @@ namespace Wasted.Pages.Place
     public partial class FoodPlacePreviewPage : ContentPage
     {
         public FoodPlace SelectedPlace { get; set; }
-        
+
         public FoodPlacePreviewPage(FoodPlace selectedPlace)
         {
             InitializeComponent();

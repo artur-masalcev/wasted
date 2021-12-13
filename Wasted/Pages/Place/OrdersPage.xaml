@@ -16,19 +16,19 @@
                         <StackLayout>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="65"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="65" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Text="Quantity" FontAttributes="Bold"
                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                                <Label Grid.Column="1" Text="Product name" FontAttributes="Bold" 
-                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                                <Label Grid.Column="2" Text="Order Status" FontAttributes="Bold" 
-                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                <Label Grid.Column="1" Text="Product name" FontAttributes="Bold"
+                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                <Label Grid.Column="2" Text="Order Status" FontAttributes="Bold"
+                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                                 <Label Grid.Column="3" Text="Preparation time left (min)" FontAttributes="Bold"
-                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                             </Grid>
                         </StackLayout>
                     </CollectionView.Header>
@@ -53,7 +53,7 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
                 <Label Text="Summary" />
-                <ListView x:Name="SummaryListView" />          
+                <ListView x:Name="SummaryListView" IsEnabled="False" />
 
             </StackLayout>
         </RefreshView>

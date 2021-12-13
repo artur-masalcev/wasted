@@ -11,7 +11,7 @@ namespace Wasted.Pages.Place
     public partial class DealPreviewPage : ContentPage
     {
         public Deal SelectedDeal { get; set; }
-        
+
         public DealPreviewPage(Deal selectedDeal)
         {
             InitializeComponent();

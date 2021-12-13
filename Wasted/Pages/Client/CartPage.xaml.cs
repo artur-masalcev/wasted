@@ -21,14 +21,14 @@ namespace Wasted.Pages.Client
         private List<OrderDeal> CurrentCartDeals =>
             AllCartDeals.Where(order => order.Status == OrderStatus.InCart)
                 .ToList();
-        
+
 
         public CartPage()
         {
             InitializeComponent();
             _service = DependencyService.Get<CurrentUserService>();
             AllCartDeals = DataProvider.GetClientOrders(_service.CurrentUser.Id);
-            
+
             On<iOS>().SetUseSafeArea(true);
         }
 
@@ -59,6 +59,7 @@ namespace Wasted.Pages.Client
                 {
                     currentCartDeal.Status = OrderStatus.WaitingForAcceptance;
                 }
+
                 DataProvider.UpdateOrders(dealsToUpdate);
                 OnAppearing();
                 UserDialogs.Instance.Toast("Purchased successfully", new TimeSpan(3));

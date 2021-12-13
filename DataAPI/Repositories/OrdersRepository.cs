@@ -29,7 +29,7 @@ namespace DataAPI.Repositories
             _dbContext.SaveChangesAsync();
             return order;
         }
-        
+
         public void Update(List<Order> orders)
         {
             foreach (Order order in orders)
@@ -38,6 +38,7 @@ namespace DataAPI.Repositories
                 oldOrder.Status = order.Status;
                 oldOrder.ExpectedFinishTime = order.ExpectedFinishTime;
             }
+
             _dbContext.SaveChangesAsync();
         }
     }

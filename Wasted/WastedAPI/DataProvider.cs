@@ -65,17 +65,17 @@ namespace Wasted.WastedAPI
             return new StringContent(content, Encoding.UTF8, "application/json");
         }
 
-      
+
         public static List<Deal> GetAllDeals() => GetBusinessObject<List<Deal>>(DealsEnd);
         public static void CreateDeal(Deal deal) => CreateBusinessObject(deal, DealsEnd);
         public static void UpdateDeal(Deal deal) => UpdateBusinessObject(deal, DealsEnd);
         public static void DeleteDeal(Deal deal) => DeleteBusinessObject(deal.Id, DealsEnd);
-        
+
         public static List<FoodPlace> GetAllFoodPlaces() => GetBusinessObject<List<FoodPlace>>(FoodPlacesEnd);
         public static void CreateFoodPlace(FoodPlace foodPlace) => CreateBusinessObject(foodPlace, FoodPlacesEnd);
         public static void DeleteFoodPlace(FoodPlace foodPlace) => DeleteBusinessObject(foodPlace.Id, FoodPlacesEnd);
         public static void UpdateFoodPlace(FoodPlace foodPlace) => UpdateBusinessObject(foodPlace, FoodPlacesEnd);
-        
+
         public static ClientUser GetClientUser(string username, string password) =>
             GetBusinessObject<ClientUser>(JoinParams(ClientUsersEnd, username, password));
 
@@ -83,6 +83,7 @@ namespace Wasted.WastedAPI
 
         public static PlaceUser GetPlaceUser(string username, string password) =>
             GetBusinessObject<PlaceUser>(JoinParams(PlaceUsersEnd, username, password));
+
         public static void CreatePlaceUser(PlaceUser placeUser) => CreateBusinessObject(placeUser, PlaceUsersEnd);
 
         public static void CreateRating(RatingDTO rating) => CreateBusinessObject(rating, RatingsEnd);
@@ -92,9 +93,12 @@ namespace Wasted.WastedAPI
 
         public static List<OrderDeal> GetClientOrders(int clientUserId) =>
             GetBusinessObject<List<OrderDeal>>(JoinParams(OrdersEnd, ClientUsersEnd, clientUserId.ToString()));
+
         public static List<OrderDeal> GetPlaceOrders(int placeUserId) =>
             GetBusinessObject<List<OrderDeal>>(JoinParams(OrdersEnd, PlaceUsersEnd, placeUserId.ToString()));
+
         public static void CreateOrder(OrderDeal orderDeal) => CreateBusinessObject(orderDeal, OrdersEnd);
+
         public static void UpdateOrders(List<OrderDeal> orderDeals) =>
             UpdateBusinessObject(orderDeals, OrdersEnd);
     }

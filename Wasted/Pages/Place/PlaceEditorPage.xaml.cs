@@ -20,21 +20,21 @@ namespace Wasted.Pages.Place
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PlaceEditorPage : ContentPage
     {
-        public FoodPlace SelectedPlace { get; set; } 
+        public FoodPlace SelectedPlace { get; set; }
         public EntryLengthValidator Validator { get; set; }
 
         private string NewPlaceTitle => TitleEntry.Text;
         private string NewDescription => DescriptionEntry.Text;
         private string NewHeaderURL => SelectedPlace.HeaderURL;
         private string NewLogoURL => SelectedPlace.LogoURL;
-        
+
         private CurrentUserService _service = DependencyService.Get<CurrentUserService>();
 
         public PlaceEditorPage(FoodPlace selectedPlace)
         {
             InitializeComponent();
             On<iOS>().SetUseSafeArea(true);
-            
+
             SelectedPlace = selectedPlace;
             Validator = new EntryLengthValidator(maxEntryLength: 50);
 
@@ -70,7 +70,7 @@ namespace Wasted.Pages.Place
             SelectedPlace.Title = NewPlaceTitle;
             SelectedPlace.Description = NewDescription;
         }
-        
+
         private void BackClicked(object sender, EventArgs e)
         {
             Navigation.PopAsync(true);
@@ -88,9 +88,9 @@ namespace Wasted.Pages.Place
                 DisplayAlert("", "Please fill all fields", "OK");
                 return;
             }
-            
+
             UpdateSelectedPlaceObject();
-            
+
             DataProvider.UpdateFoodPlace(SelectedPlace);
             _service.UpdateUserInfo();
         }
@@ -102,9 +102,9 @@ namespace Wasted.Pages.Place
                 DisplayAlert("", "Please fill all fields", "OK");
                 return;
             }
-            
+
             UpdateSelectedPlaceObject();
-            
+
             Navigation.PushAsync(new FoodPlacePreviewPage(SelectedPlace));
         }
 

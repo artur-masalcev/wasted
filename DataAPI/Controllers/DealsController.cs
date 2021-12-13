@@ -40,7 +40,7 @@ namespace DataAPI.Controllers
             _dealsRepository.Delete(id);
             return NoContent();
         }
-        
+
         [HttpPut]
         public ActionResult<Deal> UpdateDeal([FromBody] Deal deal)
         {

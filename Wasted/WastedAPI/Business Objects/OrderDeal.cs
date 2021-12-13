@@ -7,6 +7,7 @@ namespace Wasted.WastedAPI.Business_Objects
     {
         public int Id { get; set; }
         private string _status;
+
         public string Status
         {
             get => _status;
@@ -16,17 +17,18 @@ namespace Wasted.WastedAPI.Business_Objects
                 OnPropertyChanged();
             }
         }
+
         public int DealId { get; set; }
 
         public int Quantity { get; set; }
         public string Title { get; set; }
         public double Cost { get; set; }
-        
+
         public long TimeLeft
         {
             get
             {
-                long calculatedTimeLeft = (long)Math.Ceiling(TimeSpan
+                long calculatedTimeLeft = (long) Math.Ceiling(TimeSpan
                     .FromMilliseconds(ExpectedFinishTime - DateTimeOffset.Now.ToUnixTimeMilliseconds())
                     .TotalMinutes);
                 return calculatedTimeLeft > 0 ? calculatedTimeLeft : -1;

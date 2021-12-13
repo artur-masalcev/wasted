@@ -31,7 +31,7 @@ namespace Wasted.Pages.Place
         private void Button_OnClicked(object sender, EventArgs e)
         {
             SelectedDeal.Status = OrderStatus.ReadyToPickUp;
-            DataProvider.UpdateOrders(new List<OrderDeal>{SelectedDeal});
+            DataProvider.UpdateOrders(new List<OrderDeal> {SelectedDeal});
             ParentPage.UpdateSummaryListView();
             PopupNavigation.Instance.PopAsync();
         }

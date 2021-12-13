@@ -35,11 +35,11 @@ namespace DataAPI.Repositories
             _dbContext.Deals.Remove(dealToDelete);
             _dbContext.SaveChangesAsync();
         }
-        
+
         public void Update(Deal updatedDeal)
         {
             var selectedDeal = _dbContext.Deals.Find(updatedDeal.Id);
-            
+
             selectedDeal.Description = updatedDeal.Description;
             selectedDeal.Due = updatedDeal.Due;
             selectedDeal.Quantity = updatedDeal.Quantity;
@@ -47,7 +47,7 @@ namespace DataAPI.Repositories
             selectedDeal.CurrentCost = updatedDeal.CurrentCost;
             selectedDeal.PreviousCost = updatedDeal.PreviousCost;
             selectedDeal.ImageURL = updatedDeal.ImageURL;
-            
+
             _dbContext.SaveChangesAsync();
         }
     }

@@ -10,66 +10,64 @@
             <StackLayout Orientation="Horizontal">
                 <Button Style="{StaticResource CustomNavBarBackButton}"
                         TextColor="{StaticResource TextBlack}"
-                        Clicked="BackClicked"
-                />
+                        Clicked="BackClicked" />
 
                 <Label x:Name="PageTitleLabel"
                        VerticalTextAlignment="Center"
                        Style="{StaticResource PageTitle}"
-                       LineBreakMode="TailTruncation"/>
-                
-                <ImageButton Source="edit" 
+                       LineBreakMode="TailTruncation" />
+
+                <ImageButton Source="edit"
                              HorizontalOptions="EndAndExpand"
                              HeightRequest="30"
                              WidthRequest="30"
-                             Clicked="EditPlaceClicked"/>
+                             Clicked="EditPlaceClicked" />
             </StackLayout>
             <!--#endregion-->
-            
+
             <!--#region Deals listView-->
             <ScrollView>
-            <CollectionView x:Name="DealsCollectionView"
-                            SelectionChanged="DealsCollectionViewSelectionChanged"
-                            SelectionMode="Single"
-                            ItemsLayout="VerticalList"
-                            ItemsSource="{Binding Deals}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame HasShadow="false"
-                               CornerRadius="0">
-                            <StackLayout Orientation="Horizontal" Background="White">
+                <CollectionView x:Name="DealsCollectionView"
+                                SelectionChanged="DealsCollectionViewSelectionChanged"
+                                SelectionMode="Single"
+                                ItemsLayout="VerticalList"
+                                ItemsSource="{Binding Deals}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame HasShadow="false"
+                                   CornerRadius="0">
+                                <StackLayout Orientation="Horizontal" Background="White">
                                     <StackLayout>
                                         <Label Text="{Binding Title }"
-                                               FontAttributes="Bold"/>
+                                               FontAttributes="Bold" />
                                         <Label Text="{Binding Quantity, StringFormat='Quantity: {0}'}" />
                                     </StackLayout>
-                                <Label Text="›"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="EndAndExpand"
-                                       FontSize="20"/>
+                                    <Label Text="›"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="EndAndExpand"
+                                           FontSize="20" />
                                 </StackLayout>
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </ScrollView>
             <!--#endregion-->
-            
+
             <!--#region Custom floating action button-->
             <Grid HorizontalOptions="End"
                   WidthRequest="100"
                   HeightRequest="100"
                   Padding="7">
-               
+
                 <!-- Because of bug that doesn't allow shapes to see static resources 
                 AppEmerald Color is put in raw hex in Fill attribute-->
-                <Ellipse Fill="#8dd5af" 
+                <Ellipse Fill="#8dd5af"
                          StrokeThickness="0"
                          WidthRequest="65"
                          HeightRequest="65"
                          HorizontalOptions="Center"
-                         VerticalOptions="Center"
-                />
+                         VerticalOptions="Center" />
                 <Button Text="+"
                         FontSize="35"
                         WidthRequest="65"
@@ -78,7 +76,7 @@
                         VerticalOptions="Center"
                         TextColor="White"
                         BackgroundColor="Transparent"
-                        Clicked="AddNewDealClicked"/>
+                        Clicked="AddNewDealClicked" />
             </Grid>
             <!--#endregion-->
         </StackLayout>

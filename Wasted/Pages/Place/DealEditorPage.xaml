@@ -6,86 +6,83 @@
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView>
-        <StackLayout Padding="7">
-            <!--#region Custom navigation bar-->
-            <StackLayout Orientation="Horizontal">
-                <Button Style="{StaticResource CustomNavBarBackButton}"
-                        TextColor="{StaticResource TextBlack}"
-                        Clicked="BackClicked"
-                />
-            </StackLayout>
-            <!--#endregion-->
-            
-            <!--#region Attributes form-->
-            <StackLayout Spacing="20">
-                <StackLayout>
-                    <Label Text="Title"/>
-                    <Entry x:Name="TitleEntry"
-                           Text="{Binding SelectedDeal.Title}"/>
+            <StackLayout Padding="7">
+                <!--#region Custom navigation bar-->
+                <StackLayout Orientation="Horizontal">
+                    <Button Style="{StaticResource CustomNavBarBackButton}"
+                            TextColor="{StaticResource TextBlack}"
+                            Clicked="BackClicked" />
                 </StackLayout>
-                
-                <StackLayout>
-                    <Label Text="Current cost (€)"/>
-                    <Entry x:Name="CurrentCostEntry"
-                           Text="{Binding SelectedDeal.CurrentCost}"
-                           TextChanged="NumberEntryTextChanged"/>
-                </StackLayout>
-                
-                <StackLayout>
-                    <Label Text="Regular cost (€)"/>
-                    <Entry x:Name="RegularCostEntry"
-                           Text="{Binding SelectedDeal.PreviousCost}"
-                           TextChanged="NumberEntryTextChanged"/>
-                </StackLayout>
-                
-                <StackLayout>
-                    <Label Text="Quantity"/>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="{Binding SelectedDeal.Quantity}"
-                               VerticalTextAlignment="Center"
-                               />
-                        <Stepper x:Name="QuantityStepper"
-                                 Increment="1"
-                                 HorizontalOptions="EndAndExpand"
-                                 ValueChanged="QuantityStepperValueChanged"
-                        />
+                <!--#endregion-->
+
+                <!--#region Attributes form-->
+                <StackLayout Spacing="20">
+                    <StackLayout>
+                        <Label Text="Title" />
+                        <Entry x:Name="TitleEntry"
+                               Text="{Binding SelectedDeal.Title}" />
                     </StackLayout>
-                    
+
+                    <StackLayout>
+                        <Label Text="Current cost (€)" />
+                        <Entry x:Name="CurrentCostEntry"
+                               Text="{Binding SelectedDeal.CurrentCost}"
+                               TextChanged="NumberEntryTextChanged" />
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label Text="Regular cost (€)" />
+                        <Entry x:Name="RegularCostEntry"
+                               Text="{Binding SelectedDeal.PreviousCost}"
+                               TextChanged="NumberEntryTextChanged" />
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label Text="Quantity" />
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding SelectedDeal.Quantity}"
+                                   VerticalTextAlignment="Center" />
+                            <Stepper x:Name="QuantityStepper"
+                                     Increment="1"
+                                     HorizontalOptions="EndAndExpand"
+                                     ValueChanged="QuantityStepperValueChanged" />
+                        </StackLayout>
+
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label Text="Due" />
+                        <DatePicker x:Name="DueDatePicker"
+                                    Format="yyyy-MM-dd" />
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label Text="Description" />
+                        <Entry x:Name="DescriptionEntry"
+                               Text="{Binding SelectedDeal.Description}" />
+                    </StackLayout>
+
+                    <StackLayout>
+                        <Label Text="Image" />
+                        <Button Text="Select" Clicked="ChooseImageButtonClicked" />
+                    </StackLayout>
                 </StackLayout>
-                
-                <StackLayout>
-                    <Label Text="Due"/>
-                    <DatePicker x:Name="DueDatePicker"
-                                Format="yyyy-MM-dd"/>
+                <!--#endregion-->
+
+                <!--#region Action Buttons-->
+                <StackLayout Margin="0,30, 0, 0" Spacing="3">
+                    <Button Text="Save changes"
+                            Style="{StaticResource FormActionButton}"
+                            Clicked="SaveChangesClicked" />
+                    <Button Text="Preview"
+                            TextColor="DimGray"
+                            Clicked="ShowPreviewClicked" />
+                    <Button Text="Delete offer"
+                            TextColor="Crimson"
+                            Clicked="DeleteOfferClicked" />
                 </StackLayout>
-                
-                <StackLayout>
-                    <Label Text="Description"/>
-                    <Entry x:Name="DescriptionEntry" 
-                           Text="{Binding SelectedDeal.Description}"/>
-                </StackLayout>
-                
-                <StackLayout>
-                    <Label Text="Image"/>
-                    <Button Text="Select" Clicked="ChooseImageButtonClicked"/>
-                </StackLayout>
+                <!--#endregion-->
             </StackLayout>
-            <!--#endregion-->
-            
-            <!--#region Action Buttons-->
-            <StackLayout Margin="0,30, 0, 0" Spacing="3">
-                <Button Text="Save changes"
-                        Style="{StaticResource FormActionButton}"
-                        Clicked="SaveChangesClicked"/>
-                <Button Text="Preview"
-                        TextColor="DimGray"
-                        Clicked="ShowPreviewClicked"/>
-                <Button Text="Delete offer"
-                        TextColor="Crimson"
-                        Clicked="DeleteOfferClicked"/>
-            </StackLayout>
-            <!--#endregion-->
-        </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

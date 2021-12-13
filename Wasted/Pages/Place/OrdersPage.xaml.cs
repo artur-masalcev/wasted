@@ -19,6 +19,7 @@ namespace Wasted.Pages.Place
         private List<OrderDeal> PlaceOrders { get; set; }
         public PlaceUser CurrentUser { get; set; }
         private IEnumerable<FoodPlace> _ownedPlaces;
+
         public IEnumerable<FoodPlace> OwnedPlaces
         {
             get => _ownedPlaces;
@@ -28,7 +29,7 @@ namespace Wasted.Pages.Place
                 OnPropertyChanged();
             }
         }
-        
+
         public OrdersPage()
         {
             _service = DependencyService.Get<CurrentUserService>();
@@ -56,7 +57,7 @@ namespace Wasted.Pages.Place
                     group order by order.Status
                     into newGroup
                     select newGroup
-                select new OrderStatusSummary(groupElement.Key, 
+                select new OrderStatusSummary(groupElement.Key,
                     groupElement.Sum(elem => elem.Quantity));
         }
 
@@ -74,7 +75,7 @@ namespace Wasted.Pages.Place
                 switch (order.Status)
                 {
                     case OrderStatus.Preparing:
-                        PopupNavigation.Instance.PushAsync(new OrderStatusPlacePopup(order, this));
+                        PopupNavigation.Instance.PushAsync(new OrderStatusReadyPlacePopup(order, this));
                         break;
                     case OrderStatus.WaitingForAcceptance:
                         PopupNavigation.Instance.PushAsync(new OrderStatusPreparedPlacePopup(order));

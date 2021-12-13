@@ -27,7 +27,7 @@ namespace Wasted.Pages.Client
         private void Button_OnClicked(object sender, EventArgs e)
         {
             SelectedDeal.Status = OrderStatus.Received;
-            DataProvider.UpdateOrders(new List<OrderDeal>{SelectedDeal});
+            DataProvider.UpdateOrders(new List<OrderDeal> {SelectedDeal});
             PopupNavigation.Instance.PopAsync();
         }
     }

@@ -36,7 +36,7 @@ namespace Wasted.Pages.Client
             base.OnAppearing();
             OrderedDeals = DataProvider.GetClientOrders(_service.CurrentUser.Id)
                 .Where(order => order.Status != OrderStatus.InCart);
-            
+
             OrderedDealsCollectionView.ItemsSource = null;
             OrderedDealsCollectionView.ItemsSource = OrderedDeals;
         }

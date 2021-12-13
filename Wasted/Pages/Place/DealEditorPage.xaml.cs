@@ -22,7 +22,7 @@ namespace Wasted.Pages.Place
     {
         public Deal SelectedDeal { get; set; }
         public EntryLengthValidator Validator { get; set; }
-        
+
         private string NewTitle => TitleEntry.Text;
         private string NewCurrentCost => CurrentCostEntry.Text;
         private string NewRegularCost => RegularCostEntry.Text;
@@ -30,12 +30,12 @@ namespace Wasted.Pages.Place
         private string NewDescription => DescriptionEntry.Text;
 
         private CurrentUserService _service = DependencyService.Get<CurrentUserService>();
-        
+
         public DealEditorPage(Deal selectedDeal)
         {
             InitializeComponent();
             On<iOS>().SetUseSafeArea(true);
-            
+
             Validator = new EntryLengthValidator(maxEntryLength: 50);
             SelectedDeal = selectedDeal;
             BindingContext = this;
@@ -49,13 +49,14 @@ namespace Wasted.Pages.Place
         {
             try
             {
-                ExceptionChecker.CheckValidParams(NewTitle, NewCurrentCost, 
+                ExceptionChecker.CheckValidParams(NewTitle, NewCurrentCost,
                     NewRegularCost, NewDueDate, SelectedDeal.ImageURL);
             }
             catch (NullReferenceException)
             {
                 return false;
             }
+
             return true;
         }
 
@@ -73,7 +74,7 @@ namespace Wasted.Pages.Place
             SelectedDeal.Due = NewDueDate;
             SelectedDeal.Description = NewDescription;
         }
-        
+
         private void BackClicked(object sender, EventArgs e)
         {
             Navigation.PopAsync(true);
@@ -89,10 +90,10 @@ namespace Wasted.Pages.Place
         private void NumberEntryTextChanged(object sender, TextChangedEventArgs e)
         {
             if (!string.IsNullOrEmpty(e.NewTextValue) &&
-                (!double.TryParse(e.NewTextValue,out double number) || number < 0))
+                (!double.TryParse(e.NewTextValue, out double number) || number < 0))
                 ((Entry) sender).Text = e.OldTextValue;
         }
-        
+
         private void ChooseImageButtonClicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PushAsync(new ChooseImagePopup(SelectedDeal, "ImageURL"));
@@ -111,7 +112,7 @@ namespace Wasted.Pages.Place
             }
 
             UpdateSelectedDealObject();
-            
+
             DataProvider.UpdateDeal(SelectedDeal);
             _service.UpdateUserInfo();
         }
@@ -123,14 +124,14 @@ namespace Wasted.Pages.Place
                 DisplayAlert("", "Please fill all fields", "OK");
                 return;
             }
-            
+
             UpdateSelectedDealObject();
-            
+
             Navigation.PushAsync(new DealPreviewPage(SelectedDeal));
         }
 
         private void DeleteOfferClicked(object sender, EventArgs e)
-        { 
+        {
             DataProvider.DeleteDeal(SelectedDeal);
             _service.UpdateUserInfo();
             Navigation.PopAsync();

@@ -15,10 +15,12 @@ namespace Wasted.Utils.Services
     public class CurrentUserService
     {
         public Func<User> UserGettingFunction;
+
         public void UpdateUserInfo()
         {
             CurrentUser = UserGettingFunction.Invoke();
         }
+
         public User CurrentUser { get; set; }
         public Location UserLocation { get; set; }
     }

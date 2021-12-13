@@ -10,26 +10,25 @@
             <StackLayout Orientation="Horizontal">
                 <Button Style="{StaticResource CustomNavBarBackButton}"
                         TextColor="{StaticResource TextBlack}"
-                        Clicked="BackClicked"
-                />
+                        Clicked="BackClicked" />
             </StackLayout>
             <!--#endregion-->
-            
+
             <!--#region Attributes form-->
             <StackLayout Spacing="20">
                 <StackLayout>
-                    <Label Text="Title"/>
+                    <Label Text="Title" />
                     <Entry x:Name="TitleEntry"
-                           Text="{Binding SelectedPlace.Title}"/>
-                </StackLayout> 
-                
+                           Text="{Binding SelectedPlace.Title}" />
+                </StackLayout>
+
                 <StackLayout>
                     <StackLayout>
-                        <Label Text="{Binding Validator.MaxEntryLength, StringFormat='Short description (fewer than {0} words)'}" />
-                        <Entry x:Name="DescriptionEntry" 
+                        <Label
+                            Text="{Binding Validator.MaxEntryLength, StringFormat='Short description (fewer than {0} words)'}" />
+                        <Entry x:Name="DescriptionEntry"
                                TextChanged="DescriptionEntryTextChanged"
-                               Text="{Binding SelectedPlace.Description}"
-                               />
+                               Text="{Binding SelectedPlace.Description}" />
                         <Label>
                             <Label.FormattedText>
                                 <FormattedString>
@@ -37,35 +36,35 @@
                                     <Span Text="/" />
                                     <Span Text="{Binding Validator.MaxEntryLength}" />
                                 </FormattedString>
-                    
+
                             </Label.FormattedText>
                         </Label>
                     </StackLayout>
                 </StackLayout>
-                
+
                 <StackLayout>
-                    <Label Text="Header image"/>
-                    <Button Text="Select" Clicked="ChooseHeaderImageClicked"/>
+                    <Label Text="Header image" />
+                    <Button Text="Select" Clicked="ChooseHeaderImageClicked" />
                 </StackLayout>
-                
+
                 <StackLayout>
-                    <Label Text="Logo image"/>
-                    <Button Text="Select" Clicked="ChooseLogoImageClicked"/>
+                    <Label Text="Logo image" />
+                    <Button Text="Select" Clicked="ChooseLogoImageClicked" />
                 </StackLayout>
             </StackLayout>
             <!--#endregion-->
-            
+
             <!--#region Action Buttons-->
             <StackLayout VerticalOptions="EndAndExpand" Spacing="3">
                 <Button Text="Save changes"
                         Style="{StaticResource FormActionButton}"
-                        Clicked="SaveChangesClicked"/>
+                        Clicked="SaveChangesClicked" />
                 <Button Text="Preview"
                         TextColor="DimGray"
-                        Clicked="ShowPreviewClicked"/>
+                        Clicked="ShowPreviewClicked" />
                 <Button Text="Delete food place"
                         TextColor="Crimson"
-                        Clicked="DeletePlaceClicked"/>
+                        Clicked="DeletePlaceClicked" />
             </StackLayout>
             <!--#endregion-->
         </StackLayout>

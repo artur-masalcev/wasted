@@ -19,7 +19,9 @@ namespace Wasted.Pages.Place
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FoodPlacePage : ContentPage
     {
-        private FoodPlace SelectedPlace => DataProvider.GetAllFoodPlaces().First(foodPlace => foodPlace.Id == SelectedPlaceId);
+        private FoodPlace SelectedPlace =>
+            DataProvider.GetAllFoodPlaces().First(foodPlace => foodPlace.Id == SelectedPlaceId);
+
         private int SelectedPlaceId;
 
         public List<Deal> Deals => SelectedPlace.Deals;
@@ -42,21 +44,21 @@ namespace Wasted.Pages.Place
 
             base.OnAppearing();
         }
-        
+
         private void DealsCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Deal selectedDeal = e.CurrentSelection.First() as Deal;
             Navigation.PushAsync(new DealEditorPage(selectedDeal));
         }
-        
+
         private void BackClicked(object sender, EventArgs e)
         {
             Navigation.PopAsync();
             base.OnBackButtonPressed();
         }
-        
+
         private void AddNewDealClicked(object sender, EventArgs e)
-        { 
+        {
             Navigation.PushAsync(new NewDealPage(SelectedPlace));
         }
 

@@ -28,7 +28,7 @@ namespace DataAPI.Controllers
                 .Select(_mapper.Map<OrderDTO>)
                 .Where(o => o.ClientUserId == clientUserId);
         }
-        
+
         [HttpGet("placeusers/{placeUserId:int}")]
         public IEnumerable<OrderDTO> GetPlaceOrders(int placeUserId)
         {
@@ -43,7 +43,7 @@ namespace DataAPI.Controllers
             var newOrder = _ordersRepository.Create(order);
             return CreatedAtAction(nameof(GetClientOrders), new {id = newOrder.Id}, newOrder);
         }
-        
+
         [HttpPut]
         public ActionResult<List<Order>> UpdateOrder([FromBody] List<Order> orders)
         {

@@ -48,16 +48,16 @@ namespace Wasted.Pages.Client.DealPage
             if (selectedSomething)
             {
                 OrderDeal cartDeal = new OrderDeal(
-                        SelectedDeal.Id,
+                    SelectedDeal.Id,
                     OrderStatus.InCart,
-                    (int)Stepper.Value,
+                    (int) Stepper.Value,
                     _service.CurrentUser.Id,
                     SelectedDeal.PlaceUserId,
                     SelectedDeal.Title,
                     SelectedDeal.CurrentCost
                 );
                 DataProvider.CreateOrder(cartDeal);
-                
+
                 UserDialogs.Instance.Toast("Added to cart", new TimeSpan(3));
             }
         }
