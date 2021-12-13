@@ -47,8 +47,16 @@ namespace Wasted.Pages.Place
         /// <returns>'false' if any of fields is empty. 'true' if all fields are not empty</returns>
         private bool IsDataValid()
         {
-            return !StringUtils.AnyNullOrEmpty(NewTitle, NewCurrentCost, 
-                NewRegularCost, NewDueDate, SelectedDeal.ImageURL);
+            try
+            {
+                ExceptionChecker.CheckValidParams(NewTitle, NewCurrentCost, 
+                    NewRegularCost, NewDueDate, SelectedDeal.ImageURL);
+            }
+            catch (NullReferenceException)
+            {
+                return false;
+            }
+            return true;
         }
 
         /// <summary>

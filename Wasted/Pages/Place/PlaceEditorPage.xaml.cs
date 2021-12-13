@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Rg.Plugins.Popup.Services;
 using Wasted.Utils;
+using Wasted.Utils.Exceptions;
 using Wasted.Utils.Services;
 using Wasted.WastedAPI;
 using Wasted.WastedAPI.Business_Objects;
@@ -45,8 +46,17 @@ namespace Wasted.Pages.Place
         /// </summary>
         /// <returns>'false' if any of fields is empty. 'true' if all fields are not empty</returns>
         private bool IsDataValid()
-        { 
-            return !StringUtils.AnyNullOrEmpty(NewPlaceTitle, NewDescription, NewHeaderURL, NewLogoURL);
+        {
+            try
+            {
+                ExceptionChecker.CheckValidParams(NewPlaceTitle, NewDescription, NewHeaderURL, NewLogoURL);
+            }
+            catch (NullReferenceException)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>
