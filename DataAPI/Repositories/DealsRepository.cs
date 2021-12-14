@@ -12,6 +12,7 @@ namespace DataAPI.Repositories
         IEnumerable<Deal> Get();
         Deal Create(Deal deal);
         void Update(Deal deal);
+        void Delete(int dealId);
     }
 
     public class DealsRepository : IDealsRepository
