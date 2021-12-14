@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAPI", "DataAPI\DataAPI.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wasted.UnitTests", "Wasted.UnitTests\Wasted.UnitTests.csproj", "{B92582F5-85F2-493A-B529-B88D0772994A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAPITest", "DataAPITest\DataAPITest.csproj", "{96E8D7BB-92A8-4DF7-9D08-A46CF1FDDFE9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAPI.Tests", "DataAPI.Tests\DataAPI.Tests.csproj", "{96E8D7BB-92A8-4DF7-9D08-A46CF1FDDFE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

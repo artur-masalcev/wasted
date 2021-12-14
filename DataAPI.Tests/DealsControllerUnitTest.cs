@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Internal;
 using Moq;
 using NUnit.Framework;
 
-namespace DataAPITest
+namespace DataAPI.Tests
 {
     public class DealsControllerTest
     {

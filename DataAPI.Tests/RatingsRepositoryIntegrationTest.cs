@@ -7,7 +7,7 @@ using DataAPI.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 
-namespace DataAPITest
+namespace DataAPI.Tests
 {
     public class RatingsRepositoryIntegrationTest
     {
