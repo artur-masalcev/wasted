@@ -51,7 +51,10 @@ namespace DataAPI.Logging
             }
             catch (Exception e)
             {
-                _logger.Error(e, $"Failure: {controller}");
+                if (!e.Message.Equals("No route matches the supplied values."))
+                {
+                    _logger.Error(e, $"Failure: {controller}");
+                }
                 await HandleException(context); 
             }
 
