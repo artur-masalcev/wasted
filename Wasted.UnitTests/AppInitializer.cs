@@ -2,7 +2,7 @@
 using Xamarin.UITest;
 using Xamarin.UITest.Queries;
 
-namespace WastedTest
+namespace Wasted.UnitTests
 {
     public class AppInitializer
     {
