@@ -8,6 +8,8 @@ using Wasted.WastedAPI;
 using Wasted.WastedAPI.Business_Objects;
 using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace Wasted.Pages.Place
@@ -36,6 +38,8 @@ namespace Wasted.Pages.Place
             CurrentUser = (PlaceUser) _service.CurrentUser;
             OwnedPlaces = CurrentUser.OwnedPlaces;
             InitializeComponent();
+            
+            On<iOS>().SetUseSafeArea(true);
         }
 
         /// <summary>
