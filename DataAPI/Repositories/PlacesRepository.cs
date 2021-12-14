@@ -2,16 +2,19 @@
 using System.Linq;
 using DataAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace DataAPI.Repositories
 {
     public class PlacesRepository
     {
         private readonly AppDbContext _dbContext;
+        private readonly ILogger _logger;
 
-        public PlacesRepository(AppDbContext dbContext)
+        public PlacesRepository(AppDbContext dbContext, ILogger logger)
         {
             _dbContext = dbContext;
+            _logger = logger;
         }
 
         public IEnumerable<FoodPlace> Get()
@@ -26,6 +29,9 @@ namespace DataAPI.Repositories
         public FoodPlace Create(FoodPlace foodPlace)
         {
             _dbContext.FoodPlaces.Add(foodPlace);
+            _logger.Information(
+                "A new food place \"{FoodPlaceTitle}\" (food place id: {FoodPlace}) has been added.\n",
+                foodPlace.Title, foodPlace.Id);
             _dbContext.SaveChangesAsync();
             return foodPlace;
         }
@@ -34,6 +40,9 @@ namespace DataAPI.Repositories
         {
             var placeToDelete = _dbContext.FoodPlaces.Find(foodPlaceId);
             _dbContext.FoodPlaces.Remove(placeToDelete);
+            _logger.Information(
+                "Food place \"{FoodPlaceTitle}\" (food place id: {FoodPlace}) has been deleted.\n",
+                placeToDelete.Title, placeToDelete.Id);
             _dbContext.SaveChangesAsync();
         }
 

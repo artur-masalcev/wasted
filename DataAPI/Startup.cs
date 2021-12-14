@@ -26,8 +26,6 @@ namespace DataAPI
                 .CreateLogger();
             
             services.AddSingleton(x => Log.Logger);
-            Log.Logger.Error("bad");
-
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<DealsRepository>();
             services.AddScoped<PlacesRepository>();
@@ -54,7 +52,6 @@ namespace DataAPI
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
-
         }
     }
 }
