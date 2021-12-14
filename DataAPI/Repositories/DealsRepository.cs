@@ -7,7 +7,14 @@ using Serilog;
 
 namespace DataAPI.Repositories
 {
-    public class DealsRepository
+    public interface IDealsRepository
+    {
+        IEnumerable<Deal> Get();
+        Deal Create(Deal deal);
+        void Update(Deal deal);
+    }
+
+    public class DealsRepository : IDealsRepository
     {
         private readonly AppDbContext _dbContext;
         private readonly ILogger _logger;

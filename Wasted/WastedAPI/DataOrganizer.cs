@@ -30,7 +30,7 @@ namespace Wasted.WastedAPI
         /// <summary>
         /// Sorts deals by the percentage of change in cost. Takes the first 'offerCount' of them.
         /// </summary>
-        public static IEnumerable<Deal> SortOffersByPriceChange(List<Deal> allDeals, int specialOffersCount)
+        public static IEnumerable<Deal> SortDealsByPriceChangeRatio(List<Deal> allDeals, int specialOffersCount)
         {
             return (
                     from deal in allDeals
@@ -43,7 +43,7 @@ namespace Wasted.WastedAPI
         /// <summary>
         /// Sorts food places by the number of ratings.
         /// </summary>
-        public static IEnumerable<FoodPlace> SortPlacesByRatingDescending(List<FoodPlace> allFoodPlaces,
+        public static IEnumerable<FoodPlace> SortPlacesByRatingCountDescending(List<FoodPlace> allFoodPlaces,
             int popularPlacesCount)
         {
             return (
