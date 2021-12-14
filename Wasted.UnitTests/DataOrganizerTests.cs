@@ -67,22 +67,5 @@ namespace Wasted.UnitTests
              // Assert
              Assert.AreEqual(1, filteredDeals.Count());
          }
-
-         [Test]
-         public void SortDealsByPriceChangeRatio_ShouldSortInDescendingOrderByPriceChangeRatio()
-         {
-             // Arrange
-             var testedDeals = dealsWithDifferentPriceChangeUnsorted;
-             var numberOfDealsToKeep = testedDeals.Count;
-             var expectedResult = dealsWithDifferentPriceChangeSortedByPriceChangeRatioDesc;
-
-             // Act
-             var potentiallySortedDeals 
-                 = DataOrganizer.SortDealsByPriceChangeRatio(testedDeals, numberOfDealsToKeep).ToList();
-             var isResultValid = potentiallySortedDeals.SequenceEqual(expectedResult);
-
-             // Assert
-             Assert.IsTrue(isResultValid);
-         }
      }
  } 

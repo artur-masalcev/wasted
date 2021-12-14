@@ -4,7 +4,7 @@ using Wasted.Utils.Interfaces;
 
 namespace Wasted.WastedAPI.Business_Objects
 {
-    public class Deal : ChangeablePropertyObject, IImageChooser, IEquatable<Deal>
+    public class Deal : ChangeablePropertyObject, IImageChooser
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -48,10 +48,6 @@ namespace Wasted.WastedAPI.Business_Objects
             FoodPlaceId = foodPlaceId;
             PlaceUserId = foodPlacePlaceUserId;
         }
-
-        public bool Equals(Deal other)
-        {
-            return Id == other.Id;
-        }
+        
     }
 }
