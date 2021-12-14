@@ -11,8 +11,8 @@
                  VerticalOptions="Center">
         <StackLayout BackgroundColor="White">
 
-            <Label Text="{Binding Message}" />
-            <Button Text="YES" Clicked="Button_OnClicked" />
+            <Label Text="{Binding Message}" HorizontalTextAlignment="Center" Margin="0,30, 0, 0"/>
+            <Button Text="YES" Clicked="Button_OnClicked" Style="{StaticResource PurchaseButton}"/>
 
         </StackLayout>
     </StackLayout>

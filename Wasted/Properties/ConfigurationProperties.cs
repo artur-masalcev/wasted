@@ -2,7 +2,7 @@
 {
     public static class ConfigurationProperties
     {
-        public const string LocalIpAddress = "192.168.39.188";
+        public const string LocalIpAddress = "192.168.0.105";
 
         // Run cmd
         // ipconfig

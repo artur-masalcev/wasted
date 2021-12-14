@@ -52,8 +52,8 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-                <Label Text="Summary" />
-                <ListView x:Name="SummaryListView" IsEnabled="False" />
+                <!--<Label Text="Summary"/>-->
+                <ListView x:Name="SummaryListView" IsEnabled="False" VerticalOptions="End"/>
 
             </StackLayout>
         </RefreshView>

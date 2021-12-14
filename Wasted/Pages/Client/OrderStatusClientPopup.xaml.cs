@@ -4,6 +4,8 @@ using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Wasted.WastedAPI;
 using Wasted.WastedAPI.Business_Objects;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using Xamarin.Forms.Xaml;
 
 namespace Wasted.Pages.Client
@@ -22,6 +24,8 @@ namespace Wasted.Pages.Client
             InitializeComponent();
             SelectedDeal = deal;
             BindingContext = this;
+            
+            On<iOS>().SetUseSafeArea(true);
         }
 
         private void Button_OnClicked(object sender, EventArgs e)
