@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
@@ -35,6 +34,8 @@ namespace Wasted.Pages.Place
         private void Button_OnClicked(object sender, EventArgs e)
         {
             SelectedDeal.Status = OrderStatus.ReadyToPickUp;
+            DataProvider.UpdateOrders(new List<OrderDeal>{SelectedDeal});
+            //_logger.LogInformation(LogEvents.OrderPrepared, "Order {OrderTitle} ({OrderId}) prepared.", SelectedDeal.Title, SelectedDeal.Id);
             DataProvider.UpdateOrders(new List<OrderDeal> {SelectedDeal});
             ParentPage.UpdateSummaryListView();
             PopupNavigation.Instance.PopAsync();

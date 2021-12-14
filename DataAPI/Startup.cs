@@ -1,3 +1,4 @@
+using DataAPI.Logging;
 using DataAPI.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -5,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace DataAPI
 {
@@ -16,9 +18,14 @@ namespace DataAPI
         }
 
         public IConfiguration Configuration { get; }
-
+        
         public void ConfigureServices(IServiceCollection services)
         {
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.File("Logging/log.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
+            
+            services.AddSingleton(x => Log.Logger);
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<DealsRepository>();
             services.AddScoped<PlacesRepository>();
@@ -38,6 +45,7 @@ namespace DataAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseMiddleware<AnalyticsMiddleware>();
 
             app.UseRouting();
 

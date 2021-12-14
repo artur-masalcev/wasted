@@ -46,6 +46,7 @@ namespace Wasted.Pages.Place
                 SelectedDeal.Status = OrderStatus.Preparing;
                 DataProvider.UpdateOrders(new List<OrderDeal> {SelectedDeal});
                 ErrorLabel.IsVisible = false;
+                //_logger.LogInformation(LogEvents.OrderAccepted, "Order {OrderTitle} ({OrderId}) accepted.", SelectedDeal.Title, SelectedDeal.Id);
                 PopupNavigation.Instance.PopAsync();
             }
             catch

@@ -31,7 +31,8 @@ namespace Wasted.Pages.Client
         private void Button_OnClicked(object sender, EventArgs e)
         {
             SelectedDeal.Status = OrderStatus.Received;
-            DataProvider.UpdateOrders(new List<OrderDeal> {SelectedDeal});
+            DataProvider.UpdateOrders(new List<OrderDeal>{SelectedDeal});
+            //_logger.LogInformation(LogEvents.OrderCompleted, "Order {OrderTitle} ({OrderId}) completed.", SelectedDeal.Title, SelectedDeal.Id);
             PopupNavigation.Instance.PopAsync();
         }
     }

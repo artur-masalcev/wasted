@@ -36,12 +36,12 @@ namespace Wasted.Pages.Client
                     nearbyPlacesCount: 10, maxRadiusInKilometers: 50);
 
             SpecialOffersCollectionView.ItemsSource = DataOrganizer.FilterDeals(
-                DataOrganizer.SortOffersByPriceChange(DataProvider.GetAllDeals(), specialOffersCount: 10),
+                DataOrganizer.SortDealsByPriceChangeRatio(DataProvider.GetAllDeals(), specialOffersCount: 10),
                 DefaultFilters.DealInStock
             );
 
             PopularFoodPlacesCollectionView.ItemsSource =
-                DataOrganizer.SortPlacesByRatingDescending(DataProvider.GetAllFoodPlaces(), popularPlacesCount: 10);
+                DataOrganizer.SortPlacesByRatingCountDescending(DataProvider.GetAllFoodPlaces(), popularPlacesCount: 10);
         }
 
         /// <summary>

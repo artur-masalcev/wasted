@@ -12,10 +12,10 @@ namespace DataAPI.Controllers
     [Route("[controller]")]
     public class DealsController : ControllerBase
     {
-        private readonly DealsRepository _dealsRepository;
+        private readonly IDealsRepository _dealsRepository;
         private readonly IMapper _mapper;
 
-        public DealsController(DealsRepository dealsRepository, IMapper mapper)
+        public DealsController(IDealsRepository dealsRepository, IMapper mapper)
         {
             _dealsRepository = dealsRepository;
             _mapper = mapper;
