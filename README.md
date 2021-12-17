@@ -1,1 +1,1 @@
-# wasted
+# Wasted
