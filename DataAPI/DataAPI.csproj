@@ -45,6 +45,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="database.db" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Migrations\AppDbContextModelSnapshot.cs" />
     <Compile Remove="Migrations\20211212171415_f.cs" />
     <Compile Remove="Migrations\20211212171415_f.Designer.cs" />
