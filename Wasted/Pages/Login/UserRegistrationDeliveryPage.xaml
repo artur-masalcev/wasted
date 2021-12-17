@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:wasted="clr-namespace:Wasted;assembly=Wasted"
+             x:Class="Wasted.Pages.Login.UserRegistrationDeliveryPage"
+             BackgroundColor="{StaticResource AppEmerald}"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <!--#region Default styles-->
+        <Style TargetType="Label">
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+        <Style TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor" Value="{StaticResource AppEmerald}" />
+            <Setter Property="BarTextColor" Value="White" />
+        </Style>
+        <!--#endregion-->
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Padding="15, 0, 15, 0">
+            <!--#region Custom navigation bar-->
+            <StackLayout Orientation="Horizontal">
+                <Button Style="{StaticResource CustomNavBarBackButton}"
+                        Clicked="BackClicked" />
+
+                <Label Text="Personal information"
+                       VerticalTextAlignment="Center"
+                       FontSize="Title" />
+            </StackLayout>
+            <!--#endregion-->
+
+            <!--#region Form-->
+            <StackLayout Spacing="20" VerticalOptions="CenterAndExpand">
+                <StackLayout>
+                    <Label Text="Name" />
+                    <wasted:RoundedEntry x:Name="NameEntry" />
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Surname" />
+                    <wasted:RoundedEntry x:Name="SurnameEntry" />
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="City" />
+                    <wasted:RoundedEntry x:Name="CityEntry" />
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Address" />
+                    <wasted:RoundedEntry x:Name="AddressEntry" />
+                </StackLayout>
+            </StackLayout>
+            <!--#endregion-->
+
+            <!--#region Action buttons-->
+            <Button Text="Create new account"
+                    Style="{StaticResource AuthPrimaryActionButton}"
+                    Margin="50, 0, 50, 20"
+                    Clicked="CreateClicked" />
+            <!--#endregion-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

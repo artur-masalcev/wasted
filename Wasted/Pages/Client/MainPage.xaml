@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:wasted="clr-namespace:Wasted"
+            x:Class="Wasted.Pages.Client.MainPage"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            xmlns:client="clr-namespace:Wasted.Pages.Client;assembly=Wasted"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            NavigationPage.HasNavigationBar="false">
+
+    <client:HomePage
+        Title="Home"
+        Icon="nav_bar_home.png" />
+    <client:SearchPage
+        Title="Search"
+        Icon="nav_bar_search.png" />
+    <client:CartPage
+        Title="Cart"
+        Icon="nav_bar_cart.png" />
+    <client:OrderStatusPage
+        Title="Order Status"
+        Icon="nav_bar_order.png" />
+    <client:SettingsPage
+        Title="Settings"
+        Icon="nav_bar_settings.png" />
+</TabbedPage>

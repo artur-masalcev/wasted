@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<pages:PopupPage
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Wasted.Pages.Client.OrderStatusClientPopup">
+
+    <!--#region Confirmation Popup-->
+    <StackLayout Style="{StaticResource DealCardViewLayout}"
+                 VerticalOptions="Center">
+        <StackLayout BackgroundColor="White">
+
+            <Label Text="{Binding Message}" HorizontalTextAlignment="Center" Margin="0,30, 0, 0"/>
+            <Button Text="YES" Clicked="Button_OnClicked" Style="{StaticResource PurchaseButton}"/>
+
+        </StackLayout>
+    </StackLayout>
+    <!--#endregion-->
+
+</pages:PopupPage>

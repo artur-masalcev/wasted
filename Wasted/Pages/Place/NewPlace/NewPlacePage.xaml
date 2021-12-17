@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wasted.Pages.Place.NewPlace.NewPlacePage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout Padding="7">
+            <!--#region Custom navigation bar-->
+            <StackLayout Orientation="Horizontal">
+                <Button Style="{StaticResource CustomNavBarBackButton}"
+                        TextColor="{StaticResource TextBlack}"
+                        Clicked="BackClicked" />
+
+                <Label Text="Add new place"
+                       VerticalTextAlignment="Center"
+                       Style="{StaticResource PageTitle}" />
+            </StackLayout>
+            <!--#endregion-->
+
+            <!--#region Data form-->
+            <StackLayout Spacing="20" VerticalOptions="CenterAndExpand" Margin="0, 0, 0, 80">
+                <StackLayout>
+                    <Label Text="Title" />
+                    <Entry x:Name="TitleEntry" />
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="City" />
+                    <Picker x:Name="CityPicker"
+                            Title="Choose city" />
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="{Binding MaxEntryLength, StringFormat='Short description (fewer than {0} words)'}" />
+                    <Entry x:Name="DescriptionEntry" TextChanged="DescriptionEntryTextChanged" />
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding EntryLength}" />
+                                <Span Text="/" />
+                                <Span Text="{Binding MaxEntryLength}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+            </StackLayout>
+            <!--#endregion-->
+
+            <!--#region Next button-->
+            <Button Text="Next"
+                    Clicked="NextButtonClicked"
+                    Style="{StaticResource FormActionButton}"
+                    VerticalOptions="EndAndExpand" />
+            <!--#endregion-->
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

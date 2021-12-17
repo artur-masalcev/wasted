@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Wasted.Pages.Login;
+using Xamarin.Forms;
 
 namespace Wasted
 {
@@ -7,19 +8,7 @@ namespace Wasted
         public App()
         {
             InitializeComponent();
-            MainPage = new MainPage();
-        }
-
-        protected override void OnStart()
-        {
-        }
-
-        protected override void OnSleep()
-        {
-        }
-
-        protected override void OnResume()
-        {
+            MainPage = new NavigationPage(new LoginPage());
         }
     }
 }

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="Wasted.Pages.Place.FoodPlacePreviewPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <!--#region Custom navigation bar-->
+                <StackLayout Orientation="Horizontal">
+                    <Button Style="{StaticResource CustomNavBarBackButton}"
+                            TextColor="{StaticResource TextBlack}"
+                            Clicked="BackClicked" />
+                </StackLayout>
+                <!--#endregion-->
+
+                <!--#region Previews-->
+                <StackLayout Spacing="20">
+                    <!--#region Food place page preview-->
+                    <StackLayout>
+                        <Label Text="Food place page"
+                               FontAttributes="Bold"
+                               HorizontalOptions="CenterAndExpand" />
+
+                        <StackLayout>
+                            <BoxView Style="{StaticResource Separator}" />
+
+                            <Image
+                                Source="{Binding HeaderURL}"
+                                Aspect="AspectFill"
+                                HeightRequest="180" />
+
+                            <StackLayout Style="{StaticResource CardContent}" Padding="5, 0, 5, 0">
+                                <StackLayout Style="{StaticResource CardContent}" Orientation="Horizontal">
+                                    <Label Text="{Binding Title}" Style="{StaticResource CardTitle}" FontSize="Title" />
+                                    <Label Style="{StaticResource CardTitle}" Padding="5, 0, 5, 0"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="EndAndExpand">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="☆ " TextColor="{StaticResource Yellow}" />
+                                                <Span Text="{Binding Rating, StringFormat='{0:F1}'}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                                <Label Text="{Binding Description}" TextColor="{StaticResource TextGrey}" />
+                                <Button Style="{StaticResource RateButton}"
+                                        Text="Rate"
+                                        IsEnabled="False"
+                                        HorizontalOptions="Fill" />
+
+                                <BoxView Style="{StaticResource Separator}" />
+                            </StackLayout>
+                        </StackLayout>
+                        <!--#endregion-->
+                    </StackLayout>
+
+                    <!--#region Food place title page card preview-->
+                    <StackLayout>
+                        <Label Text="Title page card"
+                               FontAttributes="Bold"
+                               HorizontalOptions="CenterAndExpand" />
+                        <StackLayout Style="{StaticResource BaseStackLayout}">
+                            <Frame Padding="0" CornerRadius="10">
+                                <StackLayout Style="{StaticResource CardContent}">
+                                    <pancakeView:PancakeView CornerRadius="10, 10, 0, 0">
+                                        <Image Style="{StaticResource CardHeaderImage}" Source="{Binding HeaderURL}" />
+                                    </pancakeView:PancakeView>
+
+                                    <Label Text="{Binding Title}" Style="{StaticResource CardTitle}" />
+                                    <Label Text="{Binding Rating, StringFormat='☆ {0:F1}'}" />
+                                    <Label Text="{Binding DealsCount, StringFormat='{0} deals'}" FontAttributes="Bold"
+                                           TextColor="{StaticResource AccentColor}" />
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </StackLayout>
+                    <!--#endregion-->
+
+                    <!--#region Food place search card preview-->
+                    <StackLayout>
+                        <Label Text="Search page card"
+                               FontAttributes="Bold"
+                               HorizontalOptions="CenterAndExpand" />
+
+                        <Frame Style="{StaticResource RoundedCardView}"
+                               HorizontalOptions="Center"
+                               HeightRequest="170"
+                               WidthRequest="170">
+                            <StackLayout>
+                                <Image Style="{StaticResource CardPlaceImage}" Source="{Binding LogoURL}" />
+
+                                <StackLayout Style="{StaticResource CardContent}">
+                                    <Label Text="{Binding Title}" Style="{StaticResource SearchCardTitle}" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                    <!--#endregion-->
+                </StackLayout>
+                <!--#endregion-->
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
