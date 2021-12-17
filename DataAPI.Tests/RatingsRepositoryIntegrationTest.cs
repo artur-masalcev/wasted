@@ -12,7 +12,7 @@ namespace DataAPI.Tests
     public class RatingsRepositoryIntegrationTest
     {
         private readonly DbContextOptions<AppDbContext> _dbContextOptions = new DbContextOptionsBuilder<AppDbContext>()
-            .UseInMemoryDatabase(databaseName: "temp_database")
+            //.UseInMemoryDatabase(databaseName: "temp_database")
             .Options;
 
         [Test]
