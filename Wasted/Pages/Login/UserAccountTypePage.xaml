@@ -103,7 +103,7 @@
                         </RadioButton.Content>
                     </RadioButton>
 
-                    <Label Text="User" HorizontalTextAlignment="Center" />
+                    <Label Text="Client" HorizontalTextAlignment="Center" />
 
                     <Label Text="Check for available deals and order delicious meal"
                            HorizontalTextAlignment="Center" />
@@ -120,7 +120,7 @@
                         </RadioButton.Content>
                     </RadioButton>
 
-                    <Label Text="Place"
+                    <Label Text="Owner"
                            HorizontalTextAlignment="Center" />
 
                     <Label Text="Register yourself as an owner and offer deals for other users of Wasted"
