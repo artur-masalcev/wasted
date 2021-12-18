@@ -66,6 +66,8 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="RoundedEntryRendererIOS.cs" />
+    <ImageAsset Include="Assets.xcassets\clock.imageset\clock.png" />
+    <ImageAsset Include="Assets.xcassets\clock.imageset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\edit.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
