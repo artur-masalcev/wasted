@@ -11,5 +11,6 @@
         public int DealFoodPlacePlaceUserId { get; set; }
         public string DealTitle { get; set; }
         public double DealCurrentCost { get; set; }
+        public string DealImageUrl { get; set; }
     }
 }

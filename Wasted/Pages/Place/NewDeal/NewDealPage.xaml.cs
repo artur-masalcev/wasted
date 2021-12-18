@@ -1,4 +1,5 @@
 ﻿using System;
+using Wasted.Utils;
 using Wasted.Utils.Exceptions;
 using Wasted.WastedAPI.Business_Objects;
 using Xamarin.Forms;
@@ -24,8 +25,7 @@ namespace Wasted.Pages.Place.NewDeal
 
         private void NumberEntryTextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(e.NewTextValue) &&
-                (!double.TryParse(e.NewTextValue, out double number) || number < 0))
+            if (!NumberParser.IsValidNumberString(e.NewTextValue))
                 ((Entry) sender).Text = e.OldTextValue;
         }
 
@@ -38,7 +38,6 @@ namespace Wasted.Pages.Place.NewDeal
                 currentCost: double.Parse(currentCostText),
                 previousCost: double.Parse(previousCostText)
             );
-            //_logger.LogInformation(LogEvents.CreateDeal, "Deal {DealTitle} ({DealId}) created.", currentDeal.Title currentDeal.Id);
             SelectedPlace.Deals.Add(currentDeal);
             Navigation.PushAsync(new NewDealNextPage(currentDeal));
         }

@@ -48,10 +48,10 @@
                                        HorizontalOptions="End"
                                        Background="#272626">
                                     <StackLayout>
-                                        <Label Text="{Binding DealCosts.PreviousCost, StringFormat='{0:F2}€'}"
+                                        <Label Text="{Binding PreviousCost, StringFormat='{0:F2}€'}"
                                                Style="{StaticResource DealCostLabel}"
                                                TextDecorations="Strikethrough" FontAttributes="None" />
-                                        <Label Text="{Binding DealCosts.CurrentCost, StringFormat='{0:F2}€'}"
+                                        <Label Text="{Binding CurrentCost, StringFormat='{0:F2}€'}"
                                                Style="{StaticResource DealCostLabel}" FontAttributes="Bold" />
                                     </StackLayout>
                                 </Frame>

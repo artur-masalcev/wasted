@@ -15,6 +15,7 @@ namespace Wasted.WastedAPI.Business_Objects
             {
                 _status = value;
                 OnPropertyChanged();
+                OnPropertyChanged("DisplayableTimeLeft");
             }
         }
 
@@ -38,21 +39,15 @@ namespace Wasted.WastedAPI.Business_Objects
             Status != OrderStatus.Preparing ? "-" :
             TimeLeft > 0 ? $"{Math.Ceiling(TimeLeft)} min": "ready soon";
 
-        private long _expectedFinishTime;
-        public long ExpectedFinishTime
-        { 
-            get => _expectedFinishTime;
-            set
-            {
-                _expectedFinishTime = value; 
-                OnPropertyChanged("DisplayableTimeLeft");
-            }
-        }
+        public long ExpectedFinishTime { get; set; }
         public int PlaceUserId { get; set; }
         public int ClientUserId { get; set; }
+        
+        public string ImageUrl { get; set; }
 
         public OrderDeal(int dealId = default, string status = null, int quantity = default, int clientUserId = default,
-            int dealFoodPlacePlaceUserId = default, string dealTitle = null, double dealCurrentCost = default)
+            int dealFoodPlacePlaceUserId = default, string dealTitle = null, double dealCurrentCost = default,
+            string dealImageUrl = default)
         {
             DealId = dealId;
             Title = dealTitle;
@@ -62,6 +57,7 @@ namespace Wasted.WastedAPI.Business_Objects
             Status = status;
             Quantity = quantity;
             PlaceUserId = dealFoodPlacePlaceUserId;
+            ImageUrl = dealImageUrl;
         }
     }
 }

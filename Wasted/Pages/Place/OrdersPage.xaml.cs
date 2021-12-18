@@ -49,14 +49,9 @@ namespace Wasted.Pages.Place
         {
             base.OnAppearing();
             PlaceOrders = DataProvider.GetPlaceOrders(CurrentUser.Id);
-            UpdatePlaceOrdersView();
-            UpdateSummaryListView();
-        }
-
-        public void UpdatePlaceOrdersView()
-        {
             OrdersCollectionView.ItemsSource = null;
             OrdersCollectionView.ItemsSource = PlaceOrders;
+            UpdateSummaryListView();
         }
 
         public void UpdateSummaryListView()
@@ -84,10 +79,10 @@ namespace Wasted.Pages.Place
                 switch (order.Status)
                 {
                     case OrderStatus.Preparing:
-                        PopupNavigation.Instance.PushAsync(new OrderStatusReadyPlacePopup(order));
+                        PopupNavigation.Instance.PushAsync(new OrderStatusReadyPlacePopup(order, this));
                         break;
                     case OrderStatus.WaitingForAcceptance:
-                        PopupNavigation.Instance.PushAsync(new OrderStatusPreparedPlacePopup(order));
+                        PopupNavigation.Instance.PushAsync(new OrderStatusPreparedPlacePopup(order, this));
                         break;
                 }
             });
