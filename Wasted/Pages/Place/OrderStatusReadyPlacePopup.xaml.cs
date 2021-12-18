@@ -35,9 +35,8 @@ namespace Wasted.Pages.Place
         {
             SelectedDeal.Status = OrderStatus.ReadyToPickUp;
             DataProvider.UpdateOrders(new List<OrderDeal>{SelectedDeal});
-            //_logger.LogInformation(LogEvents.OrderPrepared, "Order {OrderTitle} ({OrderId}) prepared.", SelectedDeal.Title, SelectedDeal.Id);
-            DataProvider.UpdateOrders(new List<OrderDeal> {SelectedDeal});
             ParentPage.UpdateSummaryListView();
+            ParentPage.UpdatePlaceOrdersView();
             PopupNavigation.Instance.PopAsync();
         }
     }

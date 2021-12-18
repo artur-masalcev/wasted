@@ -37,7 +37,7 @@ namespace Wasted.WastedAPI.Business_Objects
 
         public string DisplayableTimeLeft =>
             Status != OrderStatus.Preparing ? "-" :
-            TimeLeft > 0 ? $"{Math.Floor(TimeLeft)} min {Math.Floor(TimeLeft % 1 * 60)} s": "ready soon";
+            TimeLeft > 0 ? $"{Math.Floor(TimeLeft)} min": "ready soon";
 
         public long ExpectedFinishTime { get; set; }
         public int PlaceUserId { get; set; }
