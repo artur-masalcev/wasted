@@ -32,7 +32,6 @@ namespace Wasted.Pages.Client
         {
             SelectedDeal.Status = OrderStatus.Received;
             DataProvider.UpdateOrders(new List<OrderDeal>{SelectedDeal});
-            //_logger.LogInformation(LogEvents.OrderCompleted, "Order {OrderTitle} ({OrderId}) completed.", SelectedDeal.Title, SelectedDeal.Id);
             PopupNavigation.Instance.PopAsync();
         }
     }
