@@ -24,20 +24,20 @@ namespace Wasted.WastedAPI.Business_Objects
         public string Title { get; set; }
         public double Cost { get; set; }
 
-        public long TimeLeft
+        private double TimeLeft
         {
             get
             {
-                long calculatedTimeLeft = (long) Math.Ceiling(TimeSpan
+                double calculatedTimeLeft = TimeSpan
                     .FromMilliseconds(ExpectedFinishTime - DateTimeOffset.Now.ToUnixTimeMilliseconds())
-                    .TotalMinutes);
+                    .TotalMinutes;
                 return calculatedTimeLeft > 0 ? calculatedTimeLeft : -1;
             }
         }
 
         public string DisplayableTimeLeft =>
             Status != OrderStatus.Preparing ? "-" :
-            TimeLeft == -1 ? "ready soon" : TimeLeft.ToString();
+            TimeLeft > 0 ? $"{Math.Floor(TimeLeft)} min {Math.Floor(TimeLeft % 1 * 60)} s": "ready soon";
 
         public long ExpectedFinishTime { get; set; }
         public int PlaceUserId { get; set; }

@@ -2,13 +2,17 @@
 
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:businessObjects="clr-namespace:Wasted.WastedAPI.Business_Objects;assembly=Wasted"
              x:Class="Wasted.Pages.Place.OrdersPage">
     <ContentPage.Content>
         <RefreshView x:Name="RefreshView" RefreshColor="DimGray" Refreshing="RefreshView_Refreshing">
-            <StackLayout>
-                <Label Text="Your orders" Style="{StaticResource SectionTitle}" />
-                <CollectionView x:Name="OrdersCollectionView"
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="450" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Text="Your orders" Style="{StaticResource SectionTitle}" />
+                <CollectionView Grid.Row="1" x:Name="OrdersCollectionView"
                                 SelectionMode="Single"
                                 ItemsLayout="VerticalList"
                                 SelectionChanged="OrdersCollectionView_OnSelectionChanged">
@@ -27,7 +31,7 @@
                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                                 <Label Grid.Column="2" Text="Order Status" FontAttributes="Bold"
                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                                <Label Grid.Column="3" Text="Preparation time left (min)" FontAttributes="Bold"
+                                <Label Grid.Column="3" Text="Preparation time left" FontAttributes="Bold"
                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                             </Grid>
                         </StackLayout>
@@ -46,16 +50,25 @@
                                     <Label Grid.Column="1" Text="{Binding Title}" Margin="20,0,0,0" />
                                     <Label Grid.Column="2" Text="{Binding Status}" />
                                     <Label Grid.Column="3" Text="{Binding DisplayableTimeLeft}" />
-                                    <!--<Label Grid.Column="3" Text="{Binding Cost, StringFormat='{0} €'}" HorizontalTextAlignment="End"/>-->
                                 </Grid>
                             </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-                <!--<Label Text="Summary"/>-->
-                <ListView x:Name="SummaryListView" IsEnabled="False" VerticalOptions="End"/>
+                
+                <ListView Grid.Row="2" x:Name="SummaryListView"
+                          IsEnabled="False">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell Height="40">
+                                <Label Margin="15,0,0,0" TextColor="{StaticResource TextBlack}"
+                                       Text="{Binding}"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
 
-            </StackLayout>
+            </Grid>
         </RefreshView>
     </ContentPage.Content>
 </ContentPage>

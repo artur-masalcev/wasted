@@ -18,7 +18,7 @@ namespace Wasted.Pages.Client
     public partial class OrderStatusPage : ContentPage
     {
         private IEnumerable<OrderDeal> OrderedDeals { get; set; }
-        private CurrentUserService _service;
+        private readonly CurrentUserService _service;
 
         public OrderStatusPage()
         {

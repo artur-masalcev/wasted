@@ -27,7 +27,7 @@
                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                                 <Label Grid.Column="2" Text="Order Status" FontAttributes="Bold"
                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                                <Label Grid.Column="3" Text="Preparation time left (min)" FontAttributes="Bold"
+                                <Label Grid.Column="3" Text="Preparation time left" FontAttributes="Bold"
                                        HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                             </Grid>
                         </StackLayout>
