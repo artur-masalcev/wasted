@@ -15,14 +15,13 @@ namespace Wasted.Pages.Place
     public partial class OrderStatusPreparedPlacePopup : PopupPage
     {
         public OrderDeal SelectedDeal { get; set; }
-        public OrdersPage ParentPage { get; set; }
         public string DealTitle => SelectedDeal.Title;
         public int Quantity => SelectedDeal.Quantity;
 
         public string Message => $"Do you accept deal {DealTitle} (x{Quantity})?";
 
 
-        public OrderStatusPreparedPlacePopup(OrderDeal deal, OrdersPage ordersPage)
+        public OrderStatusPreparedPlacePopup(OrderDeal deal)
         {
             InitializeComponent();
             SelectedDeal = deal;
@@ -36,6 +35,7 @@ namespace Wasted.Pages.Place
         {
             try
             {
+                SelectedDeal.Status = OrderStatus.Preparing;
                 if (Time.Text != null)
                 {
                     SelectedDeal.ExpectedFinishTime = DateTimeOffset.Now.ToUnixTimeMilliseconds() +
@@ -43,9 +43,7 @@ namespace Wasted.Pages.Place
                                                           .TotalMilliseconds;
                 }
 
-                SelectedDeal.Status = OrderStatus.Preparing;
                 DataProvider.UpdateOrders(new List<OrderDeal> {SelectedDeal});
-                ParentPage.UpdateSummaryListView();
                 ErrorLabel.IsVisible = false;
                 PopupNavigation.Instance.PopAsync();
             }

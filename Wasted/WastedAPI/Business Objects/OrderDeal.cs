@@ -34,12 +34,20 @@ namespace Wasted.WastedAPI.Business_Objects
                 return calculatedTimeLeft > 0 ? calculatedTimeLeft : -1;
             }
         }
-
         public string DisplayableTimeLeft =>
             Status != OrderStatus.Preparing ? "-" :
-            TimeLeft > 0 ? $"{Math.Floor(TimeLeft)} min": "ready soon";
+            TimeLeft > 0 ? $"{Math.Ceiling(TimeLeft)} min": "ready soon";
 
-        public long ExpectedFinishTime { get; set; }
+        private long _expectedFinishTime;
+        public long ExpectedFinishTime
+        { 
+            get => _expectedFinishTime;
+            set
+            {
+                _expectedFinishTime = value; 
+                OnPropertyChanged("DisplayableTimeLeft");
+            }
+        }
         public int PlaceUserId { get; set; }
         public int ClientUserId { get; set; }
 

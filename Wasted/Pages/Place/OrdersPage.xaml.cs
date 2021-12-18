@@ -84,10 +84,10 @@ namespace Wasted.Pages.Place
                 switch (order.Status)
                 {
                     case OrderStatus.Preparing:
-                        PopupNavigation.Instance.PushAsync(new OrderStatusReadyPlacePopup(order, this));
+                        PopupNavigation.Instance.PushAsync(new OrderStatusReadyPlacePopup(order));
                         break;
                     case OrderStatus.WaitingForAcceptance:
-                        PopupNavigation.Instance.PushAsync(new OrderStatusPreparedPlacePopup(order, this));
+                        PopupNavigation.Instance.PushAsync(new OrderStatusPreparedPlacePopup(order));
                         break;
                 }
             });
