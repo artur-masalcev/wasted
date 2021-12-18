@@ -51,7 +51,6 @@ namespace Wasted.Pages.Place
 
                 SelectedDeal.Status = OrderStatus.Preparing;
                 DataProvider.UpdateOrders(new List<OrderDeal> {SelectedDeal});
-                ParentPage.UpdateSummaryListView();
                 PopupNavigation.Instance.PopAsync();
             }
             else

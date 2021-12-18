@@ -51,18 +51,6 @@ namespace Wasted.Pages.Place
             PlaceOrders = DataProvider.GetPlaceOrders(CurrentUser.Id);
             OrdersCollectionView.ItemsSource = null;
             OrdersCollectionView.ItemsSource = PlaceOrders;
-            UpdateSummaryListView();
-        }
-
-        public void UpdateSummaryListView()
-        {
-            SummaryListView.ItemsSource = from groupElement in
-                    from order in PlaceOrders
-                    group order by order.Status
-                    into newGroup
-                    select newGroup
-                select new OrderStatusSummary(groupElement.Key,
-                    groupElement.Sum(elem => elem.Quantity));
         }
 
         private void RefreshView_Refreshing(object sender, EventArgs e)

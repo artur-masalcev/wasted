@@ -39,7 +39,6 @@
                                         
                                     </StackLayout>
                                 </StackLayout>
-                                
                             </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
