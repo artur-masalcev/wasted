@@ -58,5 +58,10 @@ namespace Wasted.Pages.Place
                 ErrorLabel.IsVisible = true;
             }
         }
+
+        private void OnCancelClicked(object sender, EventArgs e)
+        {
+            PopupNavigation.Instance.PopAsync(); // Close the popup
+        }
     }
 }

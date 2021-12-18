@@ -7,31 +7,41 @@
     x:Class="Wasted.Pages.Client.DealPage.OrderPopup">
 
     <!--#region Order view-->
-    <StackLayout Style="{StaticResource DealCardViewLayout}"
-                 VerticalOptions="Center">
-        <StackLayout BackgroundColor="White">
+    <Frame Background="White"
+           HasShadow="False"
+           CornerRadius="10"
+           VerticalOptions="Center"
+           Margin="10"
+           Padding="5">
+        <StackLayout>
+            <StackLayout BackgroundColor="White"
+                         Spacing="10">
 
-            <StackLayout Orientation="Horizontal"
-                         HorizontalOptions="Center"
-                         Spacing="20">
-                <Label Style="{StaticResource RatingLabel}"
-                       Text="{Binding SelectedCount, StringFormat='Count: {0}'}" />
+                <Button Style="{StaticResource CancelButton}" 
+                        Clicked="OnCancelClicked" 
+                        HorizontalOptions="EndAndExpand"/>
+                
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="Center"
+                             Spacing="20">
+                    <Label Style="{StaticResource RatingLabel}"
+                           Text="{Binding SelectedCount, StringFormat='Count: {0}'}" />
 
 
-                <Stepper x:Name="Stepper"
-                         Maximum="{Binding StepperDealQuantity}"
-                         Increment="1"
-                         ValueChanged="StepperValueChanged" />
+                    <Stepper x:Name="Stepper"
+                             Maximum="{Binding StepperDealQuantity}"
+                             Increment="1"
+                             ValueChanged="StepperValueChanged" />
+                </StackLayout>
+                
+                <Button 
+                    Style="{StaticResource ConfirmButton}" 
+                    Clicked="OnConfirmClicked" 
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
 
-            </StackLayout>
-
-            <StackLayout Style="{StaticResource ConfirmCancelLayout}">
-                <Button Style="{StaticResource CancelButton}" Clicked="OnCancelClicked" WidthRequest="75" />
-                <Button Style="{StaticResource ConfirmButton}" Clicked="OnConfirmClicked" WidthRequest="220" />
-            </StackLayout>
-
+                </StackLayout>
         </StackLayout>
-    </StackLayout>
+    </Frame>
     <!--#endregion-->
-
 </pages:PopupPage>

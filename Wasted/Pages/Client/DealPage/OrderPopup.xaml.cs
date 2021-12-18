@@ -62,7 +62,7 @@ namespace Wasted.Pages.Client.DealPage
             }
         }
 
-        public void OnCancelClicked(object sender, EventArgs e)
+        private void OnCancelClicked(object sender, EventArgs e)
         {
             PopupNavigation.Instance.PopAsync(); // Close the popup
         }

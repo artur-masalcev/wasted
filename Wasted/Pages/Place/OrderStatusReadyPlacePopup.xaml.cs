@@ -19,7 +19,7 @@ namespace Wasted.Pages.Place
         public string DealTitle => SelectedDeal.Title;
         public int Quantity => SelectedDeal.Quantity;
 
-        public string Message => $"Deal {DealTitle} (x{Quantity}) is done preparing";
+        public string Message => $"Set {DealTitle} (x{Quantity}) as done preparing?";
 
         public OrderStatusReadyPlacePopup(OrderDeal deal, OrdersPage ordersPage)
         {
@@ -36,6 +36,11 @@ namespace Wasted.Pages.Place
             SelectedDeal.Status = OrderStatus.ReadyToPickUp;
             DataProvider.UpdateOrders(new List<OrderDeal>{SelectedDeal});
             PopupNavigation.Instance.PopAsync();
+        }
+
+        private void OnCancelClicked(object sender, EventArgs e)
+        {
+            PopupNavigation.Instance.PopAsync(); // Close the popup
         }
     }
 }
