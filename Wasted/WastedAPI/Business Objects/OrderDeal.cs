@@ -42,9 +42,12 @@ namespace Wasted.WastedAPI.Business_Objects
         public long ExpectedFinishTime { get; set; }
         public int PlaceUserId { get; set; }
         public int ClientUserId { get; set; }
+        
+        public string ImageUrl { get; set; }
 
         public OrderDeal(int dealId = default, string status = null, int quantity = default, int clientUserId = default,
-            int dealFoodPlacePlaceUserId = default, string dealTitle = null, double dealCurrentCost = default)
+            int dealFoodPlacePlaceUserId = default, string dealTitle = null, double dealCurrentCost = default,
+            string dealImageUrl = default)
         {
             DealId = dealId;
             Title = dealTitle;
@@ -54,6 +57,7 @@ namespace Wasted.WastedAPI.Business_Objects
             Status = status;
             Quantity = quantity;
             PlaceUserId = dealFoodPlacePlaceUserId;
+            ImageUrl = dealImageUrl;
         }
     }
 }
