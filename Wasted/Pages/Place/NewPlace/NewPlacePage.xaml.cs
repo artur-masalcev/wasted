@@ -38,7 +38,6 @@ namespace Wasted.Pages.Place.NewPlace
                 city: selectedCity,
                 description: descriptionEntryText
             );
-            // _logger.LogInformation(LogEvents.CreatePlace, "Place {PlaceTitle} ({PlaceId}) created.", CurrentFoodPlace.Title, CurrentFoodPlace.Id);
             Navigation.PushAsync(new NewPlaceImagePage(CurrentFoodPlace));
         }
 

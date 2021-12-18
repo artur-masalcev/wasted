@@ -42,25 +42,6 @@ namespace Wasted.Pages.Place
         }
 
         /// <summary>
-        /// Checks whether all user fields are not empty
-        /// </summary>
-        /// <returns>'false' if any of fields is empty. 'true' if all fields are not empty</returns>
-        private bool IsDataValid()
-        {
-            try
-            {
-                ExceptionChecker.CheckValidParams(NewTitle, NewCurrentCost,
-                    NewRegularCost, NewDueDate, SelectedDeal.ImageURL);
-            }
-            catch (NullReferenceException)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
         /// Updates all the fields of 'SelectedDeal' accordingly to user input
         /// </summary>
         /// <notice>
@@ -70,7 +51,7 @@ namespace Wasted.Pages.Place
         {
             SelectedDeal.Title = NewTitle;
             SelectedDeal.CurrentCost = Convert.ToDouble(NewCurrentCost);
-            SelectedDeal.PreviousCost = Convert.ToDouble(NewCurrentCost);
+            SelectedDeal.PreviousCost = Convert.ToDouble(NewRegularCost);
             SelectedDeal.Due = NewDueDate;
             SelectedDeal.Description = NewDescription;
         }
@@ -86,11 +67,9 @@ namespace Wasted.Pages.Place
             SelectedDeal.Quantity = (int) e.NewValue;
         }
 
-        // TODO: the same code used in NewDealPage, so perhaps this handler can become global(static)
         private void NumberEntryTextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(e.NewTextValue) &&
-                (!double.TryParse(e.NewTextValue, out double number) || number < 0))
+            if (!NumberParser.IsValidNumberString(e.NewTextValue))
                 ((Entry) sender).Text = e.OldTextValue;
         }
 
@@ -105,29 +84,23 @@ namespace Wasted.Pages.Place
         /// </summary>
         private void SaveChangesClicked(object sender, EventArgs e)
         {
-            if (!IsDataValid())
-            {
-                DisplayAlert("", "Please fill all fields", "OK");
-                return;
-            }
-
-            UpdateSelectedDealObject();
-
-            DataProvider.UpdateDeal(SelectedDeal);
-            _service.UpdateUserInfo();
+            ExceptionHandler.WrapFunctionCall(() => {
+                ExceptionChecker.CheckValidParams(NewTitle, NewCurrentCost,
+                    NewRegularCost, NewDueDate, SelectedDeal.ImageURL);
+                UpdateSelectedDealObject();
+                DataProvider.UpdateDeal(SelectedDeal);
+                _service.UpdateUserInfo();
+            }, this);
         }
 
         private void ShowPreviewClicked(object sender, EventArgs e)
         {
-            if (!IsDataValid())
-            {
-                DisplayAlert("", "Please fill all fields", "OK");
-                return;
-            }
-
-            UpdateSelectedDealObject();
-
-            Navigation.PushAsync(new DealPreviewPage(SelectedDeal));
+            ExceptionHandler.WrapFunctionCall(() => {
+                ExceptionChecker.CheckValidParams(NewTitle, NewCurrentCost,
+                    NewRegularCost, NewDueDate, SelectedDeal.ImageURL);
+                UpdateSelectedDealObject();
+                Navigation.PushAsync(new DealPreviewPage(SelectedDeal));
+            }, this);
         }
 
         private void DeleteOfferClicked(object sender, EventArgs e)

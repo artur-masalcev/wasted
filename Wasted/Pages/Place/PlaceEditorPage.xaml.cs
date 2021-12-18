@@ -41,23 +41,6 @@ namespace Wasted.Pages.Place
             BindingContext = this;
         }
 
-        /// <summary>
-        /// Checks whether all user fields are not empty
-        /// </summary>
-        /// <returns>'false' if any of fields is empty. 'true' if all fields are not empty</returns>
-        private bool IsDataValid()
-        {
-            try
-            {
-                ExceptionChecker.CheckValidParams(NewPlaceTitle, NewDescription, NewHeaderURL, NewLogoURL);
-            }
-            catch (NullReferenceException)
-            {
-                return false;
-            }
-
-            return true;
-        }
 
         /// <summary>
         /// Updates all the fields of 'SelectedPlace' accordingly to user input
@@ -83,29 +66,21 @@ namespace Wasted.Pages.Place
         /// </summary>
         private void SaveChangesClicked(object sender, EventArgs e)
         {
-            if (!IsDataValid())
-            {
-                DisplayAlert("", "Please fill all fields", "OK");
-                return;
-            }
-
-            UpdateSelectedPlaceObject();
-
-            DataProvider.UpdateFoodPlace(SelectedPlace);
-            _service.UpdateUserInfo();
+            ExceptionHandler.WrapFunctionCall(() => {
+                    ExceptionChecker.CheckValidParams(NewPlaceTitle, NewDescription, NewHeaderURL, NewLogoURL);
+                    UpdateSelectedPlaceObject();
+                    DataProvider.UpdateFoodPlace(SelectedPlace);
+                    _service.UpdateUserInfo();
+            }, this);
         }
 
         private void ShowPreviewClicked(object sender, EventArgs e)
         {
-            if (!IsDataValid())
-            {
-                DisplayAlert("", "Please fill all fields", "OK");
-                return;
-            }
-
-            UpdateSelectedPlaceObject();
-
-            Navigation.PushAsync(new FoodPlacePreviewPage(SelectedPlace));
+            ExceptionHandler.WrapFunctionCall(() => {
+                    ExceptionChecker.CheckValidParams(NewPlaceTitle, NewDescription, NewHeaderURL, NewLogoURL);
+                    UpdateSelectedPlaceObject();
+                    Navigation.PushAsync(new FoodPlacePreviewPage(SelectedPlace));
+            }, this);
         }
 
         private void DeletePlaceClicked(object sender, EventArgs e)
