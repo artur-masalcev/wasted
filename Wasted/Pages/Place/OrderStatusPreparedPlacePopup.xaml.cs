@@ -16,20 +16,18 @@ namespace Wasted.Pages.Place
     public partial class OrderStatusPreparedPlacePopup : PopupPage
     {
         public OrderDeal SelectedDeal { get; set; }
-        public OrdersPage ParentPage { get; set; }
         public string DealTitle => SelectedDeal.Title;
         public int Quantity => SelectedDeal.Quantity;
 
         public string Message => $"Do you accept deal {DealTitle} (x{Quantity})?";
 
 
-        public OrderStatusPreparedPlacePopup(OrderDeal deal, OrdersPage ordersPage)
+        public OrderStatusPreparedPlacePopup(OrderDeal deal)
         {
             InitializeComponent();
             SelectedDeal = deal;
             BindingContext = this;
             ErrorLabel.IsVisible = false;
-            ParentPage = ordersPage;
             On<iOS>().SetUseSafeArea(true);
         }
 

@@ -21,7 +21,6 @@ namespace Wasted.Pages.Login
         public LoginPage()
         {
             _service = DependencyService.Get<CurrentUserService>();
-            //_logger = DependencyService.Get<ILogger<LoginPage>>();
             InitializeComponent();
             On<iOS>().SetUseSafeArea(true);
         }
@@ -31,14 +30,12 @@ namespace Wasted.Pages.Login
             User user = DataProvider.GetPlaceUser(username, password);
             if (user != null)
             {
-                //_logger.LogInformation(LogEvents.UserLoggedIn, "User {UserId} logged in.", user.Id);
                 return new Tuple<User, Func<User>>(user, () => DataProvider.GetPlaceUser(username, password));
             }
 
             user = DataProvider.GetClientUser(username, password);
             if (user != null)
             {
-                //_logger.LogInformation(LogEvents.UserLoggedIn, "User {UserId} logged in.", user.Id);
                 return new Tuple<User, Func<User>>(user, () => DataProvider.GetClientUser(username, password));
             }
                 
