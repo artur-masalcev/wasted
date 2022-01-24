@@ -19,7 +19,7 @@
         Title="Cart"
         Icon="nav_bar_cart.png" />
     <client:OrderStatusPage
-        Title="Order Status"
+        Title="Orders"
         Icon="nav_bar_order.png" />
     <client:SettingsPage
         Title="Settings"

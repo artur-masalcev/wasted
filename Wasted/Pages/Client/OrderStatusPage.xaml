@@ -6,49 +6,39 @@
     x:Class="Wasted.Pages.Client.OrderStatusPage">
     <ContentPage.Content>
         <RefreshView x:Name="RefreshView" RefreshColor="DimGray" Refreshing="RefreshView_Refreshing">
-            <StackLayout>
-                <Label Text="Purchase status" Style="{StaticResource SectionTitle}" />
+            <StackLayout Padding="7">
+                <Label Text="Orders" Style="{StaticResource SectionTitle}" />
                 <CollectionView x:Name="OrderedDealsCollectionView"
                                 SelectionMode="Single"
                                 ItemsLayout="VerticalList"
                                 SelectionChanged="OrderedDealsCollectionView_OnSelectionChanged">
-                    <CollectionView.Header>
-                        <StackLayout>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="65" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Text="Quantity" FontAttributes="Bold"
-                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                                <Label Grid.Column="1" Text="Product name" FontAttributes="Bold"
-                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                                <Label Grid.Column="2" Text="Order Status" FontAttributes="Bold"
-                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                                <Label Grid.Column="3" Text="Preparation time left" FontAttributes="Bold"
-                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                            </Grid>
-                        </StackLayout>
-                    </CollectionView.Header>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame HasShadow="False">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="65" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0" Text="{Binding Quantity, StringFormat='{0}x'}"
-                                           HorizontalTextAlignment="Center" />
-                                    <Label Grid.Column="1" Text="{Binding Title}" HorizontalTextAlignment="Center" />
-                                    <Label Grid.Column="2" Text="{Binding Status}" HorizontalTextAlignment="Center" />
-                                    <Label Grid.Column="3" Text="{Binding DisplayableTimeLeft}"
-                                           HorizontalTextAlignment="Center" />
-                                </Grid>
+                            <Frame HasShadow="False"
+                                   Padding="0" 
+                                   Margin="0,10,0,10">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding ImageUrl}"
+                                           HeightRequest="100"
+                                           WidthRequest="100"
+                                           VerticalOptions="Center"/>
+                                    <StackLayout VerticalOptions="Center">
+                                        <Label Text="{Binding Title}"
+                                               FontAttributes="Bold"/>
+                                        <Label Text="{Binding Quantity, StringFormat='{0}x'}"/>
+                                        <Label Text="{Binding Status}"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Source="clock" 
+                                                   HeightRequest="20" 
+                                                   WidthRequest="20"
+                                                   Opacity="0.8"
+                                                   Margin="5,0"/>
+                                            <Label Text="{Binding DisplayableTimeLeft}"
+                                                   VerticalOptions="Center"/>
+                                        </StackLayout>
+                                        
+                                    </StackLayout>
+                                </StackLayout>
                             </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

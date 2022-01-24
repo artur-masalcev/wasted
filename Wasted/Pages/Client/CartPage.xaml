@@ -6,48 +6,44 @@
     x:Class="Wasted.Pages.Client.CartPage">
     <ContentPage.Content>
         <RefreshView x:Name="RefreshView" RefreshColor="DimGray" Refreshing="RefreshView_Refreshing">
-            <StackLayout>
+            <StackLayout Padding="7">
                 <Label Text="Your cart" Style="{StaticResource SectionTitle}" />
                 <CollectionView x:Name="CartDealsCollectionView"
                                 SelectionMode="Single"
                                 ItemsLayout="VerticalList">
-                    <CollectionView.Header>
-                        <StackLayout>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="65" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Text="Quantity" FontAttributes="Bold"
-                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                                <Label Grid.Column="1" Text="Product name" FontAttributes="Bold"
-                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                                <Label Grid.Column="2" Text="Cost" FontAttributes="Bold"
-                                       HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
-                            </Grid>
-                        </StackLayout>
-                    </CollectionView.Header>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame HasShadow="False">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="65" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0" Text="{Binding Quantity, StringFormat='{0} x' }" />
-                                    <Label Grid.Column="1" Text="{Binding Title}" Margin="20,0,0,0" />
-                                    <Label Grid.Column="2" Text="{Binding Cost, StringFormat='{0} €'}"
-                                           HorizontalTextAlignment="End" />
-                                </Grid>
+                            <Frame HasShadow="False" 
+                                   Padding="0" 
+                                   Margin="0,10,0,10">
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Source="{Binding ImageUrl}"
+                                               HeightRequest="100"
+                                               WidthRequest="100"/>
+                                        
+                                        <StackLayout VerticalOptions="Center" Spacing="20" HorizontalOptions="FillAndExpand">
+                                            <Label Text="{Binding Title}"
+                                                   LineBreakMode="HeadTruncation"
+                                                   FontAttributes="Bold"
+                                                   HorizontalOptions="StartAndExpand"/>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding Quantity, StringFormat='{0}x'}"/>
+                                                <Label Text="{Binding Cost, StringFormat='{0} €'}"
+                                                       HorizontalOptions="EndAndExpand"
+                                                       HorizontalTextAlignment="End"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
                             </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+                
                 <Label x:Name="Total" Style="{StaticResource SectionTitle}" />
                 <Button Text="Purchase" Style="{StaticResource PurchaseButton}" Clicked="ClickedPurchase" />
+                
             </StackLayout>
         </RefreshView>
     </ContentPage.Content>

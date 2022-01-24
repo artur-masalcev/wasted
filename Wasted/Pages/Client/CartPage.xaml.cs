@@ -58,7 +58,6 @@ namespace Wasted.Pages.Client
                 foreach (OrderDeal currentCartDeal in dealsToUpdate)
                 {
                     currentCartDeal.Status = OrderStatus.WaitingForAcceptance;
-                    //_logger.LogInformation(LogEvents.DealPurchased, "Deal {DealTitle} ({DealId}) purchased.", currentCartDeal.Title, currentCartDeal.Id);
                 }
 
                 DataProvider.UpdateOrders(dealsToUpdate);

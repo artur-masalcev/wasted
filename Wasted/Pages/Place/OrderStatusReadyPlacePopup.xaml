@@ -7,15 +7,26 @@
     x:Class="Wasted.Pages.Place.OrderStatusReadyPlacePopup">
 
     <!--#region Confirmation Popup-->
-    <StackLayout Style="{StaticResource DealCardViewLayout}"
-                 VerticalOptions="Center">
-        <StackLayout BackgroundColor="White">
-
-            <Label Text="{Binding  Message}" HorizontalTextAlignment="Center" Margin="0,30, 0, 0"/>
-            <Button Text="YES" Clicked="Button_OnClicked" Style="{StaticResource PurchaseButton}"/>
-
+    <Frame Background="White"
+           HasShadow="False"
+           CornerRadius="10"
+           VerticalOptions="Center"
+           Margin="10"
+           Padding="5">
+        <StackLayout>
+            <Button Style="{StaticResource CancelButton}" 
+                    Clicked="OnCancelClicked" 
+                    HorizontalOptions="EndAndExpand"/>
+            <Label Text="{Binding  Message}" 
+                   HorizontalTextAlignment="Center" 
+                   Margin="0,30, 0, 0"
+                   FontAttributes="Bold"/>
+            <Button Text="YES" 
+                    Clicked="Button_OnClicked" 
+                    Style="{StaticResource PurchaseButton}"
+                    FontAttributes="Bold"/>
         </StackLayout>
-    </StackLayout>
+    </Frame>
     <!--#endregion-->
 
 </pages:PopupPage>
