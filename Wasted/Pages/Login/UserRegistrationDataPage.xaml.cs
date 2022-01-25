@@ -1,4 +1,5 @@
 ﻿using System;
+using Wasted.Utils;
 using Wasted.Utils.Exceptions;
 using Wasted.Utils.Services;
 using Wasted.WastedAPI;
@@ -19,10 +20,27 @@ namespace Wasted.Pages.Login
             On<iOS>().SetUseSafeArea(true); // Put margin on iOS devices that have top notch
         }
 
+        private void NextClicked(object sender, EventArgs e)
+        {
+            string password = PasswordEntry.Text ?? "";
+            string repeatedPassword = RepeatedPasswordEntry.Text ?? "";
+            string username = UsernameEntry.Text;
+
+            if (password.Equals(repeatedPassword))
+            {
+                if (ParamsChecker.ValidParams(username, password))
+                    SubmitUserData(username, password);
+                else
+                    this.DisplayFillFieldsAlert();
+            }
+            else
+            {
+                DisplayAlert("", "Passwords do not match", "OK");
+            }
+        }
+
         private void SubmitUserData(string username, string password)
         {
-            ExceptionChecker.CheckValidParams(username, password);
-
             bool existsUser = (DataProvider.GetPlaceUser(username, password) ??
                                (User) DataProvider.GetClientUser(username, password)) != null;
 
@@ -36,25 +54,7 @@ namespace Wasted.Pages.Login
             }
             else
             {
-                throw new UserAlreadyExistsException();
-            }
-        }
-
-        private void NextClicked(object sender, EventArgs e)
-        {
-            string password = PasswordEntry.Text ?? "";
-            string repeatedPassword = RepeatedPasswordEntry.Text ?? "";
-
-            if (password.Equals(repeatedPassword))
-            {
-                ExceptionHandler.WrapFunctionCall(
-                    () => SubmitUserData(UsernameEntry.Text, password),
-                    this
-                );
-            }
-            else
-            {
-                DisplayAlert("", "Passwords do not match", "OK");
+                DisplayAlert("", "User with this username already exists", "OK");
             }
         }
 

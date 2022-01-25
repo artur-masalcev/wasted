@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using DataAPI.DTO;
 using DataAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using Xamarin.Essentials;
 
 namespace DataAPI.Repositories
 {
@@ -25,7 +27,6 @@ namespace DataAPI.Repositories
                 .Include(p => p.PlaceType)
                 .ToList();
         }
-
         public FoodPlace Create(FoodPlace foodPlace)
         {
             _dbContext.FoodPlaces.Add(foodPlace);

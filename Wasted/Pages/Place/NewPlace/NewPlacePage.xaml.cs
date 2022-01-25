@@ -15,12 +15,16 @@ namespace Wasted.Pages.Place.NewPlace
         public EntryLengthValidator Validator { get; set; }
         public FoodPlace CurrentFoodPlace { get; set; }
 
+        private String TitleText => TitleEntry.Text;
+        private String SelectedCity => (string) CityPicker.SelectedItem;
+        private String DescriptionText => DescriptionEntry.Text;
+
         public NewPlacePage()
         {
             InitializeComponent();
             Validator = new EntryLengthValidator(maxEntryLength: 50);
             BindingContext = Validator;
-            CityPicker.ItemsSource = new[] {"Vilnius"};
+            CityPicker.ItemsSource = new[] {"Vilnius"}; //TODO: extract
 
             On<iOS>().SetUseSafeArea(true);
         }
@@ -30,23 +34,26 @@ namespace Wasted.Pages.Place.NewPlace
             Validator.EntryTextChanged(sender, e);
         }
 
-        private void GoToNextPage(string titleText, string selectedCity, string descriptionEntryText)
-        {
-            ExceptionChecker.CheckValidParams(titleText, selectedCity, descriptionEntryText);
-            CurrentFoodPlace = new FoodPlace(
-                title: titleText,
-                city: selectedCity,
-                description: descriptionEntryText
-            );
-            Navigation.PushAsync(new NewPlaceImagePage(CurrentFoodPlace));
-        }
-
         private void NextButtonClicked(object sender, EventArgs e)
         {
-            ExceptionHandler.WrapFunctionCall(
-                () => GoToNextPage(TitleEntry.Text, (string) CityPicker.SelectedItem, DescriptionEntry.Text),
-                this
-            );
+            if (ValidParams())
+            {
+                CurrentFoodPlace = new FoodPlace(
+                    title: TitleText,
+                    city: SelectedCity,
+                    description: DescriptionText
+                );
+                Navigation.PushAsync(new NewPlaceImagePage(CurrentFoodPlace));
+            }
+            else
+            {
+                this.DisplayFillFieldsAlert();
+            }
+        }
+
+        private bool ValidParams()
+        {
+            return ParamsChecker.ValidParams(TitleText, SelectedCity, DescriptionText);
         }
 
         private void BackClicked(object sender, EventArgs e)

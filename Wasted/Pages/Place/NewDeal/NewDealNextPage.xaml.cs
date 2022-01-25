@@ -18,6 +18,8 @@ namespace Wasted.Pages.Place.NewDeal
         public EntryLengthValidator Validator { get; set; }
         public Deal CurrentDeal { get; set; }
 
+        private string DescriptionText => DescriptionEntry.Text;
+
         public NewDealNextPage(Deal currentDeal)
         {
             CurrentDeal = currentDeal;
@@ -33,23 +35,26 @@ namespace Wasted.Pages.Place.NewDeal
             PopupNavigation.Instance.PushAsync(new ChooseImagePopup(CurrentDeal, "ImageURL"));
         }
 
-        private void FillDealValues(CurrentUserService service, string dealExpirationDate, string dealDescription)
-        {
-            ExceptionChecker.CheckValidParams(dealDescription, CurrentDeal.ImageURL);
-            CurrentDeal.Due = dealExpirationDate;
-            CurrentDeal.Description = dealDescription;
-            DataProvider.CreateDeal(CurrentDeal);
-            service.CurrentUser.PushPage(this);
-        }
-
         private void DoneButtonClicked(object sender, EventArgs e)
         {
             CurrentUserService service = DependencyService.Get<CurrentUserService>();
             string dealExpirationDate = DueDatePicker.Date.ToString("yyyy-MM-dd");
-            ExceptionHandler.WrapFunctionCall(
-                () => FillDealValues(service, dealExpirationDate, DescriptionEntry.Text),
-                this
-            );
+            if (ValidParams())
+            {
+                CurrentDeal.Due = dealExpirationDate; //TODO: make not string
+                CurrentDeal.Description = DescriptionText;
+                DataProvider.CreateDeal(CurrentDeal);
+                service.CurrentUser.PushPage(this);
+            }
+            else
+            {
+                this.DisplayFillFieldsAlert();
+            }
+        }
+
+        private bool ValidParams()
+        {
+            return ParamsChecker.ValidParams(DescriptionText, CurrentDeal.ImageURL);
         }
 
         private void BackClicked(object sender, EventArgs e)

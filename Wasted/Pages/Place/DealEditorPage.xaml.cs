@@ -26,7 +26,7 @@ namespace Wasted.Pages.Place
         private string NewTitle => TitleEntry.Text;
         private string NewCurrentCost => CurrentCostEntry.Text;
         private string NewRegularCost => RegularCostEntry.Text;
-        private string NewDueDate => DueDatePicker.Date.ToString("yyyy-MM-dd");
+        private string NewDueDate => DueDatePicker.Date.ToString(Constants.DateFormat);
         private string NewDescription => DescriptionEntry.Text;
 
         private CurrentUserService _service = DependencyService.Get<CurrentUserService>();
@@ -84,24 +84,36 @@ namespace Wasted.Pages.Place
         /// </summary>
         private void SaveChangesClicked(object sender, EventArgs e)
         {
-            ExceptionHandler.WrapFunctionCall(() => {
-                ExceptionChecker.CheckValidParams(NewTitle, NewCurrentCost,
-                    NewRegularCost, NewDueDate, SelectedDeal.ImageURL);
+            if (ValidParams())
+            {
                 UpdateSelectedDealObject();
                 DataProvider.UpdateDeal(SelectedDeal);
-                _service.UpdateUserInfo();
-            }, this);
+                _service.UpdateUserInfo(); //TODO: Looks similar to previous classes
+            }
+            else
+            {
+                this.DisplayFillFieldsAlert();
+            }
         }
 
         private void ShowPreviewClicked(object sender, EventArgs e)
         {
-            ExceptionHandler.WrapFunctionCall(() => {
-                ExceptionChecker.CheckValidParams(NewTitle, NewCurrentCost,
-                    NewRegularCost, NewDueDate, SelectedDeal.ImageURL);
+            if (ValidParams()) {
                 UpdateSelectedDealObject();
                 Navigation.PushAsync(new DealPreviewPage(SelectedDeal));
-            }, this);
+            }
+            else
+            {
+                this.DisplayFillFieldsAlert();
+            }
         }
+
+        private bool ValidParams()
+        {
+            return ParamsChecker.ValidParams(NewTitle, NewCurrentCost,
+                NewRegularCost, NewDueDate, SelectedDeal.ImageURL);
+        }
+
 
         private void DeleteOfferClicked(object sender, EventArgs e)
         {

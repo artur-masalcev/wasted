@@ -24,13 +24,14 @@ namespace Wasted.Utils
 
         public void EntryTextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(e.NewTextValue) && e.NewTextValue.Length > MaxEntryLength)
+            Entry entry = (Entry) sender;
+            if (e.NewTextValue?.Length > MaxEntryLength)
             {
-                ((Entry) sender).Text = e.OldTextValue ?? "";
+                entry.Text = e.OldTextValue ?? "";
             }
             else
             {
-                EntryLength = ((Entry) sender).Text.Length;
+                EntryLength = entry.Text.Length;
             }
         }
     }

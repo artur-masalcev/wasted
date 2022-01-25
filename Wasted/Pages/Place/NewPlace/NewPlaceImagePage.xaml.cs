@@ -1,5 +1,6 @@
 ﻿using System;
 using Rg.Plugins.Popup.Services;
+using Wasted.Utils;
 using Wasted.Utils.Exceptions;
 using Wasted.Utils.Services;
 using Wasted.WastedAPI;
@@ -35,24 +36,27 @@ namespace Wasted.Pages.Place.NewPlace
             PopupNavigation.Instance.PushAsync(new ChooseImagePopup(CurrentPlace, "LogoURL"));
         }
 
-        private void AddPlaceToPlaces()
-        {
-            ExceptionChecker.CheckValidParams(CurrentPlace.HeaderURL, CurrentPlace.LogoURL);
-            CurrentUserService service = DependencyService.Get<CurrentUserService>();
-            PlaceUser currentPlaceUser = (PlaceUser) service.CurrentUser;
-            CurrentPlace.PlaceUserId = currentPlaceUser.Id;
-            CurrentPlace.FoodPlaceTypeId = 1; //TODO: let select
-            DataProvider.CreateFoodPlace(CurrentPlace);
-            service.UpdateUserInfo(); //Fetches the id of a new place
-            currentPlaceUser.PushPage(this);
-        }
-
         private void DoneButtonClicked(object sender, EventArgs e)
         {
-            ExceptionHandler.WrapFunctionCall(
-                AddPlaceToPlaces,
-                this
-            );
+            if (ValidParams())
+            {
+                CurrentUserService service = DependencyService.Get<CurrentUserService>();
+                PlaceUser currentPlaceUser = (PlaceUser) service.CurrentUser;
+                CurrentPlace.PlaceUserId = currentPlaceUser.Id;
+                CurrentPlace.FoodPlaceTypeId = 1; //TODO: let select
+                DataProvider.CreateFoodPlace(CurrentPlace);
+                service.UpdateUserInfo(); //Fetches the id of a new place
+                currentPlaceUser.PushPage(this);
+            }
+            else
+            {
+                this.DisplayFillFieldsAlert();
+            }
+        }
+
+        private bool ValidParams()
+        {
+            return ParamsChecker.ValidParams(CurrentPlace.HeaderURL, CurrentPlace.LogoURL);
         }
 
         private void BackClicked(object sender, EventArgs e)

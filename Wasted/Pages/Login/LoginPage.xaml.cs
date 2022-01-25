@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Wasted.Utils;
 using Wasted.Utils.Exceptions;
 using Wasted.Utils.Services;
 using Wasted.WastedAPI;
@@ -16,7 +17,9 @@ namespace Wasted.Pages.Login
     public partial class LoginPage : ContentPage
     {
         private readonly CurrentUserService _service;
-        //private readonly ILogger<LoginPage> _logger;
+
+        private string UserName => UsernameEntry.Text;
+        private string UserPassword => PasswordEntry.Text;
 
         public LoginPage()
         {
@@ -25,49 +28,45 @@ namespace Wasted.Pages.Login
             On<iOS>().SetUseSafeArea(true);
         }
 
+        private void LoginClicked(object sender, EventArgs e)
+        {
+            if (ValidParams())
+            {
+                Tuple<User, Func<User>> userDetails = GetUserDetails(UserName, UserPassword); //TODO: think when to pass parameters and when use global
+                User user = userDetails.Item1;
+                Func<User> userGettingFunction = userDetails.Item2;
+                if (user != null)
+                {
+                    Location userLocation = GetLocation().Result;
+                    _service.CurrentUser = user; //Sets user for whole app
+                    _service.UserGettingFunction = userGettingFunction;
+                    _service.UserLocation = userLocation;
+                    user.PushPage(this); //Creates appropriate page
+                }
+                else
+                {
+                    DisplayAlert("", "Username or password is incorrect. Try Again.", "OK");
+                }
+            }
+        }
+
+        private bool ValidParams()
+        {
+            return ParamsChecker.ValidParams(UserName, UserPassword);
+        }
+
         private Tuple<User, Func<User>> GetUserDetails(string username, string password)
         {
             User user = DataProvider.GetPlaceUser(username, password);
-            if (user != null)
+            if (user != null) //TODO: rewrite with optional if exists
             {
                 return new Tuple<User, Func<User>>(user, () => DataProvider.GetPlaceUser(username, password));
             }
 
             user = DataProvider.GetClientUser(username, password);
-            if (user != null)
-            {
-                return new Tuple<User, Func<User>>(user, () => DataProvider.GetClientUser(username, password));
-            }
-                
-            return null;
-        }
-
-        private void SubmitUserData(string username, string password)
-        {
-            ExceptionChecker.CheckValidParams(username, password);
-            Tuple<User, Func<User>> userDetails = GetUserDetails(username, password);
-            User user = userDetails.Item1;
-            Func<User> userGettingFunction = userDetails.Item2;
-            if (user != null)
-            {
-                Location userLocation = GetLocation().Result;
-                _service.CurrentUser = user; //Sets user for whole app
-                _service.UserGettingFunction = userGettingFunction;
-                _service.UserLocation = userLocation;
-                user.PushPage(this); //Creates appropriate page
-            }
-            else
-            {
-                DisplayAlert("", "Username or password is incorrect. Try Again.", "OK");
-            }
-        }
-
-        private void LoginClicked(object sender, EventArgs e)
-        {
-            ExceptionHandler.WrapFunctionCall(
-                () => SubmitUserData(UsernameEntry.Text, PasswordEntry.Text),
-                this
-            );
+            return user != null ?
+                new Tuple<User, Func<User>>(user, () => DataProvider.GetClientUser(username, password)) :
+                null;
         }
 
         /// <summary>

@@ -66,21 +66,34 @@ namespace Wasted.Pages.Place
         /// </summary>
         private void SaveChangesClicked(object sender, EventArgs e)
         {
-            ExceptionHandler.WrapFunctionCall(() => {
-                    ExceptionChecker.CheckValidParams(NewPlaceTitle, NewDescription, NewHeaderURL, NewLogoURL);
-                    UpdateSelectedPlaceObject();
-                    DataProvider.UpdateFoodPlace(SelectedPlace);
-                    _service.UpdateUserInfo();
-            }, this);
+            if (ValidParams())
+            {
+                UpdateSelectedPlaceObject();
+                DataProvider.UpdateFoodPlace(SelectedPlace);
+                _service.UpdateUserInfo(); //TODO: refactor to not call update separately
+            }
+            else
+            {
+                this.DisplayFillFieldsAlert();
+            }
         }
 
         private void ShowPreviewClicked(object sender, EventArgs e)
         {
-            ExceptionHandler.WrapFunctionCall(() => {
-                    ExceptionChecker.CheckValidParams(NewPlaceTitle, NewDescription, NewHeaderURL, NewLogoURL);
-                    UpdateSelectedPlaceObject();
-                    Navigation.PushAsync(new FoodPlacePreviewPage(SelectedPlace));
-            }, this);
+            if (ValidParams())
+            {
+                UpdateSelectedPlaceObject();
+                Navigation.PushAsync(new FoodPlacePreviewPage(SelectedPlace));
+            }
+            else
+            {
+                this.DisplayFillFieldsAlert();
+            }
+        }
+
+        private bool ValidParams()
+        {
+            return ParamsChecker.ValidParams(NewPlaceTitle, NewDescription, NewHeaderURL, NewLogoURL);
         }
 
         private void DeletePlaceClicked(object sender, EventArgs e)

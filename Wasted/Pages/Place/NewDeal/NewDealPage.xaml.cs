@@ -14,6 +14,9 @@ namespace Wasted.Pages.Place.NewDeal
     public partial class NewDealPage : ContentPage
     {
         public FoodPlace SelectedPlace { get; set; }
+        private string TitleText => TitleEntry.Text;
+        private string CurrentCostText => CurrentCostEntry.Text;
+        private string RegularCostText => RegularCostEntry.Text;
 
         public NewDealPage(FoodPlace selectedPlace)
         {
@@ -28,26 +31,30 @@ namespace Wasted.Pages.Place.NewDeal
             if (!NumberParser.IsValidNumberString(e.NewTextValue))
                 ((Entry) sender).Text = e.OldTextValue;
         }
-
-        private void GoToNextPage(string titleText, string currentCostText, string previousCostText)
-        {
-            ExceptionChecker.CheckValidParams(titleText, currentCostText, previousCostText);
-            Deal currentDeal = new Deal(
-                foodPlaceId: SelectedPlace.Id,
-                title: titleText,
-                currentCost: double.Parse(currentCostText),
-                previousCost: double.Parse(previousCostText)
-            );
-            SelectedPlace.Deals.Add(currentDeal);
-            Navigation.PushAsync(new NewDealNextPage(currentDeal));
-        }
+        
 
         private void NextButtonClicked(object sender, EventArgs e)
         {
-            ExceptionHandler.WrapFunctionCall(
-                () => GoToNextPage(TitleEntry.Text, CurrentCostEntry.Text, RegularCostEntry.Text),
-                this
-            );
+            if (ValidParams())
+            {
+                Deal currentDeal = new Deal(
+                    foodPlaceId: SelectedPlace.Id,
+                    title: TitleText,
+                    currentCost: double.Parse(CurrentCostText),
+                    previousCost: double.Parse(RegularCostText) //TODO: make consistent property names
+                );
+                SelectedPlace.Deals.Add(currentDeal);
+                Navigation.PushAsync(new NewDealNextPage(currentDeal));
+            }
+            else
+            {
+                this.DisplayFillFieldsAlert();
+            }
+        }
+
+        private bool ValidParams()
+        {
+            return ParamsChecker.ValidParams(TitleText, CurrentCostText, RegularCostText);
         }
 
         private void BackClicked(object sender, EventArgs e)
