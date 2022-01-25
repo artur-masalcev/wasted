@@ -18,8 +18,6 @@ namespace Wasted.Pages.Client
     public partial class FoodPlacesPage : ContentPage
     {
         public FoodPlace SelectedFoodPlace { get; set; }
-        private readonly CurrentUserService _service;
-
         public FoodPlacesPage(FoodPlace selectedFoodPlace)
         {
             SelectedFoodPlace = selectedFoodPlace;
@@ -28,8 +26,6 @@ namespace Wasted.Pages.Client
             On<iOS>().SetUseSafeArea(true);
 
             InitializeViews();
-
-            _service = DependencyService.Get<CurrentUserService>();
         }
 
         /// <summary>

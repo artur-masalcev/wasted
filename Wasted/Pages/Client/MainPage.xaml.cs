@@ -9,7 +9,7 @@ namespace Wasted.Pages.Client
     {
         public MainPage()
         {
-            InitializeComponent();
+            InitializeComponent(); //TODO: pass user as binding
             SelectedTabColor = Color.Black;
         }
     }

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using Wasted.Pages.Place;
 using Wasted.Utils;
 using Wasted.Utils.Exceptions;
 using Wasted.Utils.Services;
@@ -32,41 +35,40 @@ namespace Wasted.Pages.Login
         {
             if (ValidParams())
             {
-                Tuple<User, Func<User>> userDetails = GetUserDetails(UserName, UserPassword); //TODO: think when to pass parameters and when use global
-                User user = userDetails.Item1;
-                Func<User> userGettingFunction = userDetails.Item2;
-                if (user != null)
+                Func<User>[] loginMethods = {LoginPlaceUser, LoginClientUser};
+                User loggedUser = loginMethods.Select(login => login.Invoke())
+                    .FirstOrDefault(user => user != null);
+                if (loggedUser != null)
                 {
-                    Location userLocation = GetLocation().Result;
-                    _service.CurrentUser = user; //Sets user for whole app
-                    _service.UserGettingFunction = userGettingFunction;
-                    _service.UserLocation = userLocation;
-                    user.PushPage(this); //Creates appropriate page
+                    loggedUser.PushPage(this);
                 }
                 else
                 {
                     DisplayAlert("", "Username or password is incorrect. Try Again.", "OK");
                 }
             }
+            else
+            {
+                this.DisplayFillFieldsAlert();
+            }
+        }
+
+        private PlaceUser LoginPlaceUser() //TODO: probably move UserName and UserPassword outside properties
+        {
+            PlaceUser placeUser = DataProvider.GetPlaceUser(UserName, UserPassword); //TODO: do user specific DI
+            if (placeUser != null)
+                placeUser.Location = GetLocation().Result;
+            return placeUser;
+        }
+
+        private ClientUser LoginClientUser()
+        {
+            return DataProvider.GetClientUser(UserName, UserPassword);
         }
 
         private bool ValidParams()
         {
             return ParamsChecker.ValidParams(UserName, UserPassword);
-        }
-
-        private Tuple<User, Func<User>> GetUserDetails(string username, string password)
-        {
-            User user = DataProvider.GetPlaceUser(username, password);
-            if (user != null) //TODO: rewrite with optional if exists
-            {
-                return new Tuple<User, Func<User>>(user, () => DataProvider.GetPlaceUser(username, password));
-            }
-
-            user = DataProvider.GetClientUser(username, password);
-            return user != null ?
-                new Tuple<User, Func<User>>(user, () => DataProvider.GetClientUser(username, password)) :
-                null;
         }
 
         /// <summary>
@@ -77,12 +79,10 @@ namespace Wasted.Pages.Login
             Location location = null;
             try
             {
-                location = await Geolocation.GetLastKnownLocationAsync();
-                if (location == null)
-                {
-                    location = await Geolocation.GetLocationAsync(
-                        new GeolocationRequest(GeolocationAccuracy.Default, TimeSpan.FromSeconds(5)));
-                }
+                location = await Geolocation.GetLastKnownLocationAsync() ??
+                           await Geolocation.GetLocationAsync(
+                               new GeolocationRequest(GeolocationAccuracy.Default, TimeSpan.FromSeconds(5))
+                           );
             }
             catch (Exception ex)
             {

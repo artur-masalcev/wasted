@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Wasted.Utils.Services;
 using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Forms;
@@ -11,40 +12,28 @@ namespace Wasted.Pages.Login
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserAccountTypePage : ContentPage
     {
-        public CurrentUserService CurrentUserService { get; set; }
+        private readonly Dictionary<string, Func<User>> _userDictionary = new Dictionary<string, Func<User>>
+        {
+            {"User", () => new ClientUser()},
+            {"FoodPlace", () => new PlaceUser()}
+        };
 
         public UserAccountTypePage()
         {
             InitializeComponent();
-            CurrentUserService = DependencyService.Get<CurrentUserService>();
             On<iOS>().SetUseSafeArea(true); // Put margin on iOS devices that have top notch
-            CurrentUserService.CurrentUser = new ClientUser();
         }
 
         private void ContinueClicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new UserRegistrationDataPage());
+            User user = _userDictionary[(string)RadioButton.Value].Invoke();
+            Navigation.PushAsync(new UserRegistrationDataPage(user));
         }
 
         private void BackClicked(object sender, EventArgs e)
         {
             Navigation.PopAsync(true);
             base.OnBackButtonPressed();
-        }
-
-        private void OnUserTypeRadioButtonCheckedChanged(object sender, CheckedChangedEventArgs e)
-        {
-            RadioButton radioButton = sender as RadioButton;
-            switch (radioButton.Value)
-            {
-                case "User":
-                    CurrentUserService.CurrentUser = new ClientUser();
-                    break;
-
-                case "FoodPlace":
-                    CurrentUserService.CurrentUser = new PlaceUser();
-                    break;
-            }
         }
     }
 }

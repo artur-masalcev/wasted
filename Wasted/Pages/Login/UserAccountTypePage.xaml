@@ -94,10 +94,9 @@
             <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" Margin="0, 50">
                 <!--#region User radio button-->
                 <StackLayout WidthRequest="200" HorizontalOptions="Start">
-                    <RadioButton Value="User"
+                    <RadioButton x:Name="RadioButton" Value="User"
                                  HorizontalOptions="Center"
-                                 IsChecked="True"
-                                 CheckedChanged="OnUserTypeRadioButtonCheckedChanged">
+                                 IsChecked="True">
                         <RadioButton.Content>
                             <Image Source="user" />
                         </RadioButton.Content>
@@ -113,8 +112,7 @@
                 <!--#region FoodPlace radio button-->
                 <StackLayout WidthRequest="200" HorizontalOptions="End">
                     <RadioButton Value="FoodPlace"
-                                 HorizontalOptions="Center"
-                                 CheckedChanged="OnUserTypeRadioButtonCheckedChanged">
+                                 HorizontalOptions="Center">
                         <RadioButton.Content>
                             <Image Source="foodplace" />
                         </RadioButton.Content>

@@ -25,16 +25,16 @@ namespace Wasted.Pages.Place
 
         public HomePage()
         {
-            _service = DependencyService.Get<CurrentUserService>();
-            InitializeComponent();
-            _currentPlaceUser = (PlaceUser) _service.CurrentUser;
-            BindingContext = this;
+            // _service = DependencyService.Get<CurrentUserService>();
+            // InitializeComponent();
+            // _currentPlaceUser = (PlaceUser) _service.CurrentUser;
+            // BindingContext = this;
             On<iOS>().SetUseSafeArea(true);
         }
 
         protected override void OnAppearing()
         {
-            PlacesCollectionView.ItemsSource = ((PlaceUser) _service.CurrentUser).OwnedPlaces;
+            // PlacesCollectionView.ItemsSource = ((PlaceUser) _service.CurrentUser).OwnedPlaces;
             base.OnAppearing();
         }
 

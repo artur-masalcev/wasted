@@ -14,9 +14,11 @@ namespace Wasted.Pages.Login
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserRegistrationDataPage : ContentPage
     {
-        public UserRegistrationDataPage()
+        private readonly User _user;
+        public UserRegistrationDataPage(User user)
         {
             InitializeComponent();
+            _user = user;
             On<iOS>().SetUseSafeArea(true); // Put margin on iOS devices that have top notch
         }
 
@@ -46,10 +48,8 @@ namespace Wasted.Pages.Login
 
             if (!existsUser)
             {
-                CurrentUserService currentUserService = DependencyService.Get<CurrentUserService>();
-                User user = currentUserService.CurrentUser;
-                user.Username = username;
-                user.Password = password;
+                _user.Username = username;
+                _user.Password = password;
                 Navigation.PushAsync(new UserRegistrationDeliveryPage());
             }
             else

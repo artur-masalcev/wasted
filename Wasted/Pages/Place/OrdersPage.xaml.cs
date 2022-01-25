@@ -34,10 +34,10 @@ namespace Wasted.Pages.Place
 
         public OrdersPage()
         {
-            _service = DependencyService.Get<CurrentUserService>();
-            CurrentUser = (PlaceUser) _service.CurrentUser;
-            OwnedPlaces = CurrentUser.OwnedPlaces;
-            InitializeComponent();
+            // _service = DependencyService.Get<CurrentUserService>();
+            // CurrentUser = (PlaceUser) _service.CurrentUser;
+            // OwnedPlaces = CurrentUser.OwnedPlaces;
+            // InitializeComponent();
             
             On<iOS>().SetUseSafeArea(true);
         }
