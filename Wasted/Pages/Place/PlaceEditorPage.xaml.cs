@@ -28,7 +28,7 @@ namespace Wasted.Pages.Place
         private string NewHeaderURL => SelectedPlace.HeaderURL;
         private string NewLogoURL => SelectedPlace.LogoURL;
 
-        private CurrentUserService _service = DependencyService.Get<CurrentUserService>();
+        private readonly UserDetailsService _detailsService = DependencyService.Get<UserDetailsService>(); //TODO: think constructor vs field injection
 
         public PlaceEditorPage(FoodPlace selectedPlace)
         {
@@ -69,8 +69,7 @@ namespace Wasted.Pages.Place
             if (ValidParams())
             {
                 UpdateSelectedPlaceObject();
-                DataProvider.UpdateFoodPlace(SelectedPlace);
-                _service.UpdateUserInfo(); //TODO: refactor to not call update separately
+                DataProvider.UpdateFoodPlace(SelectedPlace); //TODO: refactor methods to go correctly from top to bottom
             }
             else
             {
@@ -99,8 +98,7 @@ namespace Wasted.Pages.Place
         private void DeletePlaceClicked(object sender, EventArgs e)
         {
             DataProvider.DeleteFoodPlace(SelectedPlace);
-            _service.UpdateUserInfo();
-            _service.CurrentUser.PushPage(this);
+            PageManager.PushPlacePage(this);
         }
 
         private void DescriptionEntryTextChanged(object sender, TextChangedEventArgs e)

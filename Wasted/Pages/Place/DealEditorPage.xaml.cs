@@ -29,7 +29,7 @@ namespace Wasted.Pages.Place
         private string NewDueDate => DueDatePicker.Date.ToString(Constants.DateFormat);
         private string NewDescription => DescriptionEntry.Text;
 
-        private CurrentUserService _service = DependencyService.Get<CurrentUserService>();
+        private UserDetailsService _detailsService = DependencyService.Get<UserDetailsService>();
 
         public DealEditorPage(Deal selectedDeal)
         {
@@ -88,7 +88,6 @@ namespace Wasted.Pages.Place
             {
                 UpdateSelectedDealObject();
                 DataProvider.UpdateDeal(SelectedDeal);
-                _service.UpdateUserInfo(); //TODO: Looks similar to previous classes
             }
             else
             {
@@ -118,7 +117,6 @@ namespace Wasted.Pages.Place
         private void DeleteOfferClicked(object sender, EventArgs e)
         {
             DataProvider.DeleteDeal(SelectedDeal);
-            _service.UpdateUserInfo();
             Navigation.PopAsync();
         }
     }

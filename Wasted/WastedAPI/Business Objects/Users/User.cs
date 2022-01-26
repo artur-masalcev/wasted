@@ -26,7 +26,7 @@ namespace Wasted.WastedAPI.Business_Objects.Users
             Id = id;
         }
 
-        public abstract void PushPage(ContentPage page);
+        public abstract void InitializePage(Page page);
         public abstract void CreateUser();
     }
 }

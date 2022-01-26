@@ -15,7 +15,7 @@ namespace Wasted.Pages.Client.DealPage
     public partial class ItemsPage : ContentPage
     {
         public Deal SelectedDeal { get; set; }
-        private readonly CurrentUserService _service;
+        private readonly UserDetailsService _detailsService;
 
         public ItemsPage(Deal selectedDeal)
         {
@@ -27,7 +27,7 @@ namespace Wasted.Pages.Client.DealPage
 
             BindingContext = SelectedDeal;
 
-            _service = DependencyService.Get<CurrentUserService>();
+            _detailsService = DependencyService.Get<UserDetailsService>();
         }
 
         /// <summary>

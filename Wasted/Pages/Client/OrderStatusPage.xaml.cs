@@ -18,11 +18,11 @@ namespace Wasted.Pages.Client
     public partial class OrderStatusPage : ContentPage
     {
         private IEnumerable<OrderDeal> OrderedDeals { get; set; }
-        private readonly CurrentUserService _service;
+        private readonly UserDetailsService _detailsService;
 
         public OrderStatusPage()
         {
-            _service = DependencyService.Get<CurrentUserService>();
+            _detailsService = DependencyService.Get<UserDetailsService>();
             InitializeComponent();
 
             On<iOS>().SetUseSafeArea(true);
@@ -34,10 +34,10 @@ namespace Wasted.Pages.Client
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            OrderedDeals = DataProvider.GetClientOrders(_service.CurrentUser.Id)
+            OrderedDeals = DataProvider.GetClientOrders(_detailsService.UserId)
                 .Where(order => order.Status != OrderStatus.InCart);
 
-            OrderedDealsCollectionView.ItemsSource = null;
+            OrderedDealsCollectionView.ItemsSource = null; //TODO: inspect why this helps
             OrderedDealsCollectionView.ItemsSource = OrderedDeals;
         }
 

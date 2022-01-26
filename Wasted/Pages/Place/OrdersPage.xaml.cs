@@ -17,7 +17,7 @@ namespace Wasted.Pages.Place
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrdersPage : ContentPage
     {
-        private readonly CurrentUserService _service;
+        private readonly UserDetailsService _detailsService;
         private List<OrderDeal> PlaceOrders { get; set; }
         public PlaceUser CurrentUser { get; set; }
         private IEnumerable<FoodPlace> _ownedPlaces;

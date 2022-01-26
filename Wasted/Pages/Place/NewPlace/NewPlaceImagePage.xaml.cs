@@ -40,13 +40,12 @@ namespace Wasted.Pages.Place.NewPlace
         {
             if (ValidParams())
             {
-                CurrentUserService service = DependencyService.Get<CurrentUserService>();
-                PlaceUser currentPlaceUser = (PlaceUser) service.CurrentUser;
+                UserDetailsService detailsService = DependencyService.Get<UserDetailsService>();
+                PlaceUser currentPlaceUser = DataProvider.GetPlaceUser(detailsService);
                 CurrentPlace.PlaceUserId = currentPlaceUser.Id;
                 CurrentPlace.FoodPlaceTypeId = 1; //TODO: let select
                 DataProvider.CreateFoodPlace(CurrentPlace);
-                service.UpdateUserInfo(); //Fetches the id of a new place
-                currentPlaceUser.PushPage(this);
+                currentPlaceUser.InitializePage(this);
             }
             else
             {

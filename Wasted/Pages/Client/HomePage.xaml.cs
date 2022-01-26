@@ -15,11 +15,11 @@ namespace Wasted.Pages.Client
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
-        private readonly CurrentUserService _service;
+        private readonly UserDetailsService _detailsService;
 
         public HomePage()
         {
-            _service = DependencyService.Get<CurrentUserService>();
+            _detailsService = DependencyService.Get<UserDetailsService>();
             InitializeComponent();
             On<iOS>().SetUseSafeArea(true);
         }
@@ -32,7 +32,7 @@ namespace Wasted.Pages.Client
             base.OnAppearing();
 
             NearbyFoodPlacesCollectionView.ItemsSource =
-                DataOrganizer.SortPlacesByUserLocation(DataProvider.GetAllFoodPlaces(), _service.UserLocation,
+                DataOrganizer.SortPlacesByUserLocation(DataProvider.GetAllFoodPlaces(), _detailsService.UserLocation,
                     nearbyPlacesCount: 10, maxRadiusInKilometers: 50);
 
             SpecialOffersCollectionView.ItemsSource = DataOrganizer.FilterDeals(

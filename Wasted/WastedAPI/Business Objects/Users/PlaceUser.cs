@@ -8,7 +8,6 @@ namespace Wasted.WastedAPI.Business_Objects.Users
     public class PlaceUser : User
     {
         public List<FoodPlace> OwnedPlaces { get; set; }
-        public Location Location { get; set; }
 
         public PlaceUser(string username = null, string password = null, string name = null,
             string surname = null, string city = null, string address = null,
@@ -18,7 +17,7 @@ namespace Wasted.WastedAPI.Business_Objects.Users
             OwnedPlaces = foodPlaces ?? new List<FoodPlace>();
         }
 
-        public override void PushPage(ContentPage page)
+        public override void InitializePage(Page page)
         {
             PageManager.PushPlacePage(page);
         }

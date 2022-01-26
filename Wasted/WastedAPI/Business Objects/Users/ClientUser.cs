@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using DataAPI.DTO;
 using Wasted.Pages.Place;
+using Wasted.Utils;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Wasted.WastedAPI.Business_Objects.Users
@@ -9,7 +11,7 @@ namespace Wasted.WastedAPI.Business_Objects.Users
     {
         public List<RatingDTO> Ratings { get; set; }
 
-        public override void PushPage(ContentPage page)
+        public override void InitializePage(Page page)
         {
             PageManager.PushClientPage(page);
         }

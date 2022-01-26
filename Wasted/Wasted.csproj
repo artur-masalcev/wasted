@@ -12,11 +12,11 @@
 
     <ItemGroup>
 	    <Compile Remove="Images\**" />
-	    <Compile Include="..\DataAPI\DTO\ClientUserDTO.cs">
-	      <Link>WastedAPI\Business Objects\DTO\ClientUserDTO.cs</Link>
-	    </Compile>
 	    <Compile Include="..\DataAPI\DTO\DealDTO.cs">
 	      <Link>WastedAPI\Business Objects\DTO\DealDTO.cs</Link>
+	    </Compile>
+	    <Compile Include="..\DataAPI\DTO\Users\ClientUserDTO.cs">
+	      <Link>WastedAPI\Business Objects\DTO\ClientUserDTO.cs</Link>
 	    </Compile>
 	    <Compile Include="..\DataAPI\DTO\FoodPlaceDTO.cs">
 	      <Link>WastedAPI\Business Objects\DTO\FoodPlaceDTO.cs</Link>
@@ -27,11 +27,11 @@
 	    <Compile Include="..\DataAPI\DTO\OrderDTO.cs">
 	      <Link>WastedAPI\Business Objects\DTO\OrderDTO.cs</Link>
 	    </Compile>
-	    <Compile Include="..\DataAPI\DTO\PlaceUserDTO.cs">
-	      <Link>WastedAPI\Business Objects\DTO\PlaceUserDTO.cs</Link>
-	    </Compile>
 	    <Compile Include="..\DataAPI\DTO\RatingDTO.cs">
 	      <Link>WastedAPI\Business Objects\DTO\RatingDTO.cs</Link>
+	    </Compile>
+	    <Compile Include="..\DataAPI\DTO\Users\PlaceUserDTO.cs">
+	      <Link>WastedAPI\Business Objects\DTO\PlaceUserDTO.cs</Link>
 	    </Compile>
 	    <Compile Include="..\DataAPI\Models\Users\AbstractUser.cs">
 	      <Link>WastedAPI\Business Objects\DTO\AbstractUser.cs</Link>

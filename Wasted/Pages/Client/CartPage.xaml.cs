@@ -15,7 +15,7 @@ namespace Wasted.Pages.Client
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CartPage : ContentPage
     {
-        private readonly CurrentUserService _service;
+        private readonly UserDetailsService _detailsService;
         private List<OrderDeal> AllCartDeals { get; set; }
 
         private List<OrderDeal> CurrentCartDeals =>
@@ -26,8 +26,8 @@ namespace Wasted.Pages.Client
         public CartPage()
         {
             InitializeComponent();
-            _service = DependencyService.Get<CurrentUserService>();
-            AllCartDeals = DataProvider.GetClientOrders(_service.CurrentUser.Id);
+            _detailsService = DependencyService.Get<UserDetailsService>();
+            AllCartDeals = DataProvider.GetClientOrders(_detailsService.UserId);
 
             On<iOS>().SetUseSafeArea(true);
         }
@@ -38,7 +38,7 @@ namespace Wasted.Pages.Client
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            AllCartDeals = DataProvider.GetClientOrders(_service.CurrentUser.Id);
+            AllCartDeals = DataProvider.GetClientOrders(_detailsService.UserId);
             CartDealsCollectionView.ItemsSource = null;
             CartDealsCollectionView.ItemsSource = CurrentCartDeals;
             Total.Text = "Total " + CurrentCartDeals.Sum(deal => deal.Cost) + " eur.";

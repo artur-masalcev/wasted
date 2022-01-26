@@ -4,13 +4,14 @@ using AutoMapper;
 using DataAPI.DTO;
 using DataAPI.Models.Users;
 using DataAPI.Repositories;
+using DataAPI.Repositories.Users;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DataAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PlaceUsersController : ControllerBase
+    public class PlaceUsersController : ControllerBase, IUsersController<PlaceUserDTO>
     {
         private readonly PlaceUsersRepository _placeUsersRepository;
         private readonly IMapper _mapper;
@@ -21,20 +22,19 @@ namespace DataAPI.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet] //TODO: delete method
         public IEnumerable<PlaceUserDTO> GetPlaceUsers()
         {
             return _placeUsersRepository.Get().Select(_mapper.Map<PlaceUserDTO>);
         }
 
         [HttpGet("{username}/{password}")]
-        public PlaceUserDTO GetPlaceUser(string username, string password)
+        public PlaceUserDTO GetByUsernameAndPassword(string username, string password)
         {
             return _placeUsersRepository
                 .Get()
                 .Select(_mapper.Map<PlaceUserDTO>)
-                .FirstOrDefault(user => user.Username == username && user.Password == password);
-        }
+                .FirstOrDefault(user => user.Username == username && user.Password == password);        }
 
         [HttpPost]
         public ActionResult<PlaceUser> PostPlaceUser([FromBody] PlaceUser placeUser)

@@ -55,7 +55,8 @@ namespace DataAPI.Logging
                 {
                     _logger.Error(e, $"Failure: {controller}");
                 }
-                await HandleException(context); 
+                // await HandleException(context); 
+                Console.WriteLine(e.StackTrace);
             }
 
             if (first == false)

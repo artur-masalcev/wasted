@@ -4,13 +4,14 @@ using AutoMapper;
 using DataAPI.DTO;
 using DataAPI.Models.Users;
 using DataAPI.Repositories;
+using DataAPI.Repositories.Users;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DataAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ClientUsersController : ControllerBase
+    public class ClientUsersController : ControllerBase, IUsersController<ClientUserDTO>
     {
         private readonly ClientUsersRepository _clientUsersRepository;
         private readonly IMapper _mapper;
@@ -22,19 +23,20 @@ namespace DataAPI.Controllers
         }
 
         [HttpGet("{username}/{password}")]
-        public ClientUserDTO GetClientUser(string username, string password)
+        public ClientUserDTO GetByUsernameAndPassword(string username, string password)
         {
-            return _clientUsersRepository
-                .Get()
+            return _clientUsersRepository.Get()
                 .Select(_mapper.Map<ClientUserDTO>)
                 .FirstOrDefault(user => user.Username == username && user.Password == password);
+            
         }
+
 
         [HttpPost]
         public ActionResult<ClientUser> PostClientUser([FromBody] ClientUser clientUser)
         {
             var newClientUser = _clientUsersRepository.Create(clientUser);
-            return CreatedAtAction(nameof(GetClientUser), new {id = newClientUser.Id}, newClientUser);
+            return CreatedAtAction(nameof(GetByUsernameAndPassword), new {id = newClientUser.Id}, newClientUser);
         }
     }
 }

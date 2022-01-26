@@ -58,6 +58,9 @@
     <Compile Remove="Migrations\20211212162902_c.cs" />
     <Compile Remove="Migrations\20211212162902_c.Designer.cs" />
     <Compile Remove="Migrations\20211212105828_a.Designer.cs" />
+    <Compile Include="..\Wasted\Constants.cs">
+      <Link>Constants.cs</Link>
+    </Compile>
   </ItemGroup>
 
 

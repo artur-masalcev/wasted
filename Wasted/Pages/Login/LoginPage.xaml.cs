@@ -19,14 +19,14 @@ namespace Wasted.Pages.Login
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        private readonly CurrentUserService _service;
+        private readonly UserDetailsService _detailsService;
 
         private string UserName => UsernameEntry.Text;
         private string UserPassword => PasswordEntry.Text;
 
         public LoginPage()
         {
-            _service = DependencyService.Get<CurrentUserService>();
+            _detailsService = DependencyService.Get<UserDetailsService>();
             InitializeComponent();
             On<iOS>().SetUseSafeArea(true);
         }
@@ -35,12 +35,13 @@ namespace Wasted.Pages.Login
         {
             if (ValidParams())
             {
-                Func<User>[] loginMethods = {LoginPlaceUser, LoginClientUser};
-                User loggedUser = loginMethods.Select(login => login.Invoke())
-                    .FirstOrDefault(user => user != null);
+                User loggedUser = DataProvider.GetUser(UserName, UserPassword);
                 if (loggedUser != null)
                 {
-                    loggedUser.PushPage(this);
+                    loggedUser.InitializePage(this);
+                    _detailsService.UserId = loggedUser.Id;
+                    _detailsService.UserName = loggedUser.Username;
+                    _detailsService.UserPassword = loggedUser.Password;
                 }
                 else
                 {
@@ -53,43 +54,9 @@ namespace Wasted.Pages.Login
             }
         }
 
-        private PlaceUser LoginPlaceUser() //TODO: probably move UserName and UserPassword outside properties
-        {
-            PlaceUser placeUser = DataProvider.GetPlaceUser(UserName, UserPassword); //TODO: do user specific DI
-            if (placeUser != null)
-                placeUser.Location = GetLocation().Result;
-            return placeUser;
-        }
-
-        private ClientUser LoginClientUser()
-        {
-            return DataProvider.GetClientUser(UserName, UserPassword);
-        }
-
         private bool ValidParams()
         {
             return ParamsChecker.ValidParams(UserName, UserPassword);
-        }
-
-        /// <summary>
-        /// Gets user's location
-        /// </summary>
-        private async Task<Location> GetLocation()
-        {
-            Location location = null;
-            try
-            {
-                location = await Geolocation.GetLastKnownLocationAsync() ??
-                           await Geolocation.GetLocationAsync(
-                               new GeolocationRequest(GeolocationAccuracy.Default, TimeSpan.FromSeconds(5))
-                           );
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Error", ex.Message, "OK");
-            }
-
-            return location;
         }
 
         private void SignUpClicked(object sender, EventArgs e)

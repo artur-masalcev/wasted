@@ -1,5 +1,8 @@
+using DataAPI.Controllers;
 using DataAPI.Logging;
+using DataAPI.Models.Users;
 using DataAPI.Repositories;
+using DataAPI.Repositories.Users;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -24,9 +27,11 @@ namespace DataAPI
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.File("Logging/log.txt", rollingInterval: RollingInterval.Day)
                 .CreateLogger();
-            
+
             services.AddSingleton(x => Log.Logger);
             services.AddAutoMapper(typeof(Startup));
+            services.AddScoped<IUsersController<AbstractUser>, ClientUsersController>();
+            services.AddScoped<IUsersController<AbstractUser>, PlaceUsersController>();
             services.AddScoped<DealsRepository>();
             services.AddScoped<PlacesRepository>();
             services.AddScoped<ClientUsersRepository>();

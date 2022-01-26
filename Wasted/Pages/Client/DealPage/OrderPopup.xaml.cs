@@ -12,10 +12,10 @@ namespace Wasted.Pages.Client.DealPage
     public partial class OrderPopup : PopupPage
     {
         public Deal SelectedDeal { get; set; }
-        private readonly CurrentUserService _service;
+        private readonly UserDetailsService _detailsService;
         public int StepperDealQuantity => SelectedDeal.Quantity == 0 ? 1 : SelectedDeal.Quantity;
 
-        private int _selectedCount = 0;
+        private int _selectedCount;
 
         public int SelectedCount
         {
@@ -32,7 +32,7 @@ namespace Wasted.Pages.Client.DealPage
             SelectedDeal = deal;
             InitializeComponent();
             BindingContext = this;
-            _service = DependencyService.Get<CurrentUserService>();
+            _detailsService = DependencyService.Get<UserDetailsService>();
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Wasted.Pages.Client.DealPage
                     SelectedDeal.Id,
                     OrderStatus.InCart,
                     (int) Stepper.Value,
-                    _service.CurrentUser.Id,
+                    _detailsService.UserId,
                     SelectedDeal.PlaceUserId,
                     SelectedDeal.Title,
                     SelectedDeal.CurrentCost

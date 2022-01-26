@@ -17,9 +17,12 @@ namespace Wasted.Pages.Login
         private string UserSurname => SurnameEntry.Text;
         private string UserCity => CityEntry.Text;
         private string UserAddress => AddressEntry.Text;
-        public UserRegistrationDeliveryPage()
+
+        private User _user;
+        public UserRegistrationDeliveryPage(User user)
         {
             InitializeComponent(); //FOverride initialize component with custom page
+            _user = user;
             On<iOS>().SetUseSafeArea(true); // Put margin on iOS devices that have top notch
         }
 
@@ -27,15 +30,12 @@ namespace Wasted.Pages.Login
         {
             if (ValidParams())
             {
-                CurrentUserService currentUserService = DependencyService.Get<CurrentUserService>();
-                User currentUser = currentUserService.CurrentUser;
+                _user.Name = UserName;
+                _user.Surname = UserSurname;
+                _user.City = UserCity;
+                _user.Address = UserAddress;
 
-                currentUser.Name = UserName;
-                currentUser.Surname = UserSurname;
-                currentUser.City = UserCity;
-                currentUser.Address = UserAddress;
-
-                currentUser.CreateUser();
+                _user.CreateUser();
                 Navigation.PushAsync(new LoginPage());
             }
             else

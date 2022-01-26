@@ -19,7 +19,7 @@ namespace Wasted.Pages.Place
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
-        private readonly CurrentUserService _service;
+        private readonly UserDetailsService _detailsService;
         private PlaceUser _currentPlaceUser;
         public List<FoodPlace> OwnedPlaces => _currentPlaceUser.OwnedPlaces;
 

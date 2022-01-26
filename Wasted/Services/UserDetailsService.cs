@@ -8,20 +8,15 @@ using Wasted.WastedAPI.Business_Objects.Users;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(CurrentUserService))]
+[assembly: Dependency(typeof(UserDetailsService))]
 
 namespace Wasted.Utils.Services
 {
-    public class CurrentUserService
+    public class UserDetailsService
     {
-        public Func<User> UserGettingFunction;
-
-        public void UpdateUserInfo()
-        {
-            CurrentUser = UserGettingFunction.Invoke();
-        }
-
-        public User CurrentUser { get; set; }
+        public int UserId { get; set; } //TODO: convert to long
+        public string UserName { get; set; }
+        public string UserPassword { get; set; }
         public Location UserLocation { get; set; }
     }
 }

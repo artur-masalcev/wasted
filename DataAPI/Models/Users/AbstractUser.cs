@@ -1,8 +1,10 @@
 ﻿namespace DataAPI.Models.Users
 {
-    public class AbstractUser
+    public abstract class AbstractUser
     {
         public int Id { get; set; }
+        
+        public abstract string UserType { get; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }

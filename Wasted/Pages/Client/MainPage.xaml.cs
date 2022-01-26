@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using Wasted.Utils;
+using Wasted.Utils.Services;
+using Xamarin.Forms;
 
 namespace Wasted.Pages.Client
 {
@@ -9,7 +11,9 @@ namespace Wasted.Pages.Client
     {
         public MainPage()
         {
-            InitializeComponent(); //TODO: pass user as binding
+            InitializeComponent();
+            UserDetailsService detailsService = DependencyService.Get<UserDetailsService>();
+            detailsService.UserLocation = LocationUtils.GetLocation(this).Result;
             SelectedTabColor = Color.Black;
         }
     }

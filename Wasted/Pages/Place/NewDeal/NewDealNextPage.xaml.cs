@@ -37,14 +37,13 @@ namespace Wasted.Pages.Place.NewDeal
 
         private void DoneButtonClicked(object sender, EventArgs e)
         {
-            CurrentUserService service = DependencyService.Get<CurrentUserService>();
-            string dealExpirationDate = DueDatePicker.Date.ToString("yyyy-MM-dd");
+            string dealExpirationDate = DueDatePicker.Date.ToString(Constants.DateFormat);
             if (ValidParams())
             {
                 CurrentDeal.Due = dealExpirationDate; //TODO: make not string
                 CurrentDeal.Description = DescriptionText;
                 DataProvider.CreateDeal(CurrentDeal);
-                service.CurrentUser.PushPage(this);
+                PageManager.PushPlacePage(this);
             }
             else
             {
