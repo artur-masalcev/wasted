@@ -24,7 +24,14 @@ namespace DataAPI.Controllers
         [HttpGet]
         public IEnumerable<DealDTO> GetDeals()
         {
-            return _dealsRepository.Get().Select(_mapper.Map<DealDTO>);
+            return _dealsRepository.GetDeals().Select(_mapper.Map<DealDTO>);
+        }
+        
+        [HttpGet("{specialOffersCount:int}")]
+        public IEnumerable<DealDTO> GetBestOffers(int specialOffersCount)
+        {
+            return _dealsRepository.GetBestOffers(specialOffersCount)
+                .Select(_mapper.Map<DealDTO>);
         }
 
         [HttpPost]

@@ -50,7 +50,8 @@ namespace Wasted.Pages.Client.DealPage
         /// </summary>
         private void RefreshView_Refreshing(object sender, EventArgs e)
         {
-            SelectedDeal = DataProvider.GetAllDeals().Find(deal => deal.Id == SelectedDeal.Id);
+            SelectedDeal = DataProvider.GetAllDeals()
+                .Find(deal => deal.Id == SelectedDeal.Id);
             BindingContext = SelectedDeal;
             RefreshView.IsRefreshing = false;
         }

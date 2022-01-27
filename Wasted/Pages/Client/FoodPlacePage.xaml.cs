@@ -34,8 +34,8 @@ namespace Wasted.Pages.Client
         private void InitializeViews()
         {
             ContentScrollView.BindingContext = SelectedFoodPlace;
-            DealsCollectionView.ItemsSource = DataOrganizer.FilterDeals(SelectedFoodPlace.Deals,
-                DefaultFilters.DealInStock);
+            DealsCollectionView.ItemsSource = SelectedFoodPlace.Deals
+                .Where(DefaultFilters.DealInStock);
 
             const int dealHeight = 220;
             DealsCollectionView.HeightRequest =

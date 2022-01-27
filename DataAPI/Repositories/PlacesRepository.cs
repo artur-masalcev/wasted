@@ -19,7 +19,7 @@ namespace DataAPI.Repositories
             _logger = logger;
         }
 
-        public IEnumerable<FoodPlace> Get()
+        public IEnumerable<FoodPlace> GetFoodPlaces()
         {
             return _dbContext.FoodPlaces
                 .Include(p => p.Deals)
@@ -27,6 +27,28 @@ namespace DataAPI.Repositories
                 .Include(p => p.PlaceType)
                 .ToList();
         }
+
+        public IEnumerable<FoodPlace> GetClosestFoodPlaces(Location userLocation, int nearbyPlacesCount, int maxRadiusInKilometers)
+        {
+            return (
+                    from place in GetFoodPlaces()
+                    let placeLocation = new Location(place.Latitude, place.Longitude)
+                    let distance = Location.CalculateDistance(userLocation, placeLocation,
+                        DistanceUnits.Kilometers)
+                    orderby distance
+                    where distance <= maxRadiusInKilometers
+                    select place
+                )
+                .Take(nearbyPlacesCount);
+        }
+
+        public IEnumerable<FoodPlace> GetTopRatedFoodPlaces(int popularPlacesCount)
+        {
+            return GetFoodPlaces()
+                .OrderBy(place => place.Ratings.Count)
+                .Take(popularPlacesCount);
+        }
+        
         public FoodPlace Create(FoodPlace foodPlace)
         {
             _dbContext.FoodPlaces.Add(foodPlace);

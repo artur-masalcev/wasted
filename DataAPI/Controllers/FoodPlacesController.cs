@@ -25,7 +25,24 @@ namespace DataAPI.Controllers
         [HttpGet]
         public IEnumerable<FoodPlaceDTO> GetFoodPlaces()
         {
-            return _placesRepository.Get().Select(_mapper.Map<FoodPlaceDTO>);
+            return _placesRepository.GetFoodPlaces()
+                .Select(_mapper.Map<FoodPlaceDTO>);
+        }
+
+        [HttpGet("{latitude:double}/{longitude:double}/{nearbyPlacesCount:int}/{maxRadiusInKilometers:int}")]
+        public IEnumerable<FoodPlaceDTO> GetClosestFoodPlaces(double latitude, double longitude, int nearbyPlacesCount,
+            int maxRadiusInKilometers)
+        {
+            Location userLocation = new Location(latitude, longitude);
+            return _placesRepository.GetClosestFoodPlaces(userLocation, nearbyPlacesCount, maxRadiusInKilometers)
+                .Select(_mapper.Map<FoodPlaceDTO>);
+        }
+        
+        [HttpGet("{popularPlacesCount:int}")]
+        public IEnumerable<FoodPlaceDTO> GetTopRatedFoodPlaces(int popularPlacesCount)
+        {
+            return _placesRepository.GetTopRatedFoodPlaces(popularPlacesCount)
+                .Select(_mapper.Map<FoodPlaceDTO>);
         }
 
         [HttpPost]
@@ -34,6 +51,8 @@ namespace DataAPI.Controllers
             var newFoodPlace = _placesRepository.Create(foodPlace);
             return CreatedAtAction(nameof(GetFoodPlaces), new {id = newFoodPlace.Id}, newFoodPlace);
         }
+        
+        
 
         [HttpDelete("{id:int}")]
         public ActionResult DeleteFoodPlace(int id)

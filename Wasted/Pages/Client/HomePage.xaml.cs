@@ -32,16 +32,13 @@ namespace Wasted.Pages.Client
             base.OnAppearing();
 
             NearbyFoodPlacesCollectionView.ItemsSource =
-                DataOrganizer.SortPlacesByUserLocation(DataProvider.GetAllFoodPlaces(), _detailsService.UserLocation,
-                    nearbyPlacesCount: 10, maxRadiusInKilometers: 50);
+                DataProvider.GetClosestFoodPlaces(_detailsService.UserLocation, nearbyPlacesCount: 10, maxRadiusInKilometers: 50);
 
-            SpecialOffersCollectionView.ItemsSource = DataOrganizer.FilterDeals(
-                DataOrganizer.SortDealsByPriceChangeRatio(DataProvider.GetAllDeals(), specialOffersCount: 10),
-                DefaultFilters.DealInStock
-            );
+            SpecialOffersCollectionView.ItemsSource =
+                DataProvider.GetBestOffers(specialOffersCount: 10);
 
             PopularFoodPlacesCollectionView.ItemsSource =
-                DataOrganizer.SortPlacesByRatingCountDescending(DataProvider.GetAllFoodPlaces(), popularPlacesCount: 10);
+                DataProvider.GetTopRatedFoodPlaces(popularPlacesCount: 10);
         }
 
         /// <summary>

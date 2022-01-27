@@ -11,6 +11,7 @@ using Wasted.Properties;
 using Wasted.Utils.Services;
 using Wasted.WastedAPI.Business_Objects;
 using Wasted.WastedAPI.Business_Objects.Users;
+using Xamarin.Essentials;
 
 namespace Wasted.WastedAPI
 {
@@ -40,11 +41,20 @@ namespace Wasted.WastedAPI
 
 
         public static List<Deal> GetAllDeals() => GetBusinessObject<List<Deal>>(DealsEnd);
+        public static List<Deal> GetBestOffers(int specialOffersCount) => GetBusinessObject<List<Deal>>(JoinParams(DealsEnd, specialOffersCount));
         public static void CreateDeal(Deal deal) => CreateBusinessObject(deal, DealsEnd);
         public static void UpdateDeal(Deal deal) => UpdateBusinessObject(deal, DealsEnd);
         public static void DeleteDeal(Deal deal) => DeleteBusinessObject(deal.Id, DealsEnd);
 
         public static List<FoodPlace> GetAllFoodPlaces() => GetBusinessObject<List<FoodPlace>>(FoodPlacesEnd);
+
+        public static List<FoodPlace> GetClosestFoodPlaces(Location userLocation, int nearbyPlacesCount, int maxRadiusInKilometers) =>
+            GetBusinessObject<List<FoodPlace>>(JoinParams(FoodPlacesEnd, userLocation.Longitude,
+                userLocation.Latitude, nearbyPlacesCount, maxRadiusInKilometers));
+
+        public static List<FoodPlace> GetTopRatedFoodPlaces(int popularPlacesCount) =>
+            GetBusinessObject<List<FoodPlace>>(JoinParams(FoodPlacesEnd, popularPlacesCount));
+        
         public static void CreateFoodPlace(FoodPlace foodPlace) => CreateBusinessObject(foodPlace, FoodPlacesEnd);
         public static void DeleteFoodPlace(FoodPlace foodPlace) => DeleteBusinessObject(foodPlace.Id, FoodPlacesEnd);
         public static void UpdateFoodPlace(FoodPlace foodPlace) => UpdateBusinessObject(foodPlace, FoodPlacesEnd);
@@ -75,17 +85,17 @@ namespace Wasted.WastedAPI
         public static List<FoodPlaceType> GetFoodPlaceTypes() => GetBusinessObject<List<FoodPlaceType>>(PlaceTypeEnd);
 
         public static List<OrderDeal> GetClientOrders(int clientUserId) =>
-            GetBusinessObject<List<OrderDeal>>(JoinParams(OrdersEnd, ClientUsersEnd, clientUserId.ToString()));
+            GetBusinessObject<List<OrderDeal>>(JoinParams(OrdersEnd, ClientUsersEnd, clientUserId));
 
         public static List<OrderDeal> GetPlaceOrders(int placeUserId) =>
-            GetBusinessObject<List<OrderDeal>>(JoinParams(OrdersEnd, PlaceUsersEnd, placeUserId.ToString()));
+            GetBusinessObject<List<OrderDeal>>(JoinParams(OrdersEnd, PlaceUsersEnd, placeUserId));
 
         public static void CreateOrder(OrderDeal orderDeal) => CreateBusinessObject(orderDeal, OrdersEnd);
 
         public static void UpdateOrders(List<OrderDeal> orderDeals) =>
             UpdateBusinessObject(orderDeals, OrdersEnd);
         
-        private static string JoinParams(params string[] linkParams) => string.Join("/", linkParams);
+        private static string JoinParams(params object[] linkParams) => string.Join("/", linkParams);
 
         // <summary>
         /// Gets data from API
@@ -98,30 +108,24 @@ namespace Wasted.WastedAPI
 
         private static string GetJson(string linkEnd)
         {
-            return Task.Run(async () => await Client.GetStringAsync(LinkStart + linkEnd)).Result;
+            return Client.GetStringAsync(LinkStart + linkEnd).Result;
         }
 
         private static void CreateBusinessObject<T>(T data, string linkEnd)
         {
-            Task.Run(async () =>
-                await Client.PostAsync(LinkStart + linkEnd, GetStringContent(data))).Wait();
+            Client.PostAsync(LinkStart + linkEnd, GetStringContent(data)).Wait();
         }
 
         private static void UpdateBusinessObject<T>(T data, string linkEnd)
         {
-            Task.Run(async () =>
-                await Client.PutAsync(LinkStart + linkEnd, GetStringContent(data))).Wait();
+            Client.PutAsync(LinkStart + linkEnd, GetStringContent(data)).Wait();
         }
 
         private static void DeleteBusinessObject(int id, string linkEnd)
         {
-            Task.Run(async () =>
-                await Client.DeleteAsync(LinkStart + linkEnd + "/" + id)).Wait();
+            Client.DeleteAsync(LinkStart + linkEnd + "/" + id).Wait();
         }
-        
-        /// <summary>
-        /// Converts object to json StringContent
-        /// </summary>
+
         private static StringContent GetStringContent(object obj)
         {
             string content = JsonConvert.SerializeObject(obj);

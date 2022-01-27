@@ -19,11 +19,19 @@ namespace DataAPI.Repositories
             _logger = logger;
         }
 
-        public IEnumerable<Deal> Get()
+        public IEnumerable<Deal> GetDeals()
         {
             return _dbContext.Deals
                 .Include(d => d.FoodPlace)
                 .ToList();
+        }
+
+        public IEnumerable<Deal> GetBestOffers(int specialOffersCount)
+        {
+            return GetDeals()
+                .OrderBy(deal => deal.CurrentCost / deal.PreviousCost)
+                .Where(deal => deal.Quantity > 0)
+                .Take(specialOffersCount);
         }
 
         public Deal Create(Deal deal)
