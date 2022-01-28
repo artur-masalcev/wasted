@@ -33,7 +33,7 @@ namespace Wasted.Pages.Client.FoodPlaceRating
             InitializeComponent();
 
             UserDetailsService = DependencyService.Get<UserDetailsService>();
-            User = DataProvider.GetClientUser(UserDetailsService);
+            User = UsersProvider.GetClientUser(UserDetailsService);
             _rating = User.Ratings.FirstOrDefault(r => r.FoodPlaceId == foodPlace.Id);
 
             if (_rating != null)
@@ -54,14 +54,14 @@ namespace Wasted.Pages.Client.FoodPlaceRating
                 RatingDTO placeRating = SelectedFoodPlace.Ratings.Find(r => r.Id == _rating.Id);
                 placeRating.Value = RatingBarRating;
                 _rating.Value = RatingBarRating; //Sets value for place and user
-                DataProvider.UpdateRating(_rating);
+                FoodPlacesProvider.UpdateRating(_rating);
             }
             else
             {
                 _rating = new RatingDTO(User.Id, SelectedFoodPlace.Id, RatingBarRating);
                 SelectedFoodPlace.Ratings.Add(_rating);
                 User.Ratings.Add(_rating);
-                DataProvider.CreateRating(_rating);
+                FoodPlacesProvider.CreateRating(_rating);
             }
 
             SelectedFoodPlace.RatingChanged();

@@ -60,10 +60,10 @@ namespace Wasted.Pages.Client
 
         public SearchPage()
         {
-            FoodPlaceTypes = DataProvider.GetFoodPlaceTypes();
+            FoodPlaceTypes = FoodPlacesProvider.GetFoodPlaceTypes();
             PlaceTypeNames = FoodPlaceTypes.Select(type => type.Type).ToArray();
             AllPlaces = FoodPlaceTypes
-                .Aggregate(new List<FoodPlace>(), (acc, next) => acc.Concat(next.FoodPlaces).ToList())
+                .SelectMany(type => type.FoodPlaces)
                 .ToList();
 
             InitializeComponent();

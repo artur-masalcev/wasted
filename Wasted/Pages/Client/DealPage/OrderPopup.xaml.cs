@@ -42,7 +42,7 @@ namespace Wasted.Pages.Client.DealPage
         {
             PopupNavigation.Instance.PopAsync(); // Close the popup
             SelectedDeal.Quantity -= (int) Stepper.Value;
-            DataProvider.UpdateDeal(SelectedDeal);
+            DealsProvider.UpdateDeal(SelectedDeal);
 
             bool selectedSomething = Stepper.Value != 0;
             if (selectedSomething)
@@ -56,7 +56,7 @@ namespace Wasted.Pages.Client.DealPage
                     SelectedDeal.Title,
                     SelectedDeal.CurrentCost
                 );
-                DataProvider.CreateOrder(cartDeal);
+                OrdersProvider.CreateOrder(cartDeal);
 
                 UserDialogs.Instance.Toast("Added to cart", new TimeSpan(3));
             }

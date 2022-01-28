@@ -32,13 +32,13 @@ namespace Wasted.Pages.Client
             base.OnAppearing();
 
             NearbyFoodPlacesCollectionView.ItemsSource =
-                DataProvider.GetClosestFoodPlaces(_detailsService.UserLocation, nearbyPlacesCount: 10, maxRadiusInKilometers: 50);
+                FoodPlacesProvider.GetClosestFoodPlaces(_detailsService.UserLocation, nearbyPlacesCount: 10, maxRadiusInKilometers: 50);
 
             SpecialOffersCollectionView.ItemsSource =
-                DataProvider.GetBestOffers(specialOffersCount: 10);
+                DealsProvider.GetBestOffers(specialOffersCount: 10);
 
             PopularFoodPlacesCollectionView.ItemsSource =
-                DataProvider.GetTopRatedFoodPlaces(popularPlacesCount: 10);
+                FoodPlacesProvider.GetTopRatedFoodPlaces(popularPlacesCount: 10);
         }
 
         /// <summary>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Wasted.Utils;
 using Wasted.Utils.Services;
@@ -19,6 +20,13 @@ namespace Wasted.Pages.Place
     {
         private readonly UserDetailsService _detailsService;
         private List<OrderDeal> PlaceOrders { get; set; }
+        
+        private readonly Dictionary<string, Func<OrderDeal, PopupPage>> _statusPageDictionary =
+            new Dictionary<string, Func<OrderDeal, PopupPage>>
+            {
+                {OrderStatus.Preparing, order => new OrderStatusReadyPlacePopup(order)},
+                {OrderStatus.WaitingForAcceptance, order => new OrderStatusPreparedPlacePopup(order)}
+            };
         public PlaceUser CurrentUser { get; set; }
         private IEnumerable<FoodPlace> _ownedPlaces;
 
@@ -34,10 +42,10 @@ namespace Wasted.Pages.Place
 
         public OrdersPage()
         {
-            // _service = DependencyService.Get<CurrentUserService>();
-            // CurrentUser = (PlaceUser) _service.CurrentUser;
-            // OwnedPlaces = CurrentUser.OwnedPlaces;
-            // InitializeComponent();
+            _detailsService = DependencyService.Get<UserDetailsService>();
+            CurrentUser = UsersProvider.GetPlaceUser(_detailsService);
+            OwnedPlaces = CurrentUser.OwnedPlaces;
+            InitializeComponent();
             
             On<iOS>().SetUseSafeArea(true);
         }
@@ -48,7 +56,7 @@ namespace Wasted.Pages.Place
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            PlaceOrders = DataProvider.GetPlaceOrders(CurrentUser.Id);
+            PlaceOrders = OrdersProvider.GetPlaceOrdersById(CurrentUser.Id);
             OrdersCollectionView.ItemsSource = null;
             OrdersCollectionView.ItemsSource = PlaceOrders;
         }
@@ -58,21 +66,13 @@ namespace Wasted.Pages.Place
             OnAppearing();
             RefreshView.IsRefreshing = false;
         }
-
+        
         private void OrdersCollectionView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SelectionChanger.ListSelectionChanged(sender, () =>
             {
                 OrderDeal order = e.CurrentSelection.FirstOrDefault() as OrderDeal;
-                switch (order.Status)
-                {
-                    case OrderStatus.Preparing:
-                        PopupNavigation.Instance.PushAsync(new OrderStatusReadyPlacePopup(order));
-                        break;
-                    case OrderStatus.WaitingForAcceptance:
-                        PopupNavigation.Instance.PushAsync(new OrderStatusPreparedPlacePopup(order));
-                        break;
-                }
+                _statusPageDictionary[order.Status].Invoke(order); //TODO: fix null pointer
             });
         }
     }

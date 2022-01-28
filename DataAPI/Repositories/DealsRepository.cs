@@ -18,20 +18,17 @@ namespace DataAPI.Repositories
             _dbContext = dbContext;
             _logger = logger;
         }
-
-        public IEnumerable<Deal> GetDeals()
-        {
-            return _dbContext.Deals
-                .Include(d => d.FoodPlace)
-                .ToList();
-        }
-
         public IEnumerable<Deal> GetBestOffers(int specialOffersCount)
         {
             return GetDeals()
                 .OrderBy(deal => deal.CurrentCost / deal.PreviousCost)
                 .Where(deal => deal.Quantity > 0)
                 .Take(specialOffersCount);
+        }
+
+        public Deal GetDeal(int id)
+        {
+            return GetDeals().FirstOrDefault(deal => deal.Id == id);
         }
 
         public Deal Create(Deal deal)
@@ -67,6 +64,12 @@ namespace DataAPI.Repositories
             selectedDeal.ImageURL = updatedDeal.ImageURL;
 
             _dbContext.SaveChangesAsync();
+        }
+
+        private IEnumerable<Deal> GetDeals()
+        {
+            return _dbContext.Deals
+                .Include(d => d.FoodPlace);
         }
     }
 }

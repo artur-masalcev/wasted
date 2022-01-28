@@ -67,7 +67,7 @@ namespace Wasted.Pages.Client
         /// </summary>
         private void RefreshView_Refreshing(object sender, EventArgs e)
         {
-            SelectedFoodPlace = DataProvider.GetAllFoodPlaces().Find(place => place.Id == SelectedFoodPlace.Id);
+            SelectedFoodPlace = FoodPlacesProvider.GetFoodPlaceById(SelectedFoodPlace.Id);
             BindingContext = SelectedFoodPlace;
             InitializeViews();
             RefreshView.IsRefreshing = false;

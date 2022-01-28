@@ -20,7 +20,7 @@ namespace Wasted.Pages.Place
     public partial class FoodPlacePage : ContentPage
     {
         private FoodPlace SelectedPlace =>
-            DataProvider.GetAllFoodPlaces().First(foodPlace => foodPlace.Id == SelectedPlaceId);
+            FoodPlacesProvider.GetFoodPlaceById(SelectedPlaceId);
 
         private int SelectedPlaceId;
 
@@ -39,7 +39,7 @@ namespace Wasted.Pages.Place
 
         protected override void OnAppearing()
         {
-            PageTitleLabel.Text = SelectedPlace.Title;
+            PageTitleLabel.Text = SelectedPlace.Title; //TODO: add refresh on all pages. Do fetching data in this method
             DealsCollectionView.ItemsSource = SelectedPlace.Deals;
 
             base.OnAppearing();

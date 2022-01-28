@@ -24,7 +24,7 @@ namespace Wasted.WastedAPI.Business_Objects.Users
 
         public override void CreateUser()
         {
-            DataProvider.CreatePlaceUser(this);
+            UsersProvider.CreatePlaceUser(this);
         }
     }
 }

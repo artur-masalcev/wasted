@@ -23,10 +23,9 @@ namespace DataAPI.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<FoodPlaceDTO> GetFoodPlaces()
+        public FoodPlaceDTO GetFoodPlaceById(int id)
         {
-            return _placesRepository.GetFoodPlaces()
-                .Select(_mapper.Map<FoodPlaceDTO>);
+            return _mapper.Map<FoodPlaceDTO>(_placesRepository.GetFoodPlaceById(id));
         }
 
         [HttpGet("{latitude:double}/{longitude:double}/{nearbyPlacesCount:int}/{maxRadiusInKilometers:int}")]
@@ -49,10 +48,8 @@ namespace DataAPI.Controllers
         public ActionResult<FoodPlace> PostFoodPlace([FromBody] FoodPlace foodPlace)
         {
             var newFoodPlace = _placesRepository.Create(foodPlace);
-            return CreatedAtAction(nameof(GetFoodPlaces), new {id = newFoodPlace.Id}, newFoodPlace);
+            return CreatedAtAction(nameof(PostFoodPlace), new {id = newFoodPlace.Id}, newFoodPlace);
         }
-        
-        
 
         [HttpDelete("{id:int}")]
         public ActionResult DeleteFoodPlace(int id)

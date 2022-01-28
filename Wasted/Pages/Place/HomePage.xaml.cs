@@ -33,7 +33,7 @@ namespace Wasted.Pages.Place
 
         protected override void OnAppearing()
         {
-            _currentPlaceUser = DataProvider.GetPlaceUser(_detailsService);
+            _currentPlaceUser = UsersProvider.GetPlaceUser(_detailsService);
             PlacesCollectionView.ItemsSource = _currentPlaceUser.OwnedPlaces;
             base.OnAppearing();
         }

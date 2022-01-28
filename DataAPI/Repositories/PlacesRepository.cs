@@ -19,15 +19,10 @@ namespace DataAPI.Repositories
             _logger = logger;
         }
 
-        public IEnumerable<FoodPlace> GetFoodPlaces()
+        public FoodPlace GetFoodPlaceById(int id)
         {
-            return _dbContext.FoodPlaces
-                .Include(p => p.Deals)
-                .Include(p => p.Ratings)
-                .Include(p => p.PlaceType)
-                .ToList();
+            return GetFoodPlaces().FirstOrDefault(place => place.Id == id);
         }
-
         public IEnumerable<FoodPlace> GetClosestFoodPlaces(Location userLocation, int nearbyPlacesCount, int maxRadiusInKilometers)
         {
             return (
@@ -48,7 +43,7 @@ namespace DataAPI.Repositories
                 .OrderBy(place => place.Ratings.Count)
                 .Take(popularPlacesCount);
         }
-        
+
         public FoodPlace Create(FoodPlace foodPlace)
         {
             _dbContext.FoodPlaces.Add(foodPlace);
@@ -82,6 +77,14 @@ namespace DataAPI.Repositories
             selectedFoodPlace.LogoURL = updatedFoodPlace.LogoURL;
 
             _dbContext.SaveChangesAsync();
+        }
+
+        private IEnumerable<FoodPlace> GetFoodPlaces()
+        {
+            return _dbContext.FoodPlaces
+                .Include(p => p.Deals)
+                .Include(p => p.Ratings)
+                .Include(p => p.PlaceType);
         }
     }
 }

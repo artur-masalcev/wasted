@@ -35,7 +35,7 @@ namespace Wasted.Pages.Login
         {
             if (ValidParams())
             {
-                User loggedUser = DataProvider.GetUser(UserName, UserPassword);
+                User loggedUser = UsersProvider.GetUser(UserName, UserPassword);
                 if (loggedUser != null)
                 {
                     loggedUser.InitializePage(this);

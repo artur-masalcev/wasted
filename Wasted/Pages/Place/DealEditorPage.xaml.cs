@@ -87,7 +87,7 @@ namespace Wasted.Pages.Place
             if (ValidParams())
             {
                 UpdateSelectedDealObject();
-                DataProvider.UpdateDeal(SelectedDeal);
+                DealsProvider.UpdateDeal(SelectedDeal);
             }
             else
             {
@@ -116,7 +116,7 @@ namespace Wasted.Pages.Place
 
         private void DeleteOfferClicked(object sender, EventArgs e)
         {
-            DataProvider.DeleteDeal(SelectedDeal);
+            DealsProvider.DeleteDeal(SelectedDeal);
             Navigation.PopAsync();
         }
     }

@@ -23,8 +23,7 @@ namespace DataAPI.Repositories
         {
             return _dbContext.PlaceUsers
                 .Include(p => p.FoodPlaces)
-                .ThenInclude(f => f.Deals)
-                .ToList();
+                .ThenInclude(f => f.Deals);
         }
 
         public PlaceUser Create(PlaceUser placeUser)

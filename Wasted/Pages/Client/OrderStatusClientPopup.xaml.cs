@@ -13,16 +13,16 @@ namespace Wasted.Pages.Client
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderStatusClientPopup : PopupPage
     {
-        public OrderDeal SelectedDeal { get; set; }
-        public string DealTitle => SelectedDeal.Title;
-        public int Quantity => SelectedDeal.Quantity;
+        public OrderDeal SelectedOrder { get; set; }
+        public string DealTitle => SelectedOrder.Title;
+        public int Quantity => SelectedOrder.Quantity;
 
         public string Message => $"Deal {DealTitle} (x{Quantity}) is received";
 
-        public OrderStatusClientPopup(OrderDeal deal)
+        public OrderStatusClientPopup(OrderDeal order)
         {
             InitializeComponent();
-            SelectedDeal = deal;
+            SelectedOrder = order;
             BindingContext = this;
             
             On<iOS>().SetUseSafeArea(true);
@@ -30,8 +30,8 @@ namespace Wasted.Pages.Client
 
         private void Button_OnClicked(object sender, EventArgs e)
         {
-            SelectedDeal.Status = OrderStatus.Received;
-            DataProvider.UpdateOrders(new List<OrderDeal>{SelectedDeal});
+            SelectedOrder.Status = OrderStatus.Received;
+            OrdersProvider.UpdateOrder(SelectedOrder);
             PopupNavigation.Instance.PopAsync();
         }
     }

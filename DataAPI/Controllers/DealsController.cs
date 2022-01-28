@@ -21,13 +21,13 @@ namespace DataAPI.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public IEnumerable<DealDTO> GetDeals()
+        [HttpGet("{id:int}")]
+        public DealDTO GetDealById(int id)
         {
-            return _dealsRepository.GetDeals().Select(_mapper.Map<DealDTO>);
+            return _mapper.Map<DealDTO>(_dealsRepository.GetDeal(id));
         }
         
-        [HttpGet("{specialOffersCount:int}")]
+        [HttpGet("special/{specialOffersCount:int}")]
         public IEnumerable<DealDTO> GetBestOffers(int specialOffersCount)
         {
             return _dealsRepository.GetBestOffers(specialOffersCount)
@@ -38,7 +38,7 @@ namespace DataAPI.Controllers
         public ActionResult<Deal> PostDeal([FromBody] Deal deal)
         {
             var newDeal = _dealsRepository.Create(deal);
-            return CreatedAtAction(nameof(GetDeals), new {id = newDeal.Id}, newDeal);
+            return CreatedAtAction(nameof(PostDeal), new {id = newDeal.Id}, newDeal); //TODO: investigate action naming
         }
 
         [HttpDelete("{id:int}")]

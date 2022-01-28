@@ -21,33 +21,38 @@ namespace DataAPI.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("clientusers/{clientUserId:int}")]
-        public IEnumerable<OrderDTO> GetClientOrders(int clientUserId)
+        [HttpGet("clientusers/{clientUserId:int}/{status}")]
+        public IEnumerable<OrderDTO> GetClientOrdersByIdAndStatus(int clientUserId, string status)
         {
-            return _ordersRepository.Get()
-                .Select(_mapper.Map<OrderDTO>)
-                .Where(o => o.ClientUserId == clientUserId);
+            return _ordersRepository.GetClientOrdersByIdAndStatus(clientUserId, status)
+                .Select(_mapper.Map<OrderDTO>);
+        }
+        
+        [HttpGet("clientusers/{clientUserId:int}/not/{status}")]
+        public IEnumerable<OrderDTO> GetClientOrdersByIdAndNotStatus(int clientUserId, string status)
+        {
+            return _ordersRepository.GetClientOrdersByIdAndNotStatus(clientUserId, status)
+                .Select(_mapper.Map<OrderDTO>);
         }
 
         [HttpGet("placeusers/{placeUserId:int}")]
         public IEnumerable<OrderDTO> GetPlaceOrders(int placeUserId)
         {
-            return _ordersRepository.Get()
-                .Select(_mapper.Map<OrderDTO>)
-                .Where(o => o.DealFoodPlacePlaceUserId == placeUserId);
+            return _ordersRepository.GetPlaceOrdersById(placeUserId)
+                .Select(_mapper.Map<OrderDTO>);
         }
 
         [HttpPost]
         public ActionResult<Order> PostOrder([FromBody] Order order)
         {
             var newOrder = _ordersRepository.Create(order);
-            return CreatedAtAction(nameof(GetClientOrders), new {id = newOrder.Id}, newOrder);
+            return CreatedAtAction(nameof(PostOrder), new {id = newOrder.Id}, newOrder);
         }
 
         [HttpPut]
-        public ActionResult<List<Order>> UpdateOrder([FromBody] List<Order> orders)
+        public ActionResult<List<Order>> UpdateOrders([FromBody] List<Order> orders)
         {
-            _ordersRepository.Update(orders);
+            _ordersRepository.UpdateOrders(orders);
             return orders;
         }
     }

@@ -42,7 +42,7 @@ namespace Wasted.Pages.Place.NewDeal
             {
                 CurrentDeal.Due = dealExpirationDate; //TODO: make not string
                 CurrentDeal.Description = DescriptionText;
-                DataProvider.CreateDeal(CurrentDeal);
+                DealsProvider.CreateDeal(CurrentDeal);
                 PageManager.PushPlacePage(this);
             }
             else

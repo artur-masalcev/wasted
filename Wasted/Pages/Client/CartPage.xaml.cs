@@ -16,19 +16,14 @@ namespace Wasted.Pages.Client
     public partial class CartPage : ContentPage
     {
         private readonly UserDetailsService _detailsService;
-        private List<OrderDeal> AllCartDeals { get; set; }
 
-        private List<OrderDeal> CurrentCartDeals =>
-            AllCartDeals.Where(order => order.Status == OrderStatus.InCart)
-                .ToList();
+        private List<OrderDeal> CurrentCartDeals { get; set; }
 
 
         public CartPage()
         {
             InitializeComponent();
             _detailsService = DependencyService.Get<UserDetailsService>();
-            AllCartDeals = DataProvider.GetClientOrders(_detailsService.UserId);
-
             On<iOS>().SetUseSafeArea(true);
         }
 
@@ -38,7 +33,7 @@ namespace Wasted.Pages.Client
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            AllCartDeals = DataProvider.GetClientOrders(_detailsService.UserId);
+            CurrentCartDeals = OrdersProvider.GetClientOrdersByIdAndStatus(_detailsService.UserId, OrderStatus.InCart);
             CartDealsCollectionView.ItemsSource = null;
             CartDealsCollectionView.ItemsSource = CurrentCartDeals;
             Total.Text = "Total " + CurrentCartDeals.Sum(deal => deal.Cost) + " eur.";
@@ -54,13 +49,8 @@ namespace Wasted.Pages.Client
         {
             if (CurrentCartDeals.Any())
             {
-                List<OrderDeal> dealsToUpdate = new List<OrderDeal>(CurrentCartDeals);
-                foreach (OrderDeal currentCartDeal in dealsToUpdate)
-                {
-                    currentCartDeal.Status = OrderStatus.WaitingForAcceptance;
-                }
-
-                DataProvider.UpdateOrders(dealsToUpdate);
+                CurrentCartDeals.ForEach(cartDeal => cartDeal.Status = OrderStatus.WaitingForAcceptance);
+                OrdersProvider.UpdateOrders(CurrentCartDeals);
                 OnAppearing();
                 UserDialogs.Instance.Toast("Purchased successfully", new TimeSpan(3));
             }

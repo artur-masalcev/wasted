@@ -15,8 +15,7 @@ namespace DataAPI.Repositories
 
         public IEnumerable<Rating> Get()
         {
-            return _dbContext.Ratings
-                .ToList();
+            return _dbContext.Ratings;
         }
 
         public Rating Create(Rating rating)

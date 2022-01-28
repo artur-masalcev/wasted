@@ -15,17 +15,17 @@ namespace Wasted.Pages.Place
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OrderStatusPreparedPlacePopup : PopupPage
     {
-        public OrderDeal SelectedDeal { get; set; }
-        public string DealTitle => SelectedDeal.Title;
-        public int Quantity => SelectedDeal.Quantity;
+        public OrderDeal SelectedOrder { get; set; }
+        public string DealTitle => SelectedOrder.Title;
+        public int Quantity => SelectedOrder.Quantity;
 
         public string Message => $"Do you accept deal {DealTitle} (x{Quantity})?";
 
 
-        public OrderStatusPreparedPlacePopup(OrderDeal deal)
+        public OrderStatusPreparedPlacePopup(OrderDeal order)
         {
             InitializeComponent();
-            SelectedDeal = deal;
+            SelectedOrder = order;
             BindingContext = this;
             ErrorLabel.IsVisible = false;
             On<iOS>().SetUseSafeArea(true);
@@ -43,12 +43,12 @@ namespace Wasted.Pages.Place
         }
         private void Button_OnClicked(object sender, EventArgs e)
         {
-            if (UpdateFinishTime(Time.Text, SelectedDeal))
+            if (UpdateFinishTime(Time.Text, SelectedOrder))
             {
                 ErrorLabel.IsVisible = false;
 
-                SelectedDeal.Status = OrderStatus.Preparing;
-                DataProvider.UpdateOrders(new List<OrderDeal> {SelectedDeal});
+                SelectedOrder.Status = OrderStatus.Preparing;
+                OrdersProvider.UpdateOrder(SelectedOrder);
                 PopupNavigation.Instance.PopAsync();
             }
             else

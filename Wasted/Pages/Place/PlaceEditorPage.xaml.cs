@@ -69,7 +69,7 @@ namespace Wasted.Pages.Place
             if (ValidParams())
             {
                 UpdateSelectedPlaceObject();
-                DataProvider.UpdateFoodPlace(SelectedPlace); //TODO: refactor methods to go correctly from top to bottom
+                FoodPlacesProvider.UpdateFoodPlace(SelectedPlace); //TODO: refactor methods to go correctly from top to bottom
             }
             else
             {
@@ -97,7 +97,7 @@ namespace Wasted.Pages.Place
 
         private void DeletePlaceClicked(object sender, EventArgs e)
         {
-            DataProvider.DeleteFoodPlace(SelectedPlace);
+            FoodPlacesProvider.DeleteFoodPlace(SelectedPlace);
             PageManager.PushPlacePage(this);
         }
 

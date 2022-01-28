@@ -43,7 +43,7 @@ namespace Wasted.Pages.Login
 
         private void SubmitUserData(string username, string password)
         {
-            bool existsUser = DataProvider.GetUser(username, password) != null;
+            bool existsUser = UsersProvider.GetUser(username, password) != null;
 
             if (!existsUser)
             {

@@ -34,8 +34,7 @@ namespace Wasted.Pages.Client
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            OrderedDeals = DataProvider.GetClientOrders(_detailsService.UserId)
-                .Where(order => order.Status != OrderStatus.InCart);
+            OrderedDeals = OrdersProvider.GetClientOrdersByIdAndNotStatus(_detailsService.UserId, OrderStatus.InCart);
 
             OrderedDealsCollectionView.ItemsSource = null; //TODO: inspect why this helps
             OrderedDealsCollectionView.ItemsSource = OrderedDeals;
